@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>DecoratedBox组件</title>
+    <url>/2020/05/02/DecoratedBox/</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
+<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">名称:       DecoratedBox  装饰盒</span><br><span class="line">类型:       装饰型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【DecoratedBoxTransition】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- DecoratedBox</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>decoration</td>
+<td>Decoration</td>
+<td>@required</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>position</td>
+<td>DecorationPosition</td>
+<td>DecorationPosition.background</td>
+<td>装饰位置</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Decoration对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Decoration # 抽象类</span><br><span class="line">    |--- BoxDecoration # 盒装饰</span><br><span class="line">    |--- ShapeDecoration # 形状装饰</span><br><span class="line">    |--- UnderlineTabIndicator # 底线装饰</span><br><span class="line">    |--- FlutterLogoDecoration # FlutterLogo 装饰</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DecorationPositiond对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">DecorationPositiond# 枚举对象</span><br><span class="line">    |---DecorationPosition.background 背景装饰</span><br><span class="line">    |---DecorationPosition.foreground 前景装饰</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-盒装饰-BoxDecoration"><a href="#1-盒装饰-BoxDecoration" class="headerlink" title="1. 盒装饰: BoxDecoration"></a>1. 盒装饰: <code>BoxDecoration</code></h5><blockquote>
+<p>BoxDecoration的属性较多，也是最常用的装饰对象</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>border</td>
+<td>BoxBorder</td>
+<td>null</td>
+<td>装饰边线</td>
+</tr>
+<tr>
+<td>borderRadius</td>
+<td>BorderRadiusGeometry</td>
+<td>null</td>
+<td>边角半径</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>backgroundBlendMode</td>
+<td>BlendMode</td>
+<td>null</td>
+<td>背景叠色模式</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>BoxShape</td>
+<td>BoxShape.rectangle</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>color,borderRadiu,boxShadows,boxShadow,gradient综合案例</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class BoxDecorationDemo extends StatelessWidget &#123;</span><br><span class="line">  final rainbow &#x3D; const &lt;int&gt;[</span><br><span class="line">    0xffff0000,</span><br><span class="line">    0xffFF7F00,</span><br><span class="line">    0xffFFFF00,</span><br><span class="line">    0xff00FF00,</span><br><span class="line">    0xff00FFFF,</span><br><span class="line">    0xff0000FF,</span><br><span class="line">    0xff8B00FF</span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      position: DecorationPosition.background,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          gradient: LinearGradient(</span><br><span class="line">              stops: &lt;double&gt;[0.0, 1 &#x2F; 6, 2 &#x2F; 6, 3 &#x2F; 6, 4 &#x2F; 6, 5 &#x2F; 6, 1.0],</span><br><span class="line">              colors: rainbow.map((e) &#x3D;&gt; Color(e)).toList()),</span><br><span class="line">          borderRadius: BorderRadius.only(</span><br><span class="line">              topLeft: Radius.circular(20), bottomRight: Radius.circular(20)),</span><br><span class="line">          boxShadow: [</span><br><span class="line">            const BoxShadow(</span><br><span class="line">                color: Colors.orangeAccent,</span><br><span class="line">                offset: Offset(1, 1),</span><br><span class="line">                blurRadius: 10,</span><br><span class="line">                spreadRadius: 1),</span><br><span class="line">          ]),</span><br><span class="line">      child: Icon(</span><br><span class="line">        Icons.android,</span><br><span class="line">        size: 80,</span><br><span class="line">        color: Colors.black.withAlpha(123),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>image,shape综合案例:<br>通过image可以为任意组件指定一个图片背景，用法与<code>Image组件</code>类似<br>通过shape可以指定装饰区域是方形还是圆形。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ShapeImageDemo extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          shape: BoxShape.circle,</span><br><span class="line">          image: DecorationImage(</span><br><span class="line">              fit: BoxFit.cover,</span><br><span class="line">              image: AssetImage(</span><br><span class="line">                &#39;assets&#x2F;images&#x2F;wy_200x300.jpg&#39;,</span><br><span class="line">              ))),</span><br><span class="line">      child: SizedBox(</span><br><span class="line">        height: 80,</span><br><span class="line">        width: 80,</span><br><span class="line">        child: Icon(Icons.ac_unit,color: Colors.white,size: 40,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>position和border综合案例:<br> 注意点: <code>border不能和borderRadius共同使用</code><br>这里添加边线，如果<code>position</code>是背景,那么装饰就看不见了.所以应该用<code>foreground</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class BorderDemo extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      position: DecorationPosition.foreground,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">        border: Border(</span><br><span class="line">            bottom: BorderSide(color: Colors.orange, width: 2),</span><br><span class="line">            top: BorderSide(color: Colors.orange, width: 2)),</span><br><span class="line">      ),</span><br><span class="line">      child: SizedBox(</span><br><span class="line">        height: 80,</span><br><span class="line">        width: 100,</span><br><span class="line">        child: Image.asset(</span><br><span class="line">          &#39;assets&#x2F;images&#x2F;wy_200x300.jpg&#39;,</span><br><span class="line">          fit: BoxFit.cover,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-形状装饰-ShapeDecoration"><a href="#2-形状装饰-ShapeDecoration" class="headerlink" title="2. 形状装饰: ShapeDecoration"></a>2. 形状装饰: <code>ShapeDecoration</code></h5><blockquote>
+<p>如果需要形状的高度DIY，可以使用<code>ShapeDecoration</code>作为装饰<br><code>ShapeBorder</code>详细用法见: <code>https://juejin.im/post/5e6196066fb9a07c8b5bbdf5</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>ShapeBorder</td>
+<td>@required</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class ShapeDecorationDemo extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      decoration: ShapeDecoration(</span><br><span class="line">          image: DecorationImage(</span><br><span class="line">              fit: BoxFit.cover,</span><br><span class="line">              image: AssetImage(</span><br><span class="line">                &#39;assets&#x2F;images&#x2F;wy_200x300.jpg&#39;,</span><br><span class="line">              )),</span><br><span class="line">        shape: CircleBorder(</span><br><span class="line">          side: BorderSide(width: 2.0, color: Colors.blue),</span><br><span class="line">        )</span><br><span class="line">      ),</span><br><span class="line">      child: SizedBox(</span><br><span class="line">        height: 100,</span><br><span class="line">        width: 100,</span><br><span class="line">        child: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          color: Colors.white,</span><br><span class="line">          size: 40,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="3-底线装饰-UnderlineTabIndicator"><a href="#3-底线装饰-UnderlineTabIndicator" class="headerlink" title="3. 底线装饰: UnderlineTabIndicator"></a>3. 底线装饰: <code>UnderlineTabIndicator</code></h5><blockquote>
+<p><code>UnderlineTabIndicator</code>可以在子组件的底部添加装饰</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>borderSide</td>
+<td>Color</td>
+<td>BorderSide(width: 2.0, color: Colors.white)</td>
+<td>边线</td>
+</tr>
+<tr>
+<td>insets</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>间距</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class UnderlineTabIndicatorDemo extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      decoration: UnderlineTabIndicator(</span><br><span class="line">        insets: EdgeInsets.symmetric(horizontal: 5,vertical: -5),</span><br><span class="line">          borderSide: BorderSide(color: Colors.orange, width: 2)),</span><br><span class="line">      child: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          color: Colors.blue,</span><br><span class="line">          size: 40,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-FlutterLogo装饰-FlutterLogoDecoration"><a href="#4-FlutterLogo装饰-FlutterLogoDecoration" class="headerlink" title="4. FlutterLogo装饰: FlutterLogoDecoration"></a>4. FlutterLogo装饰: <code>FlutterLogoDecoration</code></h5><blockquote>
+<p>以<code>FlutterLogo</code>为背景的装饰，没有太大的实用价值。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lightColor</td>
+<td>Color</td>
+<td>Color(0xFF42A5F5)</td>
+<td>上两杠颜色</td>
+</tr>
+<tr>
+<td>darkColor</td>
+<td>Color</td>
+<td>Color(0xFF0D47A1)</td>
+<td>下杠颜色</td>
+</tr>
+<tr>
+<td>textColor</td>
+<td>Color</td>
+<td>Color(0xFF616161)</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td>style</td>
+<td>FlutterLogoStyle</td>
+<td>FlutterLogoStyle.markOnly</td>
+<td>展示模式</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>外间距</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class FlutterLogoDecorationDemo extends StatelessWidget &#123;</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return DecoratedBox(</span><br><span class="line">      decoration: FlutterLogoDecoration(</span><br><span class="line">        darkColor: Colors.orange,</span><br><span class="line">        lightColor: Colors.deepPurpleAccent,</span><br><span class="line">        style: FlutterLogoStyle.stacked</span><br><span class="line">      ),</span><br><span class="line">      child:SizedBox(width: 100,height: 100,),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>装饰型组件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/05/02/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Padding组件</title>
+    <url>/2020/05/02/Padding/</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
+<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>EdgeInsetsGeometry</td>
+<td>@required</td>
+<td>内边距</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>EdgeInsetsGeometry对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
+<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
+<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
+</ul>
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>double</td>
+<td>null</td>
+<td>内四边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件四周20</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingAll extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(20),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>double</td>
+<td>0.0</td>
+<td>左内边距</td>
+</tr>
+<tr>
+<td>top</td>
+<td>double</td>
+<td>0.0</td>
+<td>上内边距</td>
+</tr>
+<tr>
+<td>right</td>
+<td>double</td>
+<td>0.0</td>
+<td>右内边距</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>double</td>
+<td>0.0</td>
+<td>下内边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingOnly extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:10,left: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vertical</td>
+<td>double</td>
+<td>0.0</td>
+<td>水平边距</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>double</td>
+<td>0.0</td>
+<td>竖直边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingSymmetric extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: 30,horizontal: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
+<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) + EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) - EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) * 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) &#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) ~&#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) % 6</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>布局型组件</tag>
+      </tags>
+  </entry>
+</search>
