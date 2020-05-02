@@ -1,6 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Padding组件</title>
+    <url>/2020/05/02/Padding/</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
+<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>EdgeInsetsGeometry</td>
+<td>@required</td>
+<td>内边距</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>EdgeInsetsGeometry对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
+<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
+<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
+</ul>
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>double</td>
+<td>null</td>
+<td>内四边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件四周20</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingAll extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(20),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>double</td>
+<td>0.0</td>
+<td>左内边距</td>
+</tr>
+<tr>
+<td>top</td>
+<td>double</td>
+<td>0.0</td>
+<td>上内边距</td>
+</tr>
+<tr>
+<td>right</td>
+<td>double</td>
+<td>0.0</td>
+<td>右内边距</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>double</td>
+<td>0.0</td>
+<td>下内边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingOnly extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:10,left: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vertical</td>
+<td>double</td>
+<td>0.0</td>
+<td>水平边距</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>double</td>
+<td>0.0</td>
+<td>竖直边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingSymmetric extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: 30,horizontal: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
+<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) + EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) - EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) * 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) &#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) ~&#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) % 6</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>布局型组件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DecoratedBox组件</title>
     <url>/2020/05/02/DecoratedBox/</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
@@ -292,171 +458,5 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Padding组件</title>
-    <url>/2020/05/02/Padding/</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
-<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
-<a id="more"></a>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>padding</td>
-<td>EdgeInsetsGeometry</td>
-<td>@required</td>
-<td>内边距</td>
-</tr>
-<tr>
-<td>child</td>
-<td>Widget</td>
-<td>null</td>
-<td>子组件</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>EdgeInsetsGeometry对象</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
-<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
-<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
-</ul>
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>double</td>
-<td>null</td>
-<td>内四边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件四周20</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingAll extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(20),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>left</td>
-<td>double</td>
-<td>0.0</td>
-<td>左内边距</td>
-</tr>
-<tr>
-<td>top</td>
-<td>double</td>
-<td>0.0</td>
-<td>上内边距</td>
-</tr>
-<tr>
-<td>right</td>
-<td>double</td>
-<td>0.0</td>
-<td>右内边距</td>
-</tr>
-<tr>
-<td>bottom</td>
-<td>double</td>
-<td>0.0</td>
-<td>下内边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingOnly extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:10,left: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>vertical</td>
-<td>double</td>
-<td>0.0</td>
-<td>水平边距</td>
-</tr>
-<tr>
-<td>horizontal</td>
-<td>double</td>
-<td>0.0</td>
-<td>竖直边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class PaddingSymmetric extends StatelessWidget &#123;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      color: Colors.grey.withAlpha(22),</span><br><span class="line">      width: 200,</span><br><span class="line">      height: 150,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: 30,horizontal: 10),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    return Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: 100,</span><br><span class="line">      height: 100,</span><br><span class="line">      child: Text(&quot;孩子&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
-<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) + EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) - EdgeInsets.only(top:10,left: 10)</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) * 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) &#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) ~&#x2F; 6</span><br><span class="line">EdgeInsets.symmetric(vertical: 30,horizontal: 10) % 6</span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Flutter组件</category>
-      </categories>
-      <tags>
-        <tag>widget</tag>
-        <tag>布局型组件</tag>
-      </tags>
   </entry>
 </search>
