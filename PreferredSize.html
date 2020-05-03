@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="widget,装饰型组件," />
+  <meta name="keywords" content="widget,布局型组件," />
 
 
 
@@ -75,26 +75,22 @@
 
 
 
-<meta name="description" content="一、认识组件1.DecoratedBox组件介绍 可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。">
+<meta name="description" content="一、认识组件1.PreferredSize组件介绍 实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DecoratedBox装饰盒组件">
-<meta property="og:url" content="http://yoursite.com/2020/05/02/DecoratedBox/index.html">
+<meta property="og:title" content="PreferredSize优先尺寸">
+<meta property="og:url" content="http://yoursite.com/PreferredSize.html">
 <meta property="og:site_name" content="张风捷特烈">
-<meta property="og:description" content="一、认识组件1.DecoratedBox组件介绍 可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png">
-<meta property="article:published_time" content="2020-05-02T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-05-03T05:03:57.000Z">
+<meta property="og:description" content="一、认识组件1.PreferredSize组件介绍 实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
+<meta property="article:published_time" content="2020-05-03T05:46:25.000Z">
+<meta property="article:modified_time" content="2020-05-03T05:05:23.000Z">
 <meta property="article:author" content="张风捷特烈">
 <meta property="article:tag" content="widget">
-<meta property="article:tag" content="装饰型组件">
+<meta property="article:tag" content="布局型组件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png">
+<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
 
 
 
@@ -124,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/02/DecoratedBox/"/>
+  <link rel="canonical" href="http://yoursite.com/PreferredSize.html"/>
 
 
 
 
 
-  <title>DecoratedBox装饰盒组件 | 张风捷特烈</title>
+  <title>PreferredSize优先尺寸 | 张风捷特烈</title>
   
 
 
@@ -301,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/02/DecoratedBox/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/PreferredSize.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张风捷特烈">
@@ -318,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">DecoratedBox装饰盒组件</h1>
+          <h1 class="post-title" itemprop="name headline">PreferredSize优先尺寸</h1>
         
 
         <div class="post-meta">
@@ -330,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T20:46:25+08:00">
-                2020-05-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T13:46:25+08:00">
+                2020-05-03
               </time>
             
 
@@ -384,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  916
+                  367
                 </span>
               
 
@@ -400,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  1
                 </span>
               
             </div>
@@ -421,13 +417,13 @@
       
 
       
-        <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
-<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
+        <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
+<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
 <a id="more"></a>
 
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">名称:       DecoratedBox  装饰盒</span></span><br><span class="line"><span class="section">类型:       装饰型</span></span><br><span class="line"><span class="section">重要性:     ☆☆☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Container】、【DecoratedBoxTransition】    </span></span><br><span class="line"><span class="section">家族:       RenderObjectWidget</span></span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- DecoratedBox</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
@@ -446,238 +442,40 @@
 <td>组件键</td>
 </tr>
 <tr>
-<td>decoration</td>
-<td>Decoration</td>
+<td>preferredSize</td>
+<td>Size</td>
 <td>@required</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>position</td>
-<td>DecorationPosition</td>
-<td>DecorationPosition.background</td>
-<td>装饰位置</td>
+<td>优先尺寸</td>
 </tr>
 <tr>
 <td>child</td>
 <td>Widget</td>
-<td>null</td>
+<td>@required</td>
 <td>子组件</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>Decoration对象</p>
+<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
 </blockquote>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Decoration <span class="comment"># 抽象类</span></span><br><span class="line">    |<span class="params">---</span> BoxDecoration <span class="comment"># 盒装饰</span></span><br><span class="line">    |<span class="params">---</span> ShapeDecoration <span class="comment"># 形状装饰</span></span><br><span class="line">    |<span class="params">---</span> UnderlineTabIndicator <span class="comment"># 底线装饰</span></span><br><span class="line">    |<span class="params">---</span> FlutterLogoDecoration <span class="comment"># FlutterLogo 装饰</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>DecorationPositiond对象</p>
-</blockquote>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DecorationPositiond<span class="meta"># 枚举对象</span></span><br><span class="line">    <span class="string">|---DecorationPosition.background 背景装饰</span></span><br><span class="line">    <span class="string">|---DecorationPosition.foreground 前景装饰</span></span><br></pre></td></tr></table></figure>
-
 <hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-盒装饰-BoxDecoration"><a href="#1-盒装饰-BoxDecoration" class="headerlink" title="1. 盒装饰: BoxDecoration"></a>1. 盒装饰: <code>BoxDecoration</code></h5><blockquote>
-<p>BoxDecoration的属性较多，也是最常用的装饰对象</p>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
+<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>color</td>
-<td>Color</td>
-<td>null</td>
-<td>颜色</td>
-</tr>
-<tr>
-<td>image</td>
-<td>DecorationImage</td>
-<td>null</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>border</td>
-<td>BoxBorder</td>
-<td>null</td>
-<td>装饰边线</td>
-</tr>
-<tr>
-<td>borderRadius</td>
-<td>BorderRadiusGeometry</td>
-<td>null</td>
-<td>边角半径</td>
-</tr>
-<tr>
-<td>boxShadow</td>
-<td>List<BoxShadow></td>
-<td>null</td>
-<td>阴影</td>
-</tr>
-<tr>
-<td>gradient</td>
-<td>Gradient</td>
-<td>null</td>
-<td>渐变</td>
-</tr>
-<tr>
-<td>backgroundBlendMode</td>
-<td>BlendMode</td>
-<td>null</td>
-<td>背景叠色模式</td>
-</tr>
-<tr>
-<td>shape</td>
-<td>BoxShape</td>
-<td>BoxShape.rectangle</td>
-<td>装饰形状</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>color,borderRadiu,boxShadows,boxShadow,gradient综合案例</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png" alt=""></p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">BoxDecorationDemo</span> <span class="symbol">extends</span> <span class="symbol">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="keyword">final</span> rainbow = <span class="keyword">const</span> &lt;<span class="built_in">int</span>&gt;[</span><br><span class="line">    <span class="number">0xffff0000</span>,</span><br><span class="line">    <span class="number">0xffFF7F00</span>,</span><br><span class="line">    <span class="number">0xffFFFF00</span>,</span><br><span class="line">    <span class="number">0xff00FF00</span>,</span><br><span class="line">    <span class="number">0xff00FFFF</span>,</span><br><span class="line">    <span class="number">0xff0000FF</span>,</span><br><span class="line">    <span class="number">0xff8B00FF</span></span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> DecoratedBox(</span><br><span class="line">      position: DecorationPosition.background,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          gradient: LinearGradient(</span><br><span class="line">              stops: &lt;<span class="built_in">double</span>&gt;[<span class="number">0.0</span>, <span class="number">1</span> / <span class="number">6</span>, <span class="number">2</span> / <span class="number">6</span>, <span class="number">3</span> / <span class="number">6</span>, <span class="number">4</span> / <span class="number">6</span>, <span class="number">5</span> / <span class="number">6</span>, <span class="number">1.0</span>],</span><br><span class="line">              colors: rainbow.map((e) =&gt; Color(e)).toList()),</span><br><span class="line">          borderRadius: BorderRadius.only(</span><br><span class="line">              topLeft: Radius.circular(<span class="number">20</span>), bottomRight: Radius.circular(<span class="number">20</span>)),</span><br><span class="line">          boxShadow: [</span><br><span class="line">            <span class="keyword">const</span> BoxShadow(</span><br><span class="line">                color: Colors.orangeAccent,</span><br><span class="line">                offset: Offset(<span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">                blurRadius: <span class="number">10</span>,</span><br><span class="line">                spreadRadius: <span class="number">1</span>),</span><br><span class="line">          ]),</span><br><span class="line">      child: Icon(</span><br><span class="line">        Icons.android,</span><br><span class="line">        size: <span class="number">80</span>,</span><br><span class="line">        color: Colors.black.withAlpha(<span class="number">123</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<blockquote>
-<p>image,shape综合案例:<br>通过image可以为任意组件指定一个图片背景，用法与<code>Image组件</code>类似<br>通过shape可以指定装饰区域是方形还是圆形。</p>
+<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
+<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeImageDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">BoxDecoration</span>(</span><br><span class="line">          shape: <span class="type">BoxShape</span>.circle,</span><br><span class="line">          image: <span class="type">DecorationImage</span>(</span><br><span class="line">              fit: <span class="type">BoxFit</span>.cover,</span><br><span class="line">              image: <span class="type">AssetImage</span>(</span><br><span class="line">                <span class="symbol">'assets</span>/images/wy_200x300.jpg',</span><br><span class="line">              ))),</span><br><span class="line">      child: <span class="type">SizedBox</span>(</span><br><span class="line">        height: <span class="number">80</span>,</span><br><span class="line">        width: <span class="number">80</span>,</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.ac_unit,color: <span class="type">Colors</span>.white,size: <span class="number">40</span>,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<blockquote>
-<p>position和border综合案例:<br> 注意点: <code>border不能和borderRadius共同使用</code><br>这里添加边线，如果<code>position</code>是背景,那么装饰就看不见了.所以应该用<code>foreground</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">BorderDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">position</span>: DecorationPosition.foreground,</span><br><span class="line">      <span class="attribute">decoration</span>: BoxDecoration(</span><br><span class="line">        <span class="attribute">border</span>: Border(</span><br><span class="line">            <span class="attribute">bottom</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>),</span><br><span class="line">            <span class="attribute">top</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>)),</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">80</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Image.asset(</span><br><span class="line">          <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">          <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h5 id="2-形状装饰-ShapeDecoration"><a href="#2-形状装饰-ShapeDecoration" class="headerlink" title="2. 形状装饰: ShapeDecoration"></a>2. 形状装饰: <code>ShapeDecoration</code></h5><blockquote>
-<p>如果需要形状的高度DIY，可以使用<code>ShapeDecoration</code>作为装饰<br><code>ShapeBorder</code>详细用法见: <code>https://juejin.im/post/5e6196066fb9a07c8b5bbdf5</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>color</td>
-<td>Color</td>
-<td>null</td>
-<td>颜色</td>
-</tr>
-<tr>
-<td>image</td>
-<td>DecorationImage</td>
-<td>null</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>boxShadow</td>
-<td>List<BoxShadow></td>
-<td>null</td>
-<td>阴影</td>
-</tr>
-<tr>
-<td>gradient</td>
-<td>Gradient</td>
-<td>null</td>
-<td>渐变</td>
-</tr>
-<tr>
-<td>shape</td>
-<td>ShapeBorder</td>
-<td>@required</td>
-<td>装饰形状</td>
-</tr>
-</tbody></table>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">ShapeDecorationDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">decoration</span>: ShapeDecoration(</span><br><span class="line">          <span class="attribute">image</span>: DecorationImage(</span><br><span class="line">              <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">              <span class="attribute">image</span>: AssetImage(</span><br><span class="line">                <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">              )),</span><br><span class="line">        <span class="attribute">shape</span>: CircleBorder(</span><br><span class="line">          <span class="attribute">side</span>: BorderSide(<span class="attribute">width</span>: <span class="number">2.0</span>, <span class="attribute">color</span>: Colors.blue),</span><br><span class="line">        )</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          <span class="attribute">color</span>: Colors.white,</span><br><span class="line">          <span class="attribute">size</span>: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h5 id="3-底线装饰-UnderlineTabIndicator"><a href="#3-底线装饰-UnderlineTabIndicator" class="headerlink" title="3. 底线装饰: UnderlineTabIndicator"></a>3. 底线装饰: <code>UnderlineTabIndicator</code></h5><blockquote>
-<p><code>UnderlineTabIndicator</code>可以在子组件的底部添加装饰</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>borderSide</td>
-<td>Color</td>
-<td>BorderSide(width: 2.0, color: Colors.white)</td>
-<td>边线</td>
-</tr>
-<tr>
-<td>insets</td>
-<td>EdgeInsetsGeometry</td>
-<td>EdgeInsets.zero</td>
-<td>间距</td>
-</tr>
-</tbody></table>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnderlineTabIndicatorDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">UnderlineTabIndicator</span>(</span><br><span class="line">        insets: <span class="type">EdgeInsets</span>.symmetric(horizontal: <span class="number">5</span>,vertical: <span class="number">-5</span>),</span><br><span class="line">          borderSide: <span class="type">BorderSide</span>(color: <span class="type">Colors</span>.orange, width: <span class="number">2</span>)),</span><br><span class="line">      child: <span class="type">Icon</span>(</span><br><span class="line">          <span class="type">Icons</span>.ac_unit,</span><br><span class="line">          color: <span class="type">Colors</span>.blue,</span><br><span class="line">          size: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h5 id="4-FlutterLogo装饰-FlutterLogoDecoration"><a href="#4-FlutterLogo装饰-FlutterLogoDecoration" class="headerlink" title="4. FlutterLogo装饰: FlutterLogoDecoration"></a>4. FlutterLogo装饰: <code>FlutterLogoDecoration</code></h5><blockquote>
-<p>以<code>FlutterLogo</code>为背景的装饰，没有太大的实用价值。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png" alt=""></p>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>lightColor</td>
-<td>Color</td>
-<td>Color(0xFF42A5F5)</td>
-<td>上两杠颜色</td>
-</tr>
-<tr>
-<td>darkColor</td>
-<td>Color</td>
-<td>Color(0xFF0D47A1)</td>
-<td>下杠颜色</td>
-</tr>
-<tr>
-<td>textColor</td>
-<td>Color</td>
-<td>Color(0xFF616161)</td>
-<td>文字颜色</td>
-</tr>
-<tr>
-<td>style</td>
-<td>FlutterLogoStyle</td>
-<td>FlutterLogoStyle.markOnly</td>
-<td>展示模式</td>
-</tr>
-<tr>
-<td>margin</td>
-<td>EdgeInsetsGeometry</td>
-<td>EdgeInsets.zero</td>
-<td>外间距</td>
-</tr>
-</tbody></table>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlutterLogoDecorationDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">FlutterLogoDecoration</span>(</span><br><span class="line">        darkColor: <span class="type">Colors</span>.orange,</span><br><span class="line">        lightColor: <span class="type">Colors</span>.deepPurpleAccent,</span><br><span class="line">        style: <span class="type">FlutterLogoStyle</span>.stacked</span><br><span class="line">      ),</span><br><span class="line">      child:<span class="type">SizedBox</span>(width: <span class="number">100</span>,height: <span class="number">100</span>,),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 <hr>
@@ -746,7 +544,7 @@
           
             <a href="/tags/widget/" rel="tag"><i class="fa fa-tag"></i> widget</a>
           
-            <a href="/tags/%E8%A3%85%E9%A5%B0%E5%9E%8B%E7%BB%84%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 装饰型组件</a>
+            <a href="/tags/%E5%B8%83%E5%B1%80%E5%9E%8B%E7%BB%84%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 布局型组件</a>
           
         </div>
       
@@ -761,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/Padding.html" rel="next" title="Padding内边距组件">
+                <i class="fa fa-chevron-left"></i> Padding内边距组件
               </a>
             
           </div>
@@ -770,10 +568,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/02/Padding/" rel="prev" title="Padding内边距组件">
-                Padding内边距组件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -925,7 +719,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、认识组件"><span class="nav-number">1.</span> <span class="nav-text">一、认识组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-DecoratedBox组件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.DecoratedBox组件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-组件属性一览"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件属性一览</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、使用组件"><span class="nav-number">2.</span> <span class="nav-text">二、使用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-盒装饰-BoxDecoration"><span class="nav-number">2.1.</span> <span class="nav-text">1. 盒装饰: BoxDecoration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-形状装饰-ShapeDecoration"><span class="nav-number">2.2.</span> <span class="nav-text">2. 形状装饰: ShapeDecoration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-底线装饰-UnderlineTabIndicator"><span class="nav-number">2.3.</span> <span class="nav-text">3. 底线装饰: UnderlineTabIndicator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-FlutterLogo装饰-FlutterLogoDecoration"><span class="nav-number">2.4.</span> <span class="nav-text">4. FlutterLogo装饰: FlutterLogoDecoration</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、尾声"><span class="nav-number">3.</span> <span class="nav-text">三、尾声</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、认识组件"><span class="nav-number">1.</span> <span class="nav-text">一、认识组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-PreferredSize组件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.PreferredSize组件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-组件属性一览"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件属性一览</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、使用组件"><span class="nav-number">2.</span> <span class="nav-text">二、使用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-修改AppBar高度"><span class="nav-number">2.1.</span> <span class="nav-text">1. 修改AppBar高度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-将普通组件转化成PreferredSizeWidget"><span class="nav-number">2.2.</span> <span class="nav-text">2. 将普通组件转化成PreferredSizeWidget</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、尾声"><span class="nav-number">3.</span> <span class="nav-text">三、尾声</span></a></li></ol></div>
             
 
           </div>

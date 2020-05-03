@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="widget,装饰型组件," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、认识组件1.DecoratedBox组件介绍 可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DecoratedBox装饰盒组件">
+<meta property="og:url" content="http://yoursite.com/DecoratedBox.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="一、认识组件1.DecoratedBox组件介绍 可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png">
+<meta property="article:published_time" content="2020-05-02T12:46:25.000Z">
+<meta property="article:modified_time" content="2020-05-03T05:03:57.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="widget">
+<meta property="article:tag" content="装饰型组件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/DecoratedBox.html"/>
+
+
+
+
+
+  <title>DecoratedBox装饰盒组件 | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/DecoratedBox.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DecoratedBox装饰盒组件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T20:46:25+08:00">
+                2020-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter组件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  916
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
+<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">名称:       DecoratedBox  装饰盒</span></span><br><span class="line"><span class="section">类型:       装饰型</span></span><br><span class="line"><span class="section">重要性:     ☆☆☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Container】、【DecoratedBoxTransition】    </span></span><br><span class="line"><span class="section">家族:       RenderObjectWidget</span></span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- DecoratedBox</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>decoration</td>
+<td>Decoration</td>
+<td>@required</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>position</td>
+<td>DecorationPosition</td>
+<td>DecorationPosition.background</td>
+<td>装饰位置</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Decoration对象</p>
+</blockquote>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Decoration <span class="comment"># 抽象类</span></span><br><span class="line">    |<span class="params">---</span> BoxDecoration <span class="comment"># 盒装饰</span></span><br><span class="line">    |<span class="params">---</span> ShapeDecoration <span class="comment"># 形状装饰</span></span><br><span class="line">    |<span class="params">---</span> UnderlineTabIndicator <span class="comment"># 底线装饰</span></span><br><span class="line">    |<span class="params">---</span> FlutterLogoDecoration <span class="comment"># FlutterLogo 装饰</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DecorationPositiond对象</p>
+</blockquote>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DecorationPositiond<span class="meta"># 枚举对象</span></span><br><span class="line">    <span class="string">|---DecorationPosition.background 背景装饰</span></span><br><span class="line">    <span class="string">|---DecorationPosition.foreground 前景装饰</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-盒装饰-BoxDecoration"><a href="#1-盒装饰-BoxDecoration" class="headerlink" title="1. 盒装饰: BoxDecoration"></a>1. 盒装饰: <code>BoxDecoration</code></h5><blockquote>
+<p>BoxDecoration的属性较多，也是最常用的装饰对象</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>border</td>
+<td>BoxBorder</td>
+<td>null</td>
+<td>装饰边线</td>
+</tr>
+<tr>
+<td>borderRadius</td>
+<td>BorderRadiusGeometry</td>
+<td>null</td>
+<td>边角半径</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>backgroundBlendMode</td>
+<td>BlendMode</td>
+<td>null</td>
+<td>背景叠色模式</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>BoxShape</td>
+<td>BoxShape.rectangle</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>color,borderRadiu,boxShadows,boxShadow,gradient综合案例</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">BoxDecorationDemo</span> <span class="symbol">extends</span> <span class="symbol">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="keyword">final</span> rainbow = <span class="keyword">const</span> &lt;<span class="built_in">int</span>&gt;[</span><br><span class="line">    <span class="number">0xffff0000</span>,</span><br><span class="line">    <span class="number">0xffFF7F00</span>,</span><br><span class="line">    <span class="number">0xffFFFF00</span>,</span><br><span class="line">    <span class="number">0xff00FF00</span>,</span><br><span class="line">    <span class="number">0xff00FFFF</span>,</span><br><span class="line">    <span class="number">0xff0000FF</span>,</span><br><span class="line">    <span class="number">0xff8B00FF</span></span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> DecoratedBox(</span><br><span class="line">      position: DecorationPosition.background,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          gradient: LinearGradient(</span><br><span class="line">              stops: &lt;<span class="built_in">double</span>&gt;[<span class="number">0.0</span>, <span class="number">1</span> / <span class="number">6</span>, <span class="number">2</span> / <span class="number">6</span>, <span class="number">3</span> / <span class="number">6</span>, <span class="number">4</span> / <span class="number">6</span>, <span class="number">5</span> / <span class="number">6</span>, <span class="number">1.0</span>],</span><br><span class="line">              colors: rainbow.map((e) =&gt; Color(e)).toList()),</span><br><span class="line">          borderRadius: BorderRadius.only(</span><br><span class="line">              topLeft: Radius.circular(<span class="number">20</span>), bottomRight: Radius.circular(<span class="number">20</span>)),</span><br><span class="line">          boxShadow: [</span><br><span class="line">            <span class="keyword">const</span> BoxShadow(</span><br><span class="line">                color: Colors.orangeAccent,</span><br><span class="line">                offset: Offset(<span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">                blurRadius: <span class="number">10</span>,</span><br><span class="line">                spreadRadius: <span class="number">1</span>),</span><br><span class="line">          ]),</span><br><span class="line">      child: Icon(</span><br><span class="line">        Icons.android,</span><br><span class="line">        size: <span class="number">80</span>,</span><br><span class="line">        color: Colors.black.withAlpha(<span class="number">123</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>image,shape综合案例:<br>通过image可以为任意组件指定一个图片背景，用法与<code>Image组件</code>类似<br>通过shape可以指定装饰区域是方形还是圆形。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeImageDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">BoxDecoration</span>(</span><br><span class="line">          shape: <span class="type">BoxShape</span>.circle,</span><br><span class="line">          image: <span class="type">DecorationImage</span>(</span><br><span class="line">              fit: <span class="type">BoxFit</span>.cover,</span><br><span class="line">              image: <span class="type">AssetImage</span>(</span><br><span class="line">                <span class="symbol">'assets</span>/images/wy_200x300.jpg',</span><br><span class="line">              ))),</span><br><span class="line">      child: <span class="type">SizedBox</span>(</span><br><span class="line">        height: <span class="number">80</span>,</span><br><span class="line">        width: <span class="number">80</span>,</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.ac_unit,color: <span class="type">Colors</span>.white,size: <span class="number">40</span>,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>position和border综合案例:<br> 注意点: <code>border不能和borderRadius共同使用</code><br>这里添加边线，如果<code>position</code>是背景,那么装饰就看不见了.所以应该用<code>foreground</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">BorderDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">position</span>: DecorationPosition.foreground,</span><br><span class="line">      <span class="attribute">decoration</span>: BoxDecoration(</span><br><span class="line">        <span class="attribute">border</span>: Border(</span><br><span class="line">            <span class="attribute">bottom</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>),</span><br><span class="line">            <span class="attribute">top</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>)),</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">80</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Image.asset(</span><br><span class="line">          <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">          <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-形状装饰-ShapeDecoration"><a href="#2-形状装饰-ShapeDecoration" class="headerlink" title="2. 形状装饰: ShapeDecoration"></a>2. 形状装饰: <code>ShapeDecoration</code></h5><blockquote>
+<p>如果需要形状的高度DIY，可以使用<code>ShapeDecoration</code>作为装饰<br><code>ShapeBorder</code>详细用法见: <code>https://juejin.im/post/5e6196066fb9a07c8b5bbdf5</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>ShapeBorder</td>
+<td>@required</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">ShapeDecorationDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">decoration</span>: ShapeDecoration(</span><br><span class="line">          <span class="attribute">image</span>: DecorationImage(</span><br><span class="line">              <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">              <span class="attribute">image</span>: AssetImage(</span><br><span class="line">                <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">              )),</span><br><span class="line">        <span class="attribute">shape</span>: CircleBorder(</span><br><span class="line">          <span class="attribute">side</span>: BorderSide(<span class="attribute">width</span>: <span class="number">2.0</span>, <span class="attribute">color</span>: Colors.blue),</span><br><span class="line">        )</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          <span class="attribute">color</span>: Colors.white,</span><br><span class="line">          <span class="attribute">size</span>: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="3-底线装饰-UnderlineTabIndicator"><a href="#3-底线装饰-UnderlineTabIndicator" class="headerlink" title="3. 底线装饰: UnderlineTabIndicator"></a>3. 底线装饰: <code>UnderlineTabIndicator</code></h5><blockquote>
+<p><code>UnderlineTabIndicator</code>可以在子组件的底部添加装饰</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>borderSide</td>
+<td>Color</td>
+<td>BorderSide(width: 2.0, color: Colors.white)</td>
+<td>边线</td>
+</tr>
+<tr>
+<td>insets</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>间距</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnderlineTabIndicatorDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">UnderlineTabIndicator</span>(</span><br><span class="line">        insets: <span class="type">EdgeInsets</span>.symmetric(horizontal: <span class="number">5</span>,vertical: <span class="number">-5</span>),</span><br><span class="line">          borderSide: <span class="type">BorderSide</span>(color: <span class="type">Colors</span>.orange, width: <span class="number">2</span>)),</span><br><span class="line">      child: <span class="type">Icon</span>(</span><br><span class="line">          <span class="type">Icons</span>.ac_unit,</span><br><span class="line">          color: <span class="type">Colors</span>.blue,</span><br><span class="line">          size: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-FlutterLogo装饰-FlutterLogoDecoration"><a href="#4-FlutterLogo装饰-FlutterLogoDecoration" class="headerlink" title="4. FlutterLogo装饰: FlutterLogoDecoration"></a>4. FlutterLogo装饰: <code>FlutterLogoDecoration</code></h5><blockquote>
+<p>以<code>FlutterLogo</code>为背景的装饰，没有太大的实用价值。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lightColor</td>
+<td>Color</td>
+<td>Color(0xFF42A5F5)</td>
+<td>上两杠颜色</td>
+</tr>
+<tr>
+<td>darkColor</td>
+<td>Color</td>
+<td>Color(0xFF0D47A1)</td>
+<td>下杠颜色</td>
+</tr>
+<tr>
+<td>textColor</td>
+<td>Color</td>
+<td>Color(0xFF616161)</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td>style</td>
+<td>FlutterLogoStyle</td>
+<td>FlutterLogoStyle.markOnly</td>
+<td>展示模式</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>外间距</td>
+</tr>
+</tbody></table>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlutterLogoDecorationDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">FlutterLogoDecoration</span>(</span><br><span class="line">        darkColor: <span class="type">Colors</span>.orange,</span><br><span class="line">        lightColor: <span class="type">Colors</span>.deepPurpleAccent,</span><br><span class="line">        style: <span class="type">FlutterLogoStyle</span>.stacked</span><br><span class="line">      ),</span><br><span class="line">      child:<span class="type">SizedBox</span>(width: <span class="number">100</span>,height: <span class="number">100</span>,),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/widget/" rel="tag"><i class="fa fa-tag"></i> widget</a>
+          
+            <a href="/tags/%E8%A3%85%E9%A5%B0%E5%9E%8B%E7%BB%84%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 装饰型组件</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hello-world.html" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Padding.html" rel="prev" title="Padding内边距组件">
+                Padding内边距组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、认识组件"><span class="nav-number">1.</span> <span class="nav-text">一、认识组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-DecoratedBox组件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.DecoratedBox组件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-组件属性一览"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件属性一览</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、使用组件"><span class="nav-number">2.</span> <span class="nav-text">二、使用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-盒装饰-BoxDecoration"><span class="nav-number">2.1.</span> <span class="nav-text">1. 盒装饰: BoxDecoration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-形状装饰-ShapeDecoration"><span class="nav-number">2.2.</span> <span class="nav-text">2. 形状装饰: ShapeDecoration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-底线装饰-UnderlineTabIndicator"><span class="nav-number">2.3.</span> <span class="nav-text">3. 底线装饰: UnderlineTabIndicator</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-FlutterLogo装饰-FlutterLogoDecoration"><span class="nav-number">2.4.</span> <span class="nav-text">4. FlutterLogo装饰: FlutterLogoDecoration</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、尾声"><span class="nav-number">3.</span> <span class="nav-text">三、尾声</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共2.3k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

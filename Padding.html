@@ -75,22 +75,23 @@
 
 
 
-<meta name="description" content="一、认识组件1.PreferredSize组件介绍 实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。">
+<meta name="description" content="一、认识组件1.Padding组件介绍 可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为EdgeInsetsGeometry类型的padding。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PreferredSize优先尺寸">
-<meta property="og:url" content="http://yoursite.com/2020/05/03/PreferredSize/index.html">
+<meta property="og:title" content="Padding内边距组件">
+<meta property="og:url" content="http://yoursite.com/Padding.html">
 <meta property="og:site_name" content="张风捷特烈">
-<meta property="og:description" content="一、认识组件1.PreferredSize组件介绍 实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png">
-<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
-<meta property="article:published_time" content="2020-05-03T05:46:25.000Z">
-<meta property="article:modified_time" content="2020-05-03T05:05:23.000Z">
+<meta property="og:description" content="一、认识组件1.Padding组件介绍 可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为EdgeInsetsGeometry类型的padding。">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png">
+<meta property="article:published_time" content="2020-05-02T13:46:25.000Z">
+<meta property="article:modified_time" content="2020-05-03T05:03:57.000Z">
 <meta property="article:author" content="张风捷特烈">
 <meta property="article:tag" content="widget">
 <meta property="article:tag" content="布局型组件">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png">
+<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/03/PreferredSize/"/>
+  <link rel="canonical" href="http://yoursite.com/Padding.html"/>
 
 
 
 
 
-  <title>PreferredSize优先尺寸 | 张风捷特烈</title>
+  <title>Padding内边距组件 | 张风捷特烈</title>
   
 
 
@@ -297,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/03/PreferredSize/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Padding.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张风捷特烈">
@@ -314,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">PreferredSize优先尺寸</h1>
+          <h1 class="post-title" itemprop="name headline">Padding内边距组件</h1>
         
 
         <div class="post-meta">
@@ -326,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T13:46:25+08:00">
-                2020-05-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T21:46:25+08:00">
+                2020-05-02
               </time>
             
 
@@ -380,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  367
+                  633
                 </span>
               
 
@@ -396,7 +397,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -417,13 +418,13 @@
       
 
       
-        <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
-<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
+        <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
+<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
 <a id="more"></a>
 
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
@@ -442,39 +443,128 @@
 <td>组件键</td>
 </tr>
 <tr>
-<td>preferredSize</td>
-<td>Size</td>
+<td>padding</td>
+<td>EdgeInsetsGeometry</td>
 <td>@required</td>
-<td>优先尺寸</td>
+<td>内边距</td>
 </tr>
 <tr>
 <td>child</td>
 <td>Widget</td>
-<td>@required</td>
+<td>null</td>
 <td>子组件</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
+<p>EdgeInsetsGeometry对象</p>
 </blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
+<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
+<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
+</ul>
 <hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
-<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>double</td>
+<td>null</td>
+<td>内四边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件四周20</code></p>
 </blockquote>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingAll</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">20</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
-<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
+<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>double</td>
+<td>0.0</td>
+<td>左内边距</td>
+</tr>
+<tr>
+<td>top</td>
+<td>double</td>
+<td>0.0</td>
+<td>上内边距</td>
+</tr>
+<tr>
+<td>right</td>
+<td>double</td>
+<td>0.0</td>
+<td>右内边距</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>double</td>
+<td>0.0</td>
+<td>下内边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingOnly</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
+<hr>
+<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vertical</td>
+<td>double</td>
+<td>0.0</td>
+<td>水平边距</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>double</td>
+<td>0.0</td>
+<td>竖直边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingSymmetric</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
+<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) + EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) - EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) * <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) / <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) ~/ <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) % <span class="number">6</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -559,8 +649,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/02/Padding/" rel="next" title="Padding内边距组件">
-                <i class="fa fa-chevron-left"></i> Padding内边距组件
+              <a href="/DecoratedBox.html" rel="next" title="DecoratedBox装饰盒组件">
+                <i class="fa fa-chevron-left"></i> DecoratedBox装饰盒组件
               </a>
             
           </div>
@@ -568,6 +658,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/PreferredSize.html" rel="prev" title="PreferredSize优先尺寸">
+                PreferredSize优先尺寸 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -719,7 +813,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、认识组件"><span class="nav-number">1.</span> <span class="nav-text">一、认识组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-PreferredSize组件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.PreferredSize组件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-组件属性一览"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件属性一览</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、使用组件"><span class="nav-number">2.</span> <span class="nav-text">二、使用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-修改AppBar高度"><span class="nav-number">2.1.</span> <span class="nav-text">1. 修改AppBar高度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-将普通组件转化成PreferredSizeWidget"><span class="nav-number">2.2.</span> <span class="nav-text">2. 将普通组件转化成PreferredSizeWidget</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、尾声"><span class="nav-number">3.</span> <span class="nav-text">三、尾声</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、认识组件"><span class="nav-number">1.</span> <span class="nav-text">一、认识组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Padding组件介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1.Padding组件介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-组件属性一览"><span class="nav-number">1.2.</span> <span class="nav-text">2. 组件属性一览</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、使用组件"><span class="nav-number">2.</span> <span class="nav-text">二、使用组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-全边距-EdgeInsets-all"><span class="nav-number">2.1.</span> <span class="nav-text">1. 全边距: EdgeInsets.all</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-指定边距-EdgeInsets-only"><span class="nav-number">2.2.</span> <span class="nav-text">2. 指定边距: EdgeInsets.only</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-方向边距-EdgeInsets-symmetric"><span class="nav-number">2.3.</span> <span class="nav-text">3. 方向边距: EdgeInsets.symmetric</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-特殊说明"><span class="nav-number">2.4.</span> <span class="nav-text">4.特殊说明</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、尾声"><span class="nav-number">3.</span> <span class="nav-text">三、尾声</span></a></li></ol></div>
             
 
           </div>

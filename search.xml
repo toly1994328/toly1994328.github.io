@@ -1,8 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flutter Unit  更新记录</title>
+    <url>//FlutterUnit_update.html</url>
+    <content><![CDATA[<ul>
+<li><code>2020-4-16</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-17</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-18</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><code>2020-4-19</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-21</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-24</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-30</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-5-1</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-5-2</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><code>2020-5-3</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FlutterUnit周边</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DecoratedBox装饰盒组件</title>
-    <url>/2020/05/02/DecoratedBox/</url>
+    <url>//DecoratedBox.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
 <p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
 </blockquote>
@@ -276,76 +344,8 @@
       </tags>
   </entry>
   <entry>
-    <title>Flutter Unit  更新记录</title>
-    <url>/2020/04/16/FlutterUnit_update/</url>
-    <content><![CDATA[<ul>
-<li><code>2020-4-16</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-17</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-18</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-4-19</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-21</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-24</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-30</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-1</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-2</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-5-3</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>FlutterUnit周边</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Padding内边距组件</title>
-    <url>/2020/05/02/Padding/</url>
+    <url>//Padding.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
 <p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
 </blockquote>
@@ -511,7 +511,7 @@
   </entry>
   <entry>
     <title>PreferredSize优先尺寸</title>
-    <url>/2020/05/03/PreferredSize/</url>
+    <url>//PreferredSize.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
 <p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
 </blockquote>
@@ -588,7 +588,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/05/02/hello-world/</url>
+    <url>//hello-world.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
