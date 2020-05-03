@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Builder构造器</title>
+    <url>//Builder.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
+<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>builder</td>
+<td>WidgetBuilder</td>
+<td>@required</td>
+<td>组件构造器</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
+</blockquote>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
+<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
+<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>功能型组件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DecoratedBox装饰盒组件</title>
     <url>//DecoratedBox.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
@@ -276,74 +344,6 @@
       </tags>
   </entry>
   <entry>
-    <title>DecoratedBox装饰盒组件</title>
-    <url>//Builder.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
-<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>builder</td>
-<td>WidgetBuilder</td>
-<td>@required</td>
-<td>组件构造器</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
-</blockquote>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
-<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
-<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
-</blockquote>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Flutter组件</category>
-      </categories>
-      <tags>
-        <tag>widget</tag>
-        <tag>功能型组件</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Flutter Unit  更新记录</title>
     <url>//FlutterUnit_update.html</url>
     <content><![CDATA[<ul>
@@ -410,24 +410,6 @@
       <categories>
         <category>FlutterUnit周边</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>//hello-world.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>Padding内边距组件</title>
@@ -671,5 +653,23 @@
         <tag>widget</tag>
         <tag>布局型组件</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>//hello-world.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
   </entry>
 </search>
