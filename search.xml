@@ -1,15 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Builder构造器</title>
-    <url>//Builder.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
-<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
+    <title>Flutter Unit 开源篇</title>
+    <url>//unit.html</url>
+    <content><![CDATA[<h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
+<p> <code>FlutterUnit</code>终于和大家见面了，这将是<code>【张风捷特烈】</code>长期维护的一个项目<br><a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">欢迎star</a> : <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br><a href="https://github.com/toly1994328/FlutterUnit/releases" target="_blank" rel="noopener">可以在github 仓库里下载apk体验 : </a></p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>FlutterUnit.apk 下载</th>
+<th>FlutterUnit mac版 下载</th>
+<th>Github仓库地址</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_ewm.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_mac_ewm.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_github.png" alt=""></td>
+</tr>
+</tbody></table>
 <a id="more"></a>
 
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="一、组件的展示页面"><a href="#一、组件的展示页面" class="headerlink" title="一、组件的展示页面"></a>一、组件的展示页面</h3><h4 id="1-首页与组件收录"><a href="#1-首页与组件收录" class="headerlink" title="1. 首页与组件收录"></a>1. 首页与组件收录</h4><ul>
+<li>Flutter一共有356+组件，目前收录<code>组件213个</code>，并<code>根据个人感觉进行评星</code></li>
+<li>将组件分为<code>七种家族</code>，对应<code>七种颜色</code>，上tab栏，点击切换七种家族组件。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/01.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/02.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/03.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="2-组件详情页"><a href="#2-组件详情页" class="headerlink" title="2. 组件详情页"></a>2. 组件详情页</h4><ul>
+<li>其中每个都有至少一个演示展现和代码展示，对于重要的组件会详细展现。  </li>
+<li>希望尽量做到细致，如果有需要补充，欢迎联系我。或进行pr  </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/04.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/05.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/06.jpeg" alt=""></td>
+</tr>
+<tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/07.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/08.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/09.jpeg" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3-组件的可操作性"><a href="#3-组件的可操作性" class="headerlink" title="3. 组件的可操作性"></a>3. 组件的可操作性</h4><ul>
+<li><code>最重要的是: 所有的演示展现都是Flutter的组件形成的，而非图片，这就意味着可操作性更高。</code></li>
+<li>对一些操作交互的组件或有可操作性的某些组件，<code>提供操作演示</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/10.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/11.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/12.gif" alt=""></td>
+</tr>
+<tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/13.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/14.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/15.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="4-相关组件的关联切换"><a href="#4-相关组件的关联切换" class="headerlink" title="4. 相关组件的关联切换"></a>4. 相关组件的关联切换</h4><ul>
+<li><code>相关组件通过link to 可以进行切换, 满足你的探索欲。</code>  </li>
+<li>维护了一个link to 的栈，可以退出时返回上一个组件。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/16.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/17.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/18.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="5-代码的查看和分享"><a href="#5-代码的查看和分享" class="headerlink" title="5. 代码的查看和分享"></a>5. 代码的查看和分享</h4><blockquote>
+<p>激动人心的是，你可以通过右侧的图标<code>展开/隐藏 实现下面效果的代码</code><br>并且<code>支持分享</code>，如果你想亲自体验，so，easy ! 而且<code>代码高亮样式可以自定义</code>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/19.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/20.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/21.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="二、收藏集"><a href="#二、收藏集" class="headerlink" title="二、收藏集"></a>二、收藏集</h3><blockquote>
+<p>收藏夹设计的初衷是: Flutter中的组件非常多，分类页并不明确<br>作为<code>集卡癖</code>的我很想有个收藏的接口，让我能自由收藏分类。<br>应用中默认给出了12种分类方式，也就是12个收藏夹，<code>且210+组件已录入相应收藏夹</code><br>当然你可以自由的创建、修改、删除它们。收藏集还可以指定颜色用以区分。</p>
+</blockquote>
+<hr>
+<h4 id="1-收藏集"><a href="#1-收藏集" class="headerlink" title="1.收藏集"></a>1.收藏集</h4><ul>
+<li>支持添加收藏集，可指定<code>颜色和简介</code></li>
+<li>支持修改收藏集</li>
+<li>支持删除收藏集，删除后，原先被收藏的组件将会移除。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>添加收藏集</th>
+<th>修改收藏集</th>
+<th>删除收藏集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/22.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/23.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/24.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="4-组件的收藏与取消操作"><a href="#4-组件的收藏与取消操作" class="headerlink" title="4. 组件的收藏与取消操作"></a>4. 组件的收藏与取消操作</h4><blockquote>
+<p> 数据库表采用<code>widget</code>与<code>category</code>一对多的结构，收录组件。<br>在每个详情页的右滑菜单中可以查看当前组件的收藏信息，<br>点击<code>收藏夹名称时</code>时可以切换该组件是否收录。<code>在收藏夹里面可以左滑删除</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>删除与数据同步</th>
+<th>组件加入收藏集</th>
+<th>收藏集支持多选</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/25.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/26.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/27.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="5-整体效果"><a href="#5-整体效果" class="headerlink" title="5.整体效果"></a>5.整体效果</h4><blockquote>
+<p>对收藏夹页面整体进行优化，效果如下，保留了默认收藏集。<br>点击收藏夹会进入收藏的内容，每个item也可以点击进入详情页。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>滑动效果</th>
+<th>切页效果</th>
+<th>收藏详情</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/28.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/29.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/30.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="6-彩蛋-左右滑栏"><a href="#6-彩蛋-左右滑栏" class="headerlink" title="6.彩蛋: 左右滑栏"></a>6.彩蛋: 左右滑栏</h4><blockquote>
+<p>很多朋友反映左右滑栏与系统的<code>侧滑返回冲突</code>，所以特意设置了滑栏的小彩蛋<br><code>主页长按底部左侧按钮可打开左侧滑栏</code><br><code>主页长按底部右侧按钮可打开右侧滑栏</code><br><code>详情页长按顶部房子按钮可打开右侧滑栏</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>长按右菜单滑页</th>
+<th>长按左菜单滑页</th>
+<th>详情内长按展示收藏菜单</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/31.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/32.gif" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/33.gif" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="三、搜索与全局配置"><a href="#三、搜索与全局配置" class="headerlink" title="三、搜索与全局配置"></a>三、搜索与全局配置</h3><h4 id="1-搜索功能"><a href="#1-搜索功能" class="headerlink" title="1.搜索功能"></a>1.搜索功能</h4><blockquote>
+<p>由于Flutter中Widget比较杂乱，不太好分类，所以搜索是非常重要的<br>另外可以根据星级进行过滤，支持多选。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/33.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/34.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/35.png" alt=""></td>
+</tr>
+</tbody></table>
+<h4 id="2-颜色主题"><a href="#2-颜色主题" class="headerlink" title="2. 颜色主题"></a>2. 颜色主题</h4><blockquote>
+<p>只提供八种颜色，可在<code>右滑菜单页</code>的<code>我的主题</code>配置,<code>可以拓展</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/36.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/37.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/38.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="3-字体配置"><a href="#3-字体配置" class="headerlink" title="3.字体配置"></a>3.字体配置</h4><blockquote>
+<p>支持全局字体设置,<code>可以拓展</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/39.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/40.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/41.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="4-item样式设置"><a href="#4-item样式设置" class="headerlink" title="4.item样式设置"></a>4.item样式设置</h4><blockquote>
+<p>支持item样式设置，<code>可以拓展，支持征集</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/42.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/43.jpeg" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/44.jpeg" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="5-代码面板风格设置"><a href="#5-代码面板风格设置" class="headerlink" title="5.代码面板风格设置"></a>5.代码面板风格设置</h4><blockquote>
+<p>支持代码风格设置</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/45.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/46.png" alt=""></td>
+</tr>
+<tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/47.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/48.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="7-关于我与项目"><a href="#7-关于我与项目" class="headerlink" title="7.关于我与项目"></a>7.关于我与项目</h4><table>
+<thead>
+<tr>
+<th>.</th>
+<th>.</th>
+<th>.</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/49.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/50.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/51.png" alt=""></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="五、尾声"><a href="#五、尾声" class="headerlink" title="五、尾声"></a>五、尾声</h3><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>FlutterUnit周边</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PreferredSize优先尺寸</title>
+    <url>//PreferredSize.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
+<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
@@ -28,30 +352,37 @@
 <td>组件键</td>
 </tr>
 <tr>
-<td>builder</td>
-<td>WidgetBuilder</td>
+<td>preferredSize</td>
+<td>Size</td>
 <td>@required</td>
-<td>组件构造器</td>
+<td>优先尺寸</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>@required</td>
+<td>子组件</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
+<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
 </blockquote>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
+<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
 
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
-<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
+<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
+<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
-<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
-</blockquote>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -67,78 +398,8 @@
       </categories>
       <tags>
         <tag>widget</tag>
-        <tag>功能型组件</tag>
+        <tag>布局型组件</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Flutter Unit  更新记录</title>
-    <url>//FlutterUnit_update.html</url>
-    <content><![CDATA[<ul>
-<li><code>2020-4-16</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-17</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<hr>
-<ul>
-<li><code>2020-4-18</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-4-19</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-21</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-24</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-30</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-1</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-2</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-5-3</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>FlutterUnit周边</category>
-      </categories>
   </entry>
   <entry>
     <title>Padding内边距组件</title>
@@ -582,15 +843,15 @@
       </tags>
   </entry>
   <entry>
-    <title>PreferredSize优先尺寸</title>
-    <url>//PreferredSize.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
-<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
+    <title>Builder构造器</title>
+    <url>//Builder.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
+<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
 <a id="more"></a>
 
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
@@ -609,37 +870,30 @@
 <td>组件键</td>
 </tr>
 <tr>
-<td>preferredSize</td>
-<td>Size</td>
+<td>builder</td>
+<td>WidgetBuilder</td>
 <td>@required</td>
-<td>优先尺寸</td>
-</tr>
-<tr>
-<td>child</td>
-<td>Widget</td>
-<td>@required</td>
-<td>子组件</td>
+<td>组件构造器</td>
 </tr>
 </tbody></table>
 <blockquote>
-<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
+<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
 </blockquote>
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
-<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
-</blockquote>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
 
-
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
-<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
+<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
+<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 
 
@@ -655,328 +909,74 @@
       </categories>
       <tags>
         <tag>widget</tag>
-        <tag>布局型组件</tag>
+        <tag>功能型组件</tag>
       </tags>
   </entry>
   <entry>
-    <title>Flutter Unit 开源篇</title>
-    <url>//unit.html</url>
-    <content><![CDATA[<h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
-<p> <code>FlutterUnit</code>终于和大家见面了，这将是<code>【张风捷特烈】</code>长期维护的一个项目<br><a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">欢迎star</a> : <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br><a href="https://github.com/toly1994328/FlutterUnit/releases" target="_blank" rel="noopener">可以在github 仓库里下载apk体验 : </a></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>FlutterUnit.apk 下载</th>
-<th>FlutterUnit mac版 下载</th>
-<th>Github仓库地址</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_ewm.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_mac_ewm.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_github.png" alt=""></td>
-</tr>
-</tbody></table>
+    <title>Flutter Unit  更新记录</title>
+    <url>//FlutterUnit_update.html</url>
+    <content><![CDATA[<ul>
+<li><code>2020-4-16</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-17</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
 <hr>
-<h3 id="一、组件的展示页面"><a href="#一、组件的展示页面" class="headerlink" title="一、组件的展示页面"></a>一、组件的展示页面</h3><h4 id="1-首页与组件收录"><a href="#1-首页与组件收录" class="headerlink" title="1. 首页与组件收录"></a>1. 首页与组件收录</h4><ul>
-<li>Flutter一共有356+组件，目前收录<code>组件213个</code>，并<code>根据个人感觉进行评星</code></li>
-<li>将组件分为<code>七种家族</code>，对应<code>七种颜色</code>，上tab栏，点击切换七种家族组件。</li>
+<ul>
+<li><code>2020-4-18</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/01.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/02.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/03.gif" alt=""></td>
-</tr>
-</tbody></table>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
+
+
 <hr>
-<h4 id="2-组件详情页"><a href="#2-组件详情页" class="headerlink" title="2. 组件详情页"></a>2. 组件详情页</h4><ul>
-<li>其中每个都有至少一个演示展现和代码展示，对于重要的组件会详细展现。  </li>
-<li>希望尽量做到细致，如果有需要补充，欢迎联系我。或进行pr  </li>
+<ul>
+<li><code>2020-4-19</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/04.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/05.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/06.jpeg" alt=""></td>
-</tr>
-<tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/07.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/08.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/09.jpeg" alt=""></td>
-</tr>
-</tbody></table>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="3-组件的可操作性"><a href="#3-组件的可操作性" class="headerlink" title="3. 组件的可操作性"></a>3. 组件的可操作性</h4><ul>
-<li><code>最重要的是: 所有的演示展现都是Flutter的组件形成的，而非图片，这就意味着可操作性更高。</code></li>
-<li>对一些操作交互的组件或有可操作性的某些组件，<code>提供操作演示</code></li>
+<ul>
+<li><code>2020-4-21</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/10.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/11.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/12.gif" alt=""></td>
-</tr>
-<tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/13.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/14.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/15.gif" alt=""></td>
-</tr>
-</tbody></table>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="4-相关组件的关联切换"><a href="#4-相关组件的关联切换" class="headerlink" title="4. 相关组件的关联切换"></a>4. 相关组件的关联切换</h4><ul>
-<li><code>相关组件通过link to 可以进行切换, 满足你的探索欲。</code>  </li>
-<li>维护了一个link to 的栈，可以退出时返回上一个组件。</li>
+<ul>
+<li><code>2020-4-24</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/16.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/17.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/18.gif" alt=""></td>
-</tr>
-</tbody></table>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="5-代码的查看和分享"><a href="#5-代码的查看和分享" class="headerlink" title="5. 代码的查看和分享"></a>5. 代码的查看和分享</h4><blockquote>
-<p>激动人心的是，你可以通过右侧的图标<code>展开/隐藏 实现下面效果的代码</code><br>并且<code>支持分享</code>，如果你想亲自体验，so，easy ! 而且<code>代码高亮样式可以自定义</code>。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/19.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/20.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/21.gif" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="二、收藏集"><a href="#二、收藏集" class="headerlink" title="二、收藏集"></a>二、收藏集</h3><blockquote>
-<p>收藏夹设计的初衷是: Flutter中的组件非常多，分类页并不明确<br>作为<code>集卡癖</code>的我很想有个收藏的接口，让我能自由收藏分类。<br>应用中默认给出了12种分类方式，也就是12个收藏夹，<code>且210+组件已录入相应收藏夹</code><br>当然你可以自由的创建、修改、删除它们。收藏集还可以指定颜色用以区分。</p>
-</blockquote>
-<hr>
-<h4 id="1-收藏集"><a href="#1-收藏集" class="headerlink" title="1.收藏集"></a>1.收藏集</h4><ul>
-<li>支持添加收藏集，可指定<code>颜色和简介</code></li>
-<li>支持修改收藏集</li>
-<li>支持删除收藏集，删除后，原先被收藏的组件将会移除。</li>
+<ul>
+<li><code>2020-4-30</code></li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>添加收藏集</th>
-<th>修改收藏集</th>
-<th>删除收藏集</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/22.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/23.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/24.gif" alt=""></td>
-</tr>
-</tbody></table>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="4-组件的收藏与取消操作"><a href="#4-组件的收藏与取消操作" class="headerlink" title="4. 组件的收藏与取消操作"></a>4. 组件的收藏与取消操作</h4><blockquote>
-<p> 数据库表采用<code>widget</code>与<code>category</code>一对多的结构，收录组件。<br>在每个详情页的右滑菜单中可以查看当前组件的收藏信息，<br>点击<code>收藏夹名称时</code>时可以切换该组件是否收录。<code>在收藏夹里面可以左滑删除</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>删除与数据同步</th>
-<th>组件加入收藏集</th>
-<th>收藏集支持多选</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/25.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/26.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/27.gif" alt=""></td>
-</tr>
-</tbody></table>
+<ul>
+<li><code>2020-5-1</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
+
 <hr>
-<h4 id="5-整体效果"><a href="#5-整体效果" class="headerlink" title="5.整体效果"></a>5.整体效果</h4><blockquote>
-<p>对收藏夹页面整体进行优化，效果如下，保留了默认收藏集。<br>点击收藏夹会进入收藏的内容，每个item也可以点击进入详情页。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>滑动效果</th>
-<th>切页效果</th>
-<th>收藏详情</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/28.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/29.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/30.gif" alt=""></td>
-</tr>
-</tbody></table>
+<ul>
+<li><code>2020-5-2</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
+
+
 <hr>
-<h4 id="6-彩蛋-左右滑栏"><a href="#6-彩蛋-左右滑栏" class="headerlink" title="6.彩蛋: 左右滑栏"></a>6.彩蛋: 左右滑栏</h4><blockquote>
-<p>很多朋友反映左右滑栏与系统的<code>侧滑返回冲突</code>，所以特意设置了滑栏的小彩蛋<br><code>主页长按底部左侧按钮可打开左侧滑栏</code><br><code>主页长按底部右侧按钮可打开右侧滑栏</code><br><code>详情页长按顶部房子按钮可打开右侧滑栏</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>长按右菜单滑页</th>
-<th>长按左菜单滑页</th>
-<th>详情内长按展示收藏菜单</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/31.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/32.gif" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/33.gif" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="三、搜索与全局配置"><a href="#三、搜索与全局配置" class="headerlink" title="三、搜索与全局配置"></a>三、搜索与全局配置</h3><h4 id="1-搜索功能"><a href="#1-搜索功能" class="headerlink" title="1.搜索功能"></a>1.搜索功能</h4><blockquote>
-<p>由于Flutter中Widget比较杂乱，不太好分类，所以搜索是非常重要的<br>另外可以根据星级进行过滤，支持多选。</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/33.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/34.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/35.png" alt=""></td>
-</tr>
-</tbody></table>
-<h4 id="2-颜色主题"><a href="#2-颜色主题" class="headerlink" title="2. 颜色主题"></a>2. 颜色主题</h4><blockquote>
-<p>只提供八种颜色，可在<code>右滑菜单页</code>的<code>我的主题</code>配置,<code>可以拓展</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/36.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/37.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/38.png" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h4 id="3-字体配置"><a href="#3-字体配置" class="headerlink" title="3.字体配置"></a>3.字体配置</h4><blockquote>
-<p>支持全局字体设置,<code>可以拓展</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/39.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/40.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/41.png" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h4 id="4-item样式设置"><a href="#4-item样式设置" class="headerlink" title="4.item样式设置"></a>4.item样式设置</h4><blockquote>
-<p>支持item样式设置，<code>可以拓展，支持征集</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/42.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/43.jpeg" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/44.jpeg" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h4 id="5-代码面板风格设置"><a href="#5-代码面板风格设置" class="headerlink" title="5.代码面板风格设置"></a>5.代码面板风格设置</h4><blockquote>
-<p>支持代码风格设置</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/45.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/46.png" alt=""></td>
-</tr>
-<tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/47.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/48.png" alt=""></td>
-</tr>
-</tbody></table>
-<hr>
-<h4 id="7-关于我与项目"><a href="#7-关于我与项目" class="headerlink" title="7.关于我与项目"></a>7.关于我与项目</h4><table>
-<thead>
-<tr>
-<th>.</th>
-<th>.</th>
-<th>.</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/49.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/50.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/flutter/unit/show/51.png" alt=""></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="五、尾声"><a href="#五、尾声" class="headerlink" title="五、尾声"></a>五、尾声</h3><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
+<ul>
+<li><code>2020-5-3</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>FlutterUnit周边</category>
