@@ -1,6 +1,664 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Builder构造器</title>
+    <url>//Builder.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
+<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>builder</td>
+<td>WidgetBuilder</td>
+<td>@required</td>
+<td>组件构造器</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
+</blockquote>
+<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
+<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
+<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>功能型组件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DecoratedBox装饰盒组件</title>
+    <url>//DecoratedBox.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
+<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       DecoratedBox  装饰盒</span></span><br><span class="line"><span class="section">类型:       装饰型</span></span><br><span class="line"><span class="section">重要性:     ☆☆☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Container】、【DecoratedBoxTransition】    </span></span><br><span class="line"><span class="section">家族:       RenderObjectWidget</span></span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- DecoratedBox</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>decoration</td>
+<td>Decoration</td>
+<td>@required</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>position</td>
+<td>DecorationPosition</td>
+<td>DecorationPosition.background</td>
+<td>装饰位置</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Decoration对象</p>
+</blockquote>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">Decoration <span class="comment"># 抽象类</span></span><br><span class="line">    |<span class="params">---</span> BoxDecoration <span class="comment"># 盒装饰</span></span><br><span class="line">    |<span class="params">---</span> ShapeDecoration <span class="comment"># 形状装饰</span></span><br><span class="line">    |<span class="params">---</span> UnderlineTabIndicator <span class="comment"># 底线装饰</span></span><br><span class="line">    |<span class="params">---</span> FlutterLogoDecoration <span class="comment"># FlutterLogo 装饰</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>DecorationPositiond对象</p>
+</blockquote>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">DecorationPositiond<span class="meta"># 枚举对象</span></span><br><span class="line">    <span class="string">|---DecorationPosition.background 背景装饰</span></span><br><span class="line">    <span class="string">|---DecorationPosition.foreground 前景装饰</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-盒装饰-BoxDecoration"><a href="#1-盒装饰-BoxDecoration" class="headerlink" title="1. 盒装饰: BoxDecoration"></a>1. 盒装饰: <code>BoxDecoration</code></h5><blockquote>
+<p>BoxDecoration的属性较多，也是最常用的装饰对象</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>border</td>
+<td>BoxBorder</td>
+<td>null</td>
+<td>装饰边线</td>
+</tr>
+<tr>
+<td>borderRadius</td>
+<td>BorderRadiusGeometry</td>
+<td>null</td>
+<td>边角半径</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>backgroundBlendMode</td>
+<td>BlendMode</td>
+<td>null</td>
+<td>背景叠色模式</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>BoxShape</td>
+<td>BoxShape.rectangle</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>color,borderRadiu,boxShadows,boxShadow,gradient综合案例</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">BoxDecorationDemo</span> <span class="symbol">extends</span> <span class="symbol">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="keyword">final</span> rainbow = <span class="keyword">const</span> &lt;<span class="built_in">int</span>&gt;[</span><br><span class="line">    <span class="number">0xffff0000</span>,</span><br><span class="line">    <span class="number">0xffFF7F00</span>,</span><br><span class="line">    <span class="number">0xffFFFF00</span>,</span><br><span class="line">    <span class="number">0xff00FF00</span>,</span><br><span class="line">    <span class="number">0xff00FFFF</span>,</span><br><span class="line">    <span class="number">0xff0000FF</span>,</span><br><span class="line">    <span class="number">0xff8B00FF</span></span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> DecoratedBox(</span><br><span class="line">      position: DecorationPosition.background,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          gradient: LinearGradient(</span><br><span class="line">              stops: &lt;<span class="built_in">double</span>&gt;[<span class="number">0.0</span>, <span class="number">1</span> / <span class="number">6</span>, <span class="number">2</span> / <span class="number">6</span>, <span class="number">3</span> / <span class="number">6</span>, <span class="number">4</span> / <span class="number">6</span>, <span class="number">5</span> / <span class="number">6</span>, <span class="number">1.0</span>],</span><br><span class="line">              colors: rainbow.map((e) =&gt; Color(e)).toList()),</span><br><span class="line">          borderRadius: BorderRadius.only(</span><br><span class="line">              topLeft: Radius.circular(<span class="number">20</span>), bottomRight: Radius.circular(<span class="number">20</span>)),</span><br><span class="line">          boxShadow: [</span><br><span class="line">            <span class="keyword">const</span> BoxShadow(</span><br><span class="line">                color: Colors.orangeAccent,</span><br><span class="line">                offset: Offset(<span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">                blurRadius: <span class="number">10</span>,</span><br><span class="line">                spreadRadius: <span class="number">1</span>),</span><br><span class="line">          ]),</span><br><span class="line">      child: Icon(</span><br><span class="line">        Icons.android,</span><br><span class="line">        size: <span class="number">80</span>,</span><br><span class="line">        color: Colors.black.withAlpha(<span class="number">123</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>image,shape综合案例:<br>通过image可以为任意组件指定一个图片背景，用法与<code>Image组件</code>类似<br>通过shape可以指定装饰区域是方形还是圆形。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeImageDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">BoxDecoration</span>(</span><br><span class="line">          shape: <span class="type">BoxShape</span>.circle,</span><br><span class="line">          image: <span class="type">DecorationImage</span>(</span><br><span class="line">              fit: <span class="type">BoxFit</span>.cover,</span><br><span class="line">              image: <span class="type">AssetImage</span>(</span><br><span class="line">                <span class="symbol">'assets</span>/images/wy_200x300.jpg',</span><br><span class="line">              ))),</span><br><span class="line">      child: <span class="type">SizedBox</span>(</span><br><span class="line">        height: <span class="number">80</span>,</span><br><span class="line">        width: <span class="number">80</span>,</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.ac_unit,color: <span class="type">Colors</span>.white,size: <span class="number">40</span>,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>position和border综合案例:<br> 注意点: <code>border不能和borderRadius共同使用</code><br>这里添加边线，如果<code>position</code>是背景,那么装饰就看不见了.所以应该用<code>foreground</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">BorderDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">position</span>: DecorationPosition.foreground,</span><br><span class="line">      <span class="attribute">decoration</span>: BoxDecoration(</span><br><span class="line">        <span class="attribute">border</span>: Border(</span><br><span class="line">            <span class="attribute">bottom</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>),</span><br><span class="line">            <span class="attribute">top</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>)),</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">80</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Image.asset(</span><br><span class="line">          <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">          <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-形状装饰-ShapeDecoration"><a href="#2-形状装饰-ShapeDecoration" class="headerlink" title="2. 形状装饰: ShapeDecoration"></a>2. 形状装饰: <code>ShapeDecoration</code></h5><blockquote>
+<p>如果需要形状的高度DIY，可以使用<code>ShapeDecoration</code>作为装饰<br><code>ShapeBorder</code>详细用法见: <code>https://juejin.im/post/5e6196066fb9a07c8b5bbdf5</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>Color</td>
+<td>null</td>
+<td>颜色</td>
+</tr>
+<tr>
+<td>image</td>
+<td>DecorationImage</td>
+<td>null</td>
+<td>装饰对象</td>
+</tr>
+<tr>
+<td>boxShadow</td>
+<td>List<BoxShadow></td>
+<td>null</td>
+<td>阴影</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>Gradient</td>
+<td>null</td>
+<td>渐变</td>
+</tr>
+<tr>
+<td>shape</td>
+<td>ShapeBorder</td>
+<td>@required</td>
+<td>装饰形状</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">ShapeDecorationDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">decoration</span>: ShapeDecoration(</span><br><span class="line">          <span class="attribute">image</span>: DecorationImage(</span><br><span class="line">              <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">              <span class="attribute">image</span>: AssetImage(</span><br><span class="line">                <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">              )),</span><br><span class="line">        <span class="attribute">shape</span>: CircleBorder(</span><br><span class="line">          <span class="attribute">side</span>: BorderSide(<span class="attribute">width</span>: <span class="number">2.0</span>, <span class="attribute">color</span>: Colors.blue),</span><br><span class="line">        )</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          <span class="attribute">color</span>: Colors.white,</span><br><span class="line">          <span class="attribute">size</span>: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="3-底线装饰-UnderlineTabIndicator"><a href="#3-底线装饰-UnderlineTabIndicator" class="headerlink" title="3. 底线装饰: UnderlineTabIndicator"></a>3. 底线装饰: <code>UnderlineTabIndicator</code></h5><blockquote>
+<p><code>UnderlineTabIndicator</code>可以在子组件的底部添加装饰</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>borderSide</td>
+<td>Color</td>
+<td>BorderSide(width: 2.0, color: Colors.white)</td>
+<td>边线</td>
+</tr>
+<tr>
+<td>insets</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>间距</td>
+</tr>
+</tbody></table>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnderlineTabIndicatorDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">UnderlineTabIndicator</span>(</span><br><span class="line">        insets: <span class="type">EdgeInsets</span>.symmetric(horizontal: <span class="number">5</span>,vertical: <span class="number">-5</span>),</span><br><span class="line">          borderSide: <span class="type">BorderSide</span>(color: <span class="type">Colors</span>.orange, width: <span class="number">2</span>)),</span><br><span class="line">      child: <span class="type">Icon</span>(</span><br><span class="line">          <span class="type">Icons</span>.ac_unit,</span><br><span class="line">          color: <span class="type">Colors</span>.blue,</span><br><span class="line">          size: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-FlutterLogo装饰-FlutterLogoDecoration"><a href="#4-FlutterLogo装饰-FlutterLogoDecoration" class="headerlink" title="4. FlutterLogo装饰: FlutterLogoDecoration"></a>4. FlutterLogo装饰: <code>FlutterLogoDecoration</code></h5><blockquote>
+<p>以<code>FlutterLogo</code>为背景的装饰，没有太大的实用价值。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>lightColor</td>
+<td>Color</td>
+<td>Color(0xFF42A5F5)</td>
+<td>上两杠颜色</td>
+</tr>
+<tr>
+<td>darkColor</td>
+<td>Color</td>
+<td>Color(0xFF0D47A1)</td>
+<td>下杠颜色</td>
+</tr>
+<tr>
+<td>textColor</td>
+<td>Color</td>
+<td>Color(0xFF616161)</td>
+<td>文字颜色</td>
+</tr>
+<tr>
+<td>style</td>
+<td>FlutterLogoStyle</td>
+<td>FlutterLogoStyle.markOnly</td>
+<td>展示模式</td>
+</tr>
+<tr>
+<td>margin</td>
+<td>EdgeInsetsGeometry</td>
+<td>EdgeInsets.zero</td>
+<td>外间距</td>
+</tr>
+</tbody></table>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlutterLogoDecorationDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">FlutterLogoDecoration</span>(</span><br><span class="line">        darkColor: <span class="type">Colors</span>.orange,</span><br><span class="line">        lightColor: <span class="type">Colors</span>.deepPurpleAccent,</span><br><span class="line">        style: <span class="type">FlutterLogoStyle</span>.stacked</span><br><span class="line">      ),</span><br><span class="line">      child:<span class="type">SizedBox</span>(width: <span class="number">100</span>,height: <span class="number">100</span>,),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>装饰型组件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Padding内边距组件</title>
+    <url>//Padding.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
+<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>EdgeInsetsGeometry</td>
+<td>@required</td>
+<td>内边距</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>null</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>EdgeInsetsGeometry对象</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
+<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
+<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
+</ul>
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>value</td>
+<td>double</td>
+<td>null</td>
+<td>内四边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件四周20</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingAll</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">20</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>left</td>
+<td>double</td>
+<td>0.0</td>
+<td>左内边距</td>
+</tr>
+<tr>
+<td>top</td>
+<td>double</td>
+<td>0.0</td>
+<td>上内边距</td>
+</tr>
+<tr>
+<td>right</td>
+<td>double</td>
+<td>0.0</td>
+<td>右内边距</td>
+</tr>
+<tr>
+<td>bottom</td>
+<td>double</td>
+<td>0.0</td>
+<td>下内边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingOnly</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vertical</td>
+<td>double</td>
+<td>0.0</td>
+<td>水平边距</td>
+</tr>
+<tr>
+<td>horizontal</td>
+<td>double</td>
+<td>0.0</td>
+<td>竖直边距</td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingSymmetric</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
+<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) + EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) - EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) * <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) / <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) ~/ <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) % <span class="number">6</span></span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>布局型组件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flutter Unit  更新记录</title>
+    <url>//FlutterUnit_update.html</url>
+    <content><![CDATA[<ul>
+<li><code>2020-4-16</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-17</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<hr>
+<ul>
+<li><code>2020-4-18</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><code>2020-4-19</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-21</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-24</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-4-30</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-5-1</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>2020-5-2</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<ul>
+<li><code>2020-5-3</code></li>
+</ul>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>FlutterUnit周边</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PreferredSize优先尺寸</title>
+    <url>//PreferredSize.html</url>
+    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
+<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<a id="more"></a>
+
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性类型</th>
+<th>默认值</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>Key</td>
+<td>null</td>
+<td>组件键</td>
+</tr>
+<tr>
+<td>preferredSize</td>
+<td>Size</td>
+<td>@required</td>
+<td>优先尺寸</td>
+</tr>
+<tr>
+<td>child</td>
+<td>Widget</td>
+<td>@required</td>
+<td>子组件</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
+</blockquote>
+<hr>
+<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
+<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
+<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
+<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Flutter组件</category>
+      </categories>
+      <tags>
+        <tag>widget</tag>
+        <tag>布局型组件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flutter Unit 开源篇</title>
     <url>//unit.html</url>
     <content><![CDATA[<h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
@@ -325,661 +983,220 @@
       </categories>
   </entry>
   <entry>
-    <title>PreferredSize优先尺寸</title>
-    <url>//PreferredSize.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
-<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
+    <title>Flutter第1天--初始分析+Dart方言+Canvas简绘</title>
+    <url>//Flutter%E4%B8%83%E6%97%A5/01.html</url>
+    <content><![CDATA[<h4 id="Flutter七日游第一天：2018-12-16-天气：冷"><a href="#Flutter七日游第一天：2018-12-16-天气：冷" class="headerlink" title="Flutter七日游第一天：2018-12-16 天气：冷"></a><code>Flutter七日游第一天：2018-12-16 天气：冷</code></h4><h4 id="零前言："><a href="#零前言：" class="headerlink" title="零前言："></a>零前言：</h4><blockquote>
+<p>作为一名资深安卓业余爱好者(自诩),感觉应该入一下Flutter的坑了，<br>不管怎么说,新技术多少要了解一点,本系列就作为我的学习笔记吧<br>先把今天入坑的感觉写一写：  </p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
-<a id="more"></a>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line"><span class="number">1.</span>环境的搭建前人把雷踩得差不多了，也不是很麻烦</span><br><span class="line"><span class="number">2.</span>什么都没干呢，TM安装包<span class="number">28</span>M...真把我吓一跳-----于是Flutter的<span class="string">"胖子"</span>形象深入我心（不过非debug版能在<span class="number">10</span>M之内，还是可以接受的）  </span><br><span class="line"><span class="number">3.</span>Flutter热加载爽到爆，对于喜欢用真机的我，以前每次修改后--&gt;确定安装--&gt;打开...</span><br><span class="line"><span class="number">4.</span>单引号亮了，总算能像写其他语言那样少按个Shift了，字符串插值也很良心</span><br><span class="line"><span class="number">5.</span>flutter支持canvas,so我的四大战将(canvas,path,paint,贝塞尔)又能大显身手了,不过Api略有不同，也略显单薄</span><br><span class="line"><span class="number">6.</span>程序员有三件法宝：Ctrl+ Z(大胆改) , debug(细心查) , 类比（善分析）</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       PreferredSize  优先尺寸</span></span><br><span class="line"><span class="section">类型:       布局型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】、【AppBar】    </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br><span class="line">                |--- PreferredSizeWidget</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>preferredSize</td>
-<td>Size</td>
-<td>@required</td>
-<td>优先尺寸</td>
-</tr>
-<tr>
-<td>child</td>
-<td>Widget</td>
-<td>@required</td>
-<td>子组件</td>
-</tr>
-</tbody></table>
+<h4 id="一、Flutter初体验"><a href="#一、Flutter初体验" class="headerlink" title="一、Flutter初体验"></a>一、Flutter初体验</h4><h5 id="1、下载Flutter的SDK"><a href="#1、下载Flutter的SDK" class="headerlink" title="1、下载Flutter的SDK"></a>1、下载Flutter的SDK</h5><blockquote>
+<p>Android 的SDK要在环境变量配置一下：<code>ANDROID_HOME</code><br>有什么问题可以在cmd用<code>flutter doctor</code>命令检查一下，对症下药    </p>
+</blockquote>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">clone</span> <span class="title">-b</span> beta https://github.com/flutter/flutter.git</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2、配置环境变量"><a href="#2、配置环境变量" class="headerlink" title="2、配置环境变量"></a>2、配置环境变量</h5><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/0.png" alt="Flutter环境变量.png"></p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">PUB_HOSTED_URL=<span class="string">https:</span><span class="comment">//pub.flutter-io.cn</span></span><br><span class="line">FLUTTER_STORAGE_BASE_URL=<span class="string">https:</span><span class="comment">//storage.flutter-io.cn</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3、AndroidStudio安装Dart和Flutter插件"><a href="#3、AndroidStudio安装Dart和Flutter插件" class="headerlink" title="3、AndroidStudio安装Dart和Flutter插件"></a>3、AndroidStudio安装Dart和Flutter插件</h5><figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">setting</span>--&gt;<span class="comment">plugins</span>--&gt;<span class="comment">下方第二个</span>--&gt;<span class="comment">搜索</span>--&gt;<span class="comment">安装</span>--&gt;<span class="comment">重启</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4、新建项目"><a href="#4、新建项目" class="headerlink" title="4、新建项目"></a>4、新建项目</h5><blockquote>
+<p>打开AS后就能看到新建一个Flutter项目，然后就写名字<br>initializing gradle 如果一直不动，<code>android/gradle/wrapper/gradle-wrapper.properties</code><br>对应的gradle版本在<code>http://services.gradle.org/distributions/</code>自己下载，放在本地</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/1.png" alt="第一个Flutter项目.png"></p>
+<hr>
+<h4 id="二、第一次看初始项目的内心戏"><a href="#二、第一次看初始项目的内心戏" class="headerlink" title="二、第一次看初始项目的内心戏"></a>二、第一次看初始项目的内心戏</h4><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">android：我最熟悉的android</span><br><span class="line">    |---app</span><br><span class="line">        |---src</span><br><span class="line"><span class="symbol">ios:</span>暂时不鸟它</span><br><span class="line"><span class="class"><span class="keyword">lib</span>:</span></span><br><span class="line">    |---main.dart</span><br><span class="line"><span class="symbol">test:</span>顾名思义，测试包</span><br><span class="line">.gitignore .metadata .packages pubspec.lock pubspec.yaml README.md  连包都没有，暂时不睬</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="1-看一下：android-app-src-main-AndroidManifest-xml"><a href="#1-看一下：android-app-src-main-AndroidManifest-xml" class="headerlink" title="1.看一下：android/app/src/main/AndroidManifest.xml"></a>1.看一下：<code>android/app/src/main/AndroidManifest.xml</code></h5><figure class="highlight django"><table><tr><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">application</span></span></span></span><br><span class="line"><span class="xml">    android:name="io.flutter.app.FlutterApplication"</span></span><br><span class="line"><span class="xml">    android:label="my_flutter"</span></span><br><span class="line"><span class="xml">    android:icon="@mipmap/ic_launcher"&gt;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">activity</span></span></span></span><br><span class="line"><span class="xml">        android:name=".MainActivity"</span></span><br><span class="line"><span class="xml">      //略...</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span>/&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">application</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-可见程序入口是：MainActivity-java"><a href="#2-可见程序入口是：MainActivity-java" class="headerlink" title="2.可见程序入口是：MainActivity.java"></a>2.可见程序入口是：MainActivity.java</h5><blockquote>
+<p>让我有一种libgdx的即视感</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">FlutterActivity</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">protected</span> void onCreate(<span class="type">Bundle</span> savedInstanceState) &#123;</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    <span class="type">GeneratedPluginRegistrant</span>.registerWith(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-GeneratedPluginRegistrant-java"><a href="#3-GeneratedPluginRegistrant-java" class="headerlink" title="3.GeneratedPluginRegistrant.java"></a>3.GeneratedPluginRegistrant.java</h5><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Generated file. Do not edit.</span></span><br><span class="line"><span class="comment">    自动生成的文件，不要修改</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">GeneratedPluginRegistrant</span> &#123;</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">registerWith</span><span class="params">(PluginRegistry registry)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (alreadyRegisteredWith(registry)) &#123;<span class="comment">//如已结婚,直接走人</span></span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">//貌似是判断是否已经和registry结成连理</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">alreadyRegisteredWith</span><span class="params">(PluginRegistry registry)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">String</span> key = GeneratedPluginRegistrant.class.getCanonicalName();</span><br><span class="line">    <span class="keyword">if</span> (registry.hasPlugin(key)) &#123;<span class="comment">//有结婚戒指,直接走人</span></span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    registry.registrarFor(key);<span class="comment">//带上戒指</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4、是谁弄脏了我雪白的界面-显示"><a href="#4、是谁弄脏了我雪白的界面-显示" class="headerlink" title="4、是谁弄脏了我雪白的界面(显示)"></a>4、是谁弄脏了我雪白的界面(显示)</h5><h6 id="4-1-MainActivity显然不是，怎么查在哪呢"><a href="#4-1-MainActivity显然不是，怎么查在哪呢" class="headerlink" title="4.1.MainActivity显然不是，怎么查在哪呢?"></a>4.1.MainActivity显然不是，怎么查在哪呢?</h6><blockquote>
+<p>好吧在：main.dart里  </p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/2.png" alt="搜索已有字符.png"></p>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> main() =&gt; runApp(MyApp());</span><br><span class="line"></span><br><span class="line">------------<span class="comment">//内心戏--------------</span></span><br><span class="line">开面相对象的天眼一看：`<span class="keyword">void</span> main() =&gt; runApp(MyApp());`  </span><br><span class="line">什么鬼,不像Python,不像JavaScript,更不像Java,但我仿佛知道它想对我什么：  </span><br><span class="line">我是入口函数,执行runApp函数,里面传入了个MyApp(),so,我是清白的，熊孩子是MyApp()</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="4-2-对MyApp的认知"><a href="#4-2-对MyApp的认知" class="headerlink" title="4.2.对MyApp的认知"></a>4.2.对MyApp的认知</h6><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'Flutter</span> <span class="type">Demo</span>',</span><br><span class="line">      theme: <span class="type">ThemeData</span>(</span><br><span class="line">        primarySwatch: <span class="type">Colors</span>.blue,</span><br><span class="line">      ),</span><br><span class="line">      home: <span class="type">MyHomePage</span>(title: <span class="symbol">'Flutter</span> <span class="type">Demo</span> <span class="type">Home</span> <span class="type">Page</span>'),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">------------<span class="comment">//内心戏--------------</span></span><br><span class="line">看到<span class="class"><span class="keyword">class</span><span class="title">有种他乡遇故知的感觉，继承了StatelessWidget类并重写了其build方法</span></span></span><br><span class="line"><span class="class"><span class="title">然后返回了一个Widget对象</span>,<span class="title">并可以推理出MaterialApp</span>(<span class="params"></span>)<span class="title">是一个Widget类对象</span></span></span><br><span class="line"><span class="class"><span class="title">其中括号里的感觉非常像Python的字典或JavaScript的对象，不过用</span>(<span class="params"></span>)<span class="title">包起来真怪怪的</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">按照一般的套路，左边是属性，右边是属性值，既然如此，玩玩呗</span>.<span class="title">下面改了一下theme颜色</span></span></span><br><span class="line"><span class="class"><span class="title">home里传入了一个MyHomePage</span>,<span class="title">估计就是我们要找的人了</span>,<span class="title">title改一下</span></span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/3.png" alt="flutter1.png"></p>
+<hr>
+<h6 id="4-3-对MyHomePage的认知"><a href="#4-3-对MyHomePage的认知" class="headerlink" title="4.3.对MyHomePage的认知"></a>4.3.对MyHomePage的认知</h6><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="type">MyHomePage</span>(&#123;<span class="type">Key</span> key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">final</span> <span class="type">String</span> title;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _MyHomePageState createState() =&gt; _MyHomePageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">------------<span class="comment">//内心戏--------------</span></span><br><span class="line"><span class="type">MyHomePage</span>也是<span class="type">StatefulWidget</span>家的,第一句话感觉挺诡异，先mark一下</span><br><span class="line"><span class="keyword">super</span>(key: key)应该是说，key用它爸(即<span class="type">StatefulWidget</span>)的，从上一步的入参title来看</span><br><span class="line"><span class="keyword">this</span>.title应该是入参的关键，so,这句话好像在说，我要两个参数，key从我爸那里拿</span><br><span class="line"></span><br><span class="line"><span class="meta">@override</span>可以看出createState()是一个父类方法,_MyHomePageState是一个类</span><br><span class="line">也就说明 _MyHomePageState()是一个对象,(ps:看到<span class="type">State</span>直接想到<span class="type">React</span>)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="4-4-对-MyHomePageState的认知"><a href="#4-4-对-MyHomePageState的认知" class="headerlink" title="4.4.对_MyHomePageState的认知"></a>4.4.对_MyHomePageState的认知</h6><figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_MyHomePageState</span> <span class="keyword">extends</span> <span class="title">State&lt;MyHomePage&gt;</span> </span>&#123;</span><br><span class="line">  int _counter = <span class="number">0</span>;<span class="comment">//定义变量</span></span><br><span class="line"></span><br><span class="line">  void _incrementCounter() &#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _counter++;<span class="comment">//定义变量++</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">------------<span class="comment">//内心戏--------------</span></span><br><span class="line"><span class="comment">//结合JS和Python的经验，从这里可以看出，貌似加_的，是不想暴露在外的内部成员  </span></span><br><span class="line">_incrementCounter()显然是一个累加的方法，setState()里的东西让_counter++  </span><br><span class="line">setState个<span class="type">React</span>这是一模一样，mark一下，估计会刷新界面</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="type">Text</span>(widget.title),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="type">Center</span>(</span><br><span class="line">        child: <span class="type">Column</span>(</span><br><span class="line">          mainAxisAlignment: <span class="type">MainAxisAlignment</span>.center,</span><br><span class="line">          children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">            <span class="type">Text</span>(</span><br><span class="line">              <span class="symbol">'You</span> have pushed the button <span class="keyword">this</span> many times:',</span><br><span class="line">            ),</span><br><span class="line">            <span class="type">Text</span>(</span><br><span class="line">              '$_counter',</span><br><span class="line">              style: <span class="type">Theme</span>.of(context).textTheme.display1,</span><br><span class="line">            ),</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      </span><br><span class="line">------------<span class="comment">//内心戏--------------</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">State&lt;T</span> <span class="keyword">extends</span> <span class="title">StatefulWidget&gt;</span> <span class="keyword">extends</span> <span class="title">Diagnosticable</span></span></span><br><span class="line"><span class="class"><span class="title">State有一个StatefulWidget的泛型</span>,<span class="title">也重写了build方法</span></span></span><br><span class="line"><span class="class">[class <span class="type">Scaffold</span> extends <span class="type">StatefulWidget</span>] <span class="title">Scaffold也是StatefulWidget</span></span></span><br><span class="line"><span class="class"><span class="title">现在焦点应该汇聚在StatefulWidget身上，很多地方都出现了</span>,<span class="title">mark一下</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">Text</span>(<span class="params">widget.title</span>)<span class="title">----这里应该就是标题了，AppBar，顾名思义</span></span></span><br><span class="line"><span class="class"><span class="title">body应该是身体，Center，中间，child，孩子，Column列，mainAxisAlignment，主轴对齐，</span></span></span><br><span class="line"><span class="class"><span class="title">center中间，children孩子，Text文字：You</span> <span class="title">have</span> <span class="title">pushed</span> <span class="title">the</span> <span class="title">button</span> <span class="title">this</span> <span class="title">many</span> <span class="title">times</span></span>:</span><br><span class="line">感觉蛮好玩的，拼在一起大概是，列作为孩子居中，并将文本作为孩子主轴对齐方式居中</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-5-floatingActionButton-这个安卓元素有"><a href="#4-5-floatingActionButton-这个安卓元素有" class="headerlink" title="4.5.floatingActionButton,这个安卓元素有"></a>4.5.floatingActionButton,这个安卓元素有</h6><figure class="highlight less"><table><tr><td class="code"><pre><span class="line">      <span class="attribute">floatingActionButton</span>: FloatingActionButton(</span><br><span class="line">        <span class="attribute">onPressed</span>: _incrementCounter,</span><br><span class="line">        <span class="attribute">tooltip</span>: <span class="string">'Increment'</span>,</span><br><span class="line">        <span class="attribute">child</span>: Icon(Icons.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//onPressed:点击响应的函数  tooltip--长按显示文字  child--Icon加号图片</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>也许你曾为<code>Scaffold的appBar是PreferredSizeWidget</code>而束手无策，只能用AppBar<br><code>PreferredSize</code>可以将一个普通的组件转化成<code>PreferredSizeWidget</code></p>
+<p>ok,这就是我第一次看Flutter代码时的感觉，mark了三处，<br>下面带着问题正式学一下Dart方言。</p>
 </blockquote>
 <hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-修改AppBar高度"><a href="#1-修改AppBar高度" class="headerlink" title="1. 修改AppBar高度"></a>1. 修改AppBar高度</h5><blockquote>
-<p> AppBar高度的默认高度是<code>56.0</code>，使用PreferredSize可以进行调整</p>
+<h4 id="三、Dart语法一探"><a href="#三、Dart语法一探" class="headerlink" title="三、Dart语法一探"></a>三、Dart语法一探</h4><h5 id="1、圆的周长"><a href="#1、圆的周长" class="headerlink" title="1、圆的周长"></a>1、圆的周长</h5><figure class="highlight d"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> PI = <span class="number">3.141592654</span>; <span class="comment">//const：编译时就是常量</span></span><br><span class="line"><span class="comment">//const double PI = 3.141592654;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> x = <span class="number">50</span>; <span class="comment">//final修饰的变量只能被赋值一次(运行时)</span></span><br><span class="line"><span class="comment">//final int x = 100;</span></span><br><span class="line"></span><br><span class="line">main() &#123;</span><br><span class="line"><span class="comment">//  int radius = 10;</span></span><br><span class="line">  var radius = <span class="number">10</span>;</span><br><span class="line">   <span class="comment">//radius = 10.0;//Error--A value of type 'double' can't be assigned to a variable of type 'int'.</span></span><br><span class="line">  <span class="built_in">double</span> c = getC(radius);</span><br><span class="line">  <span class="comment">//支持三目运算符</span></span><br><span class="line">  <span class="built_in">bool</span> isBig = c &gt; x;</span><br><span class="line">  print(isBig ? <span class="string">"圆的周长大于$&#123;x&#125;"</span> : <span class="string">r"圆的周长\n小于$&#123;x&#125;"</span>*<span class="number">2</span>);</span><br><span class="line">  <span class="comment">//x=100 圆的周长\n小于$&#123;x&#125;圆的周长\n小于$&#123;x&#125;</span></span><br><span class="line">  <span class="comment">//x=50 圆的周长大于50</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取圆的周长 radius : 半径</span></span><br><span class="line"><span class="built_in">double</span> getC(<span class="keyword">int</span> radius) &#123;</span><br><span class="line">  var c = <span class="number">2</span> * PI * radius;</span><br><span class="line">  <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>1.感觉const就像英雄天生天赋,final就像等级到了,选择英雄职业(不能转职)<br>2.r会将里面字符串原样打出，无视各空白符<br>3.字符串*2就打印两次，有点意思，差值表达式：<code>${}</code>和JS,kotlin相似<br>4.可以省略类型，但是若初始时赋值就不能再赋值其他类型，所以Dart并非弱类型语言!!!<br>但说它强又不怎么严谨，看下图，无力吐槽…(PS:原因：见后面dynamic类型)</p>
 </blockquote>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/// The height of the toolbar component of the [AppBar].</span></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">double</span> kToolbarHeight = <span class="number">56.0</span>;</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/02.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomPreferredSize</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">PreferredSize</span>(</span><br><span class="line">          preferredSize: <span class="type">Size</span>.fromHeight(<span class="number">150</span>),</span><br><span class="line">          child: <span class="type">AppBar</span>(</span><br><span class="line">            title: <span class="type">Text</span>(<span class="symbol">'PreferredSiz</span>e'),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/4.png" alt="mark2018-12-15 22-52-33.png">  </p>
+<hr>
+<h5 id="2-List的使用"><a href="#2-List的使用" class="headerlink" title="2.List的使用"></a>2.List的使用</h5><blockquote>
+<p>支持多类型，API比java多一些<br>可以看成Java的ArrayList和数组的结合体，any,join等操作更像Python或js中的list</p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">baseUse</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  var <span class="built_in">list</span> = [<span class="number">1</span>, <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="literal">true</span>]; <span class="comment">//支持多种类型</span></span><br><span class="line">  <span class="comment">//  var list=const[1,"a","b","c",true];</span></span><br><span class="line">  <span class="comment">//  var list =new List();</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">list</span>[<span class="number">0</span>] = <span class="string">"10"</span>; <span class="comment">//数组元素可修改成不同类型</span></span><br><span class="line">  var el = <span class="built_in">list</span>[<span class="built_in">list</span>.length - <span class="number">1</span>]; <span class="comment">//获取--true</span></span><br><span class="line">  <span class="built_in">list</span>.add(<span class="string">"toly"</span>); <span class="comment">//尾增--[10, a, b, c, true, toly]</span></span><br><span class="line">  <span class="built_in">list</span>.insert(<span class="number">1</span>, <span class="literal">true</span>); <span class="comment">//定点增--[10, true, a, b, c, true, toly]</span></span><br><span class="line">  <span class="built_in">list</span>.<span class="built_in">remove</span>(<span class="string">"10"</span>); <span class="comment">//删除元素--[true, a, b, c, true, toly]</span></span><br><span class="line">  <span class="built_in">list</span>.indexOf(<span class="literal">true</span>); <span class="comment">//首出索引--1</span></span><br><span class="line">  <span class="built_in">list</span>.lastIndexOf(<span class="literal">true</span>); <span class="comment">//尾出索引--4</span></span><br><span class="line">  <span class="built_in">list</span>.removeLast(); <span class="comment">//移除尾--[true, a, b, c, true]</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">list</span>.sublist(<span class="number">2</span>)); <span class="comment">//截取--[b, c, true]</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">list</span>.sublist(<span class="number">2</span>, <span class="number">4</span>)); <span class="comment">//截取--[b, c]</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">list</span>);</span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">list</span>.join(<span class="string">"!"</span>)); <span class="comment">//true!a!b!c!true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h5 id="2-将普通组件转化成PreferredSizeWidget"><a href="#2-将普通组件转化成PreferredSizeWidget" class="headerlink" title="2. 将普通组件转化成PreferredSizeWidget"></a>2. 将普通组件转化成<code>PreferredSizeWidget</code></h5><blockquote>
-<p>当你遇到属性是<code>PreferredSizeWidget</code>时，你只能去找PreferredSizeWidget的实现类<br>这样限制会很大，如AppBar的底部栏，可以用PreferredSize包裹一下，容纳任何组件</p>
+<h6 id="forEach、any、every、map"><a href="#forEach、any、every、map" class="headerlink" title="forEach、any、every、map"></a>forEach、any、every、map</h6><figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> op() &#123;</span><br><span class="line">  <span class="keyword">var</span> numList = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">  numList.sort();</span><br><span class="line">  <span class="built_in">print</span>(numList); <span class="comment">//排序--[1, 2, 3, 4, 5]</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> value <span class="keyword">in</span> numList) &#123;</span><br><span class="line">    <span class="built_in">print</span>(value); <span class="comment">//1,2,3,4,5</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  numList.forEach(addOne); <span class="comment">//2,3,4,5,6</span></span><br><span class="line">  numList.forEach((<span class="built_in">num</span>) =&gt; <span class="built_in">print</span>(<span class="built_in">num</span> + <span class="number">1</span>)); <span class="comment">//同上</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> any = numList.any((<span class="built_in">num</span>) =&gt; <span class="built_in">num</span> &gt; <span class="number">3</span>);</span><br><span class="line">  <span class="built_in">print</span>(any); <span class="comment">//只要有&gt;3的任何元素,返回true</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> every = numList.every((<span class="built_in">num</span>) =&gt; <span class="built_in">num</span> &lt; <span class="number">6</span>);</span><br><span class="line">  <span class="built_in">print</span>(every); <span class="comment">//全部元素&lt;6,返回true</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> listX5 = numList.map((e) =&gt; e*=<span class="number">5</span>);</span><br><span class="line">  <span class="built_in">print</span>(listX5);<span class="comment">//(5, 10, 15, 20, 25)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> addOne(<span class="built_in">int</span> <span class="built_in">num</span>) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="built_in">num</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-Map"><a href="#3-Map" class="headerlink" title="3.Map"></a>3.Map</h5><blockquote>
+<p>这个不多说了，基本上与主流语言一致</p>
 </blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">PaddingOnly</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">color</span>: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attribute">child</span>: Padding(</span><br><span class="line">        <span class="attribute">padding</span>: EdgeInsets.only(<span class="attribute">top</span>:<span class="number">10</span>,<span class="attribute">left</span>: <span class="number">10</span>),</span><br><span class="line">        <span class="attribute">child</span>: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">Widget</span> <span class="selector-tag">_buildChild</span>() &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">Container</span>(</span><br><span class="line">      <span class="attribute">alignment</span>: Alignment.center,</span><br><span class="line">      <span class="attribute">color</span>: Colors.cyanAccent,</span><br><span class="line">      <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attribute">child</span>: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">baseUse</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//创建映射表</span></span><br><span class="line">  var dict = &#123;<span class="string">"a"</span>: <span class="string">"page1"</span>, <span class="string">"b"</span>: <span class="string">"page30"</span>, <span class="string">"c"</span>: <span class="string">"page70"</span>, <span class="string">"price"</span>: <span class="number">40</span>&#125;;</span><br><span class="line"><span class="comment">//  var dict = new Map();</span></span><br><span class="line">  <span class="built_in">print</span>(dict); <span class="comment">//&#123;a: page1, b: page30, c: page70, price: 40&#125;</span></span><br><span class="line">  <span class="built_in">print</span>(dict[<span class="string">"price"</span>]); <span class="comment">//40</span></span><br><span class="line">  dict[<span class="string">"a"</span>] = <span class="string">"page2"</span>;</span><br><span class="line">  <span class="built_in">print</span>(dict); <span class="comment">//&#123;a: page2, b: page30, c: page70, price: 40&#125;</span></span><br><span class="line">  <span class="built_in">print</span>(dict.containsKey(<span class="string">"price"</span>)); <span class="comment">//true</span></span><br><span class="line">  <span class="built_in">print</span>(dict.containsValue(<span class="string">"price"</span>)); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">print</span>(dict.isEmpty); <span class="comment">//false</span></span><br><span class="line">  <span class="built_in">print</span>(dict.isNotEmpty); <span class="comment">//true</span></span><br><span class="line">  <span class="built_in">print</span>(dict.length); <span class="comment">//4</span></span><br><span class="line">  dict.<span class="built_in">remove</span>(<span class="string">"c"</span>);</span><br><span class="line">  <span class="built_in">print</span>(dict);<span class="comment">//&#123;a: page2, b: page30, price: 40&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> op() &#123;</span><br><span class="line">  <span class="keyword">var</span> dict = &#123;<span class="string">"a"</span>: <span class="string">"page1"</span>, <span class="string">"b"</span>: <span class="string">"page30"</span>, <span class="string">"c"</span>: <span class="string">"page70"</span>, <span class="string">"price"</span>: <span class="number">40</span>&#125;;</span><br><span class="line">  dict.keys.forEach(<span class="built_in">print</span>); <span class="comment">//a,b,c,price</span></span><br><span class="line">  dict.values.forEach(<span class="built_in">print</span>); <span class="comment">//a,b,c,price</span></span><br><span class="line">  dict.forEach((k, v) =&gt; (<span class="built_in">print</span>(<span class="string">"<span class="subst">$k</span>=<span class="subst">$v</span>"</span>))); <span class="comment">//这里用括号包着，好想吐槽...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-dynamic-动态的"><a href="#4-dynamic-动态的" class="headerlink" title="4.dynamic(动态的)"></a>4.dynamic(动态的)</h5><blockquote>
+<p>原来是dynamic锅,让类型变成动态了</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/5.png" alt="dynamic.png"></p>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/6.png" alt="int.png"></p>
+<figure class="highlight zephir"><table><tr><td class="code"><pre><span class="line">dynamic d = <span class="number">20</span>;</span><br><span class="line">d = <span class="string">"toly"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="keyword">list</span> = <span class="keyword">new</span> <span class="keyword">List</span>&lt;dynamic&gt;();</span><br><span class="line"><span class="keyword">list</span>.add(<span class="string">"1"</span>);</span><br><span class="line"><span class="keyword">list</span>.add(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> list2 = <span class="keyword">new</span> <span class="keyword">List</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line"><span class="comment">//list2.add("toly");//ERROR:The argument type 'String' can't be assigned to the parameter type 'int'.</span></span><br></pre></td></tr></table></figure>
 
 
+<hr>
+<h5 id="5-不同的东西"><a href="#5-不同的东西" class="headerlink" title="5.不同的东西"></a>5.不同的东西</h5><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//--------------------奇葩的~/----------</span></span><br><span class="line">int a=<span class="number">10</span>;</span><br><span class="line">print(a/<span class="number">3</span>);<span class="comment">//3.3333333333333335</span></span><br><span class="line">print(a~/<span class="number">3</span>);<span class="comment">//3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------奇葩的??=----------</span></span><br><span class="line">int b = <span class="number">9</span>;</span><br><span class="line">b = <span class="number">5</span>;</span><br><span class="line">b ??= a; <span class="comment">//----如果b空的则赋值</span></span><br><span class="line">print(b); <span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------奇葩的??----------</span></span><br><span class="line">int c = <span class="number">10</span>;</span><br><span class="line">int d = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">var</span> add10 = c = <span class="literal">null</span> ?? d + <span class="number">10</span>;<span class="comment">//取第一个不为空的表达式</span></span><br><span class="line">print(add10); <span class="comment">//18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------简洁的=&gt;----------</span></span><br><span class="line">=&gt; expr   等价于  &#123;<span class="keyword">return</span> expr;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------好玩的&#123;参数&#125;----------</span></span><br><span class="line">main() &#123;</span><br><span class="line">  <span class="function"><span class="title">fun</span><span class="params">(<span class="string">"toly"</span>)</span></span>;<span class="comment">//toly,24,null</span></span><br><span class="line">  <span class="function"><span class="title">fun</span><span class="params">(<span class="string">"toly"</span>, age: 24, sex: "男")</span></span>; <span class="comment">//toly,24,男</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">fun</span><span class="params">(String name, &#123;int age=<span class="number">24</span>, String sex&#125;)</span></span> &#123;</span><br><span class="line">  print(<span class="string">"<span class="variable">$name</span>,<span class="variable">$age</span>,<span class="variable">$sex</span>"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------好玩的[参数]----------</span></span><br><span class="line">main() &#123;</span><br><span class="line">  <span class="function"><span class="title">fun</span><span class="params">(<span class="string">"toly"</span>)</span></span>; <span class="comment">//toly,null,null</span></span><br><span class="line">  fun2(<span class="string">"toly"</span>, <span class="number">24</span>); <span class="comment">//toly,24, 男</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun2(String name, [int age, String sex= <span class="string">"男"</span>]) &#123;</span><br><span class="line">  print(<span class="string">"<span class="variable">$name</span>,<span class="variable">$age</span>,<span class="variable">$sex</span>"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//--------------------有趣的匿名方法----------</span></span><br><span class="line">  <span class="keyword">var</span> power = (i) &#123;</span><br><span class="line">    <span class="keyword">return</span> i * i;</span><br><span class="line">  &#125;;</span><br><span class="line">  print(power(<span class="number">6</span>)); <span class="comment">//36</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//--------------------这个理清楚,基本上匿名函数就OK了----------</span></span><br><span class="line"><span class="keyword">var</span> li = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">li.forEach((i) =&gt; print((i) &#123;</span><br><span class="line">      <span class="keyword">return</span> i * i;</span><br><span class="line">    &#125;(i))); <span class="comment">//1,4,9,16,25</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="6-类那点事"><a href="#6-类那点事" class="headerlink" title="6.类那点事"></a>6.类那点事</h5><h6 id="6-1：定义一个简单的类"><a href="#6-1：定义一个简单的类" class="headerlink" title="6.1：定义一个简单的类"></a>6.1：定义一个简单的类</h6><blockquote>
+<p><code>PerSon(this.name, this.age)</code>简化了Java中的那一坨,其他差不多</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PerSon</span> </span>&#123;</span><br><span class="line">  <span class="built_in">String</span> name;</span><br><span class="line">  <span class="built_in">int</span> age;</span><br><span class="line"></span><br><span class="line">  PerSon(<span class="keyword">this</span>.name, <span class="keyword">this</span>.age);</span><br><span class="line"></span><br><span class="line">  say(<span class="built_in">String</span> name) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"are you ok <span class="subst">$name</span>"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()&#123;</span><br><span class="line">  <span class="keyword">var</span> toly = <span class="keyword">new</span> PerSon(<span class="string">"toly"</span>, <span class="number">24</span>);</span><br><span class="line">  toly.say(<span class="string">"ls"</span>);<span class="comment">//are you ok ls</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="6-2：继承"><a href="#6-2：继承" class="headerlink" title="6.2：继承"></a>6.2：继承</h6><blockquote>
+<p>注意语法形式</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">PerSon</span> </span>&#123;</span><br><span class="line">  <span class="type">String</span> school;</span><br><span class="line">  <span class="type">Student</span>(<span class="type">String</span> name, int age, <span class="keyword">this</span>.school) : <span class="keyword">super</span>(name, age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main() &#123;</span><br><span class="line">  <span class="keyword">new</span> <span class="type">Student</span>(<span class="string">"ls"</span>, <span class="number">23</span>, <span class="string">"星龙学院"</span>).say(<span class="string">"toly"</span>);<span class="comment">//are you ok toly</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>就先认知这么多吧，应该够玩一玩的了。</p>
+</blockquote>
+<hr>
+<h4 id="四、Canvas走起"><a href="#四、Canvas走起" class="headerlink" title="四、Canvas走起"></a>四、Canvas走起</h4><blockquote>
+<p>新学一样东西，最好选择最熟悉的点切入，对我而言是绘制</p>
+</blockquote>
+<h5 id="1-找到画板在哪"><a href="#1-找到画板在哪" class="headerlink" title="1.找到画板在哪"></a>1.找到画板在哪</h5><blockquote>
+<p>有个<code>CustomPainter</code>类里有canvas,二话不说,继承之,为了避免看着乱，我新建了view包   <code>view/star_view.dart</code></p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'dart</span>:ui';</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StarView</span> <span class="keyword">extends</span> <span class="title">CustomPainter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void paint(<span class="type">Canvas</span> canvas, <span class="type">Size</span> size) &#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  bool shouldRepaint(<span class="type">CustomPainter</span> oldDelegate) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-StarView的用法"><a href="#2-StarView的用法" class="headerlink" title="2.StarView的用法"></a>2.StarView的用法</h5><blockquote>
+<p>前面分析过，视图的呈现在MyHomePage中–&gt;createState方法–&gt;build返回的对象里<br>把文字的那块body改为CustomPaint就行了,FloatingActionButton就放着吧。</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="variable">@override</span></span><br><span class="line">Widget build(BuildContext context) &#123;</span><br><span class="line">  <span class="selector-tag">return</span> <span class="selector-tag">Scaffold</span>(</span><br><span class="line">    <span class="attribute">appBar</span>: AppBar(</span><br><span class="line">      <span class="attribute">title</span>: Text(widget.title),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attribute">body</span>: CustomPaint(</span><br><span class="line">      <span class="attribute">painter</span>: StarView(),</span><br><span class="line">    ),</span><br><span class="line">    <span class="attribute">floatingActionButton</span>: FloatingActionButton(</span><br><span class="line">      <span class="attribute">onPressed</span>: _incrementCounter,</span><br><span class="line">      <span class="attribute">tooltip</span>: <span class="string">'Increment'</span>,</span><br><span class="line">      <span class="attribute">child</span>: Icon(Icons.add),</span><br><span class="line">    ),</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-屏幕尺寸的获取"><a href="#3-屏幕尺寸的获取" class="headerlink" title="3.屏幕尺寸的获取"></a>3.屏幕尺寸的获取</h5><blockquote>
+<p>flutter中用的单位目测都是dp所以我用第三行那个,需要传入一个context<br>就在构造方法里传一下，刚好build里有个context,你用前两个除一下也行  </p>
+</blockquote>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">window.physicalSize     <span class="string">//</span>获取屏幕尺寸px<span class="params">----1080</span>.0, 2196.0</span><br><span class="line">window.devicePixelRatio <span class="string">//</span>设备像素比<span class="params">----3</span></span><br><span class="line">MediaQuery.of<span class="params">(context)</span><span class="string">.size</span>  <span class="string">//</span>获得的是dp单位<span class="function">:360.0</span>, 732.0</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用是传入context</span></span><br><span class="line"><span class="symbol"> body:</span> CustomPaint(</span><br><span class="line"><span class="symbol">   painter:</span> StarView(context),</span><br><span class="line"> ),</span><br></pre></td></tr></table></figure>
 
 
 
 <hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
+<h5 id="4-网格走起："><a href="#4-网格走起：" class="headerlink" title="4.网格走起："></a>4.网格走起：</h5><h6 id="4-1：StarView接收context-并初始化画笔"><a href="#4-1：StarView接收context-并初始化画笔" class="headerlink" title="4.1：StarView接收context,并初始化画笔"></a>4.1：StarView接收context,并初始化画笔</h6><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">Paint mHelpPaint;</span><br><span class="line">BuildContext context;</span><br><span class="line"></span><br><span class="line"><span class="constructor">StarView(<span class="params">this</span>.<span class="params">context</span>)</span> &#123;</span><br><span class="line">  mHelpPaint = <span class="keyword">new</span> <span class="constructor">Paint()</span>;</span><br><span class="line">  mHelpPaint.style=<span class="module-access"><span class="module"><span class="identifier">PaintingStyle</span>.</span></span>stroke;</span><br><span class="line">  mHelpPaint.color=<span class="constructor">Color(0xffBBC3C5)</span>;</span><br><span class="line">  mHelpPaint.isAntiAlias=<span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="4-2-绘制网格路径"><a href="#4-2-绘制网格路径" class="headerlink" title="4.2:绘制网格路径"></a>4.2:绘制网格路径</h6><blockquote>
+<p>以前Android里面用的函数，修改了一些语法，给flutter用</p>
 </blockquote>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 绘制网格路径</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param step    小正方形边长</span></span><br><span class="line"><span class="comment"> * @param winSize 屏幕尺寸</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path grid<span class="constructor">Path(<span class="params">int</span> <span class="params">step</span>, Size <span class="params">winSize</span>)</span> &#123;</span><br><span class="line">  Path path = <span class="keyword">new</span> <span class="constructor">Path()</span>;</span><br><span class="line"></span><br><span class="line">  for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; winSize.height<span class="operator"> / </span>step + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    path.move<span class="constructor">To(0, <span class="params">step</span> <span class="operator">*</span> <span class="params">i</span>.<span class="params">toDouble</span>()</span>);</span><br><span class="line">    path.line<span class="constructor">To(<span class="params">winSize</span>.<span class="params">width</span>, <span class="params">step</span> <span class="operator">*</span> <span class="params">i</span>.<span class="params">toDouble</span>()</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; winSize.width<span class="operator"> / </span>step + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    path.move<span class="constructor">To(<span class="params">step</span> <span class="operator">*</span> <span class="params">i</span>.<span class="params">toDouble</span>()</span>, <span class="number">0</span>);</span><br><span class="line">    path.line<span class="constructor">To(<span class="params">step</span> <span class="operator">*</span> <span class="params">i</span>.<span class="params">toDouble</span>()</span>, winSize.height);</span><br><span class="line">  &#125;</span><br><span class="line">  return path;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="4-3-绘制网格"><a href="#4-3-绘制网格" class="headerlink" title="4.3:绘制网格"></a>4.3:绘制网格</h6><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">@<span class="keyword">override</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">paint</span><span class="params">(Canvas canvas, Size <span class="built_in">size</span>)</span> </span>&#123;</span><br><span class="line">  var winSize = MediaQuery.of(context).<span class="built_in">size</span>;</span><br><span class="line">  canvas.drawPath(gridPath(<span class="number">20</span>, winSize), mHelpPaint);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/7.png" alt="网格"></p>
+<hr>
+<h5 id="4-4-坐标系绘制"><a href="#4-4-坐标系绘制" class="headerlink" title="4.4:坐标系绘制"></a>4.4:坐标系绘制</h5><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/8.png" alt="坐标系"></p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="comment">//绘制坐标系</span></span><br><span class="line">draw<span class="constructor">Coo(Canvas <span class="params">canvas</span>, Size <span class="params">coo</span>, Size <span class="params">winSize</span>)</span> &#123;</span><br><span class="line">  <span class="comment">//初始化网格画笔</span></span><br><span class="line">  Paint paint = <span class="keyword">new</span> <span class="constructor">Paint()</span>;</span><br><span class="line">  paint.strokeWidth = <span class="number">2</span>;</span><br><span class="line">  paint.style = <span class="module-access"><span class="module"><span class="identifier">PaintingStyle</span>.</span></span>stroke;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绘制直线</span></span><br><span class="line">  canvas.draw<span class="constructor">Path(<span class="params">cooPath</span>(<span class="params">coo</span>, <span class="params">winSize</span>)</span>, paint);</span><br><span class="line">  <span class="comment">//左箭头</span></span><br><span class="line">  canvas.draw<span class="constructor">Line(<span class="params">new</span> Offset(<span class="params">winSize</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>,</span><br><span class="line">      <span class="keyword">new</span> <span class="constructor">Offset(<span class="params">winSize</span>.<span class="params">width</span> - 10, <span class="params">coo</span>.<span class="params">height</span> - 6)</span>, paint);</span><br><span class="line">  canvas.draw<span class="constructor">Line(<span class="params">new</span> Offset(<span class="params">winSize</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>,</span><br><span class="line">      <span class="keyword">new</span> <span class="constructor">Offset(<span class="params">winSize</span>.<span class="params">width</span> - 10, <span class="params">coo</span>.<span class="params">height</span> + 6)</span>, paint);</span><br><span class="line">  <span class="comment">//下箭头</span></span><br><span class="line">  canvas.draw<span class="constructor">Line(<span class="params">new</span> Offset(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">winSize</span>.<span class="params">height</span>-90)</span>,</span><br><span class="line">      <span class="keyword">new</span> <span class="constructor">Offset(<span class="params">coo</span>.<span class="params">width</span> - 6, <span class="params">winSize</span>.<span class="params">height</span> - 10-90)</span>, paint);</span><br><span class="line">  canvas.draw<span class="constructor">Line(<span class="params">new</span> Offset(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">winSize</span>.<span class="params">height</span>-90)</span>,</span><br><span class="line">      <span class="keyword">new</span> <span class="constructor">Offset(<span class="params">coo</span>.<span class="params">width</span> + 6, <span class="params">winSize</span>.<span class="params">height</span> - 10-90)</span>, paint);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>坐标系路径</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 坐标系路径</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param coo     坐标点</span></span><br><span class="line"><span class="comment"> * @param winSize 屏幕尺寸</span></span><br><span class="line"><span class="comment"> * @return 坐标系路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path coo<span class="constructor">Path(Size <span class="params">coo</span>, Size <span class="params">winSize</span>)</span> &#123;</span><br><span class="line">  Path path = <span class="keyword">new</span> <span class="constructor">Path()</span>;</span><br><span class="line">  <span class="comment">//x正半轴线</span></span><br><span class="line">  path.move<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  path.line<span class="constructor">To(<span class="params">winSize</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  <span class="comment">//x负半轴线</span></span><br><span class="line">  path.move<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  path.line<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span> - <span class="params">winSize</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  <span class="comment">//y负半轴线</span></span><br><span class="line">  path.move<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  path.line<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span> - <span class="params">winSize</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  <span class="comment">//y负半轴线</span></span><br><span class="line">  path.move<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">coo</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  path.line<span class="constructor">To(<span class="params">coo</span>.<span class="params">width</span>, <span class="params">winSize</span>.<span class="params">height</span>)</span>;</span><br><span class="line">  return path;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="5-小结一下"><a href="#5-小结一下" class="headerlink" title="5.小结一下"></a>5.小结一下</h5><blockquote>
+<p>感觉flutter里的Canvas很贫弱…好多api都没有,不知道是我没找到还是什么<br>canvas竟然没办法画文字,这不科学，mark一下。坐标系也就只能这样凑合一下了<br>还有Color用着挺别扭的,画线传参为什么非要Offset,连个重载都没有  </p>
+</blockquote>
+<hr>
+<h5 id="6-绘制n角星"><a href="#6-绘制n角星" class="headerlink" title="6.绘制n角星"></a>6.绘制n角星</h5><blockquote>
+<p>好吧，我又要拿星星来丢人现眼了<br>我已经n角星的java代码翻译成dart方言了</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/9.png" alt="五角星分析"></p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * n角星路径</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param num 几角星</span></span><br><span class="line"><span class="comment"> * @param R   外接圆半径</span></span><br><span class="line"><span class="comment"> * @param r   内接圆半径</span></span><br><span class="line"><span class="comment"> * @return n角星路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">Path</span> nStarPath(<span class="type">int</span> num, <span class="type">double</span> R, <span class="type">double</span> r) &#123;</span><br><span class="line">  <span class="keyword">Path</span> <span class="keyword">path</span> = <span class="built_in">new</span> Path();</span><br><span class="line">  <span class="type">double</span> perDeg = <span class="number">360</span> / num; //尖角的度数</span><br><span class="line">  <span class="type">double</span> degA = perDeg / <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="type">double</span> degB = <span class="number">360</span> / (num - <span class="number">1</span>) / <span class="number">2</span> - degA / <span class="number">2</span> + degA;</span><br><span class="line"></span><br><span class="line">  <span class="type">path</span>.moveTo(cos(_rad(degA)) * R, (-sin(_rad(degA)) * R));</span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">    <span class="type">path</span>.lineTo(</span><br><span class="line">        cos(_rad(degA + perDeg * i)) * R, -sin(_rad(degA + perDeg * i)) * R);</span><br><span class="line">    <span class="type">path</span>.lineTo(</span><br><span class="line">        cos(_rad(degB + perDeg * i)) * r, -sin(_rad(degB + perDeg * i)) * r);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="type">path</span>.<span class="keyword">close</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="type">path</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">double</span> _rad(<span class="type">double</span> deg) &#123;</span><br><span class="line">  <span class="keyword">return</span> deg * pi / <span class="number">180</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">canvas.translate(<span class="number">160</span>, <span class="number">320</span>);<span class="comment">//移动到坐标系原点</span></span><br><span class="line">canvas.drawPath(nStarPath(<span class="number">5</span>,<span class="number">80</span>,<span class="number">40</span>), mPaint);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/10.png" alt="五角星.png"></p>
+<hr>
+<h5 id="7-正n角星和正多边形"><a href="#7-正n角星和正多边形" class="headerlink" title="7.正n角星和正多边形"></a>7.正n角星和正多边形</h5><h6 id="7-1：方法封装"><a href="#7-1：方法封装" class="headerlink" title="7.1：方法封装"></a>7.1：方法封装</h6><figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>画正n角星的路径:</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> *</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param num 角数</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param R   外接圆半径</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@return 画正n角星的路径</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> */</span></span></span><br><span class="line">Path regularStarPath(<span class="built_in">int</span> <span class="built_in">num</span>, <span class="built_in">double</span> R) &#123;</span><br><span class="line">  <span class="built_in">double</span> degA, degB;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">num</span> % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//奇数和偶数角区别对待</span></span><br><span class="line">    degA = <span class="number">360</span> / <span class="built_in">num</span> / <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">    degB = <span class="number">180</span> - degA - <span class="number">360</span> / <span class="built_in">num</span> / <span class="number">2</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    degA = <span class="number">360</span> / <span class="built_in">num</span> / <span class="number">2</span>;</span><br><span class="line">    degB = <span class="number">180</span> - degA - <span class="number">360</span> / <span class="built_in">num</span> / <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">double</span> r = R * sin(_rad(degA)) / sin(_rad(degB));</span><br><span class="line">  <span class="keyword">return</span> nStarPath(<span class="built_in">num</span>, R, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>画正n边形的路径</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> *</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param num 边数</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@param R   外接圆半径</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet"> * </span>@return 画正n边形的路径</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> */</span></span></span><br><span class="line">Path regularPolygonPath(<span class="built_in">int</span> <span class="built_in">num</span>, <span class="built_in">double</span> R) &#123;</span><br><span class="line">  <span class="built_in">double</span> r = R * cos(_rad(<span class="number">360</span> / <span class="built_in">num</span> / <span class="number">2</span>)); <span class="comment">//!!一点解决</span></span><br><span class="line">  <span class="keyword">return</span> nStarPath(<span class="built_in">num</span>, R, r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="7-2-批量绘制："><a href="#7-2-批量绘制：" class="headerlink" title="7.2.批量绘制："></a>7.2.批量绘制：</h6><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">canvas.translate(<span class="number">0</span>, <span class="number">320</span>);</span><br><span class="line"></span><br><span class="line">canvas.save();<span class="comment">//绘制n角星</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">5</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  canvas.translate(<span class="number">64</span>, <span class="number">0</span>);</span><br><span class="line">  canvas.drawPath(nStarPath(i, <span class="number">30</span>, <span class="number">15</span>), mPaint);</span><br><span class="line">&#125;</span><br><span class="line">canvas.restore();</span><br><span class="line"></span><br><span class="line">canvas.translate(<span class="number">0</span>, <span class="number">70</span>);</span><br><span class="line">canvas.save();<span class="comment">//绘制正n角星</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">5</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  canvas.translate(<span class="number">64</span>, <span class="number">0</span>);</span><br><span class="line">  canvas.drawPath(regularStarPath(i, <span class="number">30</span>), mPaint);</span><br><span class="line">&#125;</span><br><span class="line">canvas.restore();</span><br><span class="line"></span><br><span class="line">canvas.translate(<span class="number">0</span>, <span class="number">70</span>);</span><br><span class="line">canvas.save();<span class="comment">//绘制正n边形</span></span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">5</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">  canvas.translate(<span class="number">64</span>, <span class="number">0</span>);</span><br><span class="line">  canvas.drawPath(regularPolygonPath(i, <span class="number">30</span>), mPaint);</span><br><span class="line">&#125;</span><br><span class="line">canvas.restore();</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/11.png" alt="n角星与n边形.png"></p>
+<hr>
+<h5 id="8-状态控制，点击随机色"><a href="#8-状态控制，点击随机色" class="headerlink" title="8.状态控制，点击随机色"></a>8.状态控制，点击随机色</h5><blockquote>
+<p>第一个按钮的fab点击更改数字，这里换成颜色试一下：</p>
+</blockquote>
+<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="comment">//-----------main.dart-------------------</span></span><br><span class="line">  Color _color = Colors.black;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">void</span> _changeColor() &#123;</span><br><span class="line">    setState(() &#123;</span><br><span class="line">      _color=randomRGB();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  body: CustomPaint(</span><br><span class="line">        painter: StarView(context,_color),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: _changeColor,</span><br><span class="line">        tooltip: <span class="string">'Increment'</span>,</span><br><span class="line">        child: Icon(Icons.<span class="built_in">add</span>),</span><br><span class="line">      ),</span><br><span class="line"><span class="comment">//-----------随机颜色-------------------</span></span><br><span class="line">Color randomRGB()&#123;</span><br><span class="line">  Random <span class="built_in">random</span> = <span class="keyword">new</span> Random();</span><br><span class="line">  <span class="built_in">int</span> r = <span class="number">30</span> + <span class="built_in">random</span>.nextInt(<span class="number">200</span>);</span><br><span class="line">  <span class="built_in">int</span> g = <span class="number">30</span> + <span class="built_in">random</span>.nextInt(<span class="number">200</span>);</span><br><span class="line">  <span class="built_in">int</span> b = <span class="number">30</span> + <span class="built_in">random</span>.nextInt(<span class="number">200</span>);</span><br><span class="line">  <span class="keyword">return</span> Color.fromARGB(<span class="number">255</span>, r, g, b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//-----------star_view.dart-------------------   </span></span><br><span class="line"> StarView(<span class="keyword">this</span>.context,Color <span class="built_in">color</span>) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">color</span>);</span><br><span class="line">    mPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">    mPaint.<span class="built_in">color</span> = <span class="built_in">color</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/01/12.png" alt="点击改变状态.gif"></p>
+<hr>
+<h4 id="五、汇集一下今天的mark"><a href="#五、汇集一下今天的mark" class="headerlink" title="五、汇集一下今天的mark"></a>五、汇集一下今天的mark</h4><blockquote>
+<p>经过初始项目的分析以及Dart方言的简单入门,再加上Canvas的绘制<br>基本上熟悉了Dart的语法与Flutter的套路(和React很像)，第一天就这样吧</p>
+</blockquote>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">1.<span class="keyword">set</span>State和React这是一模一样，mark一下，估计会刷新界面</span><br><span class="line"><span class="params">----</span>经过测试，是的，调用<span class="keyword">set</span>State会重新绘制界面，和React一样</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="number">2.</span><span class="type">MyHomePage</span>也是<span class="type">StatefulWidget</span>家的,第一句话感觉挺诡异，先mark一下</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">MyHomePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">         <span class="type">MyHomePage</span>(&#123;<span class="type">Key</span> key, <span class="keyword">this</span>.title&#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line">         </span><br><span class="line">----根据继承的语法以及&#123;&#125;的可选参数，不难理解,key是从老爸那拿的</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight stata"><table><tr><td class="code"><pre><span class="line">3.现在焦点应该汇聚在StatefulWidget身上，很多地方都出现了,<span class="keyword">mark</span>一下</span><br><span class="line">---保持<span class="keyword">mark</span></span><br><span class="line"></span><br><span class="line">4.canvas竟然没办法画文字,这不科学，<span class="keyword">mark</span>一下</span><br><span class="line">---保持<span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
+
+
 ]]></content>
       <categories>
-        <category>Flutter组件</category>
+        <category>Flutter七日</category>
       </categories>
       <tags>
-        <tag>widget</tag>
-        <tag>布局型组件</tag>
+        <tag>flutter教程</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Padding内边距组件</title>
-    <url>//Padding.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
-<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
-<a id="more"></a>
-
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">名称:       Padding  内边距</span><br><span class="line">类型:       布局型</span><br><span class="line">重要性:     ☆☆☆☆</span><br><span class="line">相关组件:   【Container】、【SliverPadding】    </span><br><span class="line">家族:       RenderObjectWidget</span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- Padding</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>padding</td>
-<td>EdgeInsetsGeometry</td>
-<td>@required</td>
-<td>内边距</td>
-</tr>
-<tr>
-<td>child</td>
-<td>Widget</td>
-<td>null</td>
-<td>子组件</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>EdgeInsetsGeometry对象</p>
-</blockquote>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">EdgeInsetsGeometry # 抽象类</span><br><span class="line">    |--- EdgeInsets # 内边距</span><br><span class="line">    |--- EdgeInsetsDirectional # 方向型内边距</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>EdgeInsets</code>: 使用<code>left、top、right、bottom</code>属性表示边距  </li>
-<li><code>EdgeInsetsDirectional</code>:使用<code>start、top、end、bottom</code>属性表示边距    </li>
-<li>两者功<code>能上并没有什么本质区别</code>，只是语义的不同。前者字少，较为常用。</li>
-</ul>
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-全边距-EdgeInsets-all"><a href="#1-全边距-EdgeInsets-all" class="headerlink" title="1. 全边距: EdgeInsets.all"></a>1. 全边距: <code>EdgeInsets.all</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>value</td>
-<td>double</td>
-<td>null</td>
-<td>内四边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件四周20</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/02.png" alt=""></p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingAll</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.all(<span class="number">20</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-指定边距-EdgeInsets-only"><a href="#2-指定边距-EdgeInsets-only" class="headerlink" title="2. 指定边距: EdgeInsets.only"></a>2. 指定边距: <code>EdgeInsets.only</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>left</td>
-<td>double</td>
-<td>0.0</td>
-<td>左内边距</td>
-</tr>
-<tr>
-<td>top</td>
-<td>double</td>
-<td>0.0</td>
-<td>上内边距</td>
-</tr>
-<tr>
-<td>right</td>
-<td>double</td>
-<td>0.0</td>
-<td>右内边距</td>
-</tr>
-<tr>
-<td>bottom</td>
-<td>double</td>
-<td>0.0</td>
-<td>下内边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件上和左侧内边距为10</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/03.png" alt=""></p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingOnly</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="3-方向边距-EdgeInsets-symmetric"><a href="#3-方向边距-EdgeInsets-symmetric" class="headerlink" title="3. 方向边距: EdgeInsets.symmetric"></a>3. 方向边距: <code>EdgeInsets.symmetric</code></h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>vertical</td>
-<td>double</td>
-<td>0.0</td>
-<td>水平边距</td>
-</tr>
-<tr>
-<td>horizontal</td>
-<td>double</td>
-<td>0.0</td>
-<td>竖直边距</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>使用案例: 使子组件距父组件水平内边距为10，竖直内边距为30</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/04.png" alt=""></p>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PaddingSymmetric</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      color: Colors.grey.withAlpha(<span class="number">22</span>),</span><br><span class="line">      width: <span class="number">200</span>,</span><br><span class="line">      height: <span class="number">150</span>,</span><br><span class="line">      child: Padding(</span><br><span class="line">        padding: EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>),</span><br><span class="line">        child: _buildChild(),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Widget _buildChild() &#123;</span><br><span class="line">    <span class="keyword">return</span> Container(</span><br><span class="line">      alignment: Alignment.center,</span><br><span class="line">      color: Colors.cyanAccent,</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      child: Text(<span class="string">"孩子"</span>),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h5 id="4-特殊说明"><a href="#4-特殊说明" class="headerlink" title="4.特殊说明"></a>4.特殊说明</h5><blockquote>
-<p><code>EdgeInsets</code>中已重载运算符<code>+、-、*、/、~、~/,%</code>，可以直接四则运算，如:</p>
-</blockquote>
-<figure class="highlight dart"><table><tr><td class="code"><pre><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) + EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) - EdgeInsets.only(top:<span class="number">10</span>,left: <span class="number">10</span>)</span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) * <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) / <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) ~/ <span class="number">6</span></span><br><span class="line">EdgeInsets.symmetric(vertical: <span class="number">30</span>,horizontal: <span class="number">10</span>) % <span class="number">6</span></span><br></pre></td></tr></table></figure>
-
-
-
-<hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Flutter组件</category>
-      </categories>
-      <tags>
-        <tag>widget</tag>
-        <tag>布局型组件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DecoratedBox装饰盒组件</title>
-    <url>//DecoratedBox.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
-<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
-<a id="more"></a>
-
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       DecoratedBox  装饰盒</span></span><br><span class="line"><span class="section">类型:       装饰型</span></span><br><span class="line"><span class="section">重要性:     ☆☆☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Container】、【DecoratedBoxTransition】    </span></span><br><span class="line"><span class="section">家族:       RenderObjectWidget</span></span><br><span class="line">                |--- SingleChildRenderObjectWidget</span><br><span class="line">                    |--- DecoratedBox</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>decoration</td>
-<td>Decoration</td>
-<td>@required</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>position</td>
-<td>DecorationPosition</td>
-<td>DecorationPosition.background</td>
-<td>装饰位置</td>
-</tr>
-<tr>
-<td>child</td>
-<td>Widget</td>
-<td>null</td>
-<td>子组件</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>Decoration对象</p>
-</blockquote>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">Decoration <span class="comment"># 抽象类</span></span><br><span class="line">    |<span class="params">---</span> BoxDecoration <span class="comment"># 盒装饰</span></span><br><span class="line">    |<span class="params">---</span> ShapeDecoration <span class="comment"># 形状装饰</span></span><br><span class="line">    |<span class="params">---</span> UnderlineTabIndicator <span class="comment"># 底线装饰</span></span><br><span class="line">    |<span class="params">---</span> FlutterLogoDecoration <span class="comment"># FlutterLogo 装饰</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>DecorationPositiond对象</p>
-</blockquote>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">DecorationPositiond<span class="meta"># 枚举对象</span></span><br><span class="line">    <span class="string">|---DecorationPosition.background 背景装饰</span></span><br><span class="line">    <span class="string">|---DecorationPosition.foreground 前景装饰</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-盒装饰-BoxDecoration"><a href="#1-盒装饰-BoxDecoration" class="headerlink" title="1. 盒装饰: BoxDecoration"></a>1. 盒装饰: <code>BoxDecoration</code></h5><blockquote>
-<p>BoxDecoration的属性较多，也是最常用的装饰对象</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>color</td>
-<td>Color</td>
-<td>null</td>
-<td>颜色</td>
-</tr>
-<tr>
-<td>image</td>
-<td>DecorationImage</td>
-<td>null</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>border</td>
-<td>BoxBorder</td>
-<td>null</td>
-<td>装饰边线</td>
-</tr>
-<tr>
-<td>borderRadius</td>
-<td>BorderRadiusGeometry</td>
-<td>null</td>
-<td>边角半径</td>
-</tr>
-<tr>
-<td>boxShadow</td>
-<td>List<BoxShadow></td>
-<td>null</td>
-<td>阴影</td>
-</tr>
-<tr>
-<td>gradient</td>
-<td>Gradient</td>
-<td>null</td>
-<td>渐变</td>
-</tr>
-<tr>
-<td>backgroundBlendMode</td>
-<td>BlendMode</td>
-<td>null</td>
-<td>背景叠色模式</td>
-</tr>
-<tr>
-<td>shape</td>
-<td>BoxShape</td>
-<td>BoxShape.rectangle</td>
-<td>装饰形状</td>
-</tr>
-</tbody></table>
-<hr>
-<blockquote>
-<p><code>color,borderRadiu,boxShadows,boxShadow,gradient综合案例</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/02.png" alt=""></p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">BoxDecorationDemo</span> <span class="symbol">extends</span> <span class="symbol">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="keyword">final</span> rainbow = <span class="keyword">const</span> &lt;<span class="built_in">int</span>&gt;[</span><br><span class="line">    <span class="number">0xffff0000</span>,</span><br><span class="line">    <span class="number">0xffFF7F00</span>,</span><br><span class="line">    <span class="number">0xffFFFF00</span>,</span><br><span class="line">    <span class="number">0xff00FF00</span>,</span><br><span class="line">    <span class="number">0xff00FFFF</span>,</span><br><span class="line">    <span class="number">0xff0000FF</span>,</span><br><span class="line">    <span class="number">0xff8B00FF</span></span><br><span class="line">  ];</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> DecoratedBox(</span><br><span class="line">      position: DecorationPosition.background,</span><br><span class="line">      decoration: BoxDecoration(</span><br><span class="line">          gradient: LinearGradient(</span><br><span class="line">              stops: &lt;<span class="built_in">double</span>&gt;[<span class="number">0.0</span>, <span class="number">1</span> / <span class="number">6</span>, <span class="number">2</span> / <span class="number">6</span>, <span class="number">3</span> / <span class="number">6</span>, <span class="number">4</span> / <span class="number">6</span>, <span class="number">5</span> / <span class="number">6</span>, <span class="number">1.0</span>],</span><br><span class="line">              colors: rainbow.map((e) =&gt; Color(e)).toList()),</span><br><span class="line">          borderRadius: BorderRadius.only(</span><br><span class="line">              topLeft: Radius.circular(<span class="number">20</span>), bottomRight: Radius.circular(<span class="number">20</span>)),</span><br><span class="line">          boxShadow: [</span><br><span class="line">            <span class="keyword">const</span> BoxShadow(</span><br><span class="line">                color: Colors.orangeAccent,</span><br><span class="line">                offset: Offset(<span class="number">1</span>, <span class="number">1</span>),</span><br><span class="line">                blurRadius: <span class="number">10</span>,</span><br><span class="line">                spreadRadius: <span class="number">1</span>),</span><br><span class="line">          ]),</span><br><span class="line">      child: Icon(</span><br><span class="line">        Icons.android,</span><br><span class="line">        size: <span class="number">80</span>,</span><br><span class="line">        color: Colors.black.withAlpha(<span class="number">123</span>),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>image,shape综合案例:<br>通过image可以为任意组件指定一个图片背景，用法与<code>Image组件</code>类似<br>通过shape可以指定装饰区域是方形还是圆形。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/03.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeImageDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">BoxDecoration</span>(</span><br><span class="line">          shape: <span class="type">BoxShape</span>.circle,</span><br><span class="line">          image: <span class="type">DecorationImage</span>(</span><br><span class="line">              fit: <span class="type">BoxFit</span>.cover,</span><br><span class="line">              image: <span class="type">AssetImage</span>(</span><br><span class="line">                <span class="symbol">'assets</span>/images/wy_200x300.jpg',</span><br><span class="line">              ))),</span><br><span class="line">      child: <span class="type">SizedBox</span>(</span><br><span class="line">        height: <span class="number">80</span>,</span><br><span class="line">        width: <span class="number">80</span>,</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.ac_unit,color: <span class="type">Colors</span>.white,size: <span class="number">40</span>,),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<blockquote>
-<p>position和border综合案例:<br> 注意点: <code>border不能和borderRadius共同使用</code><br>这里添加边线，如果<code>position</code>是背景,那么装饰就看不见了.所以应该用<code>foreground</code></p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/04.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">BorderDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">position</span>: DecorationPosition.foreground,</span><br><span class="line">      <span class="attribute">decoration</span>: BoxDecoration(</span><br><span class="line">        <span class="attribute">border</span>: Border(</span><br><span class="line">            <span class="attribute">bottom</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>),</span><br><span class="line">            <span class="attribute">top</span>: BorderSide(<span class="attribute">color</span>: Colors.orange, <span class="attribute">width</span>: <span class="number">2</span>)),</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">80</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Image.asset(</span><br><span class="line">          <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">          <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-形状装饰-ShapeDecoration"><a href="#2-形状装饰-ShapeDecoration" class="headerlink" title="2. 形状装饰: ShapeDecoration"></a>2. 形状装饰: <code>ShapeDecoration</code></h5><blockquote>
-<p>如果需要形状的高度DIY，可以使用<code>ShapeDecoration</code>作为装饰<br><code>ShapeBorder</code>详细用法见: <code>https://juejin.im/post/5e6196066fb9a07c8b5bbdf5</code></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>color</td>
-<td>Color</td>
-<td>null</td>
-<td>颜色</td>
-</tr>
-<tr>
-<td>image</td>
-<td>DecorationImage</td>
-<td>null</td>
-<td>装饰对象</td>
-</tr>
-<tr>
-<td>boxShadow</td>
-<td>List<BoxShadow></td>
-<td>null</td>
-<td>阴影</td>
-</tr>
-<tr>
-<td>gradient</td>
-<td>Gradient</td>
-<td>null</td>
-<td>渐变</td>
-</tr>
-<tr>
-<td>shape</td>
-<td>ShapeBorder</td>
-<td>@required</td>
-<td>装饰形状</td>
-</tr>
-</tbody></table>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/05.png" alt=""></p>
-<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">class</span> <span class="selector-tag">ShapeDecorationDemo</span> <span class="selector-tag">extends</span> <span class="selector-tag">StatelessWidget</span> &#123;</span><br><span class="line">  <span class="variable">@override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">DecoratedBox</span>(</span><br><span class="line">      <span class="attribute">decoration</span>: ShapeDecoration(</span><br><span class="line">          <span class="attribute">image</span>: DecorationImage(</span><br><span class="line">              <span class="attribute">fit</span>: BoxFit.cover,</span><br><span class="line">              <span class="attribute">image</span>: AssetImage(</span><br><span class="line">                <span class="string">'assets/images/wy_200x300.jpg'</span>,</span><br><span class="line">              )),</span><br><span class="line">        <span class="attribute">shape</span>: CircleBorder(</span><br><span class="line">          <span class="attribute">side</span>: BorderSide(<span class="attribute">width</span>: <span class="number">2.0</span>, <span class="attribute">color</span>: Colors.blue),</span><br><span class="line">        )</span><br><span class="line">      ),</span><br><span class="line">      <span class="attribute">child</span>: SizedBox(</span><br><span class="line">        <span class="attribute">height</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100</span>,</span><br><span class="line">        <span class="attribute">child</span>: Icon(</span><br><span class="line">          Icons.ac_unit,</span><br><span class="line">          <span class="attribute">color</span>: Colors.white,</span><br><span class="line">          <span class="attribute">size</span>: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h5 id="3-底线装饰-UnderlineTabIndicator"><a href="#3-底线装饰-UnderlineTabIndicator" class="headerlink" title="3. 底线装饰: UnderlineTabIndicator"></a>3. 底线装饰: <code>UnderlineTabIndicator</code></h5><blockquote>
-<p><code>UnderlineTabIndicator</code>可以在子组件的底部添加装饰</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>borderSide</td>
-<td>Color</td>
-<td>BorderSide(width: 2.0, color: Colors.white)</td>
-<td>边线</td>
-</tr>
-<tr>
-<td>insets</td>
-<td>EdgeInsetsGeometry</td>
-<td>EdgeInsets.zero</td>
-<td>间距</td>
-</tr>
-</tbody></table>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/06.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UnderlineTabIndicatorDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">UnderlineTabIndicator</span>(</span><br><span class="line">        insets: <span class="type">EdgeInsets</span>.symmetric(horizontal: <span class="number">5</span>,vertical: <span class="number">-5</span>),</span><br><span class="line">          borderSide: <span class="type">BorderSide</span>(color: <span class="type">Colors</span>.orange, width: <span class="number">2</span>)),</span><br><span class="line">      child: <span class="type">Icon</span>(</span><br><span class="line">          <span class="type">Icons</span>.ac_unit,</span><br><span class="line">          color: <span class="type">Colors</span>.blue,</span><br><span class="line">          size: <span class="number">40</span>,</span><br><span class="line">        ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="4-FlutterLogo装饰-FlutterLogoDecoration"><a href="#4-FlutterLogo装饰-FlutterLogoDecoration" class="headerlink" title="4. FlutterLogo装饰: FlutterLogoDecoration"></a>4. FlutterLogo装饰: <code>FlutterLogoDecoration</code></h5><blockquote>
-<p>以<code>FlutterLogo</code>为背景的装饰，没有太大的实用价值。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/07.png" alt=""></p>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>lightColor</td>
-<td>Color</td>
-<td>Color(0xFF42A5F5)</td>
-<td>上两杠颜色</td>
-</tr>
-<tr>
-<td>darkColor</td>
-<td>Color</td>
-<td>Color(0xFF0D47A1)</td>
-<td>下杠颜色</td>
-</tr>
-<tr>
-<td>textColor</td>
-<td>Color</td>
-<td>Color(0xFF616161)</td>
-<td>文字颜色</td>
-</tr>
-<tr>
-<td>style</td>
-<td>FlutterLogoStyle</td>
-<td>FlutterLogoStyle.markOnly</td>
-<td>展示模式</td>
-</tr>
-<tr>
-<td>margin</td>
-<td>EdgeInsetsGeometry</td>
-<td>EdgeInsets.zero</td>
-<td>外间距</td>
-</tr>
-</tbody></table>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FlutterLogoDecorationDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">DecoratedBox</span>(</span><br><span class="line">      decoration: <span class="type">FlutterLogoDecoration</span>(</span><br><span class="line">        darkColor: <span class="type">Colors</span>.orange,</span><br><span class="line">        lightColor: <span class="type">Colors</span>.deepPurpleAccent,</span><br><span class="line">        style: <span class="type">FlutterLogoStyle</span>.stacked</span><br><span class="line">      ),</span><br><span class="line">      child:<span class="type">SizedBox</span>(width: <span class="number">100</span>,height: <span class="number">100</span>,),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Flutter组件</category>
-      </categories>
-      <tags>
-        <tag>widget</tag>
-        <tag>装饰型组件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Builder构造器</title>
-    <url>//Builder.html</url>
-    <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
-<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-<a id="more"></a>
-
-<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">名称:       Builder  构造器</span></span><br><span class="line"><span class="section">类型:       功能型</span></span><br><span class="line"><span class="section">重要性:     ☆☆</span></span><br><span class="line"><span class="section">相关组件:   【Scaffold】   </span></span><br><span class="line"><span class="section">家族:       Widget</span></span><br><span class="line">                |--- StatelessWidget</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-组件属性一览"><a href="#2-组件属性一览" class="headerlink" title="2. 组件属性一览"></a>2. 组件属性一览</h5><table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>属性类型</th>
-<th>默认值</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>key</td>
-<td>Key</td>
-<td>null</td>
-<td>组件键</td>
-</tr>
-<tr>
-<td>builder</td>
-<td>WidgetBuilder</td>
-<td>@required</td>
-<td>组件构造器</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>WidgetBuilder是一个接受<code>BuildContext</code>的回调函数，可以提供当前组件元素所在的上下文。<br>由于组件build方法中的context是上级回调来的，如果在本组件类中<code>Scaffold.of(context)</code>弹出snackbar等时，则无法获得ScaffoldState。<code>可以使用Builder将context下沉一层，从而可以上溯拿到ScaffoldState</code>。</p>
-</blockquote>
-<figure class="highlight delphi"><table><tr><td class="code"><pre><span class="line">typedef WidgetBuilder = Widget <span class="function"><span class="keyword">Function</span><span class="params">(BuildContext context)</span>;</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h4 id="二、使用组件"><a href="#二、使用组件" class="headerlink" title="二、使用组件"></a>二、使用组件</h4><h5 id="1-应用于Scaffold-of-context"><a href="#1-应用于Scaffold-of-context" class="headerlink" title="1. 应用于Scaffold.of(context)"></a>1. <code>应用于Scaffold.of(context)</code></h5><blockquote>
-<p> 当在Scaffold的同类中使用of时,可以选择<code>新建一个Widget</code>来实现context的下沉，保证<code>ScaffoldState</code>的存在。但如果是非常简单的组件，你可以考虑使用Builder。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BuilderDemo</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Container</span>(</span><br><span class="line">      height: <span class="number">200</span>,</span><br><span class="line">      child: <span class="type">Scaffold</span>(</span><br><span class="line">        appBar: <span class="type">AppBar</span>(</span><br><span class="line">          title: <span class="type">Text</span>(<span class="symbol">'Builde</span>r'),</span><br><span class="line">        ),</span><br><span class="line">        floatingActionButton: <span class="type">Builder</span>(</span><br><span class="line">          builder: (ctx) =&gt; <span class="type">FloatingActionButton</span>(</span><br><span class="line">            onPressed: () &#123;</span><br><span class="line">              <span class="type">Scaffold</span>.of(ctx)</span><br><span class="line">                  .showSnackBar(<span class="type">SnackBar</span>(content: <span class="type">Text</span>(<span class="symbol">'hello</span> builder')));</span><br><span class="line">            &#125;,</span><br><span class="line">            child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">          ),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h5 id="2-其他用途"><a href="#2-其他用途" class="headerlink" title="2. 其他用途"></a>2. 其他用途</h5><blockquote>
-<p>对应使用<code>XXX.of</code>获取某类状态对象方法都存在这种现象，当无法获取时，可以查看是否是<code>上下文滞后</code>的错误，使用Builder解决。</p>
-</blockquote>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Scaffold</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Theme</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">BlocProvider</span>.</span></span><span class="keyword">of</span>(context)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<hr>
-<h4 id="三、尾声"><a href="#三、尾声" class="headerlink" title="三、尾声"></a>三、尾声</h4><blockquote>
-<p> FlutterUnit开源项目: <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br>我的公众号:编程之王<br>联系我–邮箱:<a href="mailto:1981462002@qq.com">1981462002@qq.com</a> –微信:zdl1994328<br>@张风捷特烈 2020.04.29<br>~ END ~</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Flutter组件</category>
-      </categories>
-      <tags>
-        <tag>widget</tag>
-        <tag>功能型组件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Flutter Unit  更新记录</title>
-    <url>//FlutterUnit_update.html</url>
-    <content><![CDATA[<ul>
-<li><code>2020-4-16</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-17</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<hr>
-<ul>
-<li><code>2020-4-18</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   小彩蛋: 【长按】底部栏【最左侧按钮】,打开左边菜单栏</span></span><br><span class="line">        <span class="string">"   【长按】底部栏【最右侧按钮】,打开右边菜单栏</span></span><br><span class="line"></span><br><span class="line">fixed <span class="string">"     收藏集的AppBar背景色同主页选中色。</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-4-19</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   添加收录【LayoutBuilder】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【IgnorePointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【AbsorbPointer】组件</span></span><br><span class="line">optimize <span class="string">"   添加收录【BackdropFilter】组件</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-21</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   使用Sliver优化收藏集的显示</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-24</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成组件收藏夹功能</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-30</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   为了方便解析器分析数据，优化展示组件代码的存在形式，使每个示例写入单独文件。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-1</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">feature <span class="string">"   完成FlutterUnit组件解析工具，添加和修改组件详情内容变得方便</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-5-2</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加更多Padding组件内容</span></span><br><span class="line">optimize <span class="string">"   增加更多DecoratedBox组件内容</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<ul>
-<li><code>2020-5-3</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line">optimize <span class="string">"   增加PreferredSize组件</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>FlutterUnit周边</category>
-      </categories>
   </entry>
 </search>

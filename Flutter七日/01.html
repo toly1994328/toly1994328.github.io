@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="flutter教程," />
 
 
 
@@ -75,12 +75,31 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="张风捷特烈">
-<meta property="og:url" content="http://toly1994328.gitee.io/index.html">
+<meta name="description" content="Flutter七日游第一天：2018-12-16 天气：冷零前言： 作为一名资深安卓业余爱好者(自诩),感觉应该入一下Flutter的坑了，不管怎么说,新技术多少要了解一点,本系列就作为我的学习笔记吧先把今天入坑的感觉写一写：    1234561.环境的搭建前人把雷踩得差不多了，也不是很麻烦2.什么都没干呢，TM安装包28M...真把我吓一跳-----于是Flutter的&quot;胖子&quot;形象深入我心（不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter第1天--初始分析+Dart方言+Canvas简绘">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/01.html">
 <meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="Flutter七日游第一天：2018-12-16 天气：冷零前言： 作为一名资深安卓业余爱好者(自诩),感觉应该入一下Flutter的坑了，不管怎么说,新技术多少要了解一点,本系列就作为我的学习笔记吧先把今天入坑的感觉写一写：    1234561.环境的搭建前人把雷踩得差不多了，也不是很麻烦2.什么都没干呢，TM安装包28M...真把我吓一跳-----于是Flutter的&quot;胖子&quot;形象深入我心（不">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/0.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/1.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/2.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/3.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/4.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/5.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/6.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/7.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/8.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/9.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/10.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/11.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/12.png">
+<meta property="article:published_time" content="2020-05-03T01:46:25.000Z">
+<meta property="article:modified_time" content="2020-05-03T23:25:00.000Z">
 <meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/01/0.png">
 
 
 
@@ -110,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://toly1994328.gitee.io/"/>
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/01.html"/>
 
 
 
 
 
-  <title>张风捷特烈</title>
+  <title>Flutter第1天--初始分析+Dart方言+Canvas简绘 | 张风捷特烈</title>
   
 
 
@@ -135,8 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 <a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,196 +291,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/PreferredSize.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/PreferredSize.html" itemprop="url">PreferredSize优先尺寸</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-03T13:46:25+08:00">
-                2020-05-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter组件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  367
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
-<p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/PreferredSize/01.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/PreferredSize.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -492,9 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Flutter%E4%B8%83%E6%97%A5/01.html" itemprop="url">Flutter第1天--初始分析+Dart方言+Canvas简绘</a></h1>
+          <h1 class="post-title" itemprop="name headline">Flutter第1天--初始分析+Dart方言+Canvas简绘</h1>
         
 
         <div class="post-meta">
@@ -598,9 +427,7 @@
       
 
       
-        
-          
-            <h4 id="Flutter七日游第一天：2018-12-16-天气：冷"><a href="#Flutter七日游第一天：2018-12-16-天气：冷" class="headerlink" title="Flutter七日游第一天：2018-12-16 天气：冷"></a><code>Flutter七日游第一天：2018-12-16 天气：冷</code></h4><h4 id="零前言："><a href="#零前言：" class="headerlink" title="零前言："></a>零前言：</h4><blockquote>
+        <h4 id="Flutter七日游第一天：2018-12-16-天气：冷"><a href="#Flutter七日游第一天：2018-12-16-天气：冷" class="headerlink" title="Flutter七日游第一天：2018-12-16 天气：冷"></a><code>Flutter七日游第一天：2018-12-16 天气：冷</code></h4><h4 id="零前言："><a href="#零前言：" class="headerlink" title="零前言："></a>零前言：</h4><blockquote>
 <p>作为一名资深安卓业余爱好者(自诩),感觉应该入一下Flutter的坑了，<br>不管怎么说,新技术多少要了解一点,本系列就作为我的学习笔记吧<br>先把今天入坑的感觉写一写：  </p>
 </blockquote>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>环境的搭建前人把雷踩得差不多了，也不是很麻烦</span><br><span class="line"><span class="number">2.</span>什么都没干呢，TM安装包<span class="number">28</span>M...真把我吓一跳-----于是Flutter的<span class="string">"胖子"</span>形象深入我心（不过非debug版能在<span class="number">10</span>M之内，还是可以接受的）  </span><br><span class="line"><span class="number">3.</span>Flutter热加载爽到爆，对于喜欢用真机的我，以前每次修改后--&gt;确定安装--&gt;打开...</span><br><span class="line"><span class="number">4.</span>单引号亮了，总算能像写其他语言那样少按个Shift了，字符串插值也很良心</span><br><span class="line"><span class="number">5.</span>flutter支持canvas,so我的四大战将(canvas,path,paint,贝塞尔)又能大显身手了,不过Api略有不同，也略显单薄</span><br><span class="line"><span class="number">6.</span>程序员有三件法宝：Ctrl+ Z(大胆改) , debug(细心查) , 类比（善分析）</span><br></pre></td></tr></table></figure>
@@ -807,8 +634,6 @@
 
 
 
-          
-        
       
     </div>
     
@@ -816,420 +641,92 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
 
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
 
 <div>
     
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
 </div>
 
     <footer class="post-footer">
       
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/unit.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/unit.html" itemprop="url">Flutter Unit 开源篇</a></h1>
-        
-
-        <div class="post-meta">
-        
-            <span class="post-meta-item-icon">
-                <i class="fa fa-thumb-tack"></i>
-            </span>
-            <font color="red">置顶</font>
-            <span class="post-meta-divider">|</span>
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T23:46:25+08:00">
-                2020-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FlutterUnit%E5%91%A8%E8%BE%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">FlutterUnit周边</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
+
+      
       
       
 
       
-        
-          <h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
-<p> <code>FlutterUnit</code>终于和大家见面了，这将是<code>【张风捷特烈】</code>长期维护的一个项目<br><a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">欢迎star</a> : <a href="https://github.com/toly1994328/FlutterUnit" target="_blank" rel="noopener">https://github.com/toly1994328/FlutterUnit</a><br><a href="https://github.com/toly1994328/FlutterUnit/releases" target="_blank" rel="noopener">可以在github 仓库里下载apk体验 : </a></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>FlutterUnit.apk 下载</th>
-<th>FlutterUnit mac版 下载</th>
-<th>Github仓库地址</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_ewm.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_mac_ewm.png" alt=""></td>
-<td><img src="http://toly1994328.gitee.io/photo/ewm/flutter_unit_github.png" alt=""></td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/unit.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/unit.html" rel="next" title="Flutter Unit 开源篇">
+                <i class="fa fa-chevron-left"></i> Flutter Unit 开源篇
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Padding.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Padding.html" itemprop="url">Padding内边距组件</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T21:46:25+08:00">
-                2020-05-02
-              </time>
+              <a href="/PreferredSize.html" rel="prev" title="PreferredSize优先尺寸">
+                PreferredSize优先尺寸 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter组件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  633
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
-<p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Padding/01.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Padding.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1239,577 +736,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/DecoratedBox.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/DecoratedBox.html" itemprop="url">DecoratedBox装饰盒组件</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T20:46:25+08:00">
-                2020-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter组件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  916
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
-<p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/DecoratedBox/01.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/DecoratedBox.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Builder.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Builder.html" itemprop="url">Builder构造器</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-02T09:46:25+08:00">
-                2020-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Flutter%E7%BB%84%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">Flutter组件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  417
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
-<p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
-</blockquote>
-<p><img src="http://toly1994328.gitee.io/photo/flutter/unit/widgets/Builder/01.png" alt=""></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/Builder.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/FlutterUnit_update.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张风捷特烈">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="张风捷特烈">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/FlutterUnit_update.html" itemprop="url">Flutter Unit  更新记录</a></h1>
-        
-
-        <div class="post-meta">
-        
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-16T20:46:25+08:00">
-                2020-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/FlutterUnit%E5%91%A8%E8%BE%B9/" itemprop="url" rel="index">
-                    <span itemprop="name">FlutterUnit周边</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  315
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li><code>2020-4-16</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fixed <span class="string">"     修改样式无法点击的问题。 </span></span><br><span class="line">fixed <span class="string">"     一些已知文案的错误。 </span></span><br><span class="line">fixed <span class="string">"     hero动画闪现不同步问题。</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<ul>
-<li><code>2020-4-17</code></li>
-</ul>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fixed <span class="string">"     进入收藏页，再回到首页，顶部显示不同步的问题。 </span></span><br><span class="line">fixed <span class="string">"     主页item双击黑屏问题。 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feature <span class="string">"   支持详情页【相关链接的栈管理】,</span></span><br><span class="line">        <span class="string">"   即: 点击多个链接，不直接返回主页.</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/FlutterUnit_update.html#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-<div>
-    
-</div>
-
-    <footer class="post-footer">
-      
-
-
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1817,6 +748,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1837,8 +772,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1918,6 +862,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter七日游第一天：2018-12-16-天气：冷"><span class="nav-number">1.</span> <span class="nav-text">Flutter七日游第一天：2018-12-16 天气：冷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零前言："><span class="nav-number">2.</span> <span class="nav-text">零前言：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、Flutter初体验"><span class="nav-number">3.</span> <span class="nav-text">一、Flutter初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、下载Flutter的SDK"><span class="nav-number">3.1.</span> <span class="nav-text">1、下载Flutter的SDK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、配置环境变量"><span class="nav-number">3.2.</span> <span class="nav-text">2、配置环境变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、AndroidStudio安装Dart和Flutter插件"><span class="nav-number">3.3.</span> <span class="nav-text">3、AndroidStudio安装Dart和Flutter插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、新建项目"><span class="nav-number">3.4.</span> <span class="nav-text">4、新建项目</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、第一次看初始项目的内心戏"><span class="nav-number">4.</span> <span class="nav-text">二、第一次看初始项目的内心戏</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-看一下：android-app-src-main-AndroidManifest-xml"><span class="nav-number">4.1.</span> <span class="nav-text">1.看一下：android&#x2F;app&#x2F;src&#x2F;main&#x2F;AndroidManifest.xml</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-可见程序入口是：MainActivity-java"><span class="nav-number">4.2.</span> <span class="nav-text">2.可见程序入口是：MainActivity.java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-GeneratedPluginRegistrant-java"><span class="nav-number">4.3.</span> <span class="nav-text">3.GeneratedPluginRegistrant.java</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4、是谁弄脏了我雪白的界面-显示"><span class="nav-number">4.4.</span> <span class="nav-text">4、是谁弄脏了我雪白的界面(显示)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1-MainActivity显然不是，怎么查在哪呢"><span class="nav-number">4.4.1.</span> <span class="nav-text">4.1.MainActivity显然不是，怎么查在哪呢?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-对MyApp的认知"><span class="nav-number">4.4.2.</span> <span class="nav-text">4.2.对MyApp的认知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-3-对MyHomePage的认知"><span class="nav-number">4.4.3.</span> <span class="nav-text">4.3.对MyHomePage的认知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-4-对-MyHomePageState的认知"><span class="nav-number">4.4.4.</span> <span class="nav-text">4.4.对_MyHomePageState的认知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-5-floatingActionButton-这个安卓元素有"><span class="nav-number">4.4.5.</span> <span class="nav-text">4.5.floatingActionButton,这个安卓元素有</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Dart语法一探"><span class="nav-number">5.</span> <span class="nav-text">三、Dart语法一探</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、圆的周长"><span class="nav-number">5.1.</span> <span class="nav-text">1、圆的周长</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-List的使用"><span class="nav-number">5.2.</span> <span class="nav-text">2.List的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#forEach、any、every、map"><span class="nav-number">5.2.1.</span> <span class="nav-text">forEach、any、every、map</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Map"><span class="nav-number">5.3.</span> <span class="nav-text">3.Map</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-dynamic-动态的"><span class="nav-number">5.4.</span> <span class="nav-text">4.dynamic(动态的)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-不同的东西"><span class="nav-number">5.5.</span> <span class="nav-text">5.不同的东西</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-类那点事"><span class="nav-number">5.6.</span> <span class="nav-text">6.类那点事</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#6-1：定义一个简单的类"><span class="nav-number">5.6.1.</span> <span class="nav-text">6.1：定义一个简单的类</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#6-2：继承"><span class="nav-number">5.6.2.</span> <span class="nav-text">6.2：继承</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、Canvas走起"><span class="nav-number">6.</span> <span class="nav-text">四、Canvas走起</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-找到画板在哪"><span class="nav-number">6.1.</span> <span class="nav-text">1.找到画板在哪</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-StarView的用法"><span class="nav-number">6.2.</span> <span class="nav-text">2.StarView的用法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-屏幕尺寸的获取"><span class="nav-number">6.3.</span> <span class="nav-text">3.屏幕尺寸的获取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-网格走起："><span class="nav-number">6.4.</span> <span class="nav-text">4.网格走起：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#4-1：StarView接收context-并初始化画笔"><span class="nav-number">6.4.1.</span> <span class="nav-text">4.1：StarView接收context,并初始化画笔</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-2-绘制网格路径"><span class="nav-number">6.4.2.</span> <span class="nav-text">4.2:绘制网格路径</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-3-绘制网格"><span class="nav-number">6.4.3.</span> <span class="nav-text">4.3:绘制网格</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-4-坐标系绘制"><span class="nav-number">6.5.</span> <span class="nav-text">4.4:坐标系绘制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-小结一下"><span class="nav-number">6.6.</span> <span class="nav-text">5.小结一下</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-绘制n角星"><span class="nav-number">6.7.</span> <span class="nav-text">6.绘制n角星</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-正n角星和正多边形"><span class="nav-number">6.8.</span> <span class="nav-text">7.正n角星和正多边形</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#7-1：方法封装"><span class="nav-number">6.8.1.</span> <span class="nav-text">7.1：方法封装</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#7-2-批量绘制："><span class="nav-number">6.8.2.</span> <span class="nav-text">7.2.批量绘制：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-状态控制，点击随机色"><span class="nav-number">6.9.</span> <span class="nav-text">8.状态控制，点击随机色</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、汇集一下今天的mark"><span class="nav-number">7.</span> <span class="nav-text">五、汇集一下今天的mark</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2066,6 +1026,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
