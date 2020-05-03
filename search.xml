@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Builder构造器</title>
-    <url>/blog//Builder.html</url>
+    <url>//Builder.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Builder组件介绍"><a href="#1-Builder组件介绍" class="headerlink" title="1.Builder组件介绍"></a>1.Builder组件介绍</h5><blockquote>
 <p>一个<code>不影响子组件占位空间</code>，<code>不具有显示性的组件</code>，存在的唯一价值是提供当前组件对应元素的上下文。</p>
 </blockquote>
@@ -70,7 +70,7 @@
   </entry>
   <entry>
     <title>DecoratedBox装饰盒组件</title>
-    <url>/blog//DecoratedBox.html</url>
+    <url>//DecoratedBox.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-DecoratedBox组件介绍"><a href="#1-DecoratedBox组件介绍" class="headerlink" title="1.DecoratedBox组件介绍"></a>1.DecoratedBox组件介绍</h5><blockquote>
 <p>可容纳一个子组件，可将其进行装饰。核心属性为decoration,可设置边线、渐变、阴影、背景图等。</p>
 </blockquote>
@@ -345,7 +345,7 @@
   </entry>
   <entry>
     <title>Flutter Unit  更新记录</title>
-    <url>/blog//FlutterUnit_update.html</url>
+    <url>//FlutterUnit_update.html</url>
     <content><![CDATA[<ul>
 <li><code>2020-4-16</code></li>
 </ul>
@@ -413,7 +413,7 @@
   </entry>
   <entry>
     <title>Padding内边距组件</title>
-    <url>/blog//Padding.html</url>
+    <url>//Padding.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-Padding组件介绍"><a href="#1-Padding组件介绍" class="headerlink" title="1.Padding组件介绍"></a>1.Padding组件介绍</h5><blockquote>
 <p>可容纳一个子组件，通过添加内边距，来限定子组件的占位。核心属性为<code>EdgeInsetsGeometry类型的padding</code>。</p>
 </blockquote>
@@ -579,7 +579,7 @@
   </entry>
   <entry>
     <title>PreferredSize优先尺寸</title>
-    <url>/blog//PreferredSize.html</url>
+    <url>//PreferredSize.html</url>
     <content><![CDATA[<h4 id="一、认识组件"><a href="#一、认识组件" class="headerlink" title="一、认识组件"></a>一、认识组件</h4><h5 id="1-PreferredSize组件介绍"><a href="#1-PreferredSize组件介绍" class="headerlink" title="1.PreferredSize组件介绍"></a>1.PreferredSize组件介绍</h5><blockquote>
 <p>实现了PreferredSizeWidget接口，可容纳一个子组件，设置优先尺寸，不会对其子组件施加任何约束。</p>
 </blockquote>
@@ -656,7 +656,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/blog//hello-world.html</url>
+    <url>//hello-world.html</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
