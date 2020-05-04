@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="flutter教程," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Flutter七日游第六天：2018-12-21 天气：雨-阴零、前言  对于问我怎么学习的人，空口白牙说的是鸡汤，我不喜欢喝也不喜欢做。文中根据实际情况，分享一些个人的编程心得,自己参考一下，取长补短   一、单线程模型下的异步操作 为什么强调是单线程：Dart是单线程模型，单线程模型，单线程模型!!!    什么是单线程：就是你是一个人在战斗什么是异步: 比如你要烧水(耗时操作)，并不需要傻傻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter第6天--异步-IO+网络访问+json">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/06.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="Flutter七日游第六天：2018-12-21 天气：雨-阴零、前言  对于问我怎么学习的人，空口白牙说的是鸡汤，我不喜欢喝也不喜欢做。文中根据实际情况，分享一些个人的编程心得,自己参考一下，取长补短   一、单线程模型下的异步操作 为什么强调是单线程：Dart是单线程模型，单线程模型，单线程模型!!!    什么是单线程：就是你是一个人在战斗什么是异步: 比如你要烧水(耗时操作)，并不需要傻傻">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$0.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$1.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$2.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$3.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$4.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$5.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$6.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$7.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$8.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$9.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$10.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$11.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$12.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$13.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$14.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$15.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$06$16.png">
+<meta property="article:published_time" content="2018-12-21T13:46:01.000Z">
+<meta property="article:modified_time" content="2020-05-04T08:05:15.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.toly1994.com/flutter$seven_day$06$0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/06.html"/>
+
+
+
+
+
+  <title>Flutter第6天--异步-IO+网络访问+json | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/06.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter第6天--异步-IO+网络访问+json</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T21:46:01+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E4%B8%83%E6%97%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter七日</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Flutter七日游第六天：2018-12-21-天气：雨-阴"><a href="#Flutter七日游第六天：2018-12-21-天气：雨-阴" class="headerlink" title="Flutter七日游第六天：2018-12-21 天气：雨-阴"></a><code>Flutter七日游第六天：2018-12-21 天气：雨-阴</code></h4><h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
+<p> 对于问我怎么学习的人，空口白牙说的是鸡汤，我不喜欢喝也不喜欢做。<br>文中根据实际情况，分享一些个人的编程心得,自己参考一下，取长补短</p>
+</blockquote>
+<hr>
+<h4 id="一、单线程模型下的异步操作"><a href="#一、单线程模型下的异步操作" class="headerlink" title="一、单线程模型下的异步操作"></a>一、单线程模型下的异步操作</h4><ul>
+<li>为什么强调是<code>单线程</code>：Dart是单线程模型，单线程模型，单线程模型!!!   <blockquote>
+<p>什么是单线程：<code>就是你是一个人在战斗</code><br>什么是异步: 比如你要烧水(耗时操作)，并不需要傻傻地等着水开才能去做下一件事(扫地)<br>只要开火(方法调用),然后你就可以去扫地(执行异步任务下面的方法)，水烧开鸣叫(回调)，  去冲水(处理异步任务结果)。</p>
+</blockquote>
+</li>
+</ul>
+<a id="more"></a>
+
+<ul>
+<li>Dart异步编程的方式：Future和Stream<blockquote>
+<p>Future相当于40米大砍刀，Stream相当于一捆40米大砍刀<br>dart提供了关键字<code>async(异步)</code>和<code>await(延迟执行)</code>,相当于普通的便捷的小匕首</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h5 id="1-async和await的简单使用"><a href="#1-async和await的简单使用" class="headerlink" title="1.async和await的简单使用"></a>1.<code>async</code>和<code>await</code>的简单使用</h5><blockquote>
+<p>感觉网上一些教程上来就告诉你什么样是错的，然后一步步纠正…最后都没有完整代码总结一下<br>我想最起码应该先给个正确的示范吧…然后再说错误情况</p>
+</blockquote>
+<h6 id="1-1：最简单的文件读取"><a href="#1-1：最简单的文件读取" class="headerlink" title="1.1：最简单的文件读取"></a>1.1：最简单的文件读取</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//根据名称读取文件</span><br><span class="line">readFile(name) &#123;</span><br><span class="line">  //创建文件对象</span><br><span class="line">  var file = File(name);</span><br><span class="line">  <span class="keyword">return</span> file.readAsString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//读取文件成功</span><br><span class="line">readOk() <span class="keyword">async</span>&#123;</span><br><span class="line">  var result = <span class="keyword">await</span> readFile(<span class="string">r"C:\Users\Administrator\Desktop\应龙.txt"</span>);</span><br><span class="line">  print(result);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main()  &#123;</span><br><span class="line">  readOk();</span><br><span class="line">  print(<span class="string">"我是第几?"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$0.png" alt=""></p>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$1.png" alt=""></p>
+<blockquote>
+<p>函数执行过程中看到了<code>async</code>(烧水)会先去执行下面的操作(扫地),水烧开<code>await</code>放行，<code>print(result);</code>(冲水)</p>
+</blockquote>
+<hr>
+<h6 id="1-2-async和await的分析"><a href="#1-2-async和await的分析" class="headerlink" title="1.2.async和await的分析"></a>1.2.<code>async</code>和<code>await</code>的分析</h6><blockquote>
+<p>也许你就问，不加async或await会怎么样?不同时加又会怎么样?<br><code>不加async或await</code>:就像平常代码一样顺序执行<br><code>加async不加await</code>：然并卵<br><code>不加async加await</code>：报错  </p>
+</blockquote>
+<hr>
+<h5 id="2-去拿我40米大砍刀：Future"><a href="#2-去拿我40米大砍刀：Future" class="headerlink" title="2.去拿我40米大砍刀：Future"></a>2.去拿我40米大砍刀：<code>Future</code></h5><blockquote>
+<p>可以看出：<code>file.readAsString()</code>返回的是:<code>Future&lt;String&gt;</code>, </p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$2.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">  var file = File(<span class="string">r"C:\Users\Administrator\Desktop\应龙.txt"</span>);</span><br><span class="line">  Future&lt;String&gt; re = file.readAsString();</span><br><span class="line">  re.then((result) &#123;</span><br><span class="line">    print(result);</span><br><span class="line">  &#125;);</span><br><span class="line">  print(<span class="string">"我是第几?"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样操作也能达到异步的效果，具体就不深入说了<br>有时间打算写一篇:基于<code>Java</code>,<code>Python</code>,<code>JavaScript(ES6+)</code>,<code>Dart</code>,<code>node</code>(都是我曾涉及过的)<br>综合讨论一下<code>单线程，多线程，同步，异步</code>,毕竟这几个词让我挺烦心</p>
+</blockquote>
+<hr>
+<h4 id="二、Dart中的IO操作"><a href="#二、Dart中的IO操作" class="headerlink" title="二、Dart中的IO操作"></a>二、Dart中的IO操作</h4><h5 id="1-文件操作的API测试构造函数"><a href="#1-文件操作的API测试构造函数" class="headerlink" title="1.文件操作的API测试构造函数"></a>1.文件操作的API测试<code>构造函数</code></h5><p><img src="http://photo.toly1994.com/flutter$seven_day$06$3.png" alt=""></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="constructor">File(文件路径)</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>from<span class="constructor">Uri(Uri资源路径标识符)</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>from<span class="constructor">RawPath(Uint8List <span class="params">rawPath</span>)</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="番外-：如何去认识一个类：Uri为例"><a href="#番外-：如何去认识一个类：Uri为例" class="headerlink" title="[番外]：如何去认识一个类：Uri为例"></a>[番外]：如何去认识一个类：<code>Uri为例</code></h5><blockquote>
+<p>也许看到<code>File.fromUri(Uri uri)</code>你会说Uri我不会，然后就不管了,如果有空就看两眼呗，又不会吃亏<br>我的经验是先看它的构造方法，然后再看字段，再总览一下方法名(Ctr+F12)<br>如果你对这个类一无所知，还是先看粗略瞄一下文档注释，至少知道干嘛的<br>一般都会有一句简洁的话介绍它(英文不会，词典查一下,读原文档：这道坎早晚要过的)<br>Android中对Uri有一定的认识，知道它是一个资源定位的标志,就像门牌号吧。</p>
+</blockquote>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[注释第一句]------------</span><br><span class="line">A parsed URI, such as a URL.</span><br><span class="line">url我们都知道：http://192.168.43.60:8089/file/springboot/data.json</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line">它是由一下部分构成的：</span><br><span class="line">http(协议名)://<span class="code">+ 192.168.43.60(域名) +</span> :8089(端口) + file/springboot/data.json(资源地址)</span><br><span class="line"></span><br><span class="line">比如我是资源，你要找我：</span><br><span class="line">中国://安徽：合肥/瑶海区/XXX路/XXX小区/张风捷特烈</span><br><span class="line">-------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">----&gt;[Uri核心属性]------------</span><br><span class="line">factory Uri(</span><br><span class="line"><span class="code">      &#123;String scheme,</span></span><br><span class="line"><span class="code">      String userInfo,</span></span><br><span class="line"><span class="code">      String host,</span></span><br><span class="line"><span class="code">      int port,</span></span><br><span class="line"><span class="code">      String path,</span></span><br><span class="line"><span class="code">      Iterable&lt;String&gt; pathSegments,</span></span><br><span class="line"><span class="code">      String query,</span></span><br><span class="line"><span class="code">      Map&lt;String, dynamic /*String|Iterable&lt;String&gt;*/ &gt; queryParameters,</span></span><br><span class="line"><span class="code">      String fragment&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="不知道的东西去试试呗-反正跑一下又不要钱"><a href="#不知道的东西去试试呗-反正跑一下又不要钱" class="headerlink" title="不知道的东西去试试呗,反正跑一下又不要钱"></a>不知道的东西去试试呗,反正跑一下又不要钱</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> base = <span class="built_in">Uri</span>.base;</span><br><span class="line"><span class="built_in">print</span>(base);<span class="comment">//打印了跟路径--file:///I:/Java/Android/FlutterUnit/toly/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">-----&gt;[.parse方法测试]</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">Uri</span> parse(<span class="built_in">String</span> uri, [<span class="built_in">int</span> start = <span class="number">0</span>, <span class="built_in">int</span> end])</span><br><span class="line"><span class="comment">//既然Uri.parse返回一个Uri对象，那么它应该有Uri的相应属性</span></span><br><span class="line"> <span class="keyword">var</span> parse = <span class="built_in">Uri</span>.parse(<span class="string">"http://192.168.43.60:8089/file/springboot/data.json"</span>);</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"host=<span class="subst">$&#123;parse.host&#125;</span>"</span>);<span class="comment">//192.168.43.60</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"port=<span class="subst">$&#123;parse.port&#125;</span>"</span>);<span class="comment">//8089</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"path=<span class="subst">$&#123;parse.path&#125;</span>"</span>);<span class="comment">//file/springboot/data.json</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"query=<span class="subst">$&#123;parse.query&#125;</span>"</span>);<span class="comment">//</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"fragment=<span class="subst">$&#123;parse.fragment&#125;</span>"</span>);<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">-----&gt;[.http方法测试]</span><br><span class="line"><span class="built_in">Uri</span>.http(<span class="built_in">String</span> authority, <span class="built_in">String</span> unencodedPath,[<span class="built_in">Map</span>&lt;<span class="built_in">String</span>, <span class="built_in">String</span>&gt; queryParameters]) </span><br><span class="line">-----&gt;[.http方法测试,它的注释都写成这样了，你还不会用吗?]-------</span><br><span class="line"><span class="comment">//Creates a new `http` URI from authority, path and query</span></span><br><span class="line"><span class="comment">//http://example.org/path?q=dart.</span></span><br><span class="line"><span class="comment">//new Uri.http("example.org", "/path", &#123; "q" : "dart" &#125;);</span></span><br></pre></td></tr></table></figure>
+
+
+<h6 id="如果用File开一个网络的Uri会怎么样："><a href="#如果用File开一个网络的Uri会怎么样：" class="headerlink" title="如果用File开一个网络的Uri会怎么样："></a>如果用File开一个网络的Uri会怎么样：</h6><blockquote>
+<p><code>学会分析bug</code>，<code>不要轻易否定</code><br>首先保证网址是正确的</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$4.png" alt=""></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var file = <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>from<span class="constructor">Uri(<span class="params">new</span> Uri.<span class="params">http</span>(<span class="string">"192.168.43.60:8089"</span>, <span class="string">"/file/springboot/data.json"</span>)</span>);</span><br><span class="line"></span><br><span class="line">Unhandled <span class="keyword">exception</span>:</span><br><span class="line">Unsupported operation: Cannot extract a file path from a http URI</span><br><span class="line">#<span class="number">0</span>      <span class="module-access"><span class="module"><span class="identifier">_Uri</span>.</span></span>toFilePath (dart:core/uri.dart:<span class="number">2617</span>:<span class="number">7</span>)</span><br><span class="line">#<span class="number">1</span>      <span class="keyword">new</span> <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>fromUri (dart:io/file.dart:<span class="number">265</span>:<span class="number">49</span>)</span><br><span class="line">#<span class="number">2</span>      readFile (file:<span class="comment">///I:/Java/Android/FlutterUnit/toly/test/base/8_io.dart:11:19)</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>也许你到走了，会想(当然我也是这样)：什么鬼，老子看半天，TM不能用，浪费时间!<br>也许你会愤然而去，而我则会去分析错误的原因(这就是面对错误的不同选择)<br>前者可能永远也不知道原因，而后者即使最后无果，路上也会有所收获(打字的现在，我还未去分析)  </p>
+</blockquote>
+<hr>
+<h6 id="所以，一起去看看吧"><a href="#所以，一起去看看吧" class="headerlink" title="所以，一起去看看吧"></a>所以，一起去看看吧</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[bug的链接处：]</span><br><span class="line"> <span class="built_in">String</span> toFilePath(&#123;<span class="built_in">bool</span> windows&#125;) &#123;</span><br><span class="line">    <span class="keyword">if</span> (scheme != <span class="string">""</span> &amp;&amp; scheme != <span class="string">"file"</span>) &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedError(</span><br><span class="line">          <span class="string">"Cannot extract a file path from a <span class="subst">$scheme</span> URI"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 原来是scheme的锅------那scheme是什么呢?</span></span><br><span class="line">  <span class="keyword">var</span> uri = <span class="keyword">new</span> <span class="built_in">Uri</span>.http(<span class="string">"192.168.43.60:8089"</span>, <span class="string">"/file/springboot/data.json"</span>);</span><br><span class="line">  <span class="built_in">print</span>(uri.scheme);<span class="comment">//http</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">//可见-- new Uri.http的scheme是http,而这里不是file所以报错</span></span><br><span class="line"> 至少你的知识库中多收录了一条信息：File.fromUri()不能访问非file类型的<span class="built_in">Uri</span></span><br><span class="line"> 也知道了scheme大概是什么东西，知识库就是这样一点一点自己累积的</span><br><span class="line"> </span><br><span class="line">----&gt;[这么重要的限制,方法上能不注明吗?]-------</span><br><span class="line">  <span class="comment"><span class="markdown">/**</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">   * </span>Create </span>a<span class="markdown"> File object from </span>a<span class="markdown"> URI.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">   *</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">   * </span>If [uri] cannot reference </span>a<span class="markdown"> file this throws [UnsupportedError].</span></span></span><br><span class="line"><span class="comment"><span class="markdown">   如果uri未涉及 file会报错： UnsupportedError</span></span></span><br><span class="line"><span class="comment"><span class="markdown">   */</span></span></span><br><span class="line">  <span class="keyword">factory</span> File.fromUri(<span class="built_in">Uri</span> uri) =&gt; <span class="keyword">new</span> File(uri.toFilePath());</span><br><span class="line"></span><br><span class="line">好吧，是一开始没注意，到此一个错误就可以画上句号了  </span><br><span class="line"></span><br><span class="line">错误不可怕，可怕的是你不知道为什么而导致以后还会犯，总之踩的坑多了，就会知道坑在那里</span><br><span class="line">也许别人给说你那有坑，第一次小心的过去了，下一次没人提醒你，你可能就掉下去</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="file的Uri是什么鬼"><a href="#file的Uri是什么鬼" class="headerlink" title="file的Uri是什么鬼?"></a>file的Uri是什么鬼?</h6><blockquote>
+<p>也许你不知道，文件拖到浏览器里，也是能打开的，你所见的就是feil类型的Uri</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$5.png" alt=""></p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//源码上面还有很多注释自己看....</span></span><br><span class="line">* <span class="comment">// file:///C:/xxx/yyy</span></span><br><span class="line"> * <span class="keyword">new</span> Uri.file(<span class="string">r"C:\xxx\yyy"</span>, windows: <span class="literal">true</span>);</span><br><span class="line"> */</span><br><span class="line">factory Uri.file(String path, &#123;<span class="built_in">bool</span> windows&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">然后你就会用<span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>fromUri了：</span><br><span class="line">var file = <span class="module-access"><span class="module"><span class="identifier">File</span>.</span></span>from<span class="constructor">Uri(Uri.<span class="params">parse</span>(<span class="string">"file:///F:/SpringBootFiles/file/springboot/data.json"</span>)</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$6.png" alt=""></p>
+<blockquote>
+<p>从一个小的API开始，让自己尽可能去多认识一些事物，并不是说你要把源码都理得很清楚<br>在自己接受范围的150%之内可以去尝试，失败了没有关系，总比看那些驳来驳去的文章有意义  </p>
+</blockquote>
+<blockquote>
+<p>如果你想提高自己(这句话也是自勉)：<br><code>不要让自己总走在平坦的路上，有时登高望远方能窥见美景，也不要一心只走险峰，小心失足。</code><br>今天心情不佳，废话有点多,听得进去的就听，听不进去的就无视，如果要驳我，请在评论区!!</p>
+</blockquote>
+<h6 id="番外结束"><a href="#番外结束" class="headerlink" title="[番外结束]"></a>[番外结束]</h6><hr>
+<h5 id="2-File和Directory的常见Api"><a href="#2-File和Directory的常见Api" class="headerlink" title="2.File和Directory的常见Api"></a>2.File和Directory的常见Api</h5><blockquote>
+<p>Java里文件夹也是File对象，Dart里区分了出来<br>很有意思，File和Directory的Api基本上都是同步，异步成对出现</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$7.png" alt=""></p>
+<hr>
+<h6 id="2-1-递归创建文件夹"><a href="#2-1-递归创建文件夹" class="headerlink" title="2.1:递归创建文件夹"></a>2.1:递归创建文件夹</h6><blockquote>
+<p>默认recursive是false，只能创建下一级</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$8.png" alt=""></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">  var dir = Directory(<span class="string">r"C:\Users\Administrator\Desktop\dart\test\all\li"</span>);</span><br><span class="line">  dir.createSync(recursive: true);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-2：列出所有的文件"><a href="#2-2：列出所有的文件" class="headerlink" title="2.2：列出所有的文件"></a>2.2：列出所有的文件</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main() <span class="keyword">async</span> &#123;</span><br><span class="line">  var dir = Directory(<span class="string">r"E:\Material\MyUI"</span>);</span><br><span class="line">  var list = dir.list();//默认非递归及只列出一级</span><br><span class="line">  list.forEach((fs)&#123;</span><br><span class="line">    print(fs.path);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$9.png" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main() <span class="keyword">async</span> &#123;</span><br><span class="line">  var dir = Directory(<span class="string">r"E:\Material\MyUI"</span>);</span><br><span class="line">  var list = dir.list(recursive: true);//递归列出所有文件</span><br><span class="line">  list.forEach((fs)&#123;</span><br><span class="line">    print(fs.path);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>目录下所有文件都列出来，就不贴图了</p>
+</blockquote>
+<hr>
+<h6 id="2-3：重命名"><a href="#2-3：重命名" class="headerlink" title="2.3：重命名"></a>2.3：重命名</h6><blockquote>
+<p>看一下就行了</p>
+</blockquote>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var dir = Directory(<span class="string">r"C:\Users\Administrator\Desktop\dart\test\all\li"</span>);</span><br><span class="line">dir.rename(<span class="string">r"C:\Users\Administrator\Desktop\dart\test\all\hello"</span>);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-File对象的常用操作："><a href="#3-File对象的常用操作：" class="headerlink" title="3.File对象的常用操作："></a>3.File对象的常用操作：</h5><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据名称读取文件</span></span><br><span class="line">readFile(name) async &#123;</span><br><span class="line">  <span class="comment">//创建文件对象</span></span><br><span class="line">  var <span class="keyword">file</span> = File(name);</span><br><span class="line">  try &#123;</span><br><span class="line">    <span class="comment">//判断是否存在</span></span><br><span class="line">    bool <span class="keyword">exists</span> = await <span class="keyword">file</span>.<span class="keyword">exists</span>();</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">exists</span>) &#123;</span><br><span class="line">      <span class="comment">//如果存在</span></span><br><span class="line">      <span class="keyword">print</span>(await <span class="keyword">file</span>.length()); <span class="comment">//文件大小(字节)---137</span></span><br><span class="line">      <span class="keyword">print</span>(await <span class="keyword">file</span>.lastModified()); <span class="comment">//最后修改时间---2018-12-21 13:49:35.000</span></span><br><span class="line">      <span class="keyword">print</span>(<span class="keyword">file</span>.<span class="keyword">parent</span>.path); <span class="comment">//获取父文件夹的路径---C:\Users\Administrator\Desktop\dart</span></span><br><span class="line">      <span class="keyword">return</span> await <span class="keyword">file</span>.readAsString(); <span class="comment">//读取文件并返回</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      await <span class="keyword">file</span>.create(recursive: true); <span class="comment">//不存在则创建文件</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">"未发现文件,已为您创建!Dart机器人:2333"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">//异常处理</span></span><br><span class="line">    <span class="keyword">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>另外还有几种不同的打开方式，基本上Java都包含了，看名字也知道是什么</p>
+</blockquote>
+<hr>
+<h5 id="4-文件的写入："><a href="#4-文件的写入：" class="headerlink" title="4.文件的写入："></a>4.文件的写入：</h5><blockquote>
+<p>和java一样，默认全换：想要追加：参数加<code>mode: FileMode.append</code></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">main() <span class="keyword">async</span> &#123;</span><br><span class="line">  wirte(<span class="string">r"C:\Users\Administrator\Desktop\dart\应龙.txt"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">wirte(name) <span class="keyword">async</span>&#123;</span><br><span class="line">  var file = File(name);</span><br><span class="line">  file.writeAsString(<span class="string">"海的彼岸有我未曾见证的风采"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$10.png" alt=""></p>
+<hr>
+<h4 id="三、关于移动端的文件读取问题"><a href="#三、关于移动端的文件读取问题" class="headerlink" title="三、关于移动端的文件读取问题"></a>三、关于移动端的文件读取问题</h4><h5 id="1-路径问题"><a href="#1-路径问题" class="headerlink" title="1.路径问题"></a>1.路径问题</h5><blockquote>
+<p><code>path_provider: ^0.4.1</code>:提供了三个路径，勉强用用吧</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">localPath() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'临时目录: '</span> + (<span class="keyword">await</span> getTemporaryDirectory()).path);</span><br><span class="line">    <span class="comment">//----/data/user/0/com.toly1994.toly/cache</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'文档目录: '</span> + (<span class="keyword">await</span> getApplicationDocumentsDirectory()).path);</span><br><span class="line">    <span class="comment">//----/data/user/0/com.toly1994.toly/app_flutter</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'sd卡目录: '</span> + (<span class="keyword">await</span> getExternalStorageDirectory()).path);</span><br><span class="line">    <span class="comment">//----/storage/emulated/0</span></span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">print</span>(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-动态权限申请问题"><a href="#2-动态权限申请问题" class="headerlink" title="2.动态权限申请问题"></a>2.动态权限申请问题</h5><blockquote>
+<p><code>simple_permissions: ^0.1.9</code>:提供了动态权限申请</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;uses-permission android:<span class="attribute">name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span><br><span class="line">&lt;uses-permission android:<span class="attribute">name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">readFormSD() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> perm =</span><br><span class="line">        SimplePermissions.requestPermission(Permission.ReadExternalStorage);</span><br><span class="line">    <span class="keyword">var</span> sdPath = getExternalStorageDirectory();</span><br><span class="line">    sdPath.then((file) &#123;</span><br><span class="line">      perm.then((v) <span class="keyword">async</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> res = <span class="keyword">await</span> readFile(file.path + <span class="string">"/应龙.txt"</span>);</span><br><span class="line">        <span class="built_in">print</span>(res);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="built_in">print</span>(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$11.png" alt=""></p>
+<blockquote>
+<p>好了，这样知识就对接完毕</p>
+</blockquote>
+<hr>
+<h5 id="3-小测试：列出sd卡的文件"><a href="#3-小测试：列出sd卡的文件" class="headerlink" title="3.小测试：列出sd卡的文件"></a>3.小测试：列出sd卡的文件</h5><blockquote>
+<p>比较基础，就是读取文件夹下的内容，设置给ListView的Item</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$12.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:path_provider/path_provider.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:simple_permissions/simple_permissions.dart';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListFilePage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _ListFilePageState createState() =&gt; _ListFilePageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_ListFilePageState</span> <span class="keyword">extends</span> <span class="title">State&lt;ListFilePage&gt;</span></span></span><br><span class="line"><span class="class">    <span class="keyword">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  <span class="type">List</span>&lt;<span class="type">String</span>&gt; _files = [];</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    localPath();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="comment">//生成listView</span></span><br><span class="line">    <span class="keyword">var</span> listview = <span class="type">ListView</span>.builder(</span><br><span class="line">      itemCount: _files.length,</span><br><span class="line">      itemBuilder: (<span class="type">BuildContext</span> context, int index) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">Column</span>(</span><br><span class="line">          children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">            <span class="type">Container</span>(</span><br><span class="line">                color: <span class="type">Colors</span>.white,</span><br><span class="line">                padding: <span class="type">EdgeInsets</span>.all(<span class="number">15</span>),</span><br><span class="line">                child: renderItem(index))</span><br><span class="line">          ],</span><br><span class="line">        );</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="type">Text</span>(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: listview,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加所有SD卡文件名称</span></span><br><span class="line">  localPath() &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> perm =</span><br><span class="line">          <span class="type">SimplePermissions</span>.requestPermission(<span class="type">Permission</span>.<span class="type">ReadExternalStorage</span>);</span><br><span class="line">      <span class="keyword">var</span> sdPath = getExternalStorageDirectory();</span><br><span class="line">      sdPath.then((file) &#123;</span><br><span class="line">        perm.then((v) &#123;</span><br><span class="line">          file.list().forEach((i) &#123;</span><br><span class="line">            _files.add(i.path);</span><br><span class="line">          &#125;);</span><br><span class="line">          setState(() &#123;&#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">      print(err);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//渲染单条目</span></span><br><span class="line">  renderItem(index) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Row</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        <span class="type">Icon</span>(</span><br><span class="line">          <span class="type">Icons</span>.extension,</span><br><span class="line">          color: <span class="type">Colors</span>.blue,</span><br><span class="line">        ),</span><br><span class="line">        <span class="type">Expanded</span>(</span><br><span class="line">            child: <span class="type">Padding</span>(</span><br><span class="line">          padding: <span class="type">EdgeInsets</span>.only(left: <span class="number">20</span>),</span><br><span class="line">          child: <span class="type">Text</span>(</span><br><span class="line">            _files[index],</span><br><span class="line">            style: <span class="type">TextStyle</span>(fontSize: <span class="number">18</span>),</span><br><span class="line">          ),</span><br><span class="line">        )),</span><br><span class="line">        <span class="type">Icon</span>(<span class="type">Icons</span>.arrow_forward),</span><br><span class="line">        <span class="type">Divider</span>(height: <span class="number">1</span>)</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="三、Dart中的网络请求操作："><a href="#三、Dart中的网络请求操作：" class="headerlink" title="三、Dart中的网络请求操作："></a>三、Dart中的网络请求操作：</h4><h6 id="0-添加依赖：在pubspec-yaml的dependencies下"><a href="#0-添加依赖：在pubspec-yaml的dependencies下" class="headerlink" title="0.添加依赖：在pubspec.yaml的dependencies下"></a>0.添加依赖：<code>在pubspec.yaml的dependencies下</code></h6><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http: ^<span class="number">0.11</span><span class="number">.3</span>+<span class="number">17</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我的服务器上提供了一些网络请求的Api,如果你想自己搭建服务器接口<a href="https://juejin.im/post/5c0f49606fb9a049be5d54d5" target="_blank" rel="noopener">，请看这篇</a><br>来回顾一下接口的api:</p>
+</blockquote>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">查询接口：GET请求--------------------------------------------</span><br><span class="line">----查询所有：</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span></span><br><span class="line">----查询偏移<span class="number">12</span>条，查询<span class="number">12</span>条(即<span class="number">12</span>条为一页的第<span class="number">2</span>页)：</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/12/</span><span class="number">12</span></span><br><span class="line">----按区域查询(A为Android数据，SB为SpringBoot数据，Re为React数据)</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/area/</span>A</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/area/</span>A/<span class="number">12</span>/<span class="number">12</span></span><br><span class="line">----按部分名称查询</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/name/</span>材料</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/name/</span>材料/<span class="number">2</span>/<span class="number">2</span></span><br><span class="line">----按类型名称查询(类型定义表见第一篇)</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/name/</span>ABCS</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/name/</span>ABCS/<span class="number">2</span>/<span class="number">2</span></span><br><span class="line">----按id名称查</span><br><span class="line"><span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/12</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">添改删接口---------------------------------------------------------------</span></span><br><span class="line"><span class="regexp">添-POST请求：http:/</span><span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span></span><br><span class="line">更新-PUT请求：<span class="symbol">http:</span>/<span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/1</span></span><br><span class="line"><span class="regexp">删-DELETE请求：http:/</span><span class="regexp">/www.toly1994.com:8089/api</span><span class="regexp">/android/note</span><span class="regexp">/1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="1-get请求"><a href="#1-get请求" class="headerlink" title="1.get请求"></a>1.get请求</h5><blockquote>
+<p>注：<code>client</code>你随便取什么名字都行，客户端访问服务端，所以我用client  </p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import <span class="string">'package:http/http.dart'</span> as client;</span><br><span class="line"></span><br><span class="line">main() &#123;</span><br><span class="line">  getData((data) &#123;</span><br><span class="line">    <span class="builtin-name">print</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getData(cbk) async &#123;</span><br><span class="line">  var api = <span class="string">'http://www.toly1994.com:8089/api/android/note/100'</span>;</span><br><span class="line">  try &#123;</span><br><span class="line">    final response = await client.<span class="builtin-name">get</span>(api);</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == 200) &#123;</span><br><span class="line">      cbk(response.body);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    <span class="builtin-name">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$13.png" alt=""></p>
+<blockquote>
+<p>如果你觉得回调有点low,也完全可以用Future(用什么不是重点，怎么简洁怎么来)</p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">  getData().then((data)&#123;</span><br><span class="line">    <span class="built_in">print</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Future&lt;<span class="built_in">String</span>&gt; getData() <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> response = <span class="keyword">await</span> client.<span class="keyword">get</span>(<span class="string">'http://www.toly1994.com:8089/api/android/note/100'</span>);</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> response.body;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-post请求-插入数据"><a href="#2-post请求-插入数据" class="headerlink" title="2.post请求:插入数据"></a>2.post请求:插入数据</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">  add((data) &#123;</span><br><span class="line">    <span class="built_in">print</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(cbk) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> api = <span class="string">'http://www.toly1994.com:8089/api/android/note'</span>;</span><br><span class="line">  <span class="keyword">var</span> item = &#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"C"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"插入测试"</span>,</span><br><span class="line">    <span class="string">"localPath"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"jianshuUrl"</span>: <span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,</span><br><span class="line">    <span class="string">"juejinUrl"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"imgUrl"</span>:</span><br><span class="line">        <span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,</span><br><span class="line">    <span class="string">"createTime"</span>: <span class="string">"2018-09-06"</span>,</span><br><span class="line">    <span class="string">"info"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"area"</span>: <span class="string">"A"</span></span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> response = <span class="keyword">await</span> client.post(api, body: item);</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">      cbk(response.body);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$14.png" alt=""></p>
+<hr>
+<h5 id="3-put请求-更新数据"><a href="#3-put请求-更新数据" class="headerlink" title="3.put请求:更新数据"></a>3.put请求:更新数据</h5><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">main() &#123;</span><br><span class="line">  <span class="keyword">set</span>((data) &#123;</span><br><span class="line">    <span class="built_in">print</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span>(cbk) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> api = <span class="string">'http://www.toly1994.com:8089/api/android/note/199'</span>;</span><br><span class="line">  <span class="keyword">var</span> item = &#123;</span><br><span class="line">    <span class="string">"type"</span>: <span class="string">"C"</span>,</span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"修改测试"</span>,</span><br><span class="line">    <span class="string">"localPath"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"jianshuUrl"</span>: <span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,</span><br><span class="line">    <span class="string">"juejinUrl"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"imgUrl"</span>:</span><br><span class="line">    <span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,</span><br><span class="line">    <span class="string">"createTime"</span>: <span class="string">"2018-09-06"</span>,</span><br><span class="line">    <span class="string">"info"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="string">"area"</span>: <span class="string">"A"</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> response = <span class="keyword">await</span> client.put(api, body: item);</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">      cbk(response.body);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$15.png" alt=""></p>
+<hr>
+<h5 id="4-delete请求：删除操作"><a href="#4-delete请求：删除操作" class="headerlink" title="4.delete请求：删除操作"></a>4.delete请求：删除操作</h5><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">main</span>() &#123;</span><br><span class="line">  <span class="keyword">delete</span>((data) &#123;</span><br><span class="line">    <span class="keyword">print</span>(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span>(cbk) async &#123;</span><br><span class="line">  var api = 'http:<span class="comment">//www.toly1994.com:8089/api/android/note/199';</span></span><br><span class="line"></span><br><span class="line">  try &#123;</span><br><span class="line">    final response = await client.delete(api);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="built_in">cbk</span>(response.body);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="built_in">catch</span> (e) &#123;</span><br><span class="line">    <span class="keyword">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$06$16.png" alt=""></p>
+<hr>
+<h4 id="四、关于Json"><a href="#四、关于Json" class="headerlink" title="四、关于Json"></a>四、关于Json</h4><blockquote>
+<p>一般都是解析服务器端传来的json,非后端基本不用生产json</p>
+</blockquote>
+<h5 id="1-将json转化为对象"><a href="#1-将json转化为对象" class="headerlink" title="1.将json转化为对象"></a>1.将json转化为对象</h5><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"绘图相关"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"D5-Android绘图之让图形动起来"</span>,</span><br><span class="line">    <span class="attr">"localPath"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="attr">"jianshuUrl"</span>: <span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,</span><br><span class="line">    <span class="attr">"juejinUrl"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="attr">"imgUrl"</span>: <span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,</span><br><span class="line">    <span class="attr">"createTime"</span>: <span class="string">"2018-09-06"</span>,</span><br><span class="line">    <span class="attr">"info"</span>: <span class="string">"以前在Html利用js控制SVG或canvas进行运动模拟。浏览器自带window.requestAnimationFrame能不断执行渲染在这..."</span>,</span><br><span class="line">    <span class="attr">"area"</span>: <span class="string">"A"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="1-1：创建实体类，创建构造方法"><a href="#1-1：创建实体类，创建构造方法" class="headerlink" title="1.1：创建实体类，创建构造方法"></a>1.1：创建实体类，创建构造方法</h6><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">class NoteBean &#123;</span><br><span class="line">  int id;</span><br><span class="line">  String type;</span><br><span class="line">  String name;</span><br><span class="line">  String localPath;</span><br><span class="line">  String jianshuUrl;</span><br><span class="line">  String juejinUrl;</span><br><span class="line">  String imgUrl;</span><br><span class="line">  String createTime;</span><br><span class="line">  String info;</span><br><span class="line">  String area;</span><br><span class="line"></span><br><span class="line">  NoteBean.fromJson(Map&lt;String, dynamic&gt; map)</span><br><span class="line">      : id = map[<span class="string">'id'</span>],</span><br><span class="line">        name = map[<span class="string">'name'</span>],</span><br><span class="line">        localPath = map[<span class="string">'localPath'</span>],</span><br><span class="line">        jianshuUrl = map[<span class="string">'jianshuUrl'</span>],</span><br><span class="line">        juejinUrl = map[<span class="string">'juejinUrl'</span>],</span><br><span class="line">        imgUrl = map[<span class="string">'imgUrl'</span>],</span><br><span class="line">        createTime = map[<span class="string">'createTime'</span>],</span><br><span class="line">        <span class="builtin-name">info</span> = map[<span class="string">'info'</span>],</span><br><span class="line">       <span class="built_in"> area </span>= map[<span class="string">'area'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var j =</span><br><span class="line">    '&#123;<span class="string">"id"</span>:<span class="number">100</span>,<span class="string">"type"</span>:<span class="string">"绘图相关"</span>,<span class="string">"name"</span>:<span class="string">"D5-Android绘图之让图形动起来"</span>,<span class="string">"localPath"</span>:<span class="string">"null"</span>,<span class="string">"jianshuUrl"</span>:<span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,<span class="string">"juejinUrl"</span>:<span class="string">"null"</span>,<span class="string">"imgUrl"</span>:<span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,<span class="string">"createTime"</span>:<span class="string">"2018-09-06"</span>,<span class="string">"info"</span>:<span class="string">"以前在Html利用js控制SVG或canvas进行运动模拟。浏览器自带window.requestAnimationFrame能不断执行渲染在这..."</span>,<span class="string">"area"</span>:<span class="string">"A"</span>&#125;';</span><br><span class="line">var noteBean = <span class="module-access"><span class="module"><span class="identifier">NoteBean</span>.</span></span>from<span class="constructor">Json(<span class="params">json</span>.<span class="params">decode</span>(<span class="params">j</span>)</span>);</span><br><span class="line">print(noteBean.name);<span class="comment">//D5-Android绘图之让图形动起来</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-复对的Json转化-也就是Json里套Json"><a href="#2-复对的Json转化-也就是Json里套Json" class="headerlink" title="2.复对的Json转化(也就是Json里套Json)"></a>2.复对的Json转化(也就是Json里套Json)</h5><h6 id="2-1：待处理的Json字符串"><a href="#2-1：待处理的Json字符串" class="headerlink" title="2.1：待处理的Json字符串"></a>2.1：待处理的Json字符串</h6><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"code"</span>: <span class="number">200</span>,</span><br><span class="line">  <span class="attr">"msg"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">  <span class="attr">"data"</span>: &#123;</span><br><span class="line">    <span class="attr">"id"</span>: <span class="number">100</span>,</span><br><span class="line">    <span class="attr">"type"</span>: <span class="string">"绘图相关"</span>,</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"D5-Android绘图之让图形动起来"</span>,</span><br><span class="line">    <span class="attr">"localPath"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="attr">"jianshuUrl"</span>: <span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,</span><br><span class="line">    <span class="attr">"juejinUrl"</span>: <span class="string">"null"</span>,</span><br><span class="line">    <span class="attr">"imgUrl"</span>: <span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,</span><br><span class="line">    <span class="attr">"createTime"</span>: <span class="string">"2018-09-06"</span>,</span><br><span class="line">    <span class="attr">"info"</span>: <span class="string">"以前在Html利用js控制SVG或canvas进行运动模拟。浏览器自带window.requestAnimationFrame能不断执行渲染在这..."</span>,</span><br><span class="line">    <span class="attr">"area"</span>: <span class="string">"A"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-2-增加实体类ResultBean"><a href="#2-2-增加实体类ResultBean" class="headerlink" title="2.2:增加实体类ResultBean"></a>2.2:增加实体类<code>ResultBean</code></h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> ResultBean &#123;</span><br><span class="line">  String msg;</span><br><span class="line">  <span class="built_in">int</span> code;</span><br><span class="line">  NoteBean data;</span><br><span class="line"></span><br><span class="line">  <span class="module-access"><span class="module"><span class="identifier">ResultBean</span>.</span></span>from<span class="constructor">Json(Map&lt;String, <span class="params">dynamic</span>&gt; <span class="params">map</span>)</span></span><br><span class="line">      : msg = map<span class="literal">['<span class="identifier">msg</span>']</span>,</span><br><span class="line">        code = map<span class="literal">['<span class="identifier">code</span>']</span>,</span><br><span class="line">        data = <span class="module-access"><span class="module"><span class="identifier">NoteBean</span>.</span></span>from<span class="constructor">Json(<span class="params">map</span>['<span class="params">data</span>'])</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h6 id="2-3-使用："><a href="#2-3-使用：" class="headerlink" title="2.3:使用："></a>2.3:使用：</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var j =</span><br><span class="line">    '&#123;<span class="string">"code"</span>:<span class="number">200</span>,<span class="string">"msg"</span>:<span class="string">"操作成功"</span>,<span class="string">"data"</span>:&#123;<span class="string">"id"</span>:<span class="number">100</span>,<span class="string">"type"</span>:<span class="string">"绘图相关"</span>,<span class="string">"name"</span>:<span class="string">"D5-Android绘图之让图形动起来"</span>,<span class="string">"localPath"</span>:<span class="string">"null"</span>,<span class="string">"jianshuUrl"</span>:<span class="string">"https://www.jianshu.com/p/12f8ab32591a"</span>,<span class="string">"juejinUrl"</span>:<span class="string">"null"</span>,<span class="string">"imgUrl"</span>:<span class="string">"http://toly1994.com:8089/imgs/android/c3af376135a7abe0655c908195b271db.png"</span>,<span class="string">"createTime"</span>:<span class="string">"2018-09-06"</span>,<span class="string">"info"</span>:<span class="string">"以前在Html利用js控制SVG或canvas进行运动模拟。浏览器自带window.requestAnimationFrame能不断执行渲染在这..."</span>,<span class="string">"area"</span>:<span class="string">"A"</span>&#125;&#125;';</span><br><span class="line"></span><br><span class="line">var result = <span class="module-access"><span class="module"><span class="identifier">ResultBean</span>.</span></span>from<span class="constructor">Json(<span class="params">json</span>.<span class="params">decode</span>(<span class="params">j</span>)</span>);</span><br><span class="line">print(result.data.name);<span class="comment">//D5-Android绘图之让图形动起来</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-关于Json的内嵌数组"><a href="#3-关于Json的内嵌数组" class="headerlink" title="3.关于Json的内嵌数组"></a>3.关于Json的内嵌数组</h5><blockquote>
+<p>这里data是一个json的数组，这样访问的服务端接口的数据处理就搞定了</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"code"</span>: <span class="number">200</span>,</span><br><span class="line">  <span class="attr">"msg"</span>: <span class="string">"操作成功"</span>,</span><br><span class="line">  <span class="attr">"data"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"id"</span>: <span class="number">198</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"绘图相关"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"localPath"</span>: <span class="string">"---"</span>,</span><br><span class="line">      <span class="attr">"jianshuUrl"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"juejinUrl"</span>: <span class="string">"---"</span>,</span><br><span class="line">      <span class="attr">"imgUrl"</span>: <span class="string">"http://toly1994.com:8089/imgs/android/8a11d27d58f4c1fa4488cf39fdf68e76.png"</span>,</span><br><span class="line">      <span class="attr">"createTime"</span>: <span class="string">"2021-02-18"</span>,</span><br><span class="line">      <span class="attr">"info"</span>: <span class="string">"hh"</span>,</span><br><span class="line">      <span class="attr">"area"</span>: <span class="string">"A"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"id"</span>: <span class="number">200</span>,</span><br><span class="line">      <span class="attr">"type"</span>: <span class="string">"绘图相关"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"localPath"</span>: <span class="string">"---"</span>,</span><br><span class="line">      <span class="attr">"jianshuUrl"</span>: <span class="string">""</span>,</span><br><span class="line">      <span class="attr">"juejinUrl"</span>: <span class="string">"---"</span>,</span><br><span class="line">      <span class="attr">"imgUrl"</span>: <span class="string">"http://toly1994.com:8089/imgs/android/8a11d27d58f4c1fa4488cf39fdf68e76.png"</span>,</span><br><span class="line">      <span class="attr">"createTime"</span>: <span class="string">"2018-12-21"</span>,</span><br><span class="line">      <span class="attr">"info"</span>: <span class="string">"hh"</span>,</span><br><span class="line">      <span class="attr">"area"</span>: <span class="string">"A"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">class ResultBean &#123;</span><br><span class="line">  String msg;</span><br><span class="line">  int code;</span><br><span class="line">  var data;</span><br><span class="line"></span><br><span class="line">  ResultBean.fromJson(Map&lt;String, dynamic&gt; map)</span><br><span class="line">      : msg = map[<span class="string">'msg'</span>],</span><br><span class="line">        code = map[<span class="string">'code'</span>],</span><br><span class="line">        data = map[<span class="string">'data'</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class NoteBean &#123;</span><br><span class="line">  int id;</span><br><span class="line">  String type;</span><br><span class="line">  String name;</span><br><span class="line">  String localPath;</span><br><span class="line">  String jianshuUrl;</span><br><span class="line">  String juejinUrl;</span><br><span class="line">  String imgUrl;</span><br><span class="line">  String createTime;</span><br><span class="line">  String info;</span><br><span class="line">  String area;</span><br><span class="line"></span><br><span class="line">  NoteBean.fromJson(Map&lt;String, dynamic&gt; map)</span><br><span class="line">      : id = map[<span class="string">'id'</span>],</span><br><span class="line">        name = map[<span class="string">'name'</span>],</span><br><span class="line">        localPath = map[<span class="string">'localPath'</span>],</span><br><span class="line">        jianshuUrl = map[<span class="string">'jianshuUrl'</span>],</span><br><span class="line">        juejinUrl = map[<span class="string">'juejinUrl'</span>],</span><br><span class="line">        imgUrl = map[<span class="string">'imgUrl'</span>],</span><br><span class="line">        createTime = map[<span class="string">'createTime'</span>],</span><br><span class="line">        <span class="builtin-name">info</span> = map[<span class="string">'info'</span>],</span><br><span class="line">       <span class="built_in"> area </span>= map[<span class="string">'area'</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> j ='&#123;<span class="string">"code"</span>:200,<span class="string">"msg"</span>:<span class="string">"操作成功"</span>,<span class="string">"data"</span>:[&#123;<span class="string">"id"</span>:198,<span class="string">"type"</span>:<span class="string">"绘图相关"</span>,<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"localPath"</span>:<span class="string">"---"</span>,<span class="string">"jianshuUrl"</span>:<span class="string">""</span>,<span class="string">"juejinUrl"</span>:<span class="string">"---"</span>,<span class="string">"imgUrl"</span>:<span class="string">"http://toly1994.com:8089/imgs/android/8a11d27d58f4c1fa4488cf39fdf68e76.png"</span>,<span class="string">"createTime"</span>:<span class="string">"2021-02-18"</span>,<span class="string">"info"</span>:<span class="string">"hh"</span>,<span class="string">"area"</span>:<span class="string">"A"</span>&#125;,&#123;<span class="string">"id"</span>:200,<span class="string">"type"</span>:<span class="string">"绘图相关"</span>,<span class="string">"name"</span>:<span class="string">""</span>,<span class="string">"localPath"</span>:<span class="string">"---"</span>,<span class="string">"jianshuUrl"</span>:<span class="string">""</span>,<span class="string">"juejinUrl"</span>:<span class="string">"---"</span>,<span class="string">"imgUrl"</span>:<span class="string">"http://toly1994.com:8089/imgs/android/8a11d27d58f4c1fa4488cf39fdf68e76.png"</span>,<span class="string">"createTime"</span>:<span class="string">"2018-12-21"</span>,<span class="string">"info"</span>:<span class="string">"hh"</span>,<span class="string">"area"</span>:<span class="string">"A"</span>&#125;]&#125;';</span><br><span class="line"><span class="keyword">var</span> result = ResultBean.fromJson(json.<span class="keyword">decode</span>(j));</span><br><span class="line"><span class="keyword">print</span>(NoteBean.fromJson(result.data[1]).imgUrl);<span class="comment">//http://toly1994.com:8089/imgs/android/8a11d27d58f4c1fa4488cf39fdf68e76.png</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>好了，今天就到这里,明天最后一天，敬请期待</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/05.html" rel="next" title="Flutter第5天--布局实例+操作交互">
+                <i class="fa fa-chevron-left"></i> Flutter第5天--布局实例+操作交互
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/07.html" rel="prev" title="Flutter第7天--字体图标+综合小案例+Android代码交互">
+                Flutter第7天--字体图标+综合小案例+Android代码交互 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter七日游第六天：2018-12-21-天气：雨-阴"><span class="nav-number">1.</span> <span class="nav-text">Flutter七日游第六天：2018-12-21 天气：雨-阴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零、前言"><span class="nav-number">2.</span> <span class="nav-text">零、前言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、单线程模型下的异步操作"><span class="nav-number">3.</span> <span class="nav-text">一、单线程模型下的异步操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-async和await的简单使用"><span class="nav-number">3.1.</span> <span class="nav-text">1.async和await的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：最简单的文件读取"><span class="nav-number">3.1.1.</span> <span class="nav-text">1.1：最简单的文件读取</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2-async和await的分析"><span class="nav-number">3.1.2.</span> <span class="nav-text">1.2.async和await的分析</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-去拿我40米大砍刀：Future"><span class="nav-number">3.2.</span> <span class="nav-text">2.去拿我40米大砍刀：Future</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Dart中的IO操作"><span class="nav-number">4.</span> <span class="nav-text">二、Dart中的IO操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-文件操作的API测试构造函数"><span class="nav-number">4.1.</span> <span class="nav-text">1.文件操作的API测试构造函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#番外-：如何去认识一个类：Uri为例"><span class="nav-number">4.2.</span> <span class="nav-text">[番外]：如何去认识一个类：Uri为例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#不知道的东西去试试呗-反正跑一下又不要钱"><span class="nav-number">4.2.1.</span> <span class="nav-text">不知道的东西去试试呗,反正跑一下又不要钱</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#如果用File开一个网络的Uri会怎么样："><span class="nav-number">4.2.2.</span> <span class="nav-text">如果用File开一个网络的Uri会怎么样：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#所以，一起去看看吧"><span class="nav-number">4.2.3.</span> <span class="nav-text">所以，一起去看看吧</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#file的Uri是什么鬼"><span class="nav-number">4.2.4.</span> <span class="nav-text">file的Uri是什么鬼?</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#番外结束"><span class="nav-number">4.2.5.</span> <span class="nav-text">[番外结束]</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-File和Directory的常见Api"><span class="nav-number">4.3.</span> <span class="nav-text">2.File和Directory的常见Api</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1-递归创建文件夹"><span class="nav-number">4.3.1.</span> <span class="nav-text">2.1:递归创建文件夹</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2：列出所有的文件"><span class="nav-number">4.3.2.</span> <span class="nav-text">2.2：列出所有的文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3：重命名"><span class="nav-number">4.3.3.</span> <span class="nav-text">2.3：重命名</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-File对象的常用操作："><span class="nav-number">4.4.</span> <span class="nav-text">3.File对象的常用操作：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-文件的写入："><span class="nav-number">4.5.</span> <span class="nav-text">4.文件的写入：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、关于移动端的文件读取问题"><span class="nav-number">5.</span> <span class="nav-text">三、关于移动端的文件读取问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-路径问题"><span class="nav-number">5.1.</span> <span class="nav-text">1.路径问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-动态权限申请问题"><span class="nav-number">5.2.</span> <span class="nav-text">2.动态权限申请问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-小测试：列出sd卡的文件"><span class="nav-number">5.3.</span> <span class="nav-text">3.小测试：列出sd卡的文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Dart中的网络请求操作："><span class="nav-number">6.</span> <span class="nav-text">三、Dart中的网络请求操作：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#0-添加依赖：在pubspec-yaml的dependencies下"><span class="nav-number">6.0.1.</span> <span class="nav-text">0.添加依赖：在pubspec.yaml的dependencies下</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-get请求"><span class="nav-number">6.1.</span> <span class="nav-text">1.get请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-post请求-插入数据"><span class="nav-number">6.2.</span> <span class="nav-text">2.post请求:插入数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-put请求-更新数据"><span class="nav-number">6.3.</span> <span class="nav-text">3.put请求:更新数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-delete请求：删除操作"><span class="nav-number">6.4.</span> <span class="nav-text">4.delete请求：删除操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、关于Json"><span class="nav-number">7.</span> <span class="nav-text">四、关于Json</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-将json转化为对象"><span class="nav-number">7.1.</span> <span class="nav-text">1.将json转化为对象</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：创建实体类，创建构造方法"><span class="nav-number">7.1.1.</span> <span class="nav-text">1.1：创建实体类，创建构造方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-复对的Json转化-也就是Json里套Json"><span class="nav-number">7.2.</span> <span class="nav-text">2.复对的Json转化(也就是Json里套Json)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1：待处理的Json字符串"><span class="nav-number">7.2.1.</span> <span class="nav-text">2.1：待处理的Json字符串</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-增加实体类ResultBean"><span class="nav-number">7.2.2.</span> <span class="nav-text">2.2:增加实体类ResultBean</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3-使用："><span class="nav-number">7.2.3.</span> <span class="nav-text">2.3:使用：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-关于Json的内嵌数组"><span class="nav-number">7.3.</span> <span class="nav-text">3.关于Json的内嵌数组</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共34.7k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

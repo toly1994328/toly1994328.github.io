@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="flutter教程," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人,也是沙粒，崇高并谦卑着----张风捷特烈 写这个系列主要是出于以下目的：123451.给自己一个挑战，并附加时间限制2.一直想要表达一下：遇到新技术时的态度，借此分析一下我对于一件新事物认知的过程  3.Flutter对于Android开发者，确实需要去稍微了解一下 4.作为一个地道的javaer+Androider,希望可以为想入坑Flutt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter七日总结">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/08.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人,也是沙粒，崇高并谦卑着----张风捷特烈 写这个系列主要是出于以下目的：123451.给自己一个挑战，并附加时间限制2.一直想要表达一下：遇到新技术时的态度，借此分析一下我对于一件新事物认知的过程  3.Flutter对于Android开发者，确实需要去稍微了解一下 4.作为一个地道的javaer+Androider,希望可以为想入坑Flutt">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$08$0.png">
+<meta property="article:published_time" content="2018-12-23T13:46:01.000Z">
+<meta property="article:modified_time" content="2020-05-04T09:10:22.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.toly1994.com/flutter$seven_day$08$0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/08.html"/>
+
+
+
+
+
+  <title>Flutter七日总结 | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/08.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter七日总结</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-23T21:46:01+08:00">
+                2018-12-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E4%B8%83%E6%97%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter七日</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人-也是沙粒，崇高并谦卑着-张风捷特烈"><a href="#多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人-也是沙粒，崇高并谦卑着-张风捷特烈" class="headerlink" title="多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人,也是沙粒，崇高并谦卑着----张风捷特烈"></a><code>多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人,也是沙粒，崇高并谦卑着----张风捷特烈</code></h4><hr>
+<h5 id="写这个系列主要是出于以下目的："><a href="#写这个系列主要是出于以下目的：" class="headerlink" title="写这个系列主要是出于以下目的："></a>写这个系列主要是出于以下目的：</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>给自己一个挑战，并附加时间限制</span><br><span class="line"><span class="number">2.</span>一直想要表达一下：遇到新技术时的态度，借此分析一下我对于一件新事物认知的过程  </span><br><span class="line"><span class="number">3.</span>Flutter对于Android开发者，确实需要去稍微了解一下 </span><br><span class="line"><span class="number">4.</span>作为一个地道的javaer+Androider,希望可以为想入坑Flutter的朋友铺条小路  </span><br><span class="line"><span class="number">5.</span>整个<span class="number">7</span>篇文章贯穿着我学习的心+思，基本上敲一段测试代码，写一段文章。对我的学习方式也是一种记录与沉淀</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<hr>
+<h5 id="七篇文章如下："><a href="#七篇文章如下：" class="headerlink" title="七篇文章如下："></a>七篇文章如下：</h5><ul>
+<li><a href="https://juejin.im/post/5c1637fe6fb9a049d5196438" target="_blank" rel="noopener">Flutter第1天–初始分析+Dart方言+Canvas简绘</a>  </li>
+<li><a href="https://juejin.im/post/5c176700f265da61602cd6ff" target="_blank" rel="noopener">Flutter第2天–Animation动画+粒子运动</a></li>
+<li><a href="https://juejin.im/post/5c18d181f265da611f07a128" target="_blank" rel="noopener">Flutter第3天–基础控件(上)</a></li>
+<li><a href="https://juejin.im/post/5c1a34f95188253ff1477cfd" target="_blank" rel="noopener">Flutter第4天–基础控件(下)+Flex布局详解</a></li>
+<li><a href="https://juejin.im/post/5c1b7af2518825566d237655" target="_blank" rel="noopener">Flutter第5天–布局实例+操作交互</a></li>
+<li><a href="https://juejin.im/post/5c1cd2426fb9a049a711cb75" target="_blank" rel="noopener">Flutter第6天–异步-IO+网络访问+json</a>  </li>
+<li><a href="https://juejin.im/post/5c1df995e51d451611220186" target="_blank" rel="noopener">Flutter第7天–字体图标+综合小案例+Android代码交互</a></li>
+</ul>
+<hr>
+<h5 id="下面是一边学习一边画出来的widget树"><a href="#下面是一边学习一边画出来的widget树" class="headerlink" title="下面是一边学习一边画出来的widget树"></a>下面是一边学习一边画出来的widget树</h5><blockquote>
+<p>虽然离完整版还差一大半，不过入门还是够用了，常用的基本涉及<br>当你这些用熟练了，其他控件看看属性也就无师自通了(推荐看原图，比较清楚)</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://photo.toly1994.com/flutter$seven_day$08$0.png" alt=""></h2><h5 id="第一天及体悟："><a href="#第一天及体悟：" class="headerlink" title="第一天及体悟："></a>第一天及体悟：</h5><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Flutter的环境搭建并没走多少弯路，网上教程一大堆。  </span><br><span class="line">新建了一个工程,发现代码有点不对劲，虽然知道Flutter是跨平台框架，  </span><br><span class="line">但是代码在哪写?不应该有个单独的src吗?以前玩过libgdx,认为应该差不多  </span><br><span class="line">然后全文搜索一下界面上的字，找到在<span class="class"><span class="keyword">lib</span>包的<span class="title">main</span>.<span class="title">dart</span>里</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">我要在<span class="class"><span class="keyword">lib</span>里写代码?不会这么奇葩吧?然后我用面向对象的天眼看了一下<span class="title">main</span>.<span class="title">dart</span></span></span><br><span class="line">正如第一篇的分析，果然这么奇葩。而且语法与Java,c++,Python,Js都不一样， </span><br><span class="line">好吧，又要学方言了，自从JS的Es6玩转了以后,我就不怕语言了，</span><br><span class="line">Kotlin也好，Python也好，这些性格<span class="string">"不羁"</span>一些的和ES6都八九不离十  </span><br><span class="line">只要语法通了，之后就是个人能力的问题了，所以Dart入门很快，半天就基本掌握了</span><br><span class="line">想要熟练，那还必须去实际操练才行</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="番外-：分享一些心情————"><a href="#番外-：分享一些心情————" class="headerlink" title="[番外]：分享一些心情————-"></a>[番外]：分享一些心情————-</h6><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">我经常把编程当做锻剑，我一直在精炼<span class="keyword">Java这把剑，用Android这把剑鞘盛放 </span> </span><br><span class="line">Python也好，C++也好，<span class="keyword">Js也好我只是玩玩，都被我当做光环对Java之剑进行附加</span></span><br><span class="line"><span class="keyword">至今在Android中我遇三次瓶颈期，我选择暂时离开Android，去拓展一下视野，</span></span><br><span class="line"><span class="keyword">死磕已经作用不大了，记得第二次瓶颈是被网络束缚地无法前进一步，</span></span><br><span class="line"><span class="keyword">于是一咬牙，暂停安卓，去专门找后端的书和资料去看，也因此萌生了搭建自己网站的念头 </span> </span><br><span class="line">然后前后并行，两大光环加持，也上线了我的个人网站，两端的基础知识已基本在心中。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">由于个人网站的搭建，我对服务端有了些认识，网络请求与上传下载也都知道是怎么回事  </span><br><span class="line">也有了测试的渠道，如果一个对前后端毫不知情的<span class="keyword">Androider，肯定会卡网络瓶颈上</span></span><br><span class="line"><span class="keyword">数据流的概念初步形成，在我的眼中，界面的展示、上传下载、网络上的一切都是字节的流动 </span> </span><br><span class="line">然后重归<span class="keyword">Android之时，前后端已经像一条线贯穿了,Android顺利和服务器交互时，第二瓶颈已过</span></span><br><span class="line"><span class="keyword">有种"断剑重铸之日，骑士归来之时的感觉",具体细节，打算写个2018年终总结来记录一下</span></span><br></pre></td></tr></table></figure>
+<h6 id="番外-：截止————"><a href="#番外-：截止————" class="headerlink" title="[番外]：截止————-"></a>[番外]：截止————-</h6><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如何很快地接收一件新事物<span class="comment">(新知识)</span>? 用你最擅长的技术去对接新知识，</span><br><span class="line">比如你是个天文迷，如果你想学英语，去看天文方面的读物会更有利，</span><br><span class="line">因为你有这方面的知识储备，即使知识储备是中文又如何?难道英文的地球能出太阳系?</span><br><span class="line">语言和知识本就是两码事，语言表述知识并不会更改知识本身。</span><br><span class="line">所以知识对接上，两种语言之间的交错，会让你更快接受语言的本身，也能强化知识</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">所以我并没有一开始就上控件，而是基于我最熟悉的Canvas来绘图，熟悉Dart语法，否则后面工作不好开展，</span><br><span class="line">在<span class="keyword">Android中Canvas的丰富知识储备让我很好的与Flutter中的Canvas对接,这一棋自认为不错</span></span><br><span class="line"><span class="keyword">对接之后，以前画网格，坐标系，n角星的东西又能拿出来秀了，旧知识转化成新知识</span></span><br><span class="line"><span class="keyword">通过Java代码更改成Dart代码，也让我更清楚了两者的异同点，以后把握起来就轻松写</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总的来说第一天还是蛮轻松好玩的。</p>
+</blockquote>
+<hr>
+<h5 id="第二天及体悟："><a href="#第二天及体悟：" class="headerlink" title="第二天及体悟："></a>第二天及体悟：</h5><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第二天可以说是兵行险招，本打算把基础控件说一下的<span class="comment">(依稀听过Flutter的控件超级多)</span> </span><br><span class="line">但第一天图画好之后，非常想玩动画，如果放在后面，感觉不连贯  </span><br><span class="line">然而并没有把握把动画写好，毕竟才更接触一天而已。挑战一下呗，然后就玩动画了</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第二天可以说是这七天里我感觉最成功的，动画+粒子运动全都复刻到Flutter上了</span><br><span class="line">粒子时钟完成后，挺激动的,然后就拿去分<span class="comment">(xian)</span>享<span class="comment">(bai)</span>,心想，Flutter还是不错的嘛  </span><br><span class="line">这绝对是Flutter的第一个粒子时钟<span class="comment">(除了我，也许没有人会这么无聊做这种特效)</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">看上去第二天的文章好像一气呵成，其实也遇到了些阻碍，</span><br><span class="line">dart的时间处理和三维数组和<span class="keyword">Java有些出入，还有就是时钟的粒子运动，</span></span><br><span class="line"><span class="keyword">差一点就放弃了，因为效果总是出不来。心想，搞出个时钟就算了吧，不也挺好嘛。</span></span><br><span class="line"><span class="keyword">可是真的很不甘心，都到这步了。然后输出小球集合的个数、第一个小球的位置，</span></span><br><span class="line"><span class="keyword">数据好好的啊，可为什么出不来效果……最后发现小球半径没有设置……出来才有鬼呢</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">有人问我有没有什么心得，心得这东西说出来都懂，做起来却不简单，</span><br><span class="line">如果你觉得一个人的学习方式很好，你应该去观察他，然后取长补短。</span><br><span class="line">每个人的境遇都是不同的，别人的学习方法不一定适合你，你没有必要和别人一样。</span><br><span class="line">比如我大学喜欢写诗，然后通读各大名著，不断思考世界，如果你没有这些基础，</span><br><span class="line">我的心得就不一定适合你。每个人的价值观也是不同的，我是更倾向提升自我境界的那种人，</span><br><span class="line">物质并不多求。心得这东西，别人的都是废话，需要的话，网上鸡汤自己挑，</span><br><span class="line">一般人豪言壮语，大多只是自欺欺人。最近看到八个字挺实在:<span class="string">"生死看淡，不服就干"</span>。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总的来说第二天收获颇丰。</p>
+</blockquote>
+<hr>
+<h5 id="第三、四天及体悟："><a href="#第三、四天及体悟：" class="headerlink" title="第三、四天及体悟："></a>第三、四天及体悟：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">第三天基础控件，感觉应该很枯燥，所以我尽可能让它变得有趣</span><br><span class="line">我喜欢画体系的树状图，因为这样看起来很清晰，也助于整理思路</span><br><span class="line">我喜欢卡片，源于游戏王，对于繁多的事物，感觉用卡片记录一下比较有趣</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">第三天源码翻得比较多，基本上是进去看控件属性，代码测试</span><br><span class="line">通过Android和<span class="selector-tag">html</span>+css的布局经验，基本上套路都是那回事</span><br><span class="line">而且Flutter的<span class="attribute">Flex</span>布局和css的<span class="attribute">flex</span>布局不谋而合，所以入手容易很多</span><br><span class="line">遇到<span class="attribute">margin</span>的时候，有点感触，写了点看到新东西的态度:</span><br><span class="line"></span><br><span class="line">新事物往往都与旧事物有联系,学习新事物最好快速找到它与你知识库中旧事物的联系,</span><br><span class="line">联系的多少取决于你知识库中内容的多少，连接得越多，你会越快或越能掌握旧事物</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">本以为第四天可以把剩余的控件讲完，再写几个小案例呢，万万没想到:</span><br><span class="line">Flutter的布局如此之多，再加上卡了一点小壳，只勉强把控件了结(实际上还有很多未涉及)</span><br><span class="line">Flutter里面<span class="number">29</span>种叠合模式也是吓到我了，也借此分析了一下这种多情况的分析方式</span><br><span class="line">第三天把我的激情燃烧殆尽，第四天，三个控件一组，一共六组<span class="number">18</span>张，没那么多花哨</span><br><span class="line">最后将Flex布局详细说明了一下</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这两天难度不是很大，就是有点麻烦，画图，配卡什么的，</span><br><span class="line">只是敲代码的估计一天就够了，不过那样会及其无聊，不是我想要的</span><br><span class="line">第四天写到最后其实还是有不少控件没涉及到呢，但感觉也就那回事</span><br><span class="line">认识一个控件可就那点套路，属性基本上也就那些，遇到新的看看也就明白了</span><br><span class="line">没有必要全部列出来，这就是<span class="string">"鱼与渔"</span>的区别吧，鱼是抓不完的，你也放不下</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">两条源码翻得比较勤，有点小感悟：</span><br><span class="line"></span><br><span class="line">有问题就去解决，即使牵涉出十个新问题，你就想象成问题栈，</span><br><span class="line">有问题就进栈，解决了就出栈，这样不会乱，你可见的就是栈顶而已，</span><br><span class="line">一个一个来，这样会相对于<span class="number">11</span>个问题摆在你面前更容易接受。</span><br><span class="line">至于什么时候stackover（栈溢出）就看你的决心和耐力了。</span><br><span class="line">当然新手感觉hold不住时，可以深呼吸，咬一下牙坚持一下。</span><br><span class="line">还是不行的话，记录下问题，果断退出。也许你现在等级不够，</span><br><span class="line">这个boss你打不过，那就去刷怪升级吧。短剑重铸之日，骑士归来之时。</span><br><span class="line">现在回头来看以前困扰我的问题，其实也并没有什么，这样你才能感觉成长</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总的来说第三、四天挺苦闷，但也是必经之路</p>
+</blockquote>
+<hr>
+<h5 id="第五、六、七天及体悟："><a href="#第五、六、七天及体悟：" class="headerlink" title="第五、六、七天及体悟："></a>第五、六、七天及体悟：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">经过前四天，基本上语法、控件也就熟悉了，接下来统一说一下：</span><br><span class="line">第五天可以说非常有料，网上很少有详细分析Flutter怎么布局的</span><br><span class="line">中文网的例子有点小复杂，我打算循序渐进地由简到难进行陈述</span><br><span class="line">首先是最简单的条目入手一步步递进成掘金的条目，</span><br><span class="line">交互操作看似很多，其实常用的也就那几个，操作也是widget这点非常有趣</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">第六天Dart的io,以及网络和json的处理，这是一门语言的基础</span><br><span class="line">Java和Python还有node的io有所接触，所以dart这方面并不麻烦  </span><br><span class="line">但一在Flutter上，路径不好拿，背景是跨平台，还好有三根救命稻草：`path_provider`</span><br><span class="line">然后是权限问题，当然也有相应的依赖库`simple_permissions`，</span><br><span class="line">网络库用起来比较简单,基本上和前端的网络库操作一致</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第七天是前六天的知识整合，并扫一下其他小的知识点</span><br><span class="line"><span class="symbol">Flutter</span>与安卓的原生交互让我感觉它还是蛮好的，虽然有点麻烦</span><br><span class="line">不过要跨平台，只与<span class="keyword">Android交互只是有半壁江山，ios那块就不好办了</span></span><br><span class="line"><span class="keyword">虽说Flutter可以跨平台，但如果要玩得转，需要一个人兼具Android和ios</span></span><br><span class="line"><span class="keyword">这样算来，这个跨平台代价还是有的，你也许会说，有插件包啊</span></span><br><span class="line"><span class="keyword">但是插件包只能解决一部分问题，各种业务千差万别，如果只靠插件包，有点牵强</span></span><br><span class="line"><span class="keyword">毕竟有些逻辑上的小修小补，具体问题框架无能为力，只能"凑合用"</span></span><br><span class="line"><span class="keyword">Flutter是一个很好的UI框架，但可操作性，略有不足</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h5><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">React玩的好的人入手Flutter可以说会轻松很多，因为思想非常相似</span><br><span class="line">任何人都会有不足，不可能对这个世界全识全知，也就是<span class="string">"术业有专攻"</span></span><br><span class="line">但并不意味这要闭关锁国，排斥外物。程序员读读诗，看看史也没有什么不可</span><br><span class="line">多看星空方知何谓渺小，多看细胞方知何谓浩大，你是巨人也是沙，崇高并谦卑着</span><br><span class="line">程序源于对这个世界的认知，何为境界，你眼中所视之物，究竟为何? </span><br><span class="line">学无止境，不要飘，脚踏实地，一步一印，殊途同归，新即远方，思之将至。</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="最后插播一段感悟：我经常思考工具与使用者间的关系"><a href="#最后插播一段感悟：我经常思考工具与使用者间的关系" class="headerlink" title="最后插播一段感悟：我经常思考工具与使用者间的关系:"></a>最后插播一段感悟：我经常思考工具与使用者间的关系:</h5><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">`用工具`和`会用工具`之差异:[良庖岁更刀，割也；族庖月更刀，折也],</span><br><span class="line">工具的使用方法体现了一位`工匠`的技艺  </span><br><span class="line"></span><br><span class="line"><span class="title">《庖丁解牛》是我最喜欢的一篇古文，如何在做任何事上:</span></span><br><span class="line">[以无厚入有间，恢恢乎其于游刃必有余地矣]是我的思考  </span><br><span class="line"></span><br><span class="line">文中的八字成为我接触新事物的律典：[依乎天理，因其固然]。</span><br><span class="line">通其理，方用之，是`匠者`与`匠师`的差异   </span><br><span class="line"></span><br><span class="line">如果你不懂牛的构造原理，拿一把屠刀固然可杀牛取肉，</span><br><span class="line">但庖丁的[以神遇而不以目视，官知止而神欲行]  </span><br><span class="line">[提刀而立，为之四顾，为之踌躇满志，善刀而藏之]感觉也就与你无缘，</span><br><span class="line">而这是一位匠者的自豪。 </span><br><span class="line"></span><br><span class="line">写一个程序就像打造一件艺术品，制造的过程便是`解牛`，</span><br><span class="line">IDE、API、运行环境就是我手中的剑  </span><br><span class="line"></span><br><span class="line">普通屠夫遇牛则斩，好肉坏肉在一起切，煮成一大杂烩。</span><br><span class="line"><span class="title">庖丁的匠心独运是我追求的境界:</span>  </span><br><span class="line">[吾生也有涯，而知也无涯,以有涯随无涯] 愿君且行且珍惜。</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/07.html" rel="next" title="Flutter第7天--字体图标+综合小案例+Android代码交互">
+                <i class="fa fa-chevron-left"></i> Flutter第7天--字体图标+综合小案例+Android代码交互
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/FlutterUnit_update.html" rel="prev" title="Flutter Unit  更新记录">
+                Flutter Unit  更新记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人-也是沙粒，崇高并谦卑着-张风捷特烈"><span class="nav-number">1.</span> <span class="nav-text">多看星空方知何谓渺小，多看细胞方知何谓浩大，我是巨人,也是沙粒，崇高并谦卑着----张风捷特烈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#写这个系列主要是出于以下目的："><span class="nav-number">1.1.</span> <span class="nav-text">写这个系列主要是出于以下目的：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#七篇文章如下："><span class="nav-number">1.2.</span> <span class="nav-text">七篇文章如下：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#下面是一边学习一边画出来的widget树"><span class="nav-number">1.3.</span> <span class="nav-text">下面是一边学习一边画出来的widget树</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一天及体悟："><span class="nav-number">0.1.</span> <span class="nav-text">第一天及体悟：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#番外-：分享一些心情————"><span class="nav-number">0.1.1.</span> <span class="nav-text">[番外]：分享一些心情————-</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#番外-：截止————"><span class="nav-number">0.1.2.</span> <span class="nav-text">[番外]：截止————-</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二天及体悟："><span class="nav-number">0.2.</span> <span class="nav-text">第二天及体悟：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三、四天及体悟："><span class="nav-number">0.3.</span> <span class="nav-text">第三、四天及体悟：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第五、六、七天及体悟："><span class="nav-number">0.4.</span> <span class="nav-text">第五、六、七天及体悟：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结束语"><span class="nav-number">0.5.</span> <span class="nav-text">结束语</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最后插播一段感悟：我经常思考工具与使用者间的关系"><span class="nav-number">0.6.</span> <span class="nav-text">最后插播一段感悟：我经常思考工具与使用者间的关系:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共34.7k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

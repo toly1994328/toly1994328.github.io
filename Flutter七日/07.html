@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="flutter教程," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Flutter七日游第七天：2018-12-22 天气：雨-阴零、前言 最后一天了,今天将把前六天的零碎知识整合起来,以及未涉及的零碎知识最后会附上源码，在github,我按天分包稍微整理了一下，顺手Star一下吧顺便提一下：Dart语法的相关测试在test包的base里(怕你们找不到)与Android代码交互后感觉flutter还是蛮可以的，可惜没条件玩ios,不然岂不是可以通杀(给我七天或许可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter第7天--字体图标+综合小案例+Android代码交互">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/07.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="Flutter七日游第七天：2018-12-22 天气：雨-阴零、前言 最后一天了,今天将把前六天的零碎知识整合起来,以及未涉及的零碎知识最后会附上源码，在github,我按天分包稍微整理了一下，顺手Star一下吧顺便提一下：Dart语法的相关测试在test包的base里(怕你们找不到)与Android代码交互后感觉flutter还是蛮可以的，可惜没条件玩ios,不然岂不是可以通杀(给我七天或许可">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$0.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$1.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$2.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$3.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$4.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$5.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$6.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$7.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$8.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$9.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$10.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$11.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$12.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$13.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$14.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$15.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$16.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$17.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$18.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$19.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$20.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$21.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$22.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$23.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$24.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$25.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$26.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$27.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$07$28.png">
+<meta property="article:published_time" content="2018-12-22T13:46:01.000Z">
+<meta property="article:modified_time" content="2020-05-04T08:19:15.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.toly1994.com/flutter$seven_day$07$0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/07.html"/>
+
+
+
+
+
+  <title>Flutter第7天--字体图标+综合小案例+Android代码交互 | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/07.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter第7天--字体图标+综合小案例+Android代码交互</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-22T21:46:01+08:00">
+                2018-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E4%B8%83%E6%97%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter七日</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Flutter七日游第七天：2018-12-22-天气：雨-阴"><a href="#Flutter七日游第七天：2018-12-22-天气：雨-阴" class="headerlink" title="Flutter七日游第七天：2018-12-22 天气：雨-阴"></a><code>Flutter七日游第七天：2018-12-22 天气：雨-阴</code></h4><h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
+<p>最后一天了,今天将把前六天的零碎知识整合起来,以及未涉及的零碎知识<br>最后会附上源码，在github,我按天分包稍微整理了一下，顺手Star一下吧<br>顺便提一下：Dart语法的相关测试在<code>test包的base里</code>(怕你们找不到)<br>与Android代码交互后感觉flutter还是蛮可以的，可惜没条件玩ios,不然岂不是可以通杀<br>(给我七天或许可以把ios跑一圈,以后有钱再说吧)  </p>
+</blockquote>
+<h5 id="留图镇楼：分类效果和查询效果"><a href="#留图镇楼：分类效果和查询效果" class="headerlink" title="留图镇楼：分类效果和查询效果"></a>留图镇楼：<code>分类效果和查询效果</code></h5><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$0.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$1.png" alt=""></td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<hr>
+<h4 id="一、字体图标的相关问题"><a href="#一、字体图标的相关问题" class="headerlink" title="一、字体图标的相关问题"></a>一、字体图标的相关问题</h4><h5 id="1-字体图标："><a href="#1-字体图标：" class="headerlink" title="1.字体图标："></a>1.字体图标：</h5><blockquote>
+<p>字体图标放大不变形，又能改变颜色，主要根据<code>.ttf</code>的字体，<br>然后图标算一个文字，根据unicode来对应图标,就可以用了。<br><code>Icon(Icons.android)</code>也许你经常用，但内置图标有限，只能测试玩玩<br>实际上用还是需要自定义才行，前端的时候有字体图标，Flutter应该也行</p>
+</blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//比如我们经常怎样用：</span></span><br><span class="line"><span class="function"><span class="title">Icon</span><span class="params">(Icons.comment)</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-进入源码看看："><a href="#2-进入源码看看：" class="headerlink" title="2.进入源码看看："></a>2.进入源码看看：</h5><blockquote>
+<p>貌似都是静态常量，核心在unicode，如<code>0xe577</code>,还有就是字体(<code>MaterialIcons</code>)   </p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///  <span class="markdown"><span class="bullet">* </span>[<span class="string">design.google.com/icons</span>](<span class="link">https://design.google.com/icons/</span>)</span></span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Icons</span> </span>&#123;</span><br><span class="line">  Icons._();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Generated code: do not hand-edit.</span></span><br><span class="line">  <span class="comment">// See https://github.com/flutter/flutter/wiki/Updating-Material-Design-Fonts</span></span><br><span class="line">  <span class="comment">// BEGIN GENERATED</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">/// <span class="markdown"><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"material-icons md-36"</span>&gt;</span></span>360<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> &amp;#x2014; material icon named "360".</span></span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> IconData threesixty = IconData(<span class="number">0xe577</span>, fontFamily: <span class="string">'MaterialIcons'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// <span class="markdown"><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"material-icons md-36"</span>&gt;</span></span>3d_rotation<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> &amp;#x2014; material icon named "3d rotation".</span></span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> IconData threed_rotation = IconData(<span class="number">0xe84d</span>, fontFamily: <span class="string">'MaterialIcons'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// <span class="markdown"><span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"material-icons md-36"</span>&gt;</span></span>4k<span class="xml"><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> &amp;#x2014; material icon named "4k".</span></span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">const</span> IconData four_k = IconData(<span class="number">0xe072</span>, fontFamily: <span class="string">'MaterialIcons'</span>);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-怎么才能自定义字体图标"><a href="#3-怎么才能自定义字体图标" class="headerlink" title="3.怎么才能自定义字体图标"></a>3.怎么才能自定义字体图标</h5><blockquote>
+<p>玩前端的应该都知道:还是进入阿里图标神库:<a href="https://www.iconfont.cn/" target="_blank" rel="noopener">iconfont</a></p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$2.png" alt=""></p>
+<hr>
+<h5 id="4-根据Flutter内置的类，我写了一个自动代码生成器"><a href="#4-根据Flutter内置的类，我写了一个自动代码生成器" class="headerlink" title="4.根据Flutter内置的类，我写了一个自动代码生成器"></a>4.根据Flutter内置的类，我写了一个<code>自动代码生成器</code></h5><blockquote>
+<p>虽然直接也能用，不够要记住图标的unicode码，算了，还是跟Flutter看齐吧<br>注意：为了简单使用：拷贝到的位置，命名，请务必和下面<code>保持一致</code>!<code>保持一致</code>!<br>把两个文件拷贝到对应处，<code>icon_by_toly.dart</code>写好(在下面)，右键运行就自动生成<code>iconfont.dart</code>了</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$3.png" alt=""></p>
+<blockquote>
+<p><code>代码生成器：icon_by_toly.dart</code></p>
+</blockquote>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">import 'dart:io';</span><br><span class="line"></span><br><span class="line">main() &#123;</span><br><span class="line">  <span class="keyword">var</span> result = <span class="string">""</span>"import 'package:flutter/widgets.dart';</span><br><span class="line"><span class="comment">//Power By 张风捷特烈--- Generated file. Do not edit.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> TolyIcon &#123;</span><br><span class="line"></span><br><span class="line">    TolyIcon._();</span><br><span class="line"><span class="string">""</span>";</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> fileCss = <span class="keyword">File</span>.fromUri(Uri.<span class="keyword">parse</span>(<span class="string">"$&#123;Uri.base&#125;iconfont/iconfont.css"</span>));</span><br><span class="line">  <span class="keyword">if</span> (!fileCss.existsSync()) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">read</span> = fileCss.readAsStringSync();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> <span class="keyword">split</span> = <span class="keyword">read</span>.<span class="keyword">split</span>(<span class="string">".icon-"</span>);</span><br><span class="line">  <span class="keyword">split</span>.<span class="keyword">forEach</span>((str) &#123;</span><br><span class="line">    <span class="keyword">if</span> (str.contains(<span class="string">"before"</span>)) &#123;</span><br><span class="line">      <span class="keyword">var</span> <span class="keyword">split</span> = str.<span class="keyword">split</span>(<span class="string">":"</span>);</span><br><span class="line">      result += <span class="string">"static const IconData "</span> +</span><br><span class="line">          <span class="keyword">split</span>[0].replaceAll(<span class="string">"-"</span>, <span class="string">"_"</span>) +</span><br><span class="line">          <span class="string">" = const IconData("</span> +</span><br><span class="line">          <span class="keyword">split</span>[2].replaceAll(<span class="string">"\"</span>\\<span class="string">", "</span>0x<span class="string">").split("</span>\<span class="string">""</span>)[0] +</span><br><span class="line">          <span class="string">", fontFamily: \"</span>TolyIcon\<span class="string">");\n"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">  result+=<span class="string">"&#125;"</span>;</span><br><span class="line">   fileCss.delete();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> fileOut = <span class="keyword">File</span>.fromUri(Uri.<span class="keyword">parse</span>(<span class="string">"$&#123;Uri.base&#125;lib/iconfont.dart"</span>));</span><br><span class="line">  fileOut.writeAsStringSync(result);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> config=<span class="string">""</span>"</span><br><span class="line">  fonts:</span><br><span class="line">    - family: TolyIcon</span><br><span class="line">      fonts:</span><br><span class="line">        - asset: iconfont/iconfont.ttf</span><br><span class="line">  <span class="string">""</span>";</span><br><span class="line">  <span class="keyword">var</span> yaml = <span class="keyword">File</span>.fromUri(Uri.<span class="keyword">parse</span>(<span class="string">"$&#123;Uri.base&#125;pubspec.yaml"</span>));</span><br><span class="line">  <span class="keyword">if</span> (yaml.readAsStringSync().contains(<span class="string">"TolyIcon"</span>)) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  yaml.writeAsString(config,mode: FileMode.<span class="keyword">append</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="pubspec-yaml的flutter标签下也会自动生成配置："><a href="#pubspec-yaml的flutter标签下也会自动生成配置：" class="headerlink" title="pubspec.yaml的flutter标签下也会自动生成配置："></a><code>pubspec.yaml</code>的flutter标签下也会自动生成配置：</h5><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fonts</span>:</span><br><span class="line">  - <span class="attribute">family</span>: TolyIcon</span><br><span class="line">    <span class="attribute">fonts</span>:</span><br><span class="line">      - <span class="attribute">asset</span>: iconfont/iconfont.ttf</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Icon</span><span class="params">(TolyIcon.icon_spring_boot)</span></span><span class="comment">//颜色可自行处理</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$4.png" alt=""></p>
+<hr>
+<blockquote>
+<p>友情提示：下载之前最好把图标名字改一下，不然之后找起来费劲<br>如果实在不想该，可以点击这里查看名字和图标的对应情况</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$5.png" alt=""></p>
+<hr>
+<h4 id="二、综合小案例"><a href="#二、综合小案例" class="headerlink" title="二、综合小案例"></a>二、综合小案例</h4><h5 id="1-初始代码：主页面：android-stack-dart"><a href="#1-初始代码：主页面：android-stack-dart" class="headerlink" title="1.初始代码：主页面：android_stack.dart"></a>1.初始代码：<code>主页面：android_stack.dart</code></h5><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AndroidPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _AndroidPageState createState() =&gt; _AndroidPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_AndroidPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;AndroidPage&gt;</span></span></span><br><span class="line"><span class="class">    <span class="keyword">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> scaffold = <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="type">Text</span>(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="type">Container</span>(),</span><br><span class="line">      floatingActionButton: <span class="type">FloatingActionButton</span>(</span><br><span class="line">        onPressed: () &#123;</span><br><span class="line">          </span><br><span class="line">        &#125;,</span><br><span class="line">        tooltip: <span class="symbol">'Incremen</span>t',</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> scaffold;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-拼接底部条"><a href="#2-拼接底部条" class="headerlink" title="2.拼接底部条"></a>2.拼接底部条</h5><p><img src="http://photo.toly1994.com/flutter$seven_day$07$6.png" alt=""></p>
+<hr>
+<h6 id="2-1-常量的准备：-为了方便使用或修改"><a href="#2-1-常量的准备：-为了方便使用或修改" class="headerlink" title="2.1:常量的准备：(为了方便使用或修改)"></a>2.1:常量的准备：(为了方便使用或修改)</h6><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemBean</span> </span>&#123;</span><br><span class="line">  Color color;</span><br><span class="line">  IconData iconId;</span><br><span class="line">  String info;</span><br><span class="line">  ItemBean(<span class="keyword">this</span>.color, <span class="keyword">this</span>.iconId, <span class="keyword">this</span>.info);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//底部栏图标信息</span></span><br><span class="line"><span class="keyword">var</span> iconLi=[</span><br><span class="line">  ItemBean(Color(<span class="number">0xff8FC552</span>),TolyIcon.android,<span class="string">"Android"</span>),</span><br><span class="line">  ItemBean(Color(<span class="number">0xff6BFB00</span>),TolyIcon.icon_spring_boot,<span class="string">"SpringBoot"</span>),</span><br><span class="line">  ItemBean(Color(<span class="number">0xff63DAFF</span>),TolyIcon.react,<span class="string">"React"</span>),</span><br><span class="line">  ItemBean(Color(<span class="number">0xffF3D861</span>),TolyIcon.biji,<span class="string">"编程随笔"</span>),</span><br><span class="line">  ItemBean(Color(<span class="number">0xff5CEBF2</span>),TolyIcon.daima,<span class="string">"系列文章"</span>)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="2-2-底部栏："><a href="#2-2-底部栏：" class="headerlink" title="2.2:底部栏："></a>2.2:底部栏：</h6><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">//成员变量</span></span><br><span class="line"><span class="attr">int</span> <span class="string">_curIndex = 0;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">//底部栏</span></span><br><span class="line"><span class="attr">var</span> <span class="string">bottomNavigationBar = BottomNavigationBar(</span></span><br><span class="line">  <span class="attr">items</span>: <span class="string">iconLi.map((item) &#123;</span></span><br><span class="line">    <span class="attr">return</span> <span class="string">BottomNavigationBarItem(</span></span><br><span class="line">        <span class="attr">title</span>: <span class="string">Text(</span></span><br><span class="line">          <span class="attr">item.info,</span></span><br><span class="line">          <span class="attr">style</span>: <span class="string">TextStyle(fontSize: 12, color: Colors.black),</span></span><br><span class="line">        <span class="attr">),</span></span><br><span class="line">        <span class="attr">icon</span>: <span class="string">Icon(</span></span><br><span class="line">          <span class="attr">item.iconId,</span></span><br><span class="line">          <span class="attr">color</span>: <span class="string">item.color,</span></span><br><span class="line">        <span class="attr">),</span></span><br><span class="line">        <span class="attr">backgroundColor</span>: <span class="string">Color(0xffffffff));</span></span><br><span class="line">  <span class="attr">&#125;).toList(),</span></span><br><span class="line">  <span class="attr">currentIndex</span>: <span class="string">_curIndex,</span></span><br><span class="line">  <span class="attr">onTap</span>: <span class="string">_onTapBNB,</span></span><br><span class="line"><span class="attr">);</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-3：底部栏点击监听：-onTapBNB"><a href="#2-3：底部栏点击监听：-onTapBNB" class="headerlink" title="2.3：底部栏点击监听：_onTapBNB"></a>2.3：底部栏点击监听：<code>_onTapBNB</code></h6><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//底部栏点击监听</span></span><br><span class="line">  <span class="keyword">void</span> _onTapBNB(<span class="keyword">int</span> <span class="built_in">position</span>) &#123;</span><br><span class="line">    _curIndex = <span class="built_in">position</span>;</span><br><span class="line">    setState(() &#123;&#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h5 id="3-页面条目："><a href="#3-页面条目：" class="headerlink" title="3:页面条目："></a>3:页面条目：</h5><blockquote>
+<p>第五天写了几个条目，现在拿来用(<a href="https://juejin.im/post/5c1b7af2518825566d237655" target="_blank" rel="noopener">详细分析见第五天，这里不废话了</a>)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>静态填充</th>
+<th>左侧滑栏</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$7.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$8.png" alt=""></td>
+</tr>
+</tbody></table>
+<h6 id="3-1：左侧滑栏-left-draw-dart"><a href="#3-1：左侧滑栏-left-draw-dart" class="headerlink" title="3.1：左侧滑栏:left_draw.dart"></a>3.1：左侧滑栏:<code>left_draw.dart</code></h6><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LeftDrawPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _LeftDrawPageState createState() =&gt; _LeftDrawPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_LeftDrawPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;LeftDrawPage&gt;</span></span></span><br><span class="line"><span class="class">    <span class="keyword">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line"><span class="comment">//左边头像</span></span><br><span class="line">    <span class="keyword">var</span> headImg3 = <span class="type">Image</span>.asset(</span><br><span class="line">      <span class="string">"images/icon_90.png"</span>,</span><br><span class="line">      width: <span class="number">50</span>,</span><br><span class="line">      height: <span class="number">50</span>,</span><br><span class="line">    );</span><br><span class="line"><span class="comment">//中间的信息</span></span><br><span class="line">    <span class="keyword">var</span> center3 = <span class="type">Column</span>(</span><br><span class="line">      mainAxisAlignment: <span class="type">MainAxisAlignment</span>.center,</span><br><span class="line">      crossAxisAlignment: <span class="type">CrossAxisAlignment</span>.start,</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        <span class="type">Text</span>(</span><br><span class="line">          <span class="string">"张风捷特烈"</span>,</span><br><span class="line">          style: bigStyle,</span><br><span class="line">        ),</span><br><span class="line">        <span class="type">Row</span>(</span><br><span class="line">          children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">            <span class="type">Icon</span>(<span class="type">Icons</span>.next_week, size: <span class="number">15</span>),</span><br><span class="line">            pd(<span class="type">Text</span>(<span class="string">"创世神 | 无"</span>), l: <span class="number">5</span>)</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">        <span class="type">Row</span>(</span><br><span class="line">          children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">            <span class="type">Icon</span>(<span class="type">Icons</span>.keyboard, size: <span class="number">15</span>),</span><br><span class="line">            pd(<span class="type">Text</span>(<span class="string">"海的彼岸有我未曾见证的风采"</span>), l: <span class="number">5</span>)</span><br><span class="line">          ],</span><br><span class="line">        ),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">var</span> rowLine3 = <span class="type">Row</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        pda(headImg3, <span class="number">5</span>),</span><br><span class="line">        <span class="type">Expanded</span>(child: pda(center3, <span class="number">5</span>)),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">var</span> test3 = <span class="type">Card</span>(</span><br><span class="line">        child: <span class="type">Container</span>(</span><br><span class="line">            height: <span class="number">95</span>,</span><br><span class="line">            color: <span class="type">Colors</span>.white,</span><br><span class="line">            padding: <span class="type">EdgeInsets</span>.all(<span class="number">5</span>),</span><br><span class="line">            child: rowLine3));</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Drawer</span>(</span><br><span class="line">        elevation: <span class="number">5</span>,</span><br><span class="line">        child: <span class="type">Container</span>(</span><br><span class="line">            padding: <span class="type">EdgeInsets</span>.only(top: <span class="number">50</span>),</span><br><span class="line">            alignment: <span class="type">AlignmentDirectional</span>.topCenter,</span><br><span class="line">            color: <span class="type">Color</span>(<span class="number">0xff99C6F9</span>),</span><br><span class="line">            child: test3));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="3-2：列表静态填充-home-list-dart"><a href="#3-2：列表静态填充-home-list-dart" class="headerlink" title="3.2：列表静态填充:home_list.dart"></a>3.2：列表静态填充:<code>home_list.dart</code></h6><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">class</span> <span class="string">HomeListPage</span> <span class="string">extends</span> <span class="string">StatefulWidget</span> <span class="string">&#123;</span></span><br><span class="line">  <span class="string">@override</span></span><br><span class="line">  <span class="string">_HomeListPageState</span> <span class="string">createState()</span> <span class="string">=&gt;</span> <span class="string">_HomeListPageState();</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="string">class</span> <span class="string">_HomeListPageState</span> <span class="string">extends</span> <span class="string">State&lt;HomeListPage&gt;</span> <span class="string">&#123;</span></span><br><span class="line">  <span class="string">@override</span></span><br><span class="line">  <span class="string">Widget</span> <span class="string">build(BuildContext</span> <span class="string">context)</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">return</span> <span class="string">ListView.builder(</span></span><br><span class="line">      <span class="attr">itemCount:</span> <span class="number">10</span><span class="string">,</span></span><br><span class="line">      <span class="attr">itemBuilder:</span> <span class="string">(BuildContext</span> <span class="string">context,</span> <span class="string">int</span> <span class="string">index)</span> <span class="string">&#123;</span></span><br><span class="line">        <span class="string">return</span> <span class="string">renderItem(index);</span></span><br><span class="line">      <span class="string">&#125;,</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line">  <span class="string">&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="string">renderItem(int</span> <span class="string">index)</span> <span class="string">&#123;</span></span><br><span class="line">    <span class="string">////////////////////////-----------------测试4--------------------------------</span></span><br><span class="line">    <span class="string">var</span> <span class="string">line1_4</span> <span class="string">=</span> <span class="string">Row(</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Image.asset("images/icon_90.png",</span> <span class="attr">width:</span> <span class="number">20</span><span class="string">,</span> <span class="attr">height:</span> <span class="number">20</span><span class="string">),</span></span><br><span class="line">        <span class="string">Expanded(</span></span><br><span class="line">          <span class="attr">child:</span> <span class="string">pd(Text("张风捷特烈"),</span> <span class="attr">l:</span> <span class="number">5</span><span class="string">),</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">Text(</span></span><br><span class="line">          <span class="string">"Flutter/Dart"</span><span class="string">,</span></span><br><span class="line">          <span class="attr">style:</span> <span class="string">infoStyle,</span></span><br><span class="line">        <span class="string">)</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line"></span><br><span class="line">    <span class="string">var</span> <span class="string">center_right</span> <span class="string">=</span> <span class="string">Column(</span></span><br><span class="line">      <span class="attr">mainAxisSize:</span> <span class="string">MainAxisSize.min,</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Text(</span></span><br><span class="line">          <span class="string">"Flutter第4天--基础控件(下)+Flex布局详解"</span><span class="string">,</span></span><br><span class="line">          <span class="attr">style:</span> <span class="string">littelStyle,</span></span><br><span class="line">          <span class="attr">maxLines:</span> <span class="number">2</span><span class="string">,</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">pd(</span></span><br><span class="line">            <span class="string">Text(</span></span><br><span class="line">              <span class="string">"1.2：优雅地查看：图片的适应模式--BoxFit1.3：优雅地查看：颜色混合模式--colorBlendMode"</span><span class="string">,</span></span><br><span class="line">              <span class="attr">style:</span> <span class="string">infoStyle,</span></span><br><span class="line">              <span class="attr">maxLines:</span> <span class="number">2</span><span class="string">,</span></span><br><span class="line">              <span class="attr">overflow:</span> <span class="string">TextOverflow.ellipsis,</span></span><br><span class="line">            <span class="string">),</span></span><br><span class="line">            <span class="attr">t:</span> <span class="number">5</span><span class="string">),</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line"></span><br><span class="line"><span class="string">//中间的信息</span></span><br><span class="line">    <span class="string">var</span> <span class="string">center4</span> <span class="string">=</span> <span class="string">Row(</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Expanded(child:</span> <span class="string">pda(center_right,</span> <span class="number">5</span><span class="string">)),</span></span><br><span class="line">        <span class="string">Image.asset(</span></span><br><span class="line">          <span class="string">"images/wy_300x200.jpg"</span><span class="string">,</span></span><br><span class="line">          <span class="attr">width:</span> <span class="number">80</span><span class="string">,</span></span><br><span class="line">          <span class="attr">height:</span> <span class="number">80</span><span class="string">,</span></span><br><span class="line">          <span class="attr">fit:</span> <span class="string">BoxFit.fitHeight,</span></span><br><span class="line">        <span class="string">)</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line"></span><br><span class="line">    <span class="string">var</span> <span class="string">end4</span> <span class="string">=</span> <span class="string">Row(</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Icon(</span></span><br><span class="line">          <span class="string">Icons.grade,</span></span><br><span class="line">          <span class="attr">color:</span> <span class="string">Colors.green,</span></span><br><span class="line">          <span class="attr">size:</span> <span class="number">20</span><span class="string">,</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">Text(</span></span><br><span class="line">          <span class="string">"1000W"</span><span class="string">,</span></span><br><span class="line">          <span class="attr">style:</span> <span class="string">infoStyle,</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">pd(Icon(Icons.tag_faces,</span> <span class="attr">color:</span> <span class="string">Colors.lightBlueAccent,</span> <span class="attr">size:</span> <span class="number">20</span><span class="string">),</span></span><br><span class="line">            <span class="attr">l:</span> <span class="number">15</span><span class="string">,</span> <span class="attr">r:</span> <span class="number">5</span><span class="string">),</span></span><br><span class="line">        <span class="string">Text("2000W",</span> <span class="attr">style:</span> <span class="string">infoStyle),</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line"></span><br><span class="line">    <span class="string">var</span> <span class="string">item4</span> <span class="string">=</span> <span class="string">Column(</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[line1_4,</span> <span class="string">Expanded(child:</span> <span class="string">center4),</span> <span class="string">end4],</span></span><br><span class="line">    <span class="string">);</span></span><br><span class="line"></span><br><span class="line">    <span class="string">var</span> <span class="string">aCard</span> <span class="string">=</span> <span class="string">Card(</span></span><br><span class="line">        <span class="attr">child:</span> <span class="string">Container(</span></span><br><span class="line">            <span class="attr">height:</span> <span class="number">160</span><span class="string">,</span></span><br><span class="line">            <span class="attr">color:</span> <span class="string">Colors.white,</span></span><br><span class="line">            <span class="attr">padding:</span> <span class="string">EdgeInsets.all(10),</span></span><br><span class="line">            <span class="attr">child:</span> <span class="string">item4));</span></span><br><span class="line"></span><br><span class="line">    <span class="string">return</span> <span class="string">aCard;</span></span><br><span class="line">  <span class="string">&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="4-动态数据获取："><a href="#4-动态数据获取：" class="headerlink" title="4.动态数据获取："></a>4.动态数据获取：</h5><blockquote>
+<p>昨天已经把http获取数据的内容将过了，并且把服务端的数据解析了<br>今天就是使用这些数据，来填充静态界面，<code>api接口介绍</code>和<code>NoteBean</code><a href="https://juejin.im/post/5c1cd2426fb9a049a711cb75" target="_blank" rel="noopener">昨天已完成</a><br>封装一个获取数据的方法：简单说下用法:<br><code>style是类型：Android是A ;SpringBoot是SB ; React 是Re ; 笔记是 Note</code><br><code>offset和num 联合使用可以达到分页效果， 比如offset=24,num=12,就是一页12条数据的第3页</code></p>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'dart:convert'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:http/http.dart'</span> <span class="keyword">as</span> client;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:toly/pager/day7/bean.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> BASE_URL = <span class="string">'http://192.168.43.60:8089'</span>;<span class="comment">//api接口的域名自己改一下</span></span><br><span class="line"><span class="keyword">const</span> API = <span class="string">'/api/android/note/'</span>;</span><br><span class="line"></span><br><span class="line">Future&lt;<span class="built_in">List</span>&lt;NoteBean&gt;&gt; <span class="keyword">get</span>(&#123;style = <span class="string">''</span>, offset = <span class="number">0</span>, <span class="built_in">num</span> = <span class="number">1</span>&#125;) <span class="keyword">async</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> dataLi = &lt;NoteBean&gt;[];</span><br><span class="line">  <span class="keyword">var</span> url = BASE_URL + API + style + <span class="string">"/"</span> + <span class="string">"<span class="subst">$offset</span>"</span> + <span class="string">"/"</span> + <span class="string">"<span class="subst">$num</span>"</span>;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">final</span> response = <span class="keyword">await</span> client.<span class="keyword">get</span>(url);</span><br><span class="line">    <span class="keyword">if</span> (response.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> result = ResultBean.fromJson(json.decode(response.body));</span><br><span class="line">      <span class="built_in">List</span> data = result.data;</span><br><span class="line">      <span class="built_in">print</span>(NoteBean.fromJson(data[<span class="number">0</span>]).type);</span><br><span class="line">      <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; data.length; i++) &#123;</span><br><span class="line">        dataLi.add(NoteBean.fromJson(data[i]));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> dataLi;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="built_in">print</span>(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="5-用一个数据来进行填充测试："><a href="#5-用一个数据来进行填充测试：" class="headerlink" title="5.用一个数据来进行填充测试："></a>5.用一个数据来进行填充测试：</h5><blockquote>
+<p><code>主页面：android_stack.dart</code>,<code>initState</code>的时候获取数据，并更新状态</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$9.png" alt=""></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个成员变量</span></span><br><span class="line">  <span class="built_in">List</span>&lt;NoteBean&gt; _notes = [];</span><br><span class="line">  </span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line"><span class="keyword">void</span> initState() &#123;</span><br><span class="line">  <span class="keyword">super</span>.initState();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span>(<span class="built_in">num</span>: <span class="number">1</span>).then((beanLi) &#123;</span><br><span class="line">    _notes = beanLi;</span><br><span class="line">    setState(() &#123;&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>列表界面：home_list.dart</code>:接收主界面传来的_notes，并渲染数据</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HomeListPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="type">List</span>&lt;<span class="type">NoteBean</span>&gt; _notes;</span><br><span class="line">  <span class="type">HomeListPage</span>(<span class="type">List</span>&lt;<span class="type">NoteBean</span>&gt; notes) &#123;</span><br><span class="line">    _notes = notes;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _HomeListPageState createState() =&gt; _HomeListPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_HomeListPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;HomeListPage&gt;</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">var</span> notes = widget._notes;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="type">ListView</span>.builder(</span><br><span class="line">      itemCount: notes.length,</span><br><span class="line">      itemBuilder: (<span class="type">BuildContext</span> context, int index) &#123;</span><br><span class="line">        <span class="keyword">return</span> renderItem(notes[index]);</span><br><span class="line">      &#125;,</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">    <span class="comment">//渲染条目</span></span><br><span class="line">  renderItem(<span class="type">NoteBean</span> note) &#123;</span><br><span class="line">    <span class="keyword">var</span> line1_4 = <span class="type">Row</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        <span class="type">Image</span>.asset(<span class="string">"images/icon_90.png"</span>, width: <span class="number">20</span>, height: <span class="number">20</span>),</span><br><span class="line">        <span class="type">Expanded</span>( child: pd(<span class="type">Text</span>(<span class="string">"张风捷特烈"</span>), l: <span class="number">5</span>),),</span><br><span class="line">        <span class="type">Text</span>( note<span class="class">.<span class="keyword">type</span>,<span class="title">style</span></span>: infoStyle,)</span><br><span class="line">        ],</span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">var</span> center_right = <span class="type">Column</span>(</span><br><span class="line">      mainAxisSize: <span class="type">MainAxisSize</span>.min,</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[<span class="type">Text</span>(note.name,style: littelStyle,maxLines: <span class="number">2</span>,),</span><br><span class="line">        pd(<span class="type">Text</span>( note.info, style: infoStyle, maxLines: <span class="number">2</span>,</span><br><span class="line">              overflow: <span class="type">TextOverflow</span>.ellipsis, ), t: <span class="number">5</span>),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line"><span class="comment">//中间的信息</span></span><br><span class="line">    <span class="keyword">var</span> center4 = <span class="type">Row</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        <span class="type">Expanded</span>(child: pda(center_right, <span class="number">5</span>)),</span><br><span class="line">        <span class="type">Image</span>.network( note.imgUrl,</span><br><span class="line">          width: <span class="number">80</span>, height: <span class="number">80</span>, fit: <span class="type">BoxFit</span>.fitHeight )</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> end4 = <span class="type">Row</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[</span><br><span class="line">        <span class="type">Icon</span>( <span class="type">Icons</span>.grade, color: <span class="type">Colors</span>.green, size: <span class="number">20</span>, ),</span><br><span class="line">        <span class="type">Text</span>( <span class="string">"1000W"</span>, style: infoStyle,),</span><br><span class="line">        pd(<span class="type">Icon</span>(<span class="type">Icons</span>.tag_faces, color: <span class="type">Colors</span>.lightBlueAccent, size: <span class="number">20</span>),</span><br><span class="line">            l: <span class="number">15</span>, r: <span class="number">5</span>),</span><br><span class="line">        <span class="type">Text</span>(<span class="string">"2000W"</span>, style: infoStyle),</span><br><span class="line">      ],</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> item4 = <span class="type">Column</span>(</span><br><span class="line">      children: &lt;<span class="type">Widget</span>&gt;[line1_4, <span class="type">Expanded</span>(child: center4), end4],</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> aCard = <span class="type">Card</span>(</span><br><span class="line">        child: <span class="type">Container</span>(  height: <span class="number">160</span>,color: <span class="type">Colors</span>.white,</span><br><span class="line">            padding: <span class="type">EdgeInsets</span>.all(<span class="number">10</span>), child: item4));</span><br><span class="line">    <span class="keyword">return</span> aCard;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p><code>现在万事俱备，东风也到了,num小小动一下：num=30</code></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$10.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$11.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>也许你感觉还未开始，但确实已经结束了…</p>
+</blockquote>
+<hr>
+<h5 id="6-底部导航栏的切换：-下面两个图一样的，为了撑场面…"><a href="#6-底部导航栏的切换：-下面两个图一样的，为了撑场面…" class="headerlink" title="6.底部导航栏的切换：(下面两个图一样的，为了撑场面…)"></a>6.底部导航栏的切换：(下面两个图一样的，为了撑场面…)</h5><blockquote>
+<p>刚才是数据没有分类型，现在点击底部导航，按范围进行展示<br><code>get(style: &quot;area/A&quot;, num: 30)//这样就是展示又有安卓类的文章</code>  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$12.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$13.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><code>android_stack.dart</code>添加成员变量<br>这里我默认加载完，做分页的话，再添加个_count的成员变量就行了</p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">String</span> style = <span class="string">"area/A"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//页面打开，默认加载安卓页</span></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">initState</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    super.initState();</span><br><span class="line">    <span class="built_in">get</span>(style: style, num: <span class="number">1000</span>).then((beanLi) &#123;</span><br><span class="line">      _notes = beanLi;</span><br><span class="line">      setState(() &#123;&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//底部栏点击监听---动态改变范围</span></span><br><span class="line">  <span class="keyword">void</span> _onTapBNB(<span class="keyword">int</span> <span class="built_in">position</span>) &#123;</span><br><span class="line">    <span class="keyword">switch</span> (<span class="built_in">position</span>) &#123;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">        style = <span class="string">"area/A"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        style = <span class="string">"area/SB"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        style = <span class="string">"area/Re"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        style = <span class="string">"area/Note"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        style = <span class="string">"area/A"</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    _curIndex = <span class="built_in">position</span>;</span><br><span class="line">    <span class="built_in">get</span>(style: style, num: <span class="number">1000</span>).then((beanLi) &#123;</span><br><span class="line">      _notes = beanLi;</span><br><span class="line">      setState(() &#123;&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="7-底部栏和搜索功能"><a href="#7-底部栏和搜索功能" class="headerlink" title="7.底部栏和搜索功能"></a>7.底部栏和搜索功能</h5><blockquote>
+<p>底部栏用法详情在<a href="https://juejin.im/post/5c1a34f95188253ff1477cfd" target="_blank" rel="noopener">第四篇</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$14.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$07$15.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<blockquote>
+<p>底部栏:这里把事件写在里面了，你也可以抽成方法<br>或者有些控件太长，你也可以抽出来做变量</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">var searchSheet = BottomSheet(</span><br><span class="line">    onClosing: () &#123;&#125;,</span><br><span class="line">    builder: (<span class="name">context</span>) =&gt; (<span class="name">Card</span>(</span><br><span class="line">        color: Color.fromARGB(<span class="number">255</span>, <span class="number">214</span>, <span class="number">242</span>, <span class="number">251</span>),</span><br><span class="line">        child: Wrap(</span><br><span class="line">          children: &lt;Widget&gt;[</span><br><span class="line">            Center(<span class="name">child</span>: pdhv(<span class="name">TextField</span>(</span><br><span class="line">              onChanged: (<span class="name">v</span>) &#123;style = <span class="string">"name/"</span> + v<span class="comment">;&#125;), h: 60)),</span></span><br><span class="line">            Center(<span class="name">child</span>: pdhv( <span class="name">GestureDetector</span>(<span class="name">child</span>:</span><br><span class="line">            Image.asset(<span class="string">"images/icon_90.png"</span>,width: <span class="number">50</span>,height: <span class="number">50</span> ),</span><br><span class="line">                      onTap: () &#123;</span><br><span class="line">                        get(<span class="name">style</span>: style, num: <span class="number">1000</span>).then((<span class="name">beanLi</span>) &#123;</span><br><span class="line">                          _notes = beanLi<span class="comment">;</span></span><br><span class="line">                          setState(() &#123;&#125;)<span class="comment">;</span></span><br><span class="line">                        &#125;)<span class="comment">;</span></span><br><span class="line">                      &#125;,</span><br><span class="line">                    ),</span><br><span class="line">                    v: <span class="number">10</span>)),</span><br><span class="line">          ],</span><br><span class="line">        ))))<span class="comment">;</span></span><br><span class="line">        </span><br><span class="line">//点击按钮弹出：</span><br><span class="line"> var scContext<span class="comment">; //先声明一下Scaffold的context</span></span><br><span class="line">    var scaffold = Scaffold(</span><br><span class="line">        appBar: AppBar(</span><br><span class="line">          title: Text(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">        ),</span><br><span class="line">        body: Builder(<span class="name">builder</span>: (<span class="name">context</span>) &#123;</span><br><span class="line">          scContext = context<span class="comment">;</span></span><br><span class="line">          return HomeListPage(<span class="name">_notes</span>)<span class="comment">;</span></span><br><span class="line">        &#125;),</span><br><span class="line">        floatingActionButton: FloatingActionButton(</span><br><span class="line">          onPressed: () &#123;</span><br><span class="line">            Scaffold.of(<span class="name">scContext</span>).showBottomSheet(<span class="name">searchSheet</span>.builder)<span class="comment">;</span></span><br><span class="line">          &#125;,</span><br><span class="line">          //下面不用修改，略...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Ok,小案例就这样</p>
+</blockquote>
+<hr>
+<h4 id="三、Android代码交互"><a href="#三、Android代码交互" class="headerlink" title="三、Android代码交互"></a>三、Android代码交互</h4><h5 id="1-最简单的无参无返回函数调用：两对应"><a href="#1-最简单的无参无返回函数调用：两对应" class="headerlink" title="1.最简单的无参无返回函数调用：两对应"></a>1.最简单的无参无返回函数调用：<code>两对应</code></h5><blockquote>
+<p>不得不说：前六天不能弹吐司真是不好受，原生交互肯定先拿他开刀</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$16.png" alt=""></p>
+<hr>
+<h5 id="1-1：Android代码"><a href="#1-1：Android代码" class="headerlink" title="1.1：Android代码"></a>1.1：Android代码</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">FlutterActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHANNEL = <span class="string">"www.toly1994.com/test.名字随意起"</span>;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        GeneratedPluginRegistrant.registerWith(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(</span><br><span class="line">                <span class="keyword">new</span> MethodChannel.MethodCallHandler() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMethodCall</span><span class="params">(MethodCall methodCall, MethodChannel.Result result)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">if</span> (methodCall.method.equals(<span class="string">"showToast"</span>)) &#123;</span><br><span class="line">                            showToast(<span class="string">"Hello Flutter,I am in Android"</span>);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            result.notImplemented();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 显示吐司</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        Toast toast = Toast.makeText(<span class="keyword">this</span>, msg, Toast.LENGTH_SHORT);</span><br><span class="line">        toast.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/services.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> platform = <span class="function"><span class="keyword">const</span> <span class="title">MethodChannel</span><span class="params">(<span class="string">"www.toly1994.com/test.名字随意起"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> toastTest = Center(</span><br><span class="line">  child: RaisedButton(</span><br><span class="line">    onPressed: () &#123;</span><br><span class="line">      platform.invokeMethod(<span class="string">"showToast"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    child: <span class="keyword">new</span> Text(<span class="string">"点击弹吐司"</span>),</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$17.png" alt=""></p>
+<hr>
+<h5 id="2-Flutter中传参，调用Android含参方法-三对应"><a href="#2-Flutter中传参，调用Android含参方法-三对应" class="headerlink" title="2.Flutter中传参，调用Android含参方法:三对应"></a>2.Flutter中传参，调用Android含参方法:<code>三对应</code></h5><p><img src="http://photo.toly1994.com/flutter$seven_day$07$18.png" alt=""></p>
+<hr>
+<h6 id="2-1：Android代码"><a href="#2-1：Android代码" class="headerlink" title="2.1：Android代码"></a>2.1：Android代码</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">FlutterActivity</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHANNEL = <span class="string">"www.toly1994.com/test.名字随意起"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        GeneratedPluginRegistrant.registerWith(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(</span><br><span class="line">                <span class="keyword">new</span> MethodChannel.MethodCallHandler() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMethodCall</span><span class="params">(MethodCall methodCall, MethodChannel.Result result)</span> </span>&#123;</span><br><span class="line">                        <span class="keyword">if</span> (methodCall.method.equals(<span class="string">"showToast"</span>)) &#123;</span><br><span class="line">                            <span class="comment">//解析参数</span></span><br><span class="line">                            String msg = methodCall.argument(<span class="string">"msg"</span>);</span><br><span class="line">                            showToast(msg);</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            result.notImplemented();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 显示吐司</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 信息</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showToast</span><span class="params">(String msg)</span> </span>&#123;</span><br><span class="line">        Toast toast = Toast.makeText(<span class="keyword">this</span>, msg, Toast.LENGTH_SHORT);</span><br><span class="line">        toast.show();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="2-2-Flutter代码："><a href="#2-2-Flutter代码：" class="headerlink" title="2.2:Flutter代码："></a>2.2:Flutter代码：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/services.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> platform = <span class="function"><span class="keyword">const</span> <span class="title">MethodChannel</span><span class="params">(<span class="string">"www.toly1994.com/test.名字随意起"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> toastTest = Center(</span><br><span class="line">  child: RaisedButton(</span><br><span class="line">    onPressed: () &#123;</span><br><span class="line">      platform.invokeMethod(<span class="string">"showToast"</span>,&#123;<span class="string">"msg"</span>:<span class="string">"Flutter大爷我赏你一口吐司"</span>&#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    child: <span class="keyword">new</span> Text(<span class="string">"点击弹吐司"</span>),</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$19.png" alt=""></p>
+<hr>
+<h5 id="2-3：加返回值的方法调用："><a href="#2-3：加返回值的方法调用：" class="headerlink" title="2.3：加返回值的方法调用："></a>2.3：加返回值的方法调用：</h5><blockquote>
+<p>举什么例子，我想了一会，就来个MD5码吧</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$20.png" alt=""></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Activity添加判断分支</span></span><br><span class="line"><span class="keyword">if</span> (methodCall.<span class="keyword">method</span>.equals(<span class="string">"getMD5"</span>)) &#123;</span><br><span class="line">    String arg = methodCall.argument(<span class="string">"arg"</span>);</span><br><span class="line">    String md5 = get<span class="constructor">MD5(<span class="params">arg</span>)</span>;</span><br><span class="line">    result.success(md5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取一个字符串的Md5值</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * @param content 内容</span></span><br><span class="line"><span class="comment">     * @return Md5值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    public String get<span class="constructor">MD5(String <span class="params">content</span>)</span> &#123;</span><br><span class="line">        content = content + <span class="string">"芝麻开门"</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            MessageDigest digest = <span class="module-access"><span class="module"><span class="identifier">MessageDigest</span>.</span></span>get<span class="constructor">Instance(<span class="string">"MD5"</span>)</span>;</span><br><span class="line">            digest.update(content.get<span class="constructor">Bytes()</span>);</span><br><span class="line">            return get<span class="constructor">HashString(<span class="params">digest</span>)</span>;</span><br><span class="line">        &#125; catch (NoSuchAlgorithmException e) &#123;</span><br><span class="line">            e.print<span class="constructor">StackTrace()</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> static String get<span class="constructor">HashString(MessageDigest <span class="params">digest</span>)</span> &#123;</span><br><span class="line">        StringBuilder builder = <span class="keyword">new</span> <span class="constructor">StringBuilder()</span>;</span><br><span class="line">        for (byte b : digest.digest<span class="literal">()</span>) &#123;</span><br><span class="line">            builder.append(<span class="module-access"><span class="module"><span class="identifier">Integer</span>.</span></span><span class="keyword">to</span><span class="constructor">HexString((<span class="params">b</span> &gt;&gt; 4)</span> &amp; <span class="number">0xf</span>));</span><br><span class="line">            builder.append(<span class="module-access"><span class="module"><span class="identifier">Integer</span>.</span></span><span class="keyword">to</span><span class="constructor">HexString(<span class="params">b</span> &amp; 0xf)</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        return builder.<span class="keyword">to</span><span class="constructor">String()</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-2-Flutter代码：-1"><a href="#2-2-Flutter代码：-1" class="headerlink" title="2.2:Flutter代码："></a>2.2:Flutter代码：</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">'package:flutter/services.dart'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> platform = <span class="function"><span class="keyword">const</span> <span class="title">MethodChannel</span><span class="params">(<span class="string">"www.toly1994.com/test.名字随意起"</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> toastTest = Center(</span><br><span class="line">  child: RaisedButton(</span><br><span class="line">    onPressed: () &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">var</span> result= platform.invokeMethod(<span class="string">"getMD5"</span>,&#123;<span class="string">"arg"</span>:<span class="string">"https://www.jianshu.com/p/9bac0072d1a0"</span>&#125;);</span><br><span class="line">      result.then((str)&#123;</span><br><span class="line">        platform.invokeMethod(<span class="string">"showToast"</span>,&#123;<span class="string">"msg"</span>:str&#125;);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    child: <span class="keyword">new</span> Text(<span class="string">"点击弹吐司"</span>),</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>基本上也就这三种情况</p>
+</blockquote>
+<hr>
+<h4 id="彩蛋-–以前Mark的一个小点：Card的shape"><a href="#彩蛋-–以前Mark的一个小点：Card的shape" class="headerlink" title="[彩蛋]–以前Mark的一个小点：Card的shape"></a>[彩蛋]–以前Mark的一个小点：Card的shape</h4><blockquote>
+<p>有人说学习的时候一个问题会牵扯到很多其他的问题，问题一多就无从下手<br>我只说一个字：”栈”：来最后一波学习看源码的方法了,走起</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$21.png" alt=""></p>
+<hr>
+<h5 id="1-shape是什么-形状"><a href="#1-shape是什么-形状" class="headerlink" title="1.shape是什么:形状"></a>1.shape是什么:形状</h5><blockquote>
+<p>现在的问题栈</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$22.png" alt=""></p>
+<blockquote>
+<p>可见默认圆角是4的RoundedRectangleBorder</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[shape属性]----</span><br><span class="line"><span class="comment">/// The default shape is a [RoundedRectangleBorder] with a circular corner</span></span><br><span class="line"><span class="comment">/// radius of 4.0.</span></span><br><span class="line"><span class="keyword">final</span> ShapeBorder shape;</span><br><span class="line"></span><br><span class="line">----&gt;[RoundedRectangleBorder]----</span><br><span class="line"> <span class="keyword">const</span> RoundedRectangleBorder(&#123;</span><br><span class="line">    <span class="keyword">this</span>.side = BorderSide.none,</span><br><span class="line">    <span class="keyword">this</span>.borderRadius = BorderRadius.zero,</span><br><span class="line">    </span><br><span class="line"><span class="comment">//可见有两个属性：BorderSide和BorderRadius</span></span><br><span class="line"></span><br><span class="line">----&gt;[BorderSide]----</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">BorderSide</span> &#123;</span><br><span class="line">  <span class="comment">/// Creates the side of a border.</span></span><br><span class="line">  <span class="comment">///</span></span><br><span class="line">  <span class="comment">/// By default, the border is 1.0 logical pixels wide and solid black.</span></span><br><span class="line">  <span class="keyword">const</span> BorderSide(&#123;</span><br><span class="line">    <span class="keyword">this</span>.color = <span class="keyword">const</span> Color(<span class="number">0xFF000000</span>),</span><br><span class="line">    <span class="keyword">this</span>.width = <span class="number">1.0</span>,</span><br><span class="line">    <span class="keyword">this</span>.style = BorderStyle.solid,</span><br><span class="line"></span><br><span class="line">----&gt;[BorderRadius]----</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">BorderRadius</span> <span class="symbol">extends</span> <span class="symbol">BorderRadiusGeometry</span> &#123;</span><br><span class="line">  <span class="comment">/// Creates a border radius where all radii are [radius].</span></span><br><span class="line">  <span class="keyword">const</span> BorderRadius.all(Radius radius) : <span class="keyword">this</span>.only(</span><br><span class="line">    topLeft: radius,</span><br><span class="line">    topRight: radius,</span><br><span class="line">    bottomLeft: radius,</span><br><span class="line">    bottomRight: radius,</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// Creates a border radius where all radii are [Radius.circular(radius)].</span></span><br><span class="line">  BorderRadius.circular(<span class="built_in">double</span> radius) : <span class="keyword">this</span>.all(</span><br><span class="line">    Radius.circular(radius),</span><br><span class="line">  );</span><br><span class="line">  </span><br><span class="line">----&gt;[Radius]------</span><br><span class="line"><span class="keyword">class</span> <span class="symbol">Radius</span> &#123;</span><br><span class="line">  <span class="comment">/// Constructs a circular radius. [x] and [y] will have the same radius value.</span></span><br><span class="line">  <span class="keyword">const</span> Radius.circular(<span class="built_in">double</span> radius) : <span class="keyword">this</span>.elliptical(radius, radius);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// Constructs an elliptical radius with the given radii.</span></span><br><span class="line">  <span class="keyword">const</span> Radius.elliptical(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// The radius value on the horizontal axis.</span></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">double</span> x;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// The radius value on the vertical axis.</span></span><br><span class="line">  <span class="keyword">final</span> <span class="built_in">double</span> y;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一个shape牵扯出这么多类，有人可能就<code>栈溢出</code>了，还是使用默认的吧，等一下，且听我分析<br>当Radius入问题栈之后，看一下也就是两个值，就出栈了，BorderRadius跟着也出栈了<br>BorderSide三个字段，看一下，出栈了，现在栈顶是<code>RoundedRectangleBorder</code>你还不会吗?</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$23.png" alt=""></p>
+<blockquote>
+</blockquote>
+<h5 id="2-RoundedRectangleBorder改变圆角大小-边线"><a href="#2-RoundedRectangleBorder改变圆角大小-边线" class="headerlink" title="2. RoundedRectangleBorder改变圆角大小+边线"></a>2. RoundedRectangleBorder改变圆角大小+边线</h5><p><img src="http://photo.toly1994.com/flutter$seven_day$07$24.png" alt=""></p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var card_shape = Card(</span><br><span class="line">//    shape: CircleBorder(<span class="name">side</span>: BorderSide(<span class="name">width</span>: <span class="number">1</span>)),</span><br><span class="line">    shape: RoundedRectangleBorder(</span><br><span class="line">      side<span class="symbol">:BorderSide</span>(<span class="name">color</span>: Color(<span class="number">0</span>xffD516F5),width: <span class="number">5</span>) ,</span><br><span class="line">        borderRadius: BorderRadius.all(<span class="name">Radius</span>.circular(<span class="number">20</span>))),</span><br><span class="line">    clipBehavior: Clip.antiAlias,</span><br><span class="line">    child: Container(</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      color: Color(<span class="number">0</span>xffCDECF6),</span><br><span class="line">      child: Center(<span class="name">child</span><span class="symbol">:Text</span>(</span><br><span class="line">        <span class="string">"捷"</span>,</span><br><span class="line">        style: TextStyle(<span class="name">color</span>: Colors.black,fontSize: <span class="number">40</span>),</span><br><span class="line">      ) ,),</span><br><span class="line">    ))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>那弹栈过后问题跑哪里?<br>我想应该是<code>临时知识库</code>吧,你解决的问题中获取的知识，经验会累积<br>可能长久不用知识库里的知识会漏掉，但印象有的，下一次再入栈，解决起来会更快<br>在的知识库里扎根的知识，那当你遇到时，就不是问题，直接弹栈，这样想学习是不是也挺好玩的</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$25.png" alt=""></p>
+<blockquote>
+<p>大神级的Coder知识库丰富，问题都不是问题，也许偶尔入栈一两个，但栈很深(感觉挺浪费哈)<br>新手就是栈比较浅，问题多，所以容易<code>StackOver</code>,所以修炼你容忍问题的能力(栈深)很有必要<br>像我这样不深不浅的刚刚好，会碰到问题，也能一点点解决，一点一点踏上<code>封神之路</code><br>但所有的大神也都是从新手这样过来的，解决问题的能力也不是与生俱来，祝你慢慢弹栈，收获多多。</p>
+</blockquote>
+<hr>
+<h5 id="3-接下来看ShapeBorder在栈顶，我们去瞅瞅"><a href="#3-接下来看ShapeBorder在栈顶，我们去瞅瞅" class="headerlink" title="3.接下来看ShapeBorder在栈顶，我们去瞅瞅"></a>3.接下来看<code>ShapeBorder</code>在栈顶，我们去瞅瞅</h5><blockquote>
+<p>BorderSide现在已经化敌为友，CircleBorder岂不是秒出栈，并且俘获<code>CircleBorder</code>一枚<br>而且BorderSide强化+1，知识就是这样积累的，难道还有别的方法吗?除非记忆拷贝…</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$26.png" alt=""></p>
+<blockquote>
+<p>转一转当CD背景感觉挺不错</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$27.png" alt=""></p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var card_shape = Card(</span><br><span class="line">    shape: CircleBorder(<span class="name">side</span>: BorderSide(<span class="name">width</span>: <span class="number">15</span>,color: Color(<span class="number">0</span>xffF9DFA7))),</span><br><span class="line">    clipBehavior: Clip.antiAlias,</span><br><span class="line">    child: Container(</span><br><span class="line">      width: <span class="number">100</span>,</span><br><span class="line">      height: <span class="number">100</span>,</span><br><span class="line">      color: Color(<span class="number">0</span>xffCDECF6),</span><br><span class="line">      child: Center(<span class="name">child</span><span class="symbol">:Text</span>(</span><br><span class="line">        <span class="string">"捷"</span>,</span><br><span class="line">        style: TextStyle(<span class="name">color</span>: Colors.black,fontSize: <span class="number">40</span>),</span><br><span class="line">      ) ,),</span><br><span class="line">    ))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-前方高能，非战斗人员带好零食"><a href="#4-前方高能，非战斗人员带好零食" class="headerlink" title="4.前方高能，非战斗人员带好零食"></a>4.前方高能，非战斗人员带好零食</h5><blockquote>
+<p>其实觉得shape好玩，是在粗略看源码时,看到了canvas,才mark的<br>自定义ShapeBorder走起：画具在手，天下我有</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$07$28.png" alt=""></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">var card_shape = Card(</span><br><span class="line">    shape: StarBorder(),</span><br><span class="line"><span class="comment">//    shape: CircleBorder(side: BorderSide(width: 15,color: Color(0xffF9DFA7))),</span></span><br><span class="line"><span class="comment">//    shape: RoundedRectangleBorder(</span></span><br><span class="line"><span class="comment">//      side:BorderSide(color: Color(0xffD516F5),width: 5) ,</span></span><br><span class="line"><span class="comment">//        borderRadius: BorderRadius.all(Radius.circular(20))),</span></span><br><span class="line">    clipBehavior: Clip.hardEdge,</span><br><span class="line">    child: Container(</span><br><span class="line">      <span class="built_in">width</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="built_in">height</span>: <span class="number">100</span>,</span><br><span class="line">      color: Color(<span class="number">0xffCDECF6</span>),</span><br><span class="line">      child: Center(</span><br><span class="line">        child: Text(</span><br><span class="line">          <span class="string">"捷"</span>,</span><br><span class="line">          style: TextStyle(color: Colors.black, fontSize: <span class="number">40</span>),</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">    ));</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StarBorder</span> <span class="title">extends</span> <span class="title">ShapeBorder</span> &#123;</span></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="comment">// <span class="doctag">TODO:</span> implement dimensions</span></span><br><span class="line">  EdgeInsetsGeometry <span class="built_in">get</span> dimensions =&gt; null;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="function">Path <span class="title">getInnerPath</span><span class="params">(Rect <span class="built_in">rect</span>, &#123;TextDirection textDirection&#125;)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> implement getInnerPath</span></span><br><span class="line">    <span class="keyword">return</span> null;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="function">Path <span class="title">getOuterPath</span><span class="params">(Rect <span class="built_in">rect</span>, &#123;TextDirection textDirection&#125;)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">rect</span>.right);</span><br><span class="line">    <span class="keyword">return</span> regularPolygonPath(<span class="number">10</span>, <span class="number">50</span>,x: <span class="built_in">rect</span>.<span class="built_in">height</span>/<span class="number">2</span>,y: <span class="built_in">rect</span>.<span class="built_in">width</span>/<span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">paint</span><span class="params">(Canvas canvas, Rect <span class="built_in">rect</span>, &#123;TextDirection textDirection&#125;)</span> </span>&#123;</span><br><span class="line">    canvas.translate(<span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"><span class="comment">//    canvas.drawPath(nStarPath(5, 40, 20), new Paint());</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="function">ShapeBorder <span class="title">scale</span><span class="params">(<span class="keyword">double</span> t)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// <span class="doctag">TODO:</span> implement scale</span></span><br><span class="line">    <span class="keyword">return</span> null;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="路径封装-稍微优化了一下"><a href="#路径封装-稍微优化了一下" class="headerlink" title="路径封装(稍微优化了一下)"></a>路径封装(稍微优化了一下)</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * n角星路径</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param num 几角星</span></span><br><span class="line"><span class="comment"> * @param R   外接圆半径</span></span><br><span class="line"><span class="comment"> * @param r   内接圆半径</span></span><br><span class="line"><span class="comment"> * @return n角星路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path nStarPath(<span class="built_in">int</span> num, <span class="built_in">double</span> R, <span class="built_in">double</span> r, &#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125;) &#123;</span><br><span class="line">  Path path = new Path();</span><br><span class="line">  <span class="built_in">double</span> perDeg = <span class="number">360</span> / num; <span class="comment">//尖角的度数</span></span><br><span class="line">  <span class="built_in">double</span> degA = perDeg / <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">double</span> degB = <span class="number">360</span> / (num - <span class="number">1</span>) / <span class="number">2</span> - degA / <span class="number">2</span> + degA;</span><br><span class="line"></span><br><span class="line">  path.moveTo(cos(_rad(degA)) * R+x, (-sin(_rad(degA)) * R+y));</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">    path.lineTo(</span><br><span class="line">        cos(_rad(degA + perDeg * i)) * R+x, -sin(_rad(degA + perDeg * i)) * R+y);</span><br><span class="line">    path.lineTo(</span><br><span class="line">        cos(_rad(degB + perDeg * i)) * r+x, -sin(_rad(degB + perDeg * i)) * r+y);</span><br><span class="line">  &#125;</span><br><span class="line">  path.close();</span><br><span class="line">  <span class="keyword">return</span> path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 画正n角星的路径:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param num 角数</span></span><br><span class="line"><span class="comment"> * @param R   外接圆半径</span></span><br><span class="line"><span class="comment"> * @return 画正n角星的路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path regularStarPath(<span class="built_in">int</span> num, <span class="built_in">double</span> R,&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125;) &#123;</span><br><span class="line">  <span class="built_in">double</span> degA, degB;</span><br><span class="line">  <span class="keyword">if</span> (num % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">//奇数和偶数角区别对待</span></span><br><span class="line">    degA = <span class="number">360</span> / num / <span class="number">2</span> / <span class="number">2</span>;</span><br><span class="line">    degB = <span class="number">180</span> - degA - <span class="number">360</span> / num / <span class="number">2</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    degA = <span class="number">360</span> / num / <span class="number">2</span>;</span><br><span class="line">    degB = <span class="number">180</span> - degA - <span class="number">360</span> / num / <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">double</span> r = R * sin(_rad(degA)) / sin(_rad(degB));</span><br><span class="line">  <span class="keyword">return</span> nStarPath(num, R, r,x: x,y:y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 画正n边形的路径</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param num 边数</span></span><br><span class="line"><span class="comment"> * @param R   外接圆半径</span></span><br><span class="line"><span class="comment"> * @return 画正n边形的路径</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">Path regularPolygonPath(<span class="built_in">int</span> num, <span class="built_in">double</span> R,&#123;x = <span class="number">0</span>, y = <span class="number">0</span>&#125;) &#123;</span><br><span class="line">  <span class="built_in">double</span> r = R * cos(_rad(<span class="number">360</span> / num / <span class="number">2</span>)); <span class="comment">//!!一点解决</span></span><br><span class="line">  <span class="keyword">return</span> nStarPath(num, R, r,x: x,y:y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 角度制化为弧度制</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param deg 角度</span></span><br><span class="line"><span class="comment"> * @return 弧度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">double</span> _rad(<span class="built_in">double</span> deg) &#123;</span><br><span class="line">  <span class="keyword">return</span> deg * pi / <span class="number">180</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>师傅领进门，修行在个人</code>，我已经把功力传给你了,能否修成正果，就看各自造化。<br><code>事了拂衣去，深藏功与名</code>,Ok,Flutter七日游，完<code>捷</code>散花，自认为没有烂尾，耶!  </p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/06.html" rel="next" title="Flutter第6天--异步-IO+网络访问+json">
+                <i class="fa fa-chevron-left"></i> Flutter第6天--异步-IO+网络访问+json
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/08.html" rel="prev" title="Flutter七日总结">
+                Flutter七日总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter七日游第七天：2018-12-22-天气：雨-阴"><span class="nav-number">1.</span> <span class="nav-text">Flutter七日游第七天：2018-12-22 天气：雨-阴</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零、前言"><span class="nav-number">2.</span> <span class="nav-text">零、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#留图镇楼：分类效果和查询效果"><span class="nav-number">2.1.</span> <span class="nav-text">留图镇楼：分类效果和查询效果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、字体图标的相关问题"><span class="nav-number">3.</span> <span class="nav-text">一、字体图标的相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-字体图标："><span class="nav-number">3.1.</span> <span class="nav-text">1.字体图标：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-进入源码看看："><span class="nav-number">3.2.</span> <span class="nav-text">2.进入源码看看：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-怎么才能自定义字体图标"><span class="nav-number">3.3.</span> <span class="nav-text">3.怎么才能自定义字体图标</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-根据Flutter内置的类，我写了一个自动代码生成器"><span class="nav-number">3.4.</span> <span class="nav-text">4.根据Flutter内置的类，我写了一个自动代码生成器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pubspec-yaml的flutter标签下也会自动生成配置："><span class="nav-number">3.5.</span> <span class="nav-text">pubspec.yaml的flutter标签下也会自动生成配置：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、综合小案例"><span class="nav-number">4.</span> <span class="nav-text">二、综合小案例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-初始代码：主页面：android-stack-dart"><span class="nav-number">4.1.</span> <span class="nav-text">1.初始代码：主页面：android_stack.dart</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-拼接底部条"><span class="nav-number">4.2.</span> <span class="nav-text">2.拼接底部条</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1-常量的准备：-为了方便使用或修改"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.1:常量的准备：(为了方便使用或修改)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-底部栏："><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2:底部栏：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-3：底部栏点击监听：-onTapBNB"><span class="nav-number">4.2.3.</span> <span class="nav-text">2.3：底部栏点击监听：_onTapBNB</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-页面条目："><span class="nav-number">4.3.</span> <span class="nav-text">3:页面条目：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1：左侧滑栏-left-draw-dart"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.1：左侧滑栏:left_draw.dart</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2：列表静态填充-home-list-dart"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.2：列表静态填充:home_list.dart</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-动态数据获取："><span class="nav-number">4.4.</span> <span class="nav-text">4.动态数据获取：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-用一个数据来进行填充测试："><span class="nav-number">4.5.</span> <span class="nav-text">5.用一个数据来进行填充测试：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-底部导航栏的切换：-下面两个图一样的，为了撑场面…"><span class="nav-number">4.6.</span> <span class="nav-text">6.底部导航栏的切换：(下面两个图一样的，为了撑场面…)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-底部栏和搜索功能"><span class="nav-number">4.7.</span> <span class="nav-text">7.底部栏和搜索功能</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、Android代码交互"><span class="nav-number">5.</span> <span class="nav-text">三、Android代码交互</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-最简单的无参无返回函数调用：两对应"><span class="nav-number">5.1.</span> <span class="nav-text">1.最简单的无参无返回函数调用：两对应</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-1：Android代码"><span class="nav-number">5.2.</span> <span class="nav-text">1.1：Android代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Flutter中传参，调用Android含参方法-三对应"><span class="nav-number">5.3.</span> <span class="nav-text">2.Flutter中传参，调用Android含参方法:三对应</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1：Android代码"><span class="nav-number">5.3.1.</span> <span class="nav-text">2.1：Android代码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-Flutter代码："><span class="nav-number">5.3.2.</span> <span class="nav-text">2.2:Flutter代码：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-3：加返回值的方法调用："><span class="nav-number">5.4.</span> <span class="nav-text">2.3：加返回值的方法调用：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2-Flutter代码：-1"><span class="nav-number">5.4.1.</span> <span class="nav-text">2.2:Flutter代码：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#彩蛋-–以前Mark的一个小点：Card的shape"><span class="nav-number">6.</span> <span class="nav-text">[彩蛋]–以前Mark的一个小点：Card的shape</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-shape是什么-形状"><span class="nav-number">6.1.</span> <span class="nav-text">1.shape是什么:形状</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-RoundedRectangleBorder改变圆角大小-边线"><span class="nav-number">6.2.</span> <span class="nav-text">2. RoundedRectangleBorder改变圆角大小+边线</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-接下来看ShapeBorder在栈顶，我们去瞅瞅"><span class="nav-number">6.3.</span> <span class="nav-text">3.接下来看ShapeBorder在栈顶，我们去瞅瞅</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-前方高能，非战斗人员带好零食"><span class="nav-number">6.4.</span> <span class="nav-text">4.前方高能，非战斗人员带好零食</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路径封装-稍微优化了一下"><span class="nav-number">6.5.</span> <span class="nav-text">路径封装(稍微优化了一下)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共34.7k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
