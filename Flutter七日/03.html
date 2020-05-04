@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="flutter教程," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Flutter七日游第三天：2018-12-18 天气：晴朗零、前言 浪了两天，Dart语法基本上熟悉了，绘图也不怕了，现在进入正轨，继续浪~今天来学些枯燥的东西了–基础控件，戒骄戒躁，基础还是要好好掌握。本文目的在于尽可能看清控件的全局(细枝末节点到为止),详细用法等布局实战再细说吧本文能用图的，尽量不用字(看完你可能会觉得我脑洞有点大)，废话不多说，进入今天的内容       一、Widget">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter第3天--基础控件(上)">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/03.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="Flutter七日游第三天：2018-12-18 天气：晴朗零、前言 浪了两天，Dart语法基本上熟悉了，绘图也不怕了，现在进入正轨，继续浪~今天来学些枯燥的东西了–基础控件，戒骄戒躁，基础还是要好好掌握。本文目的在于尽可能看清控件的全局(细枝末节点到为止),详细用法等布局实战再细说吧本文能用图的，尽量不用字(看完你可能会觉得我脑洞有点大)，废话不多说，进入今天的内容       一、Widget">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$0.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$1.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$2.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$3.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$4.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$5.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$6.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$7.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$8.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$9.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$10.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$11.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$12.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$13.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$14.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$15.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$16.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$17.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$18.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$19.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$20.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$21.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$22.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$23.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$24.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$25.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$26.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$27.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$28.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$29.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$30.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$31.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$32.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$33.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$34.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$35.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$36.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$37.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$38.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$39.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$40.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$41.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$42.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$43.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$44.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$45.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$46.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$47.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$48.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$49.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$50.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$51.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$52.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$53.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$54.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$55.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$56.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$57.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$58.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$59.png">
+<meta property="og:image" content="http://photo.toly1994.com/flutter$seven_day$03$60.png">
+<meta property="article:published_time" content="2018-12-18T13:46:01.000Z">
+<meta property="article:modified_time" content="2020-05-04T03:26:52.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://photo.toly1994.com/flutter$seven_day$03$0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/03.html"/>
+
+
+
+
+
+  <title>Flutter第3天--基础控件(上) | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/03.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter第3天--基础控件(上)</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T21:46:01+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E4%B8%83%E6%97%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter七日</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Flutter七日游第三天：2018-12-18-天气：晴朗"><a href="#Flutter七日游第三天：2018-12-18-天气：晴朗" class="headerlink" title="Flutter七日游第三天：2018-12-18 天气：晴朗"></a><code>Flutter七日游第三天：2018-12-18 天气：晴朗</code></h4><h4 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h4><blockquote>
+<p>浪了两天，Dart语法基本上熟悉了，绘图也不怕了，现在进入正轨，继续浪~<br>今天来学些枯燥的东西了–基础控件，戒骄戒躁，基础还是要好好掌握。<br>本文目的在于尽可能看清控件的全局(细枝末节点到为止),详细用法等布局实战再细说吧<br>本文能用图的，尽量不用字(看完你可能会觉得我脑洞有点大)，废话不多说，进入今天的内容    </p>
+</blockquote>
+<hr>
+<h5 id="一、Widget简入"><a href="#一、Widget简入" class="headerlink" title="一、Widget简入"></a>一、Widget简入</h5><blockquote>
+<p>Widget:[小器具，装饰品，窗口小部件],以后简称：<code>控件</code><br>下面看一下Widget树：(只延伸到下代)</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$0.png" alt=""></p>
+<a id="more"></a>
+
+<hr>
+<h5 id="1-StatelessWidget和StatefulWidget"><a href="#1-StatelessWidget和StatefulWidget" class="headerlink" title="1.StatelessWidget和StatefulWidget"></a>1.<code>StatelessWidget</code>和<code>StatefulWidget</code></h5><blockquote>
+<p>目前出现在我眼前的只这有两个，所以先只看这两个:</p>
+</blockquote>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">StatelessWidget：源码第一句话：</span><br><span class="line">----&gt;A widget that does not require mutable <span class="keyword">state</span>.</span><br><span class="line">----&gt;一个不需要变动状态的控件</span><br><span class="line"></span><br><span class="line">StatefulWidget ：源码第一句话：</span><br><span class="line">----&gt;A widget that has mutable <span class="keyword">state</span>.</span><br><span class="line">----&gt;一个可变动状态的控件</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-StatelessWidget一共就有三个方法"><a href="#2-StatelessWidget一共就有三个方法" class="headerlink" title="2.StatelessWidget一共就有三个方法:"></a>2.StatelessWidget一共就有三个方法:</h5><p><img src="http://photo.toly1994.com/flutter$seven_day$03$1.png" alt=""></p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">--------&gt;[构造方法，需要一个key,而且老爸已经给他了]----</span><br><span class="line"><span class="comment">/// Initializes [key] for subclasses.</span></span><br><span class="line">const <span class="type">StatelessWidget</span>(&#123; <span class="type">Key</span> key &#125;) : <span class="keyword">super</span>(key: key);</span><br><span class="line"></span><br><span class="line">--------&gt;[createElement方法复写<span class="type">Widget</span>方法，使用<span class="type">StatelessElement</span>--tag1--自给自足]</span><br><span class="line"><span class="comment">/// It is uncommon for subclasses to override this method.</span></span><br><span class="line"><span class="comment">//子类重写此方法是不常见的。----所以就不要没事找事了</span></span><br><span class="line"><span class="type">StatelessElement</span> createElement() =&gt; <span class="type">StatelessElement</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">--tag1--&gt;[<span class="type">StatelessElement</span>,接收一个<span class="type">StatelessWidget</span>]</span><br><span class="line"><span class="comment">/// An [Element] that uses a [StatelessWidget] as its configuration.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatelessElement</span> <span class="keyword">extends</span> <span class="title">ComponentElement</span> </span>&#123;</span><br><span class="line"> <span class="comment">/// Creates an element that uses the given widget as its configuration.</span></span><br><span class="line">  <span class="type">StatelessElement</span>(<span class="type">StatelessWidget</span> widget) : <span class="keyword">super</span>(widget);</span><br><span class="line">  </span><br><span class="line">--------&gt;[使用现在要关注的只有：build方法--]</span><br><span class="line"><span class="comment">/// Describes the part of the user interface represented by this widget.  </span></span><br><span class="line"><span class="comment">//描述此控件呈现在用户界面上的部分</span></span><br><span class="line">  <span class="meta">@protected</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context);<span class="comment">//空实现</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-初始项目看StatelessWidget"><a href="#3-初始项目看StatelessWidget" class="headerlink" title="3.初始项目看StatelessWidget:"></a>3.初始项目看<code>StatelessWidget</code>:</h5><blockquote>
+<p><code>StatelessWidget</code>映入眼帘，可见该类内部一定有一个build方法返回一个Widget</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApp</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">MaterialApp</span>(</span><br><span class="line">      title: <span class="symbol">'Flutter</span> <span class="type">Demo</span>',</span><br><span class="line">      theme: <span class="type">ThemeData</span>(</span><br><span class="line">        primarySwatch: <span class="type">Colors</span>.lightBlue,</span><br><span class="line">      ),</span><br><span class="line">      home:<span class="type">MyHomePage</span>(title: <span class="symbol">'Flutter</span> <span class="type">Demo</span> <span class="type">Home</span> <span class="type">Page</span>'),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//不难看出MaterialApp是一个Widget，而且至少有title，theme，home三个属性</span></span><br><span class="line">而且home传入的是一个<span class="type">Widget</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="4-恭喜达成成就：Widget源码偷窥者-成就奖励：三张卡片："><a href="#4-恭喜达成成就：Widget源码偷窥者-成就奖励：三张卡片：" class="headerlink" title="4.恭喜达成成就：Widget源码偷窥者, 成就奖励：三张卡片："></a>4.恭喜达成成就：<code>Widget源码偷窥者</code>, 成就奖励：三张卡片：</h5><blockquote>
+<p>卡片初始属性：见白框(PS:<code>属性会随着你的阅历变多哦</code>)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$2.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$3.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$4.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="二、Flutter卡牌游戏Start"><a href="#二、Flutter卡牌游戏Start" class="headerlink" title="二、Flutter卡牌游戏Start"></a>二、Flutter卡牌游戏Start</h4><blockquote>
+<p>接下来会列出一长串属性，并挑选些简单的属性测试一下<br>如果你觉得及其无聊，列属性的地方可以跳过,基本上每三个做一个小测试</p>
+</blockquote>
+<h5 id="1：MaterialApp-材料App"><a href="#1：MaterialApp-材料App" class="headerlink" title="1：MaterialApp--材料App"></a>1：<code>MaterialApp--材料App</code></h5><blockquote>
+<p><code>An application that uses material design.</code>源码如是说:<code>一个使用材料设计的App</code><br>继承自<code>StatefulWidget</code>，字段蛮多的,先列一下，看看现在用到的，其他的用到再说吧。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MaterialApp</span> <span class="title">extends</span> <span class="title">StatefulWidget</span> </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.navigatorKey,</span><br><span class="line">    <span class="keyword">this</span>.home,<span class="comment">//---&gt;tag1&lt;---</span></span><br><span class="line">    <span class="keyword">this</span>.routes = <span class="keyword">const</span> &lt;String, WidgetBuilder&gt;&#123;&#125;,</span><br><span class="line">    <span class="keyword">this</span>.initialRoute,</span><br><span class="line">    <span class="keyword">this</span>.onGenerateRoute,</span><br><span class="line">    <span class="keyword">this</span>.onUnknownRoute,</span><br><span class="line">    <span class="keyword">this</span>.navigatorObservers = <span class="keyword">const</span> &lt;NavigatorObserver&gt;[],</span><br><span class="line">    <span class="keyword">this</span>.builder,</span><br><span class="line">    <span class="keyword">this</span>.title = <span class="string">''</span>,<span class="comment">//---&gt;tag2&lt;---</span></span><br><span class="line">    <span class="keyword">this</span>.onGenerateTitle,</span><br><span class="line">    <span class="keyword">this</span>.color,</span><br><span class="line">    <span class="keyword">this</span>.theme,<span class="comment">//---&gt;tag3&lt;---</span></span><br><span class="line">    <span class="keyword">this</span>.locale,</span><br><span class="line">    <span class="keyword">this</span>.localizationsDelegates,</span><br><span class="line">    <span class="keyword">this</span>.localeListResolutionCallback,</span><br><span class="line">    <span class="keyword">this</span>.localeResolutionCallback,</span><br><span class="line">    <span class="keyword">this</span>.supportedLocales = <span class="keyword">const</span> &lt;Locale&gt;[Locale(<span class="string">'en'</span>, <span class="string">'US'</span>)],</span><br><span class="line">    <span class="keyword">this</span>.debugShowMaterialGrid = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">this</span>.showPerformanceOverlay = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">this</span>.checkerboardRasterCacheImages = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">this</span>.checkerboardOffscreenLayers = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">this</span>.showSemanticsDebugger = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">this</span>.debugShowCheckedModeBanner = <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">//---&gt;tag1&lt;---[title是个字符串]----</span></span><br><span class="line"><span class="comment">/// This value is passed unmodified to [WidgetsApp.title].</span></span><br><span class="line"><span class="keyword">final</span> String title;</span><br><span class="line"></span><br><span class="line"><span class="comment">//---&gt;tag2&lt;---[theme是个ThemeData对象:保存材料设计主题的颜色和版式值]----</span></span><br><span class="line"><span class="comment">/// The colors to use for the application's widgets.</span></span><br><span class="line"><span class="keyword">final</span> ThemeData theme;</span><br><span class="line"></span><br><span class="line"><span class="comment">//---&gt;tag3&lt;---[home是个Widget对象]----</span></span><br><span class="line"><span class="comment">/// &#123;@macro flutter.widgets.widgetsApp.home&#125;</span></span><br><span class="line"><span class="keyword">final</span> Widget home;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-Scaffold-脚手架"><a href="#2-Scaffold-脚手架" class="headerlink" title="2.Scaffold--脚手架"></a>2.<code>Scaffold--脚手架</code></h5><blockquote>
+<p>什么是脚手架，大概就是这个感觉吧，也就是辅助脚手的工具，方便施工</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$5.png" alt=""></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">PreferredSizeWidget             <span class="keyword">this</span>.appBar,</span><br><span class="line">Widget                          <span class="keyword">this</span>.body,</span><br><span class="line">Widget                          <span class="keyword">this</span>.floatingActionButton,</span><br><span class="line">FloatingActionButtonLocation    <span class="keyword">this</span>.floatingActionButtonLocation,</span><br><span class="line">FloatingActionButtonAnimator    <span class="keyword">this</span>.floatingActionButtonAnimator,</span><br><span class="line">List&lt;Widget&gt;                    <span class="keyword">this</span>.persistentFooterButtons,</span><br><span class="line">Widget                          <span class="keyword">this</span>.drawer,</span><br><span class="line">Widget                          <span class="keyword">this</span>.endDrawer,</span><br><span class="line">Widget                          <span class="keyword">this</span>.bottomNavigationBar,</span><br><span class="line">Widget                          <span class="keyword">this</span>.bottomSheet,</span><br><span class="line">Color                           <span class="keyword">this</span>.backgroundColor,</span><br><span class="line">bool                            <span class="keyword">this</span>.resizeToAvoidBottomPadding = <span class="literal">true</span>,</span><br><span class="line">bool                            <span class="keyword">this</span>.primary = <span class="literal">true</span>,</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3：AppBar-App的Bar"><a href="#3：AppBar-App的Bar" class="headerlink" title="3：AppBar--App的Bar"></a>3：<code>AppBar--App的Bar</code></h5><blockquote>
+<p>就像安卓的ToolBar一样的控件</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Widget                  <span class="keyword">this</span>.leading,</span><br><span class="line">bool                    <span class="keyword">this</span>.automaticallyImplyLeading = <span class="literal">true</span>,</span><br><span class="line">Widget                  <span class="keyword">this</span>.title,</span><br><span class="line">List&lt;Widget&gt;            <span class="keyword">this</span>.actions,</span><br><span class="line">Widget                  <span class="keyword">this</span>.flexibleSpace,</span><br><span class="line">PreferredSizeWidget     <span class="keyword">this</span>.bottom,</span><br><span class="line">double                  <span class="keyword">this</span>.elevation = <span class="number">4.0</span>,</span><br><span class="line">Color                   <span class="keyword">this</span>.backgroundColor,</span><br><span class="line">Brightness              <span class="keyword">this</span>.brightness,</span><br><span class="line">IconThemeData           <span class="keyword">this</span>.iconTheme,</span><br><span class="line">TextTheme               <span class="keyword">this</span>.textTheme,</span><br><span class="line">bool                    <span class="keyword">this</span>.primary = <span class="literal">true</span>,</span><br><span class="line">bool                    <span class="keyword">this</span>.centerTitle,</span><br><span class="line">double                  <span class="keyword">this</span>.titleSpacing = NavigationToolbar.kMiddleSpacing,</span><br><span class="line">double                  <span class="keyword">this</span>.toolbarOpacity = <span class="number">1.0</span>,</span><br><span class="line">double                  <span class="keyword">this</span>.bottomOpacity = <span class="number">1.0</span>,</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="新手任务1：能力小测试："><a href="#新手任务1：能力小测试：" class="headerlink" title="新手任务1：能力小测试："></a>新手任务1：<code>能力小测试</code>：</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$6.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">MaterialApp</span>(</span><br><span class="line">        <span class="attribute">title</span>: <span class="string">'Flutter Demo'</span>,</span><br><span class="line">        <span class="attribute">theme</span>: ThemeData(</span><br><span class="line">          <span class="attribute">primarySwatch</span>: Colors.lightBlue,</span><br><span class="line">        ),</span><br><span class="line">        <span class="attribute">home</span>: Scaffold(</span><br><span class="line">            <span class="attribute">appBar</span>: AppBar(</span><br><span class="line">                <span class="attribute">title</span>: Text(<span class="string">"张风捷特烈"</span>),<span class="comment">//标题</span></span><br><span class="line">                <span class="attribute">backgroundColor</span>: Color(<span class="number">0</span>xffcbf231), <span class="comment">//背景色</span></span><br><span class="line">                <span class="attribute">elevation</span>: <span class="number">12</span>,<span class="comment">//阴影</span></span><br><span class="line">                <span class="attribute">centerTitle</span>: true,</span><br><span class="line">                <span class="attribute">toolbarOpacity</span>: .<span class="number">4</span>)<span class="comment">//透明度</span></span><br><span class="line">        ));</span><br></pre></td></tr></table></figure>
+
+<h6 id="新手任务完成，奖励卡片：欢迎继续冒险"><a href="#新手任务完成，奖励卡片：欢迎继续冒险" class="headerlink" title="新手任务完成，奖励卡片：欢迎继续冒险"></a>新手任务完成，奖励卡片：<code>欢迎继续冒险</code></h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$7.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$8.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$9.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h5 id="4：Text-文字"><a href="#4：Text-文字" class="headerlink" title="4：Text--文字"></a>4：<code>Text--文字</code></h5><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> Text(<span class="keyword">this</span>.<span class="keyword">data</span>, &#123;</span><br><span class="line">TextStyle           <span class="keyword">this</span>.style,</span><br><span class="line">TextAlign           <span class="keyword">this</span>.textAlign,</span><br><span class="line">TextDirection       <span class="keyword">this</span>.textDirection,</span><br><span class="line">Locale              <span class="keyword">this</span>.locale,</span><br><span class="line">bool                <span class="keyword">this</span>.softWrap,</span><br><span class="line">TextOverflow        <span class="keyword">this</span>.overflow,</span><br><span class="line">double              <span class="keyword">this</span>.textScaleFactor,</span><br><span class="line">int                 <span class="keyword">this</span>.maxLines,</span><br><span class="line">String              <span class="keyword">this</span>.semanticsLabel,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// Creates a text widget with a [TextSpan].</span></span><br><span class="line">  <span class="keyword">const</span> Text.rich(<span class="keyword">this</span>.textSpan, &#123;</span><br><span class="line">        <span class="comment">//同上</span></span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//----&gt;[TextStyle]----------------</span></span><br><span class="line">bool                <span class="keyword">this</span>.inherit = <span class="literal">true</span>,</span><br><span class="line">Color               <span class="keyword">this</span>.color,</span><br><span class="line">double              <span class="keyword">this</span>.fontSize,</span><br><span class="line">FontWeight          <span class="keyword">this</span>.fontWeight,</span><br><span class="line">FontStyle           <span class="keyword">this</span>.fontStyle,</span><br><span class="line">double              <span class="keyword">this</span>.letterSpacing,</span><br><span class="line">double              <span class="keyword">this</span>.wordSpacing,</span><br><span class="line">TextBaseline        <span class="keyword">this</span>.textBaseline,</span><br><span class="line">double              <span class="keyword">this</span>.height,</span><br><span class="line">Locale              <span class="keyword">this</span>.locale,</span><br><span class="line">Paint               <span class="keyword">this</span>.foreground,</span><br><span class="line">Paint               <span class="keyword">this</span>.background,</span><br><span class="line">List&lt;ui.Shadow&gt;     <span class="keyword">this</span>.shadows,</span><br><span class="line">TextDecoration      <span class="keyword">this</span>.decoration,</span><br><span class="line">Color               <span class="keyword">this</span>.decorationColor,</span><br><span class="line">TextDecorationStyle <span class="keyword">this</span>.decorationStyle,</span><br><span class="line">String              <span class="keyword">this</span>.debugLabel,</span><br><span class="line">String              String fontFamily,</span><br><span class="line"></span><br><span class="line"><span class="comment">//----&gt;[TextAlign]----------------</span></span><br><span class="line"><span class="keyword">enum</span> TextAlign &#123;</span><br><span class="line">  left,right,center,justify,start,end,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//----&gt;[TextOverflow]----------------</span></span><br><span class="line"><span class="keyword">enum</span> TextOverflow &#123;</span><br><span class="line">  clip,fade,ellipsis,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="5-FloatingActionButton-浮动动作按钮"><a href="#5-FloatingActionButton-浮动动作按钮" class="headerlink" title="5.FloatingActionButton--浮动动作按钮"></a>5.<code>FloatingActionButton--浮动动作按钮</code></h5><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Widget                  <span class="keyword">this</span>.child,</span><br><span class="line">String                  <span class="keyword">this</span>.tooltip,</span><br><span class="line">Color                   <span class="keyword">this</span>.foregroundColor,</span><br><span class="line">Color                   <span class="keyword">this</span>.backgroundColor,</span><br><span class="line">Object                  <span class="keyword">this</span>.heroTag = <span class="keyword">const</span> _DefaultHeroTag(),</span><br><span class="line">double                  <span class="keyword">this</span>.elevation = <span class="number">6.0</span>,</span><br><span class="line">double                  <span class="keyword">this</span>.highlightElevation = <span class="number">12.0</span>,</span><br><span class="line">VoidCallback            <span class="meta">@required</span> <span class="keyword">this</span>.onPressed,</span><br><span class="line">bool                    <span class="keyword">this</span>.mini = <span class="literal">false</span>,</span><br><span class="line">ShapeBorder             <span class="keyword">this</span>.shape = <span class="keyword">const</span> CircleBorder(),</span><br><span class="line">Clip                    <span class="keyword">this</span>.clipBehavior = Clip.none,</span><br><span class="line">MaterialTapTargetSize   <span class="keyword">this</span>.materialTapTargetSize,</span><br><span class="line">bool                    <span class="keyword">this</span>.isExtended = <span class="literal">false</span>,</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-Icon-图标"><a href="#6-Icon-图标" class="headerlink" title="6.Icon--图标"></a>6.<code>Icon--图标</code></h5><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">double          <span class="keyword">this</span>.size,</span><br><span class="line">Color           <span class="keyword">this</span>.color,</span><br><span class="line">String          <span class="keyword">this</span>.semanticLabel,------This label does not show <span class="keyword">in</span> the UI.</span><br><span class="line">TextDirection   <span class="keyword">this</span>.textDirection,</span><br></pre></td></tr></table></figure>
+
+<h6 id="新手任务2："><a href="#新手任务2：" class="headerlink" title="新手任务2："></a>新手任务2：</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$10.png" alt=""></p>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$11.png" alt=""></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">body</span>: Text(</span><br><span class="line">            <span class="string">"一箫一剑平生意，负尽狂名十五年"</span>,</span><br><span class="line">            <span class="attribute">maxLines</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attribute">overflow</span>: TextOverflow.fade,</span><br><span class="line">            <span class="attribute">style</span>: TextStyle(</span><br><span class="line">                <span class="attribute">color</span>: Colors.blue,</span><br><span class="line">                <span class="attribute">fontSize</span>: <span class="number">20</span>,</span><br><span class="line">                <span class="attribute">letterSpacing</span>: <span class="number">10</span>,</span><br><span class="line">                <span class="attribute">fontWeight</span>: FontWeight.bold,</span><br><span class="line">                <span class="attribute">background</span>: Paint()..color = Colors.amberAccent),</span><br><span class="line">          ),</span><br><span class="line">          <span class="attribute">floatingActionButton</span>: FloatingActionButton(</span><br><span class="line">            <span class="attribute">backgroundColor</span>: Colors.deepOrangeAccent,</span><br><span class="line">            <span class="attribute">elevation</span>: <span class="number">12</span>,</span><br><span class="line">            <span class="attribute">highlightElevation</span>: <span class="number">24</span>,</span><br><span class="line">            <span class="attribute">onPressed</span>: () &#123;&#125;,</span><br><span class="line">            <span class="attribute">tooltip</span>: <span class="string">'Increment'</span>,</span><br><span class="line">            <span class="attribute">child</span>: Icon(Icons.add,<span class="attribute">size</span>: <span class="number">40</span>,<span class="attribute">color</span>: Colors.white,<span class="attribute">semanticLabel</span>:<span class="string">"toly"</span>),</span><br><span class="line">          ),</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="三、基础控件点将台-1"><a href="#三、基础控件点将台-1" class="headerlink" title="三、基础控件点将台(1)"></a>三、基础控件点将台(1)</h4><blockquote>
+<p>以上6张卡片是初始项目中的控件,通过新手任务基本上更加熟悉了一些<br>Flutter还有哪些控件，建议看一下Flutter中文网，罗列的挺好的，下面一起学习一下<br>(PS:看了一下，真是多如鸡毛…吓得我不知从何入手)</p>
+</blockquote>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">所谓`打蛇打七寸,擒贼先擒王`,小兵之后再收拾  </span><br><span class="line">通过Android和html+css，我领悟到，对于界面设计者而言，布局是至关重要的,所以先看容器</span><br></pre></td></tr></table></figure>
+
+<h5 id="1-Layout布局容器之Row-Column-行-列"><a href="#1-Layout布局容器之Row-Column-行-列" class="headerlink" title="1.Layout布局容器之Row+Column--行+列"></a>1.<code>Layout</code>布局容器之<code>Row+Column--行+列</code></h5><p><img src="http://photo.toly1994.com/flutter$seven_day$03$12.png" alt=""></p>
+<hr>
+<h6 id="1-1-Row的基础认知"><a href="#1-1-Row的基础认知" class="headerlink" title="1.1:Row的基础认知"></a>1.1:Row的基础认知</h6><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">----&gt;[源码注释第一句]-----------------------------</span></span><br><span class="line"><span class="attr">A</span> <span class="string">widget that displays its children in a horizontal array.</span></span><br><span class="line"><span class="attr">一个以水平数组的形式显示其子部件的Widget。</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">Row(&#123;</span></span><br><span class="line">    <span class="attr">Key</span> <span class="string">key,</span></span><br><span class="line">    <span class="attr">MainAxisAlignment</span> <span class="string">mainAxisAlignment = MainAxisAlignment.start,</span></span><br><span class="line">    <span class="attr">MainAxisSize</span> <span class="string">mainAxisSize = MainAxisSize.max,</span></span><br><span class="line">    <span class="attr">CrossAxisAlignment</span> <span class="string">crossAxisAlignment = CrossAxisAlignment.center,</span></span><br><span class="line">    <span class="attr">TextDirection</span> <span class="string">textDirection,</span></span><br><span class="line">    <span class="attr">VerticalDirection</span> <span class="string">verticalDirection = VerticalDirection.down,</span></span><br><span class="line">    <span class="attr">TextBaseline</span> <span class="string">textBaseline,</span></span><br><span class="line">    <span class="meta">List&lt;Widget&gt;</span> <span class="string">children = const &lt;Widget&gt;[],</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="1-2：基本使用"><a href="#1-2：基本使用" class="headerlink" title="1.2：基本使用"></a>1.2：基本使用</h6><blockquote>
+<p>children看来是一个Widget数组，想想也不难理解，毕竟做大哥的，当然要有不少小弟啦<br><code>注：为了方便修改，以下代码把Scaffold的body属性值抽成变量使用</code></p>
+</blockquote>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> row_test = Row(</span><br><span class="line">  children: &lt;Widget&gt;[</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'绝域从军计惘然，,'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'东南幽恨满词笺。'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'一箫一剑平生意，'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'负尽狂名十五年。'</span>),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$13.png" alt=""></p>
+<blockquote>
+<p>可以看出越界有提醒，感觉蛮有心的,水平排列没毛病</p>
+</blockquote>
+<hr>
+<h6 id="1-3-Column：用法基本上差不多"><a href="#1-3-Column：用法基本上差不多" class="headerlink" title="1.3.Column：用法基本上差不多"></a>1.3.Column：用法基本上差不多</h6><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">----&gt;[源码注释第一句]-----------------------------</span></span><br><span class="line"> <span class="attr">A</span> <span class="string">widget that displays its children in a vertical array.</span></span><br><span class="line"><span class="attr">一个以竖直数组的形式显示其子部件的Widget。</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Column(&#123;</span></span><br><span class="line">    <span class="attr">Key</span> <span class="string">key,</span></span><br><span class="line">    <span class="attr">MainAxisAlignment</span> <span class="string">mainAxisAlignment = MainAxisAlignment.start,</span></span><br><span class="line">    <span class="attr">MainAxisSize</span> <span class="string">mainAxisSize = MainAxisSize.max,</span></span><br><span class="line">    <span class="attr">CrossAxisAlignment</span> <span class="string">crossAxisAlignment = CrossAxisAlignment.center,</span></span><br><span class="line">    <span class="attr">TextDirection</span> <span class="string">textDirection,</span></span><br><span class="line">    <span class="attr">VerticalDirection</span> <span class="string">verticalDirection = VerticalDirection.down,</span></span><br><span class="line">    <span class="attr">TextBaseline</span> <span class="string">textBaseline,</span></span><br><span class="line">    <span class="meta">List&lt;Widget&gt;</span> <span class="string">children = const &lt;Widget&gt;[],</span></span><br></pre></td></tr></table></figure>
+
+
+<h6 id="1-4-Column基本使用"><a href="#1-4-Column基本使用" class="headerlink" title="1.4.Column基本使用"></a>1.4.Column基本使用</h6><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> row_column = Column(</span><br><span class="line">  children: &lt;Widget&gt;[</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'绝域从军计惘然，,'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'东南幽恨满词笺。'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'一箫一剑平生意，'</span>),</span><br><span class="line">    <span class="built_in">Text</span>(<span class="string">'负尽狂名十五年。'</span>),</span><br><span class="line">  ],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$14.png" alt=""></p>
+<hr>
+<h6 id="恭喜完成成就：布局菜鸟—奖励卡片："><a href="#恭喜完成成就：布局菜鸟—奖励卡片：" class="headerlink" title="恭喜完成成就：布局菜鸟—奖励卡片："></a>恭喜完成成就：<code>布局菜鸟</code>—奖励卡片：</h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$15.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$16.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$17.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>恭喜解锁新卡片：Expanded，快去用用吧<br>Expanded意思是：<code>使…伸展</code>,看到下面的图,你应该就会明白</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var row_test = Row(</span><br><span class="line">  children: &lt;Widget&gt;[</span><br><span class="line">    Expanded(</span><br><span class="line">      child<span class="symbol">:Text</span>('绝域从军计惘然，'),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child<span class="symbol">:Text</span>('东南幽恨满词笺。'),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child<span class="symbol">:Text</span>('一箫一剑平生意，'),</span><br><span class="line">    ),</span><br><span class="line">    Expanded(</span><br><span class="line">      child<span class="symbol">:Text</span>('负尽狂名十五年。'),</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$18.png" alt=""></p>
+<hr>
+<h5 id="2-Container-容器"><a href="#2-Container-容器" class="headerlink" title="2.Container--容器"></a>2.<code>Container--容器</code></h5><blockquote>
+<p>可以理解为Android中的View，更像html中的div<br>Container是一个没有状态的控件</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$19.png" alt=""></p>
+<hr>
+<h6 id="2-1：源码小窥"><a href="#2-1：源码小窥" class="headerlink" title="2.1：源码小窥"></a>2.1：源码小窥</h6><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[源码注释第一句]-----------------------------</span><br><span class="line">A convenience widget that combines common painting, positioning, and sizing widgets.</span><br><span class="line">一个方便的widget，它组合了常见的painting、positioning和sizing 控件。</span><br><span class="line"></span><br><span class="line">Color                   color,</span><br><span class="line">double                  width,</span><br><span class="line">double                  height,</span><br><span class="line">Widget                  <span class="keyword">this</span>.child,</span><br><span class="line">EdgeInsetsGeometry      <span class="keyword">this</span>.margin,</span><br><span class="line">EdgeInsetsGeometry      <span class="keyword">this</span>.padding,</span><br><span class="line">AlignmentGeometry       <span class="keyword">this</span>.alignment,</span><br><span class="line">Decoration              Decoration decoration,</span><br><span class="line">Decoration              <span class="keyword">this</span>.foregroundDecoration,</span><br><span class="line">BoxConstraints          BoxConstraints constraints,</span><br><span class="line">Matrix4                 <span class="keyword">this</span>.transform,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-2：简单使用："><a href="#2-2：简单使用：" class="headerlink" title="2.2：简单使用："></a>2.2：简单使用：</h6><blockquote>
+<p>[插曲]这里分享一个点：<code>当看到一个新的东西应该怎么办?</code></p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">比如`margin`,看到`<span class="type">EdgeInsetsGeometry</span>`我的心情是一脸懵<span class="type">X</span>,不应该是数字吗?</span><br><span class="line">进源码：`<span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">EdgeInsetsGeometry</span> </span>&#123;`,抽象的，找他儿子去，</span><br><span class="line"><span class="type">AndroidStudio</span>中按`<span class="type">Ctrl</span>+<span class="type">H</span>`可以查看继承树，然后就看到了<span class="type">EdgeInsets</span>.fromLTRB</span><br><span class="line">这样<span class="type">Flutter</span>的margin就和你的知识库中的margin进行了连接，你就会用了</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EdgeInsets</span> <span class="keyword">extends</span> <span class="title">EdgeInsetsGeometry</span> </span>&#123;</span><br><span class="line">  const <span class="type">EdgeInsets</span>.fromLTRB(<span class="keyword">this</span>.left, <span class="keyword">this</span>.top, <span class="keyword">this</span>.right, <span class="keyword">this</span>.bottom);</span><br><span class="line">  const <span class="type">EdgeInsets</span>.all(double value)</span><br><span class="line">      : left = value, top = value, right = value, bottom = value;</span><br><span class="line"></span><br><span class="line">新事物往往都与旧事物有联系,学习新事物最好快速找到它与你知识库中旧事物的联系,</span><br><span class="line">联系的多少取决于你知识库中内容的多少，连接得越多，你会越快或越能掌握旧事物</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">container_test</span> <span class="string">=</span> <span class="string">Container(</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">Color.fromARGB(100,</span> <span class="number">81</span><span class="string">,</span> <span class="number">211</span><span class="string">,</span> <span class="number">253</span><span class="string">),</span></span><br><span class="line">  <span class="attr">height:</span> <span class="number">100</span><span class="string">,</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">200</span><span class="string">,</span></span><br><span class="line">  <span class="attr">child:</span> <span class="string">Text("张风捷特烈"),</span></span><br><span class="line">  <span class="attr">margin:</span> <span class="string">EdgeInsets.fromLTRB(5,</span> <span class="number">10</span><span class="string">,</span> <span class="number">15</span><span class="string">,</span> <span class="number">20</span><span class="string">),</span></span><br><span class="line">  <span class="attr">padding:</span>  <span class="string">EdgeInsets.all(40),</span></span><br><span class="line"><span class="string">);</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>padding和margin简称pm,左图是上面代码没有pm时，右图是有pm时</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$20.png" alt=""></p>
+<hr>
+<h6 id="恭喜达成成就：Container使用者–卡牌奖励："><a href="#恭喜达成成就：Container使用者–卡牌奖励：" class="headerlink" title="恭喜达成成就：Container使用者–卡牌奖励："></a>恭喜达成成就：<code>Container使用者</code>–卡牌奖励：</h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$21.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$22.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$23.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>NPC:恭喜解锁两张辅助卡<code>Padding</code>和<code>Center</code>,快来测试一下吧<br>这两个没什么好说的，顾图思义，看图吧</p>
+</blockquote>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">padding_test</span> <span class="string">=</span> <span class="string">Container(</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">Color.fromARGB(100,</span> <span class="number">81</span><span class="string">,</span> <span class="number">211</span><span class="string">,</span> <span class="number">253</span><span class="string">),</span></span><br><span class="line">  <span class="attr">height:</span> <span class="number">150</span><span class="string">,</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">250</span><span class="string">,</span></span><br><span class="line">  <span class="attr">child:</span> <span class="string">Padding(</span></span><br><span class="line">    <span class="attr">padding:</span> <span class="string">EdgeInsets.all(10),</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">Text("张风捷特烈"),</span></span><br><span class="line">  <span class="string">),</span></span><br><span class="line"><span class="string">);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">var</span> <span class="string">center_test</span> <span class="string">=</span> <span class="string">Container(</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">Color.fromARGB(100,</span> <span class="number">81</span><span class="string">,</span> <span class="number">211</span><span class="string">,</span> <span class="number">253</span><span class="string">),</span></span><br><span class="line">  <span class="attr">height:</span> <span class="number">150</span><span class="string">,</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">250</span><span class="string">,</span></span><br><span class="line">  <span class="attr">child:</span> <span class="string">Center(</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">Text("张风捷特烈"),</span></span><br><span class="line">  <span class="string">),</span></span><br><span class="line"><span class="string">);</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$24.png" alt=""></p>
+<hr>
+<h5 id="3-Stack-堆叠"><a href="#3-Stack-堆叠" class="headerlink" title="3.Stack -- 堆叠"></a>3.<code>Stack -- 堆叠</code></h5><blockquote>
+<p>第一反应:栈?有道了一下，有堆叠的意思</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[源码注释第一句]-----------------------------</span><br><span class="line">A widget that positions its children relative to the edges of its box.</span><br><span class="line">一个相对于它的框的边缘来定位它的子部件的Widget。</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.alignment = AlignmentDirectional.topStart,</span><br><span class="line">    <span class="keyword">this</span>.textDirection,</span><br><span class="line">    <span class="keyword">this</span>.fit = StackFit.loose,</span><br><span class="line">    <span class="keyword">this</span>.overflow = Overflow.clip,</span><br><span class="line">    List&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="触发新手任务3，并触发局部Widget树，系统赠送卡牌："><a href="#触发新手任务3，并触发局部Widget树，系统赠送卡牌：" class="headerlink" title="触发新手任务3，并触发局部Widget树，系统赠送卡牌："></a>触发新手任务3，并触发局部Widget树，系统赠送卡牌：</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$25.png" alt=""></p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$26.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$27.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$28.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>请完成下面布局：</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$29.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">stack_test</span> <span class="string">=</span> <span class="string">Container(</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">Color.fromARGB(100,</span> <span class="number">81</span><span class="string">,</span> <span class="number">211</span><span class="string">,</span> <span class="number">253</span><span class="string">),</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">150</span><span class="string">,</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">250</span><span class="string">,</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">Stack(</span></span><br><span class="line">      <span class="attr">alignment:</span> <span class="string">Alignment.centerLeft,</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Text('绝域从军计惘然，,'),</span></span><br><span class="line">        <span class="string">Align(</span></span><br><span class="line">          <span class="attr">alignment:</span> <span class="string">Alignment.topRight,</span></span><br><span class="line">          <span class="attr">widthFactor:</span> <span class="number">1.5</span><span class="string">,</span></span><br><span class="line">          <span class="attr">child:</span> <span class="string">Card(</span></span><br><span class="line">              <span class="attr">elevation:</span> <span class="number">10</span><span class="string">,</span> <span class="attr">color:</span> <span class="string">Color(0xffffffff),</span> <span class="attr">child:</span> <span class="string">Text('东南幽恨满词笺。')),</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">Text('一箫一剑平生意，'),</span></span><br><span class="line">        <span class="string">Text('负尽狂名十五年。'),</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">));</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>现在对Stack有点感觉了吧，它像FramLayout一样会叠合控件,<br>并且alignment还可以确定Stack自身相对于老爸的位置<br>Align也有alignment,不过能有一个孩子，Card我最喜欢了<br>这里mark一下Card里的<code>ShapeBorder shape</code>,源码粗略看了一下，可能挺好玩，今天主看控件</p>
+</blockquote>
+<hr>
+<h5 id="4-IndexedStack-定索引显示"><a href="#4-IndexedStack-定索引显示" class="headerlink" title="4.IndexedStack--定索引显示"></a>4.<code>IndexedStack--定索引显示</code></h5><blockquote>
+<p>按照索引来显示堆叠容器中的控件，挺好玩的</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$30.png" alt=""></p>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$31.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">index_stack_test</span> <span class="string">=</span> <span class="string">Container(</span></span><br><span class="line">    <span class="attr">color:</span> <span class="string">Color.fromARGB(100,</span> <span class="number">81</span><span class="string">,</span> <span class="number">211</span><span class="string">,</span> <span class="number">253</span><span class="string">),</span></span><br><span class="line">    <span class="attr">height:</span> <span class="number">150</span><span class="string">,</span></span><br><span class="line">    <span class="attr">width:</span> <span class="number">250</span><span class="string">,</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">IndexedStack(</span></span><br><span class="line">      <span class="string">index:3,</span></span><br><span class="line">      <span class="attr">alignment:</span> <span class="string">Alignment.centerLeft,</span></span><br><span class="line">      <span class="attr">children:</span> <span class="string">&lt;Widget&gt;[</span></span><br><span class="line">        <span class="string">Text('绝域从军计惘然，'),</span></span><br><span class="line">        <span class="string">Align(</span></span><br><span class="line">          <span class="attr">alignment:</span> <span class="string">Alignment.topRight,</span></span><br><span class="line">          <span class="attr">widthFactor:</span> <span class="number">1.5</span><span class="string">,</span></span><br><span class="line">          <span class="attr">child:</span> <span class="string">Card(</span></span><br><span class="line">              <span class="attr">elevation:</span> <span class="number">10</span><span class="string">,</span> <span class="attr">color:</span> <span class="string">Color(0xffffffff),</span> <span class="attr">child:</span> <span class="string">Text('东南幽恨满词笺。')),</span></span><br><span class="line">        <span class="string">),</span></span><br><span class="line">        <span class="string">Text('一箫一剑平生意，'),</span></span><br><span class="line">        <span class="string">Text('负尽狂名十五年。'),</span></span><br><span class="line">      <span class="string">],</span></span><br><span class="line">    <span class="string">));</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="5-Transform-变换"><a href="#5-Transform-变换" class="headerlink" title="5.Transform--变换"></a>5.<code>Transform--变换</code></h5><blockquote>
+<p>transform属性的Matrix4有机会肯定好好分析分析，mark一下<br>Matrix4.rotationZ传入的是弧度制的度数，佩服佩服</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Transform(</span><br><span class="line">    origin: Offset(<span class="number">0</span>, <span class="number">150</span>),</span><br><span class="line">    transform: Matrix4.rotationZ(<span class="number">3.1415</span> / <span class="number">4</span>),</span><br><span class="line">    child: <span class="comment">//同上面的Container，挺长的，不贴了</span></span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$32.png" alt=""></p>
+<hr>
+<h5 id="6-Offstage-显隐控制"><a href="#6-Offstage-显隐控制" class="headerlink" title="6.Offstage--显隐控制"></a>6.<code>Offstage--显隐控制</code></h5><blockquote>
+<p>把<code>负尽狂名十五年</code>用Offstage包裹一下，offstage为true–隐藏，为false–显示<br>感觉应该挺好用，简洁，明了，人狠话不多。</p>
+</blockquote>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Offstage</span>(</span><br><span class="line">    <span class="attribute">offstage</span>: false,</span><br><span class="line">    <span class="attribute">child</span>: Text(<span class="string">'负尽狂名十五年。'</span>),</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<h6 id="恭喜获得成就：布局小新手-：奖励卡牌："><a href="#恭喜获得成就：布局小新手-：奖励卡牌：" class="headerlink" title="恭喜获得成就：布局小新手 ：奖励卡牌："></a>恭喜获得成就：<code>布局小新手</code> ：奖励卡牌：</h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$33.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$34.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$35.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="三、基础控件点将台之–三大战力"><a href="#三、基础控件点将台之–三大战力" class="headerlink" title="三、基础控件点将台之–三大战力"></a>三、基础控件点将台之–三大战力</h4><blockquote>
+<p>隐藏剧情触发：<br>NPC：传说有三条恶龙盘踞在布局深处，为祸人间，勇士们，准备好了吗?</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$36.png" alt=""></p>
+<h5 id="1-表格–Table"><a href="#1-表格–Table" class="headerlink" title="1.表格–Table"></a>1.表格–Table</h5><h6 id="1-1：属性一览"><a href="#1-1：属性一览" class="headerlink" title="1.1：属性一览"></a>1.1：属性一览</h6><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.children = <span class="keyword">const</span> &lt;TableRow&gt;[],</span><br><span class="line"><span class="keyword">this</span>.columnWidths,</span><br><span class="line"><span class="keyword">this</span>.defaultColumnWidth = <span class="keyword">const</span> FlexColumnWidth(<span class="number">1.0</span>),</span><br><span class="line"><span class="keyword">this</span>.textDirection,</span><br><span class="line"><span class="keyword">this</span>.border,</span><br><span class="line"><span class="keyword">this</span>.defaultVerticalAlignment = TableCellVerticalAlignment.top,</span><br><span class="line"><span class="keyword">this</span>.textBaseline,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="1-2：新手任务4：完成下面表格"><a href="#1-2：新手任务4：完成下面表格" class="headerlink" title="1.2：新手任务4：完成下面表格"></a>1.2：新手任务4：完成下面表格</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$37.png" alt=""></p>
+<blockquote>
+<p>代码实现：<br><code>columnWidths</code>:可以指定每列的宽度<br><code>border</code>:边线的样式<br><code>children</code>:通过<code>TableRow</code>来显示一行  </p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">var table_test = Table(</span><br><span class="line">  columnWidths: const &lt;int, TableColumnWidth&gt;&#123;</span><br><span class="line">    <span class="number">0</span>: FixedColumnWidth(<span class="number">60.0</span>),</span><br><span class="line">    <span class="number">1</span>: FixedColumnWidth(<span class="number">100.0</span>),</span><br><span class="line">    <span class="number">2</span>: FixedColumnWidth(<span class="number">100.0</span>),</span><br><span class="line">    <span class="number">3</span>: FixedColumnWidth(<span class="number">80.0</span>),</span><br><span class="line">  &#125;,</span><br><span class="line">  defaultVerticalAlignment: TableCellVerticalAlignment.middle,</span><br><span class="line">  border:</span><br><span class="line">      TableBorder.all(<span class="name">color</span>: Color(<span class="number">0</span>xff16DAF1), width: <span class="number">1.0</span>, style: BorderStyle.solid),</span><br><span class="line">  children: const &lt;TableRow&gt;[</span><br><span class="line">    TableRow(</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Center(<span class="name">child</span>: Text('姓名')),</span><br><span class="line">        Center(<span class="name">child</span>: Text('年龄')),</span><br><span class="line">        Center(<span class="name">child</span>: Text('称号')),</span><br><span class="line">        Center(<span class="name">child</span>: Text('武器')),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">    TableRow(</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Text('捷特'),</span><br><span class="line">        Text('<span class="number">24</span>'),</span><br><span class="line">        Text('风神'),</span><br><span class="line">        Text('黑风剑'),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">    TableRow(</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Text('巫缨'),</span><br><span class="line">        Text('<span class="number">23</span>'),</span><br><span class="line">        Text('百里巫缨'),</span><br><span class="line">        Text('百里弓'),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">    TableRow(</span><br><span class="line">      children: &lt;Widget&gt;[</span><br><span class="line">        Text('龙少'),</span><br><span class="line">        Text('<span class="number">23</span>'),</span><br><span class="line">        Text('控尊'),</span><br><span class="line">        Text('控尊戒'),</span><br><span class="line">      ],</span><br><span class="line">    ),</span><br><span class="line">  ],</span><br><span class="line">)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-流动容器-–Flow："><a href="#2-流动容器-–Flow：" class="headerlink" title="2.流动容器 –Flow："></a>2.流动容器 –Flow：</h5><h6 id="2-1：属性一览"><a href="#2-1：属性一览" class="headerlink" title="2.1：属性一览"></a>2.1：属性一览</h6><blockquote>
+<p>属性很简洁,但是：FlowDelegate够熬一碗粥的</p>
+</blockquote>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FlowDelegate <span class="keyword">@required</span> <span class="keyword">this</span>.<span class="built_in">delegate</span>,</span><br><span class="line">List&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-2：新手任务5：用完Flow成下面布局"><a href="#2-2：新手任务5：用完Flow成下面布局" class="headerlink" title="2.2：新手任务5：用完Flow成下面布局"></a>2.2：新手任务5：用完Flow成下面布局</h6><blockquote>
+<p>简单分析一下：随机颜色，随机长度，到尾部不够就换行</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$38.png" alt=""></p>
+<blockquote>
+<p>代码实现：从网上找了一个<code>FlowDelegate</code>的实现类<br>核心就是根据位置可以自己绘制孩子的位置(吐槽:源码了竟然没有实现类,给一个也好啊…)</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MarginFlowDelegate</span> <span class="keyword">extends</span> <span class="title">FlowDelegate</span> </span>&#123;</span><br><span class="line">  <span class="type">EdgeInsets</span> _margin = <span class="type">EdgeInsets</span>.zero;<span class="comment">//成员变量_margin</span></span><br><span class="line">  <span class="type">MarginFlowDelegate</span>(<span class="keyword">this</span>._margin); <span class="comment">//构造函数</span></span><br><span class="line">  <span class="meta">@override</span><span class="comment">//绘制孩子的方法</span></span><br><span class="line">  void paintChildren(<span class="type">FlowPaintingContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">var</span> offsetX = _margin.left;</span><br><span class="line">    <span class="keyword">var</span> offsetY = _margin.top;</span><br><span class="line">    <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; context.childCount; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> w = context.getChildSize(i).width + offsetX + _margin.right;</span><br><span class="line">      <span class="keyword">if</span> (w &lt; context.size.width) &#123;</span><br><span class="line">        context.paintChild(i, transform: <span class="keyword">new</span> <span class="type">Matrix4</span>.translationValues(offsetX, offsetY, <span class="number">0.0</span>));</span><br><span class="line">        offsetX = w + _margin.left;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        offsetX = _margin.left;</span><br><span class="line">        offsetY += context.getChildSize(i).height + _margin.top + _margin.bottom;</span><br><span class="line">        context.paintChild(i,transform: <span class="keyword">new</span> <span class="type">Matrix4</span>.translationValues(offsetX, offsetY, <span class="number">0.0</span>));</span><br><span class="line">        offsetX += context.getChildSize(i).width + _margin.left + _margin.right;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>动态生成Widget数组(可别傻傻的cv,60个Container)</p>
+</blockquote>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">formColorList(int count) &#123;</span><br><span class="line">  <span class="built_in">var</span> <span class="built_in">random</span> = <span class="built_in">new</span> Random();</span><br><span class="line">  <span class="built_in">var</span> <span class="built_in">li</span> = &lt;Widget&gt;[];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="built_in">li</span>.add(<span class="built_in">new</span> Container(</span><br><span class="line">      <span class="built_in">width</span>: <span class="number">100</span> * (<span class="built_in">random</span>.nextDouble() + <span class="number">0.3</span>),</span><br><span class="line">      <span class="built_in">height</span>: <span class="number">30</span>,</span><br><span class="line">      <span class="built_in">color</span>: randomRGB(),</span><br><span class="line">    ));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> <span class="built_in">li</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用起来倒是简单：</p>
+</blockquote>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var flow_test = Flow(</span><br><span class="line">    delegate: MarginFlowDelegate(<span class="name">EdgeInsets</span>.all(<span class="number">5</span>)),</span><br><span class="line">    children: formColorList(<span class="number">60</span>))<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-包裹–Warp"><a href="#3-包裹–Warp" class="headerlink" title="3.包裹–Warp"></a>3.包裹–Warp</h5><h6 id="3-1：简单认识："><a href="#3-1：简单认识：" class="headerlink" title="3.1：简单认识："></a>3.1：简单认识：</h6><blockquote>
+<p>这东西和css的flex有九分相似，还好我flex布局玩的挺好：<a href="https://juejin.im/post/5c0caf33e51d455b3d3dc567" target="_blank" rel="noopener">有兴趣的可看这里</a><br>Flow用起来麻烦很多，但可控制，灵活性更好，如果不是什么逆天改命的布局，Warp应该够了</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Wrap(&#123;</span><br><span class="line">  Key key,</span><br><span class="line">  <span class="keyword">this</span>.direction = Axis.horizontal,</span><br><span class="line">  <span class="keyword">this</span>.alignment = WrapAlignment.start,</span><br><span class="line">  <span class="keyword">this</span>.spacing = <span class="number">0.0</span>,</span><br><span class="line">  <span class="keyword">this</span>.runAlignment = WrapAlignment.start,</span><br><span class="line">  <span class="keyword">this</span>.runSpacing = <span class="number">0.0</span>,</span><br><span class="line">  <span class="keyword">this</span>.crossAxisAlignment = WrapCrossAlignment.start,</span><br><span class="line">  <span class="keyword">this</span>.textDirection,</span><br><span class="line">  <span class="keyword">this</span>.verticalDirection = VerticalDirection.down,</span><br><span class="line">  List&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h6 id="direction"><a href="#direction" class="headerlink" title="direction"></a>direction</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$39.png" alt=""></p>
+<hr>
+<h6 id="3-2：新手任务6-1"><a href="#3-2：新手任务6-1" class="headerlink" title="3.2：新手任务6-1"></a>3.2：新手任务6-1</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$40.png" alt=""></p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var wrap_test = Wrap(</span><br><span class="line"><span class="symbol">    spacing:</span> <span class="number">8.0</span>, <span class="comment">// 列间距</span></span><br><span class="line"><span class="symbol">    runSpacing:</span> <span class="number">4.0</span>, <span class="comment">//行间距</span></span><br><span class="line"><span class="symbol">    direction:</span>Axis.vertical ,</span><br><span class="line"><span class="symbol">    crossAxisAlignment:</span>WrapCrossAlignment.center,</span><br><span class="line"><span class="symbol">    children:</span> formColorList(<span class="number">50</span>));</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="3-3：新手任务6-2"><a href="#3-3：新手任务6-2" class="headerlink" title="3.3：新手任务6-2"></a>3.3：新手任务6-2</h6><p><img src="http://photo.toly1994.com/flutter$seven_day$03$41.png" alt=""></p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var wrap_test = Wrap(</span><br><span class="line"><span class="symbol">    spacing:</span> <span class="number">8.0</span>, <span class="comment">// 列间距</span></span><br><span class="line"><span class="symbol">    runSpacing:</span> <span class="number">4.0</span>, <span class="comment">//行间距</span></span><br><span class="line"><span class="symbol">    direction:</span>Axis.horizontal ,</span><br><span class="line"><span class="symbol">    alignment:</span>WrapAlignment.spaceBetween,</span><br><span class="line"><span class="symbol">    children:</span> formColorList(<span class="number">50</span>));</span><br></pre></td></tr></table></figure>
+
+<h6 id="duang-三大战力倒下，恭喜获得称号：布局勇士，收获三张传说级卡片："><a href="#duang-三大战力倒下，恭喜获得称号：布局勇士，收获三张传说级卡片：" class="headerlink" title="duang,三大战力倒下，恭喜获得称号：布局勇士，收获三张传说级卡片："></a>duang,三大战力倒下，恭喜获得称号：<code>布局勇士</code>，收获三张传说级卡片：</h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$42.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$43.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$44.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="三、基础控件点将台之–列表"><a href="#三、基础控件点将台之–列表" class="headerlink" title="三、基础控件点将台之–列表"></a>三、基础控件点将台之–列表</h4><blockquote>
+<p>NPC:好吧，我编不下去了…大家加油!</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$45.png" alt=""></p>
+<hr>
+<h5 id="1-老伙伴：ListView"><a href="#1-老伙伴：ListView" class="headerlink" title="1.老伙伴：ListView"></a>1.老伙伴：ListView</h5><blockquote>
+<p>这里先简单看一下效果，明天根据例子来详细分析具体用法<br>ListView,单独可以用，传入一个Widget数组，批量生产ListView.builder简洁些</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">ListView</span>.</span></span>builder(&#123;</span><br><span class="line">  Key key,</span><br><span class="line">  Axis scrollDirection = <span class="module-access"><span class="module"><span class="identifier">Axis</span>.</span></span>vertical,</span><br><span class="line">  <span class="built_in">bool</span> reverse = <span class="literal">false</span>,</span><br><span class="line">  ScrollController controller,</span><br><span class="line">  <span class="built_in">bool</span> primary,</span><br><span class="line">  ScrollPhysics physics,</span><br><span class="line">  <span class="built_in">bool</span> shrinkWrap = <span class="literal">false</span>,</span><br><span class="line">  EdgeInsetsGeometry padding,</span><br><span class="line">  this.itemExtent,</span><br><span class="line">  @required IndexedWidgetBuilder itemBuilder,</span><br><span class="line">  <span class="built_in">int</span> itemCount,</span><br><span class="line">  <span class="built_in">bool</span> addAutomaticKeepAlives = <span class="literal">true</span>,</span><br><span class="line">  <span class="built_in">bool</span> addRepaintBoundaries = <span class="literal">true</span>,</span><br><span class="line">  <span class="built_in">bool</span> addSemanticIndexes = <span class="literal">true</span>,</span><br><span class="line">  double cacheExtent,</span><br><span class="line">  <span class="built_in">int</span> semanticChildCount,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th>竖直</th>
+<th>水平</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$46.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$47.png" alt=""></td>
+</tr>
+</tbody></table>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">//竖直</span></span><br><span class="line"><span class="attr">var</span> <span class="string">list_view_test = ListView.builder(</span></span><br><span class="line">  <span class="attr">itemCount</span>: <span class="string">20,</span></span><br><span class="line">  <span class="attr">padding</span>: <span class="string">EdgeInsets.all(8.0),</span></span><br><span class="line">  <span class="attr">itemExtent</span>: <span class="string">60.0,</span></span><br><span class="line">  <span class="attr">itemBuilder</span>: <span class="string">(BuildContext context, int index) &#123;</span></span><br><span class="line">    <span class="attr">return</span> <span class="string">Card(</span></span><br><span class="line">      <span class="attr">child</span>: <span class="string">Center(child: Text('toly $index')),</span></span><br><span class="line">    <span class="attr">);</span></span><br><span class="line">  <span class="attr">&#125;,</span></span><br><span class="line"><span class="attr">);</span></span><br><span class="line"></span><br><span class="line"><span class="attr">//水平</span></span><br><span class="line"><span class="attr">var</span> <span class="string">list_view_test = ListView.builder(</span></span><br><span class="line">  <span class="attr">itemCount</span>: <span class="string">20,</span></span><br><span class="line">  <span class="attr">padding</span>: <span class="string">EdgeInsets.all(8.0),</span></span><br><span class="line">  <span class="attr">scrollDirection</span>:<span class="string">Axis.horizontal,</span></span><br><span class="line">  <span class="attr">itemExtent</span>: <span class="string">60.0,</span></span><br><span class="line">  <span class="attr">itemBuilder</span>: <span class="string">(BuildContext context, int index) &#123;</span></span><br><span class="line">    <span class="attr">return</span> <span class="string">Card(</span></span><br><span class="line">      <span class="attr">child</span>: <span class="string">Center(child: Text('toly $index')),</span></span><br><span class="line">    <span class="attr">);</span></span><br><span class="line">  <span class="attr">&#125;,</span></span><br><span class="line"><span class="attr">);</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2–老伙伴：GridView"><a href="#2–老伙伴：GridView" class="headerlink" title="2–老伙伴：GridView"></a>2–老伙伴：GridView</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GridView.count(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    Axis scrollDirection = Axis.vertical,</span><br><span class="line">    <span class="built_in">bool</span> reverse = <span class="literal">false</span>,</span><br><span class="line">    ScrollController controller,</span><br><span class="line">    <span class="built_in">bool</span> primary,</span><br><span class="line">    ScrollPhysics physics,</span><br><span class="line">    <span class="built_in">bool</span> shrinkWrap = <span class="literal">false</span>,</span><br><span class="line">    EdgeInsetsGeometry padding,</span><br><span class="line">    @required <span class="built_in">int</span> crossAxisCount,</span><br><span class="line">    <span class="built_in">double</span> mainAxisSpacing = <span class="number">0.0</span>,</span><br><span class="line">    <span class="built_in">double</span> crossAxisSpacing = <span class="number">0.0</span>,</span><br><span class="line">    <span class="built_in">double</span> childAspectRatio = <span class="number">1.0</span>,</span><br><span class="line">    <span class="built_in">bool</span> addAutomaticKeepAlives = <span class="literal">true</span>,</span><br><span class="line">    <span class="built_in">bool</span> addRepaintBoundaries = <span class="literal">true</span>,</span><br><span class="line">    <span class="built_in">bool</span> addSemanticIndexes = <span class="literal">true</span>,</span><br><span class="line">    <span class="built_in">double</span> cacheExtent,</span><br><span class="line">    List&lt;Widget&gt; children = <span class="keyword">const</span> &lt;Widget&gt;[],</span><br><span class="line">    <span class="built_in">int</span> semanticChildCount,</span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th>水平GridView</th>
+<th>竖直GridView</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$48.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$49.png" alt=""></td>
+</tr>
+</tbody></table>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//竖直GridView</span></span><br><span class="line"><span class="keyword">var</span> grid_view_test = GridView.<span class="keyword">count</span>(</span><br><span class="line">  crossAxisCount: 4,</span><br><span class="line">  children: <span class="keyword">List</span>.<span class="keyword">generate</span>(</span><br><span class="line">    100,</span><br><span class="line">    (index) &#123;</span><br><span class="line">      <span class="keyword">return</span>  Card(</span><br><span class="line">        child: Center(child: Text('toly <span class="variable">$index</span>')),</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">//水平GridView</span></span><br><span class="line"><span class="keyword">var</span> grid_view_test = GridView.<span class="keyword">count</span>(</span><br><span class="line">  crossAxisCount: 4,</span><br><span class="line">  scrollDirection:Axis.horizontal,</span><br><span class="line">  children: <span class="keyword">List</span>.<span class="keyword">generate</span>(</span><br><span class="line">    100,</span><br><span class="line">    (index) &#123;</span><br><span class="line">      <span class="keyword">return</span>  Card(</span><br><span class="line">        child: Center(child: Text('toly <span class="variable">$index</span>')),</span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  ),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-轴列容器–ListBody-我自己取的名字"><a href="#3-轴列容器–ListBody-我自己取的名字" class="headerlink" title="3.轴列容器–ListBody(我自己取的名字)"></a>3.轴列容器–ListBody(我自己取的名字)</h5><blockquote>
+<p>好吧，被它的名字骗了，和ListView并没有太大的关系，也就是个多孩子的容器<br>优点在于在指定轴上尺寸正常，另一轴上会被拉伸，见图：</p>
+</blockquote>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">A widget <span class="keyword">that</span> arranges <span class="keyword">its</span> children sequentially along a <span class="keyword">given</span> axis,</span><br><span class="line">forcing them <span class="keyword">to</span> <span class="keyword">the</span> dimension <span class="keyword">of</span> <span class="keyword">the</span> parent <span class="keyword">in</span> <span class="keyword">the</span> other axis.</span><br><span class="line">一个widget，它按照给定的轴顺序排列它的子部件，并迫使它们位于另一个轴上的父轴的维度。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ListBody(&#123;</span><br><span class="line">    Key key,</span><br><span class="line">    this.mainAxis = Axis.vertical,</span><br><span class="line">    this.<span class="built_in">reverse</span> = <span class="literal">false</span>,</span><br><span class="line">    List&lt;Widget&gt; children = const &lt;Widget&gt;[],</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<table>
+<thead>
+<tr>
+<th>水平定</th>
+<th>竖直定</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$50.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$51.png" alt=""></td>
+</tr>
+</tbody></table>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//竖直定</span></span><br><span class="line">var list_body_test = Column(</span><br><span class="line"><span class="symbol">  children:</span> <span class="params">&lt;Widget&gt;</span>[</span><br><span class="line">    ListBody(</span><br><span class="line"><span class="symbol">      mainAxis:</span> Axis.vertical,</span><br><span class="line"><span class="symbol">      reverse:</span> false,</span><br><span class="line"><span class="symbol">      children:</span> formColorList(<span class="number">5</span>)</span><br><span class="line">    )],</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">//水平定</span></span><br><span class="line">var list_body_test = Row(</span><br><span class="line"><span class="symbol">  children:</span> <span class="params">&lt;Widget&gt;</span>[</span><br><span class="line">    ListBody(</span><br><span class="line"><span class="symbol">      mainAxis:</span> Axis.horizontal,</span><br><span class="line"><span class="symbol">      reverse:</span> false,</span><br><span class="line"><span class="symbol">      children:</span> formColorList(<span class="number">5</span>)</span><br><span class="line">    )],</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h6 id="好了，又到三局一度的发卡时间了"><a href="#好了，又到三局一度的发卡时间了" class="headerlink" title="好了，又到三局一度的发卡时间了"></a>好了，又到三局一度的发卡时间了</h6><blockquote>
+<p>未精炼的传说级卡片，更多属性加成，战士们，去精炼吧</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$52.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$53.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$54.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="四、容器扫个尾："><a href="#四、容器扫个尾：" class="headerlink" title="四、容器扫个尾："></a>四、容器扫个尾：</h4><h5 id="1-Baseline"><a href="#1-Baseline" class="headerlink" title="1.Baseline"></a>1.Baseline</h5><blockquote>
+<p>将文字按照基线对齐(因为比较好看)–<code>baseline</code>越大，距离顶端越远</p>
+</blockquote>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$55.png" alt=""></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Baseline(&#123;</span><br><span class="line">  Key key,</span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.baseline,</span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.baselineType,</span><br><span class="line">  Widget child</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">formTextList(int count) &#123;</span><br><span class="line">  <span class="built_in">var</span> <span class="built_in">random</span> = <span class="built_in">new</span> Random();</span><br><span class="line">  <span class="built_in">var</span> <span class="built_in">li</span> = &lt;Widget&gt;[];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">    <span class="built_in">li</span>.add(<span class="built_in">new</span> Baseline(</span><br><span class="line">      baselineType: TextBaseline.<span class="built_in">alphabetic</span>,</span><br><span class="line">      child: <span class="built_in">new</span> Text('Toly',</span><br><span class="line">        <span class="built_in">style</span>: <span class="built_in">new</span> TextStyle(</span><br><span class="line">          fontSize: <span class="number">20.0</span> + <span class="built_in">random</span>.nextInt(<span class="number">40</span>),</span><br><span class="line">          textBaseline: TextBaseline.<span class="built_in">alphabetic</span>,</span><br><span class="line">        ),</span><br><span class="line">      ),</span><br><span class="line">      baseline: <span class="number">80</span>,</span><br><span class="line">    ));</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> <span class="built_in">li</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> base_line_test = <span class="built_in">new</span> Row(</span><br><span class="line">  children: formTextList(<span class="number">5</span>),</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-FractionallySizedBox"><a href="#2-FractionallySizedBox" class="headerlink" title="2.FractionallySizedBox"></a>2.FractionallySizedBox</h5><blockquote>
+<p>这个挺有意思，儿子随爷爷，父亲(FractionallySizedBox)中间倒把手<br>可以实现爷爷和孙子之间的尺寸比例联系</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> FractionallySizedBox(&#123;</span><br><span class="line">  Key key,</span><br><span class="line">  <span class="keyword">this</span>.alignment = Alignment.center,</span><br><span class="line">  <span class="keyword">this</span>.widthFactor,</span><br><span class="line">  <span class="keyword">this</span>.heightFactor,</span><br><span class="line">  Widget child,</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$56.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">fsb_test</span> <span class="string">=</span> <span class="string">new</span> <span class="string">Container(</span></span><br><span class="line">  <span class="attr">color:</span> <span class="string">Colors.blue,</span></span><br><span class="line">  <span class="attr">height:</span> <span class="number">150.0</span><span class="string">,</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">150.0</span><span class="string">,</span></span><br><span class="line">  <span class="attr">child:</span> <span class="string">new</span> <span class="string">FractionallySizedBox(</span></span><br><span class="line">    <span class="attr">alignment:</span> <span class="string">Alignment.bottomCenter,</span></span><br><span class="line">    <span class="attr">widthFactor:</span> <span class="number">1.5</span><span class="string">,</span></span><br><span class="line">    <span class="attr">heightFactor:</span> <span class="number">0.5</span><span class="string">,</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">new</span> <span class="string">Container(</span></span><br><span class="line">      <span class="attr">color:</span> <span class="string">Colors.red,</span></span><br><span class="line">    <span class="string">),</span></span><br><span class="line">  <span class="string">),</span></span><br><span class="line"><span class="string">);</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="3-AspectRatio"><a href="#3-AspectRatio" class="headerlink" title="3.AspectRatio"></a>3.AspectRatio</h5><blockquote>
+<p>就是设定一个定比例的容器<code>width/height=aspectRatio</code></p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> AspectRatio(&#123;</span><br><span class="line">  Key key,</span><br><span class="line">  <span class="meta">@required</span> <span class="keyword">this</span>.aspectRatio,</span><br><span class="line">  Widget child</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><img src="http://photo.toly1994.com/flutter$seven_day$03$57.png" alt=""></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">var</span> <span class="string">aspectratio_test</span> <span class="string">=</span> <span class="string">new</span> <span class="string">Container(</span></span><br><span class="line">  <span class="attr">width:</span> <span class="number">200.0</span><span class="string">,</span></span><br><span class="line">  <span class="attr">child:</span> <span class="string">new</span> <span class="string">AspectRatio(</span></span><br><span class="line">    <span class="attr">aspectRatio:</span> <span class="number">1.5</span><span class="string">,</span></span><br><span class="line">    <span class="attr">child:</span> <span class="string">new</span> <span class="string">Container(</span></span><br><span class="line">      <span class="attr">color:</span> <span class="string">Colors.red,</span></span><br><span class="line">    <span class="string">),</span></span><br><span class="line">  <span class="string">),</span></span><br><span class="line"><span class="string">);</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="恭喜获得称号-布局学徒-，奖励卡片"><a href="#恭喜获得称号-布局学徒-，奖励卡片" class="headerlink" title="恭喜获得称号:布局学徒 ，奖励卡片"></a>恭喜获得称号:<code>布局学徒</code> ，奖励卡片</h6><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$58.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$59.png" alt=""></td>
+<td><img src="http://photo.toly1994.com/flutter$seven_day$03$60.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>还剩几个Box，明天写几个布局例子顺带讲一下，反正每个新控件都会发张卡<br>最后把卡片总结起来，看看能不能凑够两幅扑克牌…打印出来当扑克牌打，还怕Flutter控件学不会?<br>好了，今天就到这里，脑细胞死不少，赶快看几集动漫补补脑。</p>
+</blockquote>
+<hr>
+<h4 id="五、总结一下mark的点："><a href="#五、总结一下mark的点：" class="headerlink" title="五、总结一下mark的点："></a>五、总结一下mark的点：</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一天：</span></span><br><span class="line">3.现在焦点应该汇聚在StatefulWidget身上，很多地方都出现了,<span class="keyword">mark</span>一下</span><br><span class="line">---StatefulWidget是Widget的一个子类，是具有状态的控件，可谓元老级别</span><br><span class="line"></span><br><span class="line">4.canvas竟然没办法画文字,这不科学，<span class="keyword">mark</span>一下</span><br><span class="line">---保持<span class="keyword">mark</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//第三天：</span></span><br><span class="line">1.这里<span class="keyword">mark</span>一下Card里的ShapeBorder shape,源码粗略看了一下，可能挺好玩，今天主看控件</span><br><span class="line">---保持<span class="keyword">mark</span></span><br><span class="line"></span><br><span class="line">2.transform属性的Matrix4有机会肯定好好分析分析，<span class="keyword">mark</span>一下</span><br><span class="line">---保持<span class="keyword">mark</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/02.html" rel="next" title="Flutter第2天--Animation动画+粒子运动">
+                <i class="fa fa-chevron-left"></i> Flutter第2天--Animation动画+粒子运动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/FlutterUnit_update.html" rel="prev" title="Flutter Unit  更新记录">
+                Flutter Unit  更新记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter七日游第三天：2018-12-18-天气：晴朗"><span class="nav-number">1.</span> <span class="nav-text">Flutter七日游第三天：2018-12-18 天气：晴朗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零、前言"><span class="nav-number">2.</span> <span class="nav-text">零、前言</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一、Widget简入"><span class="nav-number">2.1.</span> <span class="nav-text">一、Widget简入</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-StatelessWidget和StatefulWidget"><span class="nav-number">2.2.</span> <span class="nav-text">1.StatelessWidget和StatefulWidget</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-StatelessWidget一共就有三个方法"><span class="nav-number">2.3.</span> <span class="nav-text">2.StatelessWidget一共就有三个方法:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-初始项目看StatelessWidget"><span class="nav-number">2.4.</span> <span class="nav-text">3.初始项目看StatelessWidget:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-恭喜达成成就：Widget源码偷窥者-成就奖励：三张卡片："><span class="nav-number">2.5.</span> <span class="nav-text">4.恭喜达成成就：Widget源码偷窥者, 成就奖励：三张卡片：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Flutter卡牌游戏Start"><span class="nav-number">3.</span> <span class="nav-text">二、Flutter卡牌游戏Start</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1：MaterialApp-材料App"><span class="nav-number">3.1.</span> <span class="nav-text">1：MaterialApp--材料App</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Scaffold-脚手架"><span class="nav-number">3.2.</span> <span class="nav-text">2.Scaffold--脚手架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3：AppBar-App的Bar"><span class="nav-number">3.3.</span> <span class="nav-text">3：AppBar--App的Bar</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#新手任务1：能力小测试："><span class="nav-number">3.3.1.</span> <span class="nav-text">新手任务1：能力小测试：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#新手任务完成，奖励卡片：欢迎继续冒险"><span class="nav-number">3.3.2.</span> <span class="nav-text">新手任务完成，奖励卡片：欢迎继续冒险</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4：Text-文字"><span class="nav-number">3.4.</span> <span class="nav-text">4：Text--文字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-FloatingActionButton-浮动动作按钮"><span class="nav-number">3.5.</span> <span class="nav-text">5.FloatingActionButton--浮动动作按钮</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-Icon-图标"><span class="nav-number">3.6.</span> <span class="nav-text">6.Icon--图标</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#新手任务2："><span class="nav-number">3.6.1.</span> <span class="nav-text">新手任务2：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、基础控件点将台-1"><span class="nav-number">4.</span> <span class="nav-text">三、基础控件点将台(1)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Layout布局容器之Row-Column-行-列"><span class="nav-number">4.1.</span> <span class="nav-text">1.Layout布局容器之Row+Column--行+列</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1-Row的基础认知"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.1:Row的基础认知</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2：基本使用"><span class="nav-number">4.1.2.</span> <span class="nav-text">1.2：基本使用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3-Column：用法基本上差不多"><span class="nav-number">4.1.3.</span> <span class="nav-text">1.3.Column：用法基本上差不多</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-4-Column基本使用"><span class="nav-number">4.1.4.</span> <span class="nav-text">1.4.Column基本使用</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#恭喜完成成就：布局菜鸟—奖励卡片："><span class="nav-number">4.1.5.</span> <span class="nav-text">恭喜完成成就：布局菜鸟—奖励卡片：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Container-容器"><span class="nav-number">4.2.</span> <span class="nav-text">2.Container--容器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1：源码小窥"><span class="nav-number">4.2.1.</span> <span class="nav-text">2.1：源码小窥</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2：简单使用："><span class="nav-number">4.2.2.</span> <span class="nav-text">2.2：简单使用：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#恭喜达成成就：Container使用者–卡牌奖励："><span class="nav-number">4.2.3.</span> <span class="nav-text">恭喜达成成就：Container使用者–卡牌奖励：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Stack-堆叠"><span class="nav-number">4.3.</span> <span class="nav-text">3.Stack -- 堆叠</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#触发新手任务3，并触发局部Widget树，系统赠送卡牌："><span class="nav-number">4.3.1.</span> <span class="nav-text">触发新手任务3，并触发局部Widget树，系统赠送卡牌：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-IndexedStack-定索引显示"><span class="nav-number">4.4.</span> <span class="nav-text">4.IndexedStack--定索引显示</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Transform-变换"><span class="nav-number">4.5.</span> <span class="nav-text">5.Transform--变换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-Offstage-显隐控制"><span class="nav-number">4.6.</span> <span class="nav-text">6.Offstage--显隐控制</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#恭喜获得成就：布局小新手-：奖励卡牌："><span class="nav-number">4.6.1.</span> <span class="nav-text">恭喜获得成就：布局小新手 ：奖励卡牌：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、基础控件点将台之–三大战力"><span class="nav-number">5.</span> <span class="nav-text">三、基础控件点将台之–三大战力</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-表格–Table"><span class="nav-number">5.1.</span> <span class="nav-text">1.表格–Table</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：属性一览"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.1：属性一览</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2：新手任务4：完成下面表格"><span class="nav-number">5.1.2.</span> <span class="nav-text">1.2：新手任务4：完成下面表格</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-流动容器-–Flow："><span class="nav-number">5.2.</span> <span class="nav-text">2.流动容器 –Flow：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1：属性一览"><span class="nav-number">5.2.1.</span> <span class="nav-text">2.1：属性一览</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2：新手任务5：用完Flow成下面布局"><span class="nav-number">5.2.2.</span> <span class="nav-text">2.2：新手任务5：用完Flow成下面布局</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-包裹–Warp"><span class="nav-number">5.3.</span> <span class="nav-text">3.包裹–Warp</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1：简单认识："><span class="nav-number">5.3.1.</span> <span class="nav-text">3.1：简单认识：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#direction"><span class="nav-number">5.3.2.</span> <span class="nav-text">direction</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2：新手任务6-1"><span class="nav-number">5.3.3.</span> <span class="nav-text">3.2：新手任务6-1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3：新手任务6-2"><span class="nav-number">5.3.4.</span> <span class="nav-text">3.3：新手任务6-2</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#duang-三大战力倒下，恭喜获得称号：布局勇士，收获三张传说级卡片："><span class="nav-number">5.3.5.</span> <span class="nav-text">duang,三大战力倒下，恭喜获得称号：布局勇士，收获三张传说级卡片：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、基础控件点将台之–列表"><span class="nav-number">6.</span> <span class="nav-text">三、基础控件点将台之–列表</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-老伙伴：ListView"><span class="nav-number">6.1.</span> <span class="nav-text">1.老伙伴：ListView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2–老伙伴：GridView"><span class="nav-number">6.2.</span> <span class="nav-text">2–老伙伴：GridView</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-轴列容器–ListBody-我自己取的名字"><span class="nav-number">6.3.</span> <span class="nav-text">3.轴列容器–ListBody(我自己取的名字)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#好了，又到三局一度的发卡时间了"><span class="nav-number">6.3.1.</span> <span class="nav-text">好了，又到三局一度的发卡时间了</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、容器扫个尾："><span class="nav-number">7.</span> <span class="nav-text">四、容器扫个尾：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Baseline"><span class="nav-number">7.1.</span> <span class="nav-text">1.Baseline</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-FractionallySizedBox"><span class="nav-number">7.2.</span> <span class="nav-text">2.FractionallySizedBox</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-AspectRatio"><span class="nav-number">7.3.</span> <span class="nav-text">3.AspectRatio</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#恭喜获得称号-布局学徒-，奖励卡片"><span class="nav-number">7.3.1.</span> <span class="nav-text">恭喜获得称号:布局学徒 ，奖励卡片</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、总结一下mark的点："><span class="nav-number">8.</span> <span class="nav-text">五、总结一下mark的点：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共17.5k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

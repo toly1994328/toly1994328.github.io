@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://toly1994328.gitee.io/photo/base/icon_head_32x32.png?v=5.1.4">
+
+
+
+
+
+
+  <meta name="keywords" content="flutter教程," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Flutter七日游第二天----2018-12-17----天气晴朗零前言： 昨天讲了一下Flutter的基础项目，介绍了一下Dart语言，简单的用Canvas绘个图本来打算今天把内置控件看一下的,不过既然昨天把图都画了,今天不玩动画岂不可惜今天主要是把动画理一下,顺便把Android-java粒子运动复刻到Flutter-Dart里最后会实现一个粒子时钟，Java版详见：Android原生绘图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flutter第2天--Animation动画+粒子运动">
+<meta property="og:url" content="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/02.html">
+<meta property="og:site_name" content="张风捷特烈">
+<meta property="og:description" content="Flutter七日游第二天----2018-12-17----天气晴朗零前言： 昨天讲了一下Flutter的基础项目，介绍了一下Dart语言，简单的用Canvas绘个图本来打算今天把内置控件看一下的,不过既然昨天把图都画了,今天不玩动画岂不可惜今天主要是把动画理一下,顺便把Android-java粒子运动复刻到Flutter-Dart里最后会实现一个粒子时钟，Java版详见：Android原生绘图">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/0.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/1.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/2.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/3.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/4.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/5.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/6.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/7.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/8.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/9.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/10.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/11.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/12.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/13.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/14.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/15.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/16.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/17.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/18.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/19.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/20.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/21.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/22.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/23.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/24.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/25.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/26.png">
+<meta property="og:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/27.png">
+<meta property="article:published_time" content="2018-12-17T13:46:01.000Z">
+<meta property="article:modified_time" content="2020-05-04T00:28:42.000Z">
+<meta property="article:author" content="张风捷特烈">
+<meta property="article:tag" content="flutter教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://toly1994328.gitee.io/photo/flutter/seven_day/02/0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://toly1994328.gitee.io/Flutter七日/02.html"/>
+
+
+
+
+
+  <title>Flutter第2天--Animation动画+粒子运动 | 张风捷特烈</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/toly1994328" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">张风捷特烈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/02.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张风捷特烈">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://toly1994328.gitee.io/photo/base/icon_head.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="张风捷特烈">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Flutter第2天--Animation动画+粒子运动</h1>
+        
+
+        <div class="post-meta">
+        
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-17T21:46:01+08:00">
+                2018-12-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Flutter%E4%B8%83%E6%97%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">Flutter七日</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="Flutter七日游第二天-2018-12-17-天气晴朗"><a href="#Flutter七日游第二天-2018-12-17-天气晴朗" class="headerlink" title="Flutter七日游第二天----2018-12-17----天气晴朗"></a><code>Flutter七日游第二天----2018-12-17----天气晴朗</code></h4><h4 id="零前言："><a href="#零前言：" class="headerlink" title="零前言："></a>零前言：</h4><blockquote>
+<p>昨天讲了一下Flutter的基础项目，介绍了一下Dart语言，简单的用Canvas绘个图<br>本来打算今天把内置控件看一下的,不过既然昨天把图都画了,今天不玩动画岂不可惜<br>今天主要是把动画理一下,顺便把Android-java粒子运动复刻到Flutter-Dart里<br>最后会实现一个粒子时钟，<a href="https://juejin.im/post/5be7d3916fb9a04a0b21aeca" target="_blank" rel="noopener">Java版详见：Android原生绘图之炫酷倒计时</a><br>所以这篇会挺好玩的，瓜子，饮料，花生米备好，开始看吧</p>
+</blockquote>
+<h5 id="先挑几个图镇楼吧"><a href="#先挑几个图镇楼吧" class="headerlink" title="先挑几个图镇楼吧"></a>先挑几个图镇楼吧</h5><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/0.png" alt=""></p>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th>运动盒</th>
+<th>粉碎球</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/1.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/2.png" alt=""></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>星与芒</th>
+<th>星扩动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/3.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/4.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="一、入门级动画：五角星的长大"><a href="#一、入门级动画：五角星的长大" class="headerlink" title="一、入门级动画：五角星的长大"></a>一、入门级动画：<code>五角星的长大</code></h4><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/5.png" alt=""></p>
+<hr>
+<h5 id="1-照葫芦画瓢"><a href="#1-照葫芦画瓢" class="headerlink" title="1.照葫芦画瓢"></a>1.照葫芦画瓢</h5><blockquote>
+<p>按照昨天的Flutter初始项目，我们来自己写一个<br>本人是喜欢分包的,Javaer的优良习惯。至少逻辑清晰，分工明确，我创建了一个<code>pager包</code><br>主页面内容用AnimaPage,虽然暂时还不知道StatefulWidget是什么，反正按照套路出牌就行了<br>仿照初始项目的套路写，这里绘图区自定义AnimaView,打算对五角星的外接圆半径R进行动画</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:toly/view/anima_view.dart';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimaPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _AnimaPageState createState() =&gt; _AnimaPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_AnimaPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;AnimaPage&gt;</span></span>&#123;</span><br><span class="line">  double _R = <span class="number">25</span>;<span class="comment">//五角星的外接圆半径</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="type">Text</span>(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="type">CustomPaint</span>(</span><br><span class="line">        painter: <span class="type">AnimaView</span>(context, _R),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: <span class="type">FloatingActionButton</span>(</span><br><span class="line">        onPressed: () &#123;</span><br><span class="line">        &#125;,</span><br><span class="line">        tooltip: <span class="symbol">'Incremen</span>t',</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-AnimaView的实现："><a href="#2-AnimaView的实现：" class="headerlink" title="2.AnimaView的实现："></a>2.AnimaView的实现：</h5><blockquote>
+<p>n角星的路径第一天已经封装好了，不会的可以去看一下</p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="symbol">'dart</span>:ui';</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/cupertino.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:flutter/material.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:toly/helper/common_path.dart';</span><br><span class="line"><span class="keyword">import</span> <span class="symbol">'package</span>:toly/helper/help_view.dart';</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimaView</span> <span class="keyword">extends</span> <span class="title">CustomPainter</span> </span>&#123;</span><br><span class="line">  <span class="type">Paint</span> mPaint;</span><br><span class="line">  <span class="type">BuildContext</span> context;</span><br><span class="line">  double _R;</span><br><span class="line"></span><br><span class="line">  <span class="type">AnimaView</span>(<span class="keyword">this</span>.context, double r) &#123;</span><br><span class="line">    mPaint = <span class="keyword">new</span> <span class="type">Paint</span>();</span><br><span class="line">    mPaint.color = <span class="type">Colors</span>.deepOrange;</span><br><span class="line">    _R = r;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void paint(<span class="type">Canvas</span> canvas, <span class="type">Size</span> size) &#123;</span><br><span class="line">    <span class="keyword">var</span> winSize = <span class="type">MediaQuery</span>.of(context).size;</span><br><span class="line">    drawGrid(canvas, winSize);</span><br><span class="line">    drawCoo(canvas, <span class="keyword">new</span> <span class="type">Size</span>(<span class="number">160</span>, <span class="number">320</span>), winSize);</span><br><span class="line">    canvas.translate(<span class="number">160</span>, <span class="number">320</span>);</span><br><span class="line">    canvas.drawPath(nStarPath(<span class="number">5</span>, _R, <span class="number">50</span>), mPaint);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  bool shouldRepaint(<span class="type">CustomPainter</span> oldDelegate) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-让数据动起来"><a href="#3-让数据动起来" class="headerlink" title="3.让数据动起来"></a>3.让数据动起来</h5><blockquote>
+<p>现在万事俱备，只欠东风把R的值吹动就行了,下面有请Animation登场<br>vsync需要with SingleTickerProviderStateMixi<br>Tween:补间动画—-这里即：在 25.0, ~ 150.0之间在2000ms之内均匀变化<br>(PS:由于程序运行情况不同，并非绝对均匀,但整体上是均匀的)<br><code>..</code>:是级联运算,相当于再使用此对象，这里<code>..</code>也就代表<code>animation.</code></p>
+</blockquote>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnimaPage</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>&#123;</span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  _AnimaPageState createState() =&gt; _AnimaPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">_AnimaPageState</span> <span class="keyword">extends</span> <span class="title">State&lt;AnimaPage&gt;</span></span></span><br><span class="line"><span class="class">    <span class="keyword">with</span> <span class="title">SingleTickerProviderStateMixin</span> </span>&#123;</span><br><span class="line">  <span class="type">AnimationController</span> controller;</span><br><span class="line">  <span class="type">Animation</span>&lt;double&gt; animation;</span><br><span class="line">  double _R = <span class="number">25</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    <span class="comment">// 创建 AnimationController 对象</span></span><br><span class="line">    <span class="comment">//|----vsync时会防止屏幕外动画（动画的UI不在当前屏幕时）消耗不必要的资源 </span></span><br><span class="line">    controller = <span class="type">AnimationController</span>(</span><br><span class="line">        duration: const <span class="type">Duration</span>(milliseconds: <span class="number">2000</span>), vsync: <span class="keyword">this</span>);</span><br><span class="line">    animation = <span class="type">Tween</span>(begin: <span class="number">25.0</span>, end: <span class="number">150.0</span>).animate(controller)</span><br><span class="line">      ..addListener(() &#123;</span><br><span class="line">        setState(() &#123;</span><br><span class="line">          _R = animation.value;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  void dispose() &#123;</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">    controller.dispose(); <span class="comment">// 资源释放</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@override</span></span><br><span class="line">  <span class="type">Widget</span> build(<span class="type">BuildContext</span> context) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Scaffold</span>(</span><br><span class="line">      appBar: <span class="type">AppBar</span>(</span><br><span class="line">        title: <span class="type">Text</span>(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: <span class="type">CustomPaint</span>(</span><br><span class="line">        painter: <span class="type">AnimaView</span>(context, _R),</span><br><span class="line">      ),</span><br><span class="line">      floatingActionButton: <span class="type">FloatingActionButton</span>(</span><br><span class="line">        onPressed: () &#123;</span><br><span class="line">          controller.forward(); <span class="comment">//执行动画</span></span><br><span class="line">        &#125;,</span><br><span class="line">        tooltip: <span class="symbol">'Incremen</span>t',</span><br><span class="line">        child: <span class="type">Icon</span>(<span class="type">Icons</span>.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样最简单的动画就动起来了</p>
+</blockquote>
+<hr>
+<h5 id="4-来理一理思路"><a href="#4-来理一理思路" class="headerlink" title="4.来理一理思路"></a>4.来理一理思路</h5><blockquote>
+<p>把源码翻一翻，感觉整个动画体系也不是非常复杂<br>套路就是:Animatable用animate方法，把一个Animation包裹一下,形成一个更厉害的Animation<br>至于他们的n个儿子，也就是对数据的处理不同，产生的效果不同罢了，套路知道了，一切好办</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/6.png" alt=""></p>
+<hr>
+<blockquote>
+<p>可以看出api并没有想象中的那么多，所以别怕</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/7.png" alt=""></p>
+<hr>
+<h4 id="二、入门级动画：五角星的绽放"><a href="#二、入门级动画：五角星的绽放" class="headerlink" title="二、入门级动画：五角星的绽放"></a>二、入门级动画：<code>五角星的绽放</code></h4><blockquote>
+<p>前面用了补间动画Tween,而且只动了一下，下面带来连续运动的不均匀动画</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>匀速往复动</th>
+<th>自定义曲线</th>
+<th>bounceInOut</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/8.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/9.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/10.png" alt=""></td>
+</tr>
+</tbody></table>
+<hr>
+<h5 id="1-往复运动"><a href="#1-往复运动" class="headerlink" title="1.往复运动"></a>1.往复运动</h5><h6 id="1-1：运动状态"><a href="#1-1：运动状态" class="headerlink" title="1.1：运动状态"></a>1.1：运动状态</h6><blockquote>
+<p>你可以想象成一个人在一个范围数字跑道上跑步：</p>
+</blockquote>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">AnimationStatus</span> &#123;</span></span><br><span class="line">  /<span class="regexp">//</span> The animation is stopped at the beginning</span><br><span class="line">  dismissed,<span class="regexp">//</span>在正在开始时停止了</span><br><span class="line">  /<span class="regexp">//</span> The animation is running from beginning to <span class="keyword">end</span></span><br><span class="line">  forward,<span class="regexp">//</span>运动中</span><br><span class="line">  /<span class="regexp">//</span> The animation is running backwards, from <span class="keyword">end</span> to beginning</span><br><span class="line">  reverse,<span class="regexp">//</span>跑到终点，再跑回来的时候</span><br><span class="line">  /<span class="regexp">//</span> The animation is stopped at the <span class="keyword">end</span></span><br><span class="line">  completed,<span class="regexp">//</span>跑到终点是</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="1-2：状态的监听"><a href="#1-2：状态的监听" class="headerlink" title="1.2：状态的监听"></a>1.2：状态的监听</h6><blockquote>
+<p><code>addStatusListener</code>:可以监听当前运动状态:只要让它跑完了，再往回跑就行了</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">animation = <span class="constructor">Tween(<span class="params">begin</span>: 25.0, <span class="params">end</span>: 150.0)</span>.animate(controller)</span><br><span class="line">     ..add<span class="constructor">Listener(()</span> &#123;</span><br><span class="line">       set<span class="constructor">State(()</span> &#123;</span><br><span class="line">         _R = animation.value;</span><br><span class="line">       &#125;);</span><br><span class="line">     &#125;)</span><br><span class="line">     ..add<span class="constructor">StatusListener((<span class="params">status</span>)</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (status<span class="operator"> == </span><span class="module-access"><span class="module"><span class="identifier">AnimationStatus</span>.</span></span>completed) &#123;</span><br><span class="line">         controller.reverse<span class="literal">()</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status<span class="operator"> == </span><span class="module-access"><span class="module"><span class="identifier">AnimationStatus</span>.</span></span>dismissed) &#123;</span><br><span class="line">         controller.forward<span class="literal">()</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-变速跑"><a href="#2-变速跑" class="headerlink" title="2.变速跑"></a>2.变速跑</h5><blockquote>
+<p>就像运动员变速跑一样，感觉就像游戏里加buff,本来是匀速的Animation<br>给价格变速的buff就变速起来了，加buff的类就是<code>Animatable</code>,它的子类有一个<code>CurveTween</code>：</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">animation = <span class="constructor">Tween(<span class="params">begin</span>: 25.0, <span class="params">end</span>: 150.0)</span>.animate(</span><br><span class="line">        <span class="constructor">CurveTween(<span class="params">curve</span>: Curves.<span class="params">bounceInOut</span>)</span>.animate(controller))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>就这么简单，Curves里有几个内置的变速器，给原来的animation装上就行了</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/11.png" alt=""></p>
+<hr>
+<h5 id="3-自定义变速曲线"><a href="#3-自定义变速曲线" class="headerlink" title="3.自定义变速曲线"></a>3.自定义变速曲线</h5><h6 id="3-1：追踪一下源码"><a href="#3-1：追踪一下源码" class="headerlink" title="3.1：追踪一下源码"></a>3.1：追踪一下源码</h6><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">----&gt;[<span class="type">CurveTween</span>]---------控件只有一参<span class="type">Curve</span>------------------------</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CurveTween</span> <span class="keyword">extends</span> <span class="title">Animatable&lt;double&gt;</span> </span>&#123;</span><br><span class="line">  <span class="comment">/// Creates a curve tween.</span></span><br><span class="line">  <span class="comment">///</span></span><br><span class="line">  <span class="comment">/// The [curve] argument must not be null.</span></span><br><span class="line">  <span class="type">CurveTween</span>(&#123; <span class="meta">@required</span> <span class="keyword">this</span>.curve &#125;)</span><br><span class="line">    : assert(curve != <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/// The curve to use when transforming the value of the animation.</span></span><br><span class="line">  <span class="type">Curve</span> curve;</span><br><span class="line">  </span><br><span class="line">----&gt;[<span class="type">Curve</span>]--------抽象的，找儿子去--------------------</span><br><span class="line"><span class="meta">@immutable</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Curve</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">----&gt;[<span class="type">Curve</span>]--------四参构造的曲线，整合我意--------------------</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cubic</span> <span class="keyword">extends</span> <span class="title">Curve</span> </span>&#123;</span><br><span class="line">  <span class="comment">/// Creates a cubic curve.</span></span><br><span class="line">  <span class="comment">///</span></span><br><span class="line">  <span class="comment">/// Rather than creating a new instance, consider using one of the common</span></span><br><span class="line">  <span class="comment">/// cubic curves in [Curves].</span></span><br><span class="line">  <span class="comment">///</span></span><br><span class="line">  <span class="comment">/// The [a], [b], [c], and [d] arguments must not be null.</span></span><br><span class="line">  const <span class="type">Cubic</span>(<span class="keyword">this</span>.a, <span class="keyword">this</span>.b, <span class="keyword">this</span>.c, <span class="keyword">this</span>.d)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="3-2-Chrome小工具"><a href="#3-2-Chrome小工具" class="headerlink" title="3.2:Chrome小工具"></a>3.2:Chrome小工具</h6><blockquote>
+<p>作为一名前端业余爱好者，Chrome里有个小东西很有用,<br>曲线生成，自带预览,简直无心插柳柳成荫。(记得掘金的头像可以转,有translate属性)  </p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/12.png" alt=""></p>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/13.png" alt=""></p>
+<hr>
+<h6 id="3-3-使用："><a href="#3-3-使用：" class="headerlink" title="3.3:使用："></a>3.3:使用：</h6><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">animation = Tween(begin: <span class="number">25.0</span>, end: <span class="number">150.0</span>).animate(</span><br><span class="line">      CurveTween(curve: Cubic(<span class="number">0.96</span>, <span class="number">0.13</span>, <span class="number">0.1</span>, <span class="number">1.2</span>)).animate(controller))</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/14.png" alt=""></p>
+<blockquote>
+<p>Ok,基本上就这样，你get了吗?</p>
+</blockquote>
+<hr>
+<h4 id="三、初级动画：太阳的诞生"><a href="#三、初级动画：太阳的诞生" class="headerlink" title="三、初级动画：太阳的诞生"></a>三、初级动画：<code>太阳的诞生</code></h4><table>
+<thead>
+<tr>
+<th>红太阳</th>
+<th>星与阳</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/15.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/16.png" alt=""></td>
+</tr>
+</tbody></table>
+<h5 id="1-红太阳：整型int-动画"><a href="#1-红太阳：整型int-动画" class="headerlink" title="1.红太阳：整型int 动画"></a>1.红太阳：整型int 动画</h5><blockquote>
+<p>套路学会了，这些动态改变一下n角星的尖角数，看看效果</p>
+</blockquote>
+<h6 id="1-1：AnimaPage里定义尖角数动画"><a href="#1-1：AnimaPage里定义尖角数动画" class="headerlink" title="1.1：AnimaPage里定义尖角数动画"></a>1.1：AnimaPage里定义尖角数动画</h6><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Animation&lt;<span class="built_in">int</span>&gt; numAnima;<span class="comment">//n角星的尖角数动画</span></span><br><span class="line"><span class="built_in">int</span> _num = <span class="number">5</span>;<span class="comment">//n角星的尖角数动画</span></span><br><span class="line"></span><br><span class="line"> controller = AnimationController(</span><br><span class="line">        duration: <span class="keyword">const</span> Duration(milliseconds: <span class="number">2000</span>), vsync: <span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    numAnima = IntTween(begin: <span class="number">5</span>, end: <span class="number">220</span>).animate(controller)</span><br><span class="line">      ..addListener(() &#123;</span><br><span class="line">        setState(() &#123;</span><br><span class="line">          _num = numAnima.value;<span class="comment">//设置属性，刷新界面</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;)</span><br><span class="line">      ..addStatusListener((status) &#123;</span><br><span class="line">        <span class="keyword">if</span> (status == AnimationStatus.completed) &#123;</span><br><span class="line">          controller.reverse();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status == AnimationStatus.dismissed) &#123;</span><br><span class="line">          controller.forward();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="1-2：AnimaView增加入参"><a href="#1-2：AnimaView增加入参" class="headerlink" title="1.2：AnimaView增加入参"></a>1.2：AnimaView增加入参</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> _num;</span><br><span class="line"><span class="constructor">AnimaView(<span class="params">this</span>.<span class="params">context</span>, &#123;<span class="params">double</span> R, <span class="params">int</span> <span class="params">num</span>, Color <span class="params">color</span>&#125;)</span> &#123;</span><br><span class="line">    _num = num;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//绘制时使用_num即可</span></span><br><span class="line"> canvas.draw<span class="constructor">Path(<span class="params">nStarPath</span>(<span class="params">_num</span>, 100, 50)</span>, mPaint);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-星与阳：颜色动画"><a href="#2-星与阳：颜色动画" class="headerlink" title="2.星与阳：颜色动画"></a>2.星与阳：颜色动画</h5><blockquote>
+<p><code>ColorTween</code>相当于添加颜色改变的buff,入参的自己加吧，和上面一样,给画笔填色就行了</p>
+</blockquote>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">colorAnima =</span><br><span class="line">        <span class="constructor">ColorTween(<span class="params">begin</span>: Colors.<span class="params">yellow</span>, <span class="params">end</span>: Colors.<span class="params">red</span>)</span>.animate(controller)</span><br><span class="line">          ..add<span class="constructor">Listener(()</span> &#123;</span><br><span class="line">            set<span class="constructor">State(()</span> &#123;</span><br><span class="line">              _color = colorAnima.value;</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;)</span><br><span class="line">          ..add<span class="constructor">StatusListener((<span class="params">status</span>)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (status<span class="operator"> == </span><span class="module-access"><span class="module"><span class="identifier">AnimationStatus</span>.</span></span>completed) &#123;</span><br><span class="line">              controller.reverse<span class="literal">()</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status<span class="operator"> == </span><span class="module-access"><span class="module"><span class="identifier">AnimationStatus</span>.</span></span>dismissed) &#123;</span><br><span class="line">              controller.forward<span class="literal">()</span>;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-其他效果"><a href="#3-其他效果" class="headerlink" title="3.其他效果"></a>3.其他效果</h5><blockquote>
+<p>自己玩玩吧，随便改些属性</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>星与芒</th>
+<th>星扩动</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/17.png" alt=""></td>
+<td><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/18.png" alt=""></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>星与芒:固定五角星内接圆半径,外接圆半径变大，角数变多,颜色变红<br>星扩动:五角星内接圆半径为外接圆一半,外接圆半径变大，角数变多,颜色变红  </p>
+</blockquote>
+<h5 id="好了，预热完了，下面进入正题"><a href="#好了，预热完了，下面进入正题" class="headerlink" title="好了，预热完了，下面进入正题"></a><code>好了，预热完了，下面进入正题</code></h5><hr>
+<h4 id="四、粒子运动"><a href="#四、粒子运动" class="headerlink" title="四、粒子运动"></a>四、粒子运动</h4><blockquote>
+<p>无论什么语言只有能模拟<code>时间流</code>就可以有粒子动画<br>粒子动画的基础在<a href="https://juejin.im/post/5bee10376fb9a04a0e2cc4c2" target="_blank" rel="noopener">Android原生绘图之让你了解View的运动</a>里讲的很详细<br>思想对于所有语言都是通用的，不仅限于java,有兴趣的可以详细了解下</p>
+</blockquote>
+<h5 id="1-废话不多说，来个运动盒再说"><a href="#1-废话不多说，来个运动盒再说" class="headerlink" title="1.废话不多说，来个运动盒再说"></a>1.废话不多说，来个<code>运动盒</code>再说</h5><blockquote>
+<p><code>运动盒</code>就是小球在盒子里不断弹跳的动画,就像这样  </p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/19.png" alt=""></p>
+<h6 id="1-1：新建文件：run-ball-view-dart-gt-RunBallView-Ball"><a href="#1-1：新建文件：run-ball-view-dart-gt-RunBallView-Ball" class="headerlink" title="1.1：新建文件：run_ball_view.dart-----&gt;RunBallView + Ball"></a>1.1：新建文件：<code>run_ball_view.dart-----&gt;RunBallView + Ball</code></h6><blockquote>
+<p>先把小球的实体类写一下</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">Ball</span> &#123;</span><br><span class="line">  <span class="built_in">double</span> aX; <span class="comment">//加速度</span></span><br><span class="line">  <span class="built_in">double</span> aY; <span class="comment">//加速度Y</span></span><br><span class="line">  <span class="built_in">double</span> vX; <span class="comment">//速度X</span></span><br><span class="line">  <span class="built_in">double</span> vY; <span class="comment">//速度Y</span></span><br><span class="line">  <span class="built_in">double</span> x; <span class="comment">//点位X</span></span><br><span class="line">  <span class="built_in">double</span> y; <span class="comment">//点位Y</span></span><br><span class="line">  Color color; <span class="comment">//颜色</span></span><br><span class="line">  <span class="built_in">double</span> r;<span class="comment">//小球半径</span></span><br><span class="line"></span><br><span class="line">  Ball(&#123;<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.color, <span class="keyword">this</span>.r, <span class="keyword">this</span>.aX, <span class="keyword">this</span>.aY, <span class="keyword">this</span>.vX, <span class="keyword">this</span>.vY&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="1-2：画板准备好"><a href="#1-2：画板准备好" class="headerlink" title="1.2：画板准备好"></a>1.2：画板准备好</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> RunBallView extends CustomPainter &#123;</span><br><span class="line">  Paint mPaint;</span><br><span class="line">  BuildContext context;</span><br><span class="line">  Ball _ball;</span><br><span class="line">  Rect _limit;</span><br><span class="line"></span><br><span class="line">  <span class="constructor">RunBallView(<span class="params">this</span>.<span class="params">context</span>, Ball <span class="params">ball</span>, Rect <span class="params">limit</span>)</span> &#123;</span><br><span class="line">    mPaint = <span class="keyword">new</span> <span class="constructor">Paint()</span>;</span><br><span class="line">    _ball = ball;</span><br><span class="line">    _limit = limit;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  void paint(Canvas canvas, Size size) &#123;</span><br><span class="line">    var winSize = <span class="module-access"><span class="module"><span class="identifier">MediaQuery</span>.</span></span><span class="keyword">of</span>(context).size;</span><br><span class="line">    canvas.translate(<span class="number">160</span>, <span class="number">320</span>);</span><br><span class="line">    mPaint.color = <span class="module-access"><span class="module"><span class="identifier">Color</span>.</span></span>from<span class="constructor">ARGB(148, 198, 246, 248)</span>;</span><br><span class="line">    canvas.draw<span class="constructor">Rect(<span class="params">_limit</span>, <span class="params">mPaint</span>)</span>;</span><br><span class="line"></span><br><span class="line">    canvas.save<span class="literal">()</span>;</span><br><span class="line">    draw<span class="constructor">Ball(<span class="params">canvas</span>, <span class="params">_ball</span>)</span>;</span><br><span class="line">    canvas.restore<span class="literal">()</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  <span class="built_in">bool</span> should<span class="constructor">Repaint(CustomPainter <span class="params">oldDelegate</span>)</span> &#123;</span><br><span class="line">    return <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">//绘制小球</span></span><br><span class="line">  void draw<span class="constructor">Ball(Canvas <span class="params">canvas</span>, Ball <span class="params">ball</span>)</span> &#123;</span><br><span class="line">    mPaint.color = ball.color;</span><br><span class="line">    canvas.draw<span class="constructor">Circle(Offset(<span class="params">ball</span>.<span class="params">x</span>, <span class="params">ball</span>.<span class="params">y</span>)</span>, ball.r, mPaint);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="1-3：认识一下矩形对象Rect"><a href="#1-3：认识一下矩形对象Rect" class="headerlink" title="1.3：认识一下矩形对象Rect"></a>1.3：认识一下矩形对象Rect</h6><blockquote>
+<p>这是我们需要的字段</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var limit = Rect.fromLTRB(-140, -100, 140, 100);</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"width:<span class="variable">$&#123;limit.width&#125;</span>"</span>);</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"height:<span class="variable">$&#123;limit.height&#125;</span>"</span>);</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"left:<span class="variable">$&#123;limit.left&#125;</span>"</span>);</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"top:<span class="variable">$&#123;limit.top&#125;</span>"</span>);</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"right:<span class="variable">$&#123;limit.right&#125;</span>"</span>);</span><br><span class="line"><span class="builtin-name">print</span>(<span class="string">"bottom:<span class="variable">$&#123;limit.bottom&#125;</span>"</span>);</span><br><span class="line"></span><br><span class="line">I/flutter (28755): width:280.0</span><br><span class="line">I/flutter (28755): height:200.0</span><br><span class="line">I/flutter (28755): left:-140.0</span><br><span class="line">I/flutter (28755): top:-100.0</span><br><span class="line">I/flutter (28755): right:140.0</span><br><span class="line">I/flutter (28755): bottom:100.0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="1-4：新建文件：run-ball-pager-dart-gt-RunBallPage"><a href="#1-4：新建文件：run-ball-pager-dart-gt-RunBallPage" class="headerlink" title="1.4：新建文件：run_ball_pager.dart----&gt;RunBallPage"></a>1.4：新建文件：<code>run_ball_pager.dart----&gt;RunBallPage</code></h6><blockquote>
+<p>这里只需要一个时间流，用<code>AnimationController</code>一个人就够了</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="symbol">RunBallPage</span> <span class="symbol">extends</span> <span class="symbol">StatefulWidget</span> &#123;</span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  _RunBallPageState createState() =&gt; _RunBallPageState();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="symbol">_RunBallPageState</span> <span class="symbol">extends</span> <span class="symbol">State</span>&lt;<span class="symbol">RunBallPage</span>&gt;</span><br><span class="line">    <span class="symbol">with</span> <span class="symbol">SingleTickerProviderStateMixin</span> &#123;</span><br><span class="line">  AnimationController controller;</span><br><span class="line">  Ball _ball;</span><br><span class="line">  var _limit = Rect.fromLTRB(<span class="number">-140</span>, <span class="number">-100</span>, <span class="number">140</span>, <span class="number">100</span>);<span class="comment">//矩形边界</span></span><br><span class="line">    </span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="built_in">void</span> initState() &#123;</span><br><span class="line">    <span class="keyword">super</span>.initState();</span><br><span class="line">    <span class="comment">//初始化小球</span></span><br><span class="line">    _ball = Ball(x: <span class="number">0</span>, y: <span class="number">0</span>, color: Colors.blue, r: <span class="number">10</span>, aX: <span class="number">0</span>, aY: <span class="number">0</span>, vX: <span class="number">0</span>, vY: <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建 AnimationController 对象</span></span><br><span class="line">    <span class="comment">//|----vsync时会防止屏幕外动画（动画的UI不在当前屏幕时）消耗不必要的资源</span></span><br><span class="line">    controller = AnimationController(</span><br><span class="line">        duration: <span class="keyword">const</span> Duration(milliseconds: <span class="number">200000</span>), vsync: <span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    controller.addListener(() &#123;</span><br><span class="line">      updateBall();<span class="comment">//更新小球</span></span><br><span class="line"></span><br><span class="line">      setState(() &#123;&#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    controller.addStatusListener((status) &#123;</span><br><span class="line">      <span class="keyword">if</span> (status == AnimationStatus.completed) &#123;</span><br><span class="line">        controller.reverse();</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (status == AnimationStatus.dismissed) &#123;</span><br><span class="line">        controller.forward();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  <span class="built_in">void</span> dispose() &#123;</span><br><span class="line">    <span class="keyword">super</span>.dispose();</span><br><span class="line">    controller.dispose(); <span class="comment">// 资源释放</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @<span class="keyword">override</span></span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    <span class="keyword">return</span> Scaffold(</span><br><span class="line">      appBar: AppBar(</span><br><span class="line">        title: Text(<span class="string">"张风捷特烈"</span>),</span><br><span class="line">      ),</span><br><span class="line">      body: CustomPaint(</span><br><span class="line">        painter: RunBallView(context, _ball,_limit),</span><br><span class="line">      ),</span><br><span class="line">      <span class="built_in">float</span>ingActionButton: FloatingActionButton(</span><br><span class="line">        onPressed: () &#123;</span><br><span class="line">          controller.forward(); <span class="comment">//执行动画</span></span><br><span class="line">        &#125;,</span><br><span class="line">        tooltip: <span class="string">'Increment'</span>,</span><br><span class="line">        child: Icon(Icons.add),</span><br><span class="line">      ),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新小球</span></span><br><span class="line">  <span class="built_in">void</span> updateBall() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/20.png" alt=""></p>
+<blockquote>
+<p>这样静态小球就完成了</p>
+</blockquote>
+<hr>
+<h6 id="1-5：更新新小球位置-渲染视图：RunBallPage-updateBall"><a href="#1-5：更新新小球位置-渲染视图：RunBallPage-updateBall" class="headerlink" title="1.5：更新新小球位置,渲染视图：RunBallPage#updateBall"></a>1.5：更新新小球位置,渲染视图：<code>RunBallPage#updateBall</code></h6><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/21.png" alt=""></p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//更新小球位置</span></span><br><span class="line">  void updateBall() &#123;</span><br><span class="line">    <span class="comment">//运动学公式</span></span><br><span class="line">    <span class="variable">_ball</span>.x += <span class="variable">_ball</span>.vX;</span><br><span class="line">    <span class="variable">_ball</span>.y += <span class="variable">_ball</span>.vY;</span><br><span class="line">    <span class="variable">_ball</span>.vX += <span class="variable">_ball</span>.aX;</span><br><span class="line">    <span class="variable">_ball</span>.vY += <span class="variable">_ball</span>.aY;</span><br><span class="line">    <span class="comment">//限定下边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.y &gt; <span class="variable">_limit</span>.bottom - <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.y = <span class="variable">_limit</span>.bottom - <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vY = -<span class="variable">_ball</span>.vY;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//限定上边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.y &lt; <span class="variable">_limit</span>.top + <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.y = <span class="variable">_limit</span>.top + <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vY = -<span class="variable">_ball</span>.vY;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<hr>
+<h6 id="1-6：运动盒的实现"><a href="#1-6：运动盒的实现" class="headerlink" title="1.6：运动盒的实现"></a>1.6：运动盒的实现</h6><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/22.png" alt=""></p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始时附加信息</span></span><br><span class="line"><span class="variable">_ball</span> = Ball(x: <span class="number">0</span>, y: <span class="number">0</span>, color: Colors.blue, r: <span class="number">10</span>, aX: <span class="number">0</span>, aY: <span class="number">0.1</span>, vX: <span class="number">2</span>, vY: -<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新小球位置</span></span><br><span class="line">  void updateBall() &#123;</span><br><span class="line">    <span class="comment">//运动学公式</span></span><br><span class="line">    <span class="variable">_ball</span>.x += <span class="variable">_ball</span>.vX;</span><br><span class="line">    <span class="variable">_ball</span>.y += <span class="variable">_ball</span>.vY;</span><br><span class="line">    <span class="variable">_ball</span>.vX += <span class="variable">_ball</span>.aX;</span><br><span class="line">    <span class="variable">_ball</span>.vY += <span class="variable">_ball</span>.aY;</span><br><span class="line">    <span class="comment">//限定下边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.y &gt; <span class="variable">_limit</span>.bottom - <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.y = <span class="variable">_limit</span>.bottom - <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vY = -<span class="variable">_ball</span>.vY;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//限定上边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.y &lt; <span class="variable">_limit</span>.top + <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.y = <span class="variable">_limit</span>.top + <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vY = -<span class="variable">_ball</span>.vY;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//限定左边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.x &lt; <span class="variable">_limit</span>.left + <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.x = <span class="variable">_limit</span>.left + <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vX = -<span class="variable">_ball</span>.vX;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//限定右边界</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">_ball</span>.x &gt; <span class="variable">_limit</span>.right - <span class="variable">_ball</span>.r) &#123;</span><br><span class="line">      <span class="variable">_ball</span>.x = <span class="variable">_limit</span>.right - <span class="variable">_ball</span>.r;</span><br><span class="line">      <span class="variable">_ball</span>.vX= -<span class="variable">_ball</span>.vX;</span><br><span class="line">      <span class="variable">_ball</span>.color=randomRGB();<span class="comment">//碰撞后随机色</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="2-粒子的运动"><a href="#2-粒子的运动" class="headerlink" title="2.粒子的运动"></a>2.粒子的运动</h5><blockquote>
+<p>思路就是：用List把球装一下，碰撞的时候,创建一个方向相反，半径减半的球，加入集合<br>并将当前的球半径减半，效果挺不错的，实现起来也不麻烦。<a href="https://juejin.im/post/5bee10376fb9a04a0e2cc4c2" target="_blank" rel="noopener">Android-java版可见</a>  </p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/23.png" alt=""></p>
+<hr>
+<h6 id="2-1：改动：RunBallPage"><a href="#2-1：改动：RunBallPage" class="headerlink" title="2.1：改动：RunBallPage"></a>2.1：改动：<code>RunBallPage</code></h6><blockquote>
+<p>半径小于0.3就移除,为了不让小球无限增加,小于0.3基本上也就卡不见了<br>当然你也可以自定义移除的时机</p>
+</blockquote>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _balls = List&lt;Ball&gt;();<span class="comment">//将_ball换成集合</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ball = Ball(x: <span class="type">0</span>, y: <span class="type">0</span>, color: <span class="type">Colors</span>.blue, r: <span class="type">40</span>, aX: <span class="type">0</span>.<span class="number">05</span>, aY: <span class="type">0</span>.<span class="number">1</span>, vX: <span class="type">3</span>, vY: <span class="type">-3</span>);</span><br><span class="line">_balls.add(ball);<span class="comment">//添加一个</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//更新方法</span></span><br><span class="line"><span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; _balls.length; i++) &#123;</span><br><span class="line">      <span class="keyword">var</span> ball = _balls[i];</span><br><span class="line">      <span class="keyword">if</span> (ball.r &lt; <span class="number">0.3</span>) &#123;</span><br><span class="line">        <span class="comment">//半径小于0.3就移除</span></span><br><span class="line">        _balls.removeAt(i);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//运动学公式</span></span><br><span class="line">      ball.x += ball.vX;</span><br><span class="line">      ball.y += ball.vY;</span><br><span class="line">      ball.vX += ball.aX;</span><br><span class="line">      ball.vY += ball.aY;</span><br><span class="line">      <span class="comment">//限定下边界</span></span><br><span class="line">      <span class="keyword">if</span> (ball.y &gt; _limit.bottom) &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="keyword">new</span><span class="type">Ball</span> = Ball.fromBall(ball);</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.r = <span class="keyword">new</span><span class="type">Ball</span>.r / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.vX = -<span class="keyword">new</span><span class="type">Ball</span>.vX;</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.vY = -<span class="keyword">new</span><span class="type">Ball</span>.vY;</span><br><span class="line">        _balls.add(<span class="keyword">new</span><span class="type">Ball</span>);</span><br><span class="line">        ball.r = ball.r / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        ball.y = _limit.bottom;</span><br><span class="line">        ball.vY = -ball.vY;</span><br><span class="line">        ball.color = randomRGB(); <span class="comment">//碰撞后随机色</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//限定上边界</span></span><br><span class="line">      <span class="keyword">if</span> (ball.y &lt; _limit.top) &#123;</span><br><span class="line">        ball.y = _limit.top;</span><br><span class="line">        ball.vY = -ball.vY;</span><br><span class="line">        ball.color = randomRGB(); <span class="comment">//碰撞后随机色</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//限定左边界</span></span><br><span class="line">      <span class="keyword">if</span> (ball.x &lt; _limit.left) &#123;</span><br><span class="line">        ball.x = _limit.left;</span><br><span class="line">        ball.vX = -ball.vX;</span><br><span class="line">        ball.color = randomRGB(); <span class="comment">//碰撞后随机色</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//限定右边界</span></span><br><span class="line">      <span class="keyword">if</span> (ball.x &gt; _limit.right) &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="keyword">new</span><span class="type">Ball</span> = Ball.fromBall(ball);</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.r = <span class="keyword">new</span><span class="type">Ball</span>.r / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.vX = -<span class="keyword">new</span><span class="type">Ball</span>.vX;</span><br><span class="line">        <span class="keyword">new</span><span class="type">Ball</span>.vY = -<span class="keyword">new</span><span class="type">Ball</span>.vY;</span><br><span class="line">        _balls.add(<span class="keyword">new</span><span class="type">Ball</span>);</span><br><span class="line">        ball.r = ball.r / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        ball.x = _limit.right;</span><br><span class="line">        ball.vX = -ball.vX;</span><br><span class="line">        ball.color = randomRGB(); <span class="comment">//碰撞后随机色</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">//传入画布也变成小球集合</span></span><br><span class="line">body: <span class="type">CustomPaint</span>(</span><br><span class="line">        painter: <span class="type">RunBallView</span>(context, _balls, _limit),</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="2-2：绘制小球时-RunBallView："><a href="#2-2：绘制小球时-RunBallView：" class="headerlink" title="2.2：绘制小球时:RunBallView："></a>2.2：绘制小球时:<code>RunBallView</code>：</h6><blockquote>
+<p>把小球都绘制出来就行了</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//复制一个小球</span></span><br><span class="line">Ball.fromBall(Ball ball) &#123;</span><br><span class="line">  <span class="keyword">this</span>.x = ball.x;</span><br><span class="line">  <span class="keyword">this</span>.y = ball.y;</span><br><span class="line">  <span class="keyword">this</span>.color = ball.color;</span><br><span class="line">  <span class="keyword">this</span>.r = ball.r;</span><br><span class="line">  <span class="keyword">this</span>.aX = ball.aX;</span><br><span class="line">  <span class="keyword">this</span>.aY = ball.aY;</span><br><span class="line">  <span class="keyword">this</span>.vX = ball.vX;</span><br><span class="line">  <span class="keyword">this</span>.vY = ball.vY;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//------paint方法中-----------</span></span><br><span class="line">_balls.forEach((ball) &#123;</span><br><span class="line">     drawBall(canvas, ball);</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这样就完成了，是不是没有想象中的那么复杂</p>
+</blockquote>
+<hr>
+<h4 id="五、粒子时钟"><a href="#五、粒子时钟" class="headerlink" title="五、粒子时钟"></a>五、粒子时钟</h4><blockquote>
+<p>这里就不详细分析，<a href="https://juejin.im/post/5be7d3916fb9a04a0b21aeca" target="_blank" rel="noopener">这里的Java版已经分析的很细致了</a>,直接上代码(基本上是Java的翻译版)<br>这个效果新建了一个页面来做,digit三维数组Dart版附在文尾</p>
+</blockquote>
+<h5 id="1-渲染数字"><a href="#1-渲染数字" class="headerlink" title="1.渲染数字"></a>1.渲染数字</h5><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/24.png" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 渲染数字</span></span><br><span class="line"><span class="comment"> * @param num    要显示的数字</span></span><br><span class="line"><span class="comment"> * @param canvas 画布</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">void</span> renderDigit(<span class="built_in">int</span> num, Canvas canvas) &#123;</span><br><span class="line">  <span class="keyword">if</span> (num &gt; <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; digit[num].length; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; digit[num][j].length; j++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (digit[num][i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">        canvas.save();</span><br><span class="line">        <span class="built_in">double</span> rX = j * <span class="number">2</span> * (_radius + <span class="number">1</span>) + (_radius + <span class="number">1</span>); <span class="comment">//第(i，j)个点圆心横坐标</span></span><br><span class="line">        <span class="built_in">double</span> rY = i * <span class="number">2</span> * (_radius + <span class="number">1</span>) + (_radius + <span class="number">1</span>); <span class="comment">//第(i，j)个点圆心纵坐标</span></span><br><span class="line">        canvas.translate(rX, rY);</span><br><span class="line">        mPaint.color = Colors.blue;</span><br><span class="line">        canvas.drawPath(mStarPath, mPaint);</span><br><span class="line">        canvas.restore();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h5 id="2-画布中绘制1994"><a href="#2-画布中绘制1994" class="headerlink" title="2.画布中绘制1994"></a>2.画布中绘制<code>1994</code></h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">canvas.save();</span><br><span class="line">renderDigit(<span class="number">1</span>, canvas);</span><br><span class="line">canvas.translate(<span class="number">80</span>, <span class="number">0</span>);</span><br><span class="line">renderDigit(<span class="number">9</span>, canvas);</span><br><span class="line">canvas.translate(<span class="number">80</span>, <span class="number">0</span>);</span><br><span class="line">renderDigit(<span class="number">9</span>, canvas);</span><br><span class="line">canvas.translate(<span class="number">80</span>, <span class="number">0</span>);</span><br><span class="line">renderDigit(<span class="number">4</span>, canvas);</span><br><span class="line">canvas.restore();</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h5 id="3-绘制时间"><a href="#3-绘制时间" class="headerlink" title="3.绘制时间"></a>3.绘制时间</h5><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/25.png" alt=""></p>
+<h6 id="3-1：时间的简单获取"><a href="#3-1：时间的简单获取" class="headerlink" title="3.1：时间的简单获取"></a>3.1：时间的简单获取</h6><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">DateTime</span> now = <span class="keyword">new</span> <span class="built_in">DateTime</span>.now();</span><br><span class="line"><span class="keyword">var</span> hour = now.hour;</span><br><span class="line"><span class="keyword">var</span> second = now.second;</span><br><span class="line"><span class="keyword">var</span> minute = now.minute;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hour<span class="subst">$hour</span>"</span>);<span class="comment">//15</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"second<span class="subst">$second</span>"</span>);<span class="comment">//57</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"minute<span class="subst">$minute</span>"</span>);<span class="comment">//27</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="3-2-绘制时间"><a href="#3-2-绘制时间" class="headerlink" title="3.2:绘制时间"></a>3.2:绘制时间</h6><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//时</span></span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">hour</span> ~<span class="operator">/</span> 10, <span class="params">canvas</span>)</span>;</span><br><span class="line">canvas.translate(<span class="number">19</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">hour</span> % 10, <span class="params">canvas</span>)</span>;</span><br><span class="line"><span class="comment">//：</span></span><br><span class="line">canvas.translate(<span class="number">19</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(10, <span class="params">canvas</span>)</span>;</span><br><span class="line"><span class="comment">//分</span></span><br><span class="line">canvas.translate(<span class="number">11</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">minute</span> ~<span class="operator">/</span> 10, <span class="params">canvas</span>)</span>;</span><br><span class="line">canvas.translate(<span class="number">19</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">minute</span> % 10, <span class="params">canvas</span>)</span>;</span><br><span class="line"><span class="comment">//：</span></span><br><span class="line">canvas.translate(<span class="number">18</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(10, <span class="params">canvas</span>)</span>;</span><br><span class="line"><span class="comment">//秒</span></span><br><span class="line">canvas.translate(<span class="number">11</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">second</span> ~<span class="operator">/</span> 10, <span class="params">canvas</span>)</span>;</span><br><span class="line">canvas.translate(<span class="number">19</span><span class="operator"> * </span>_radius, <span class="number">0</span>);</span><br><span class="line">render<span class="constructor">Digit(<span class="params">_now</span>.<span class="params">second</span> % 10, <span class="params">canvas</span>)</span>;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h6 id="3-3：用Animation动起来"><a href="#3-3：用Animation动起来" class="headerlink" title="3.3：用Animation动起来"></a>3.3：用Animation动起来</h6><p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/26.png" alt=""></p>
+<hr>
+<h5 id="4-加小球"><a href="#4-加小球" class="headerlink" title="4.加小球"></a>4.加小球</h5><blockquote>
+<p>方法基本上是Java版改些的，这里不分析了，可以看Java版的分析，基本上一致</p>
+</blockquote>
+<p><img src="http://toly1994328.gitee.io/photo/flutter/seven_day/02/27.png" alt=""></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在类的外部定义全局的变量</span></span><br><span class="line">var currTime = new DateTime.now();</span><br><span class="line">var tagOfBall = new DateTime.now().millisecondsSinceEpoch;</span><br><span class="line">var _balls = new List&lt;Ball&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造方法中刷新小球</span></span><br><span class="line">  ClockView(<span class="keyword">this</span>.context) &#123;</span><br><span class="line">    mPaint = new Paint();</span><br><span class="line">    mStarPath = nStarPath(<span class="number">5</span>, _radius, _radius / <span class="number">2</span>);</span><br><span class="line">    _now = new DateTime.now();</span><br><span class="line">    addBallsChanged();</span><br><span class="line">    updateBalls();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 添加倒计时中改动的点---变动加球</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="built_in">void</span> addBallsChanged() &#123;</span><br><span class="line">    var now = new DateTime.now();</span><br><span class="line">    <span class="keyword">if</span> (currTime.second != now.second) &#123;</span><br><span class="line">      <span class="comment">//判断当前时间是否改变,再将点位放到集合中</span></span><br><span class="line">      <span class="keyword">if</span> ((currTime.hour ~/ <span class="number">10</span>) != (now.hour ~/ <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls((<span class="number">-17</span> * <span class="number">5</span> - <span class="number">11</span> * <span class="number">2</span>) * _radius.toInt(), currTime.hour ~/ <span class="number">10</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((currTime.hour % <span class="number">10</span>) != (now.hour % <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls((<span class="number">-17</span> * <span class="number">4</span> - <span class="number">11</span> * <span class="number">2</span>) * _radius.toInt(), currTime.hour % <span class="number">10</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((currTime.minute ~/ <span class="number">10</span>) != (now.minute ~/ <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls((<span class="number">-18</span> * <span class="number">3</span> - <span class="number">11</span>) * _radius.toInt(), currTime.minute ~/ <span class="number">10</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((currTime.minute % <span class="number">10</span>) != (now.minute % <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls((<span class="number">-18</span> * <span class="number">2</span> - <span class="number">11</span>) * _radius.toInt(), currTime.minute % <span class="number">10</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((currTime.second ~/ <span class="number">10</span>) != (now.second ~/ <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls(<span class="number">-18</span> * _radius.toInt(), currTime.second ~/ <span class="number">10</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> ((currTime.second % <span class="number">10</span>) != (now.second % <span class="number">10</span>)) &#123;</span><br><span class="line">        addBalls(<span class="number">0</span>, currTime.second % <span class="number">10</span>);</span><br><span class="line">        currTime = now;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//添加小球</span></span><br><span class="line">  addBalls(<span class="built_in">int</span> offsetX, <span class="built_in">int</span> num) &#123;</span><br><span class="line">    Random random = new Random();</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; digit[num].length; i++) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="built_in">int</span> j = <span class="number">0</span>; j &lt; digit[num][i].length; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (digit[num][i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">          Ball ball = new Ball();</span><br><span class="line">          ball.aY = <span class="number">0.1</span>;</span><br><span class="line">          ball.vX = pow(<span class="number">-1</span>, random.nextInt(<span class="number">1000</span>)) * <span class="number">6</span> * random.nextDouble();</span><br><span class="line">          ball.vY = <span class="number">4</span> * random.nextDouble();</span><br><span class="line">          ball.x =</span><br><span class="line">              offsetX + j * <span class="number">2</span> * (_radius + <span class="number">1</span>) + (_radius + <span class="number">1</span>); <span class="comment">//第(i，j)个点圆心横坐标</span></span><br><span class="line">          ball.y = i * <span class="number">2</span> * (_radius + <span class="number">1</span>) + (_radius + <span class="number">1</span>); <span class="comment">//第(i，j)个点圆心纵坐标</span></span><br><span class="line">          ball.color = randomRGB();</span><br><span class="line">          ball.r = _radius;</span><br><span class="line">          _balls.add(ball);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 更新所有球的位置---让球运动</span></span><br><span class="line"><span class="comment">   * 并且越界移除</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="built_in">void</span> updateBalls() &#123;</span><br><span class="line">    <span class="built_in">double</span> maxX = <span class="number">400</span>; <span class="comment">//限定x范围大值</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (Ball ball <span class="keyword">in</span> _balls) &#123;</span><br><span class="line">      ball.x += ball.vX; <span class="comment">//x=xo+v*t-----t=1</span></span><br><span class="line">      ball.y += ball.vY;</span><br><span class="line">      ball.y += ball.aY; <span class="comment">//v=vo+a*t-----t=1</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ball.y &gt;= <span class="number">160</span>) &#123;</span><br><span class="line">        <span class="comment">//超过Y底线，反弹</span></span><br><span class="line">        ball.y = <span class="number">160</span>;</span><br><span class="line">        ball.vY = -ball.vY * <span class="number">0.99</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (ball.x &gt; maxX) &#123;</span><br><span class="line">        <span class="comment">//超过X最大值，反弹</span></span><br><span class="line">        ball.x = maxX;</span><br><span class="line">        ball.vX = -ball.vX * <span class="number">0.99</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//5秒清一次屏</span></span><br><span class="line">    <span class="keyword">if</span> (new DateTime.now().millisecondsSinceEpoch - tagOfBall &gt; <span class="number">5000</span>) &#123;</span><br><span class="line">      _balls.clear();</span><br><span class="line">      tagOfBall = new DateTime.now().millisecondsSinceEpoch;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>好了，今天就这样，内容有点多，现在Dart的语法越用越熟练了</p>
+</blockquote>
+<hr>
+<h4 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h4><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//颜色常量</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'dart:ui'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> colors = [</span><br><span class="line">  Color(<span class="number">0x8833B5E5</span>),</span><br><span class="line">  Color(<span class="number">0x880099CC</span>),</span><br><span class="line">  Color(<span class="number">0x889933CC</span>),</span><br><span class="line">  Color(<span class="number">0x8899CC00</span>),</span><br><span class="line">  Color(<span class="number">0x88669900</span>),</span><br><span class="line">  Color(<span class="number">0x88FFBB33</span>),</span><br><span class="line">  Color(<span class="number">0x88FF8800</span>),</span><br><span class="line">  Color(<span class="number">0x88FF4444</span>),</span><br><span class="line">  Color(<span class="number">0x88CC0000</span>)</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> digit = [</span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//0</span></span><br><span class="line"></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">  ], <span class="comment">//1</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">  ], <span class="comment">//2</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//3</span></span><br><span class="line"></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">  ], <span class="comment">//4</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//5</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//6</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//7</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//8</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">  ], <span class="comment">//9</span></span><br><span class="line">  [</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">  ] <span class="comment">//:</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/ewm.png" alt="张风捷特烈 wechat" style="width: 200px; max-width: 100%;"/>
+    <div></div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wei_x.jpg" alt="张风捷特烈 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="张风捷特烈 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读 @张风捷特烈-------------</div>
+    
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flutter%E6%95%99%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> flutter教程</a>
+          
+        </div>
+      
+
+
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/01.html" rel="next" title="Flutter第1天--初始分析+Dart方言+Canvas简绘">
+                <i class="fa fa-chevron-left"></i> Flutter第1天--初始分析+Dart方言+Canvas简绘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Flutter%E4%B8%83%E6%97%A5/03.html" rel="prev" title="Flutter第3天--基础控件(上)">
+                Flutter第3天--基础控件(上) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://toly1994328.gitee.io/photo/base/icon_head.png"
+                alt="张风捷特烈" />
+            
+              <p class="site-author-name" itemprop="name">张风捷特烈</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/toly1994328" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.im/user/5b42c0656fb9a04fe727eb37" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Flutter七日游第二天-2018-12-17-天气晴朗"><span class="nav-number">1.</span> <span class="nav-text">Flutter七日游第二天----2018-12-17----天气晴朗</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零前言："><span class="nav-number">2.</span> <span class="nav-text">零前言：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先挑几个图镇楼吧"><span class="nav-number">2.1.</span> <span class="nav-text">先挑几个图镇楼吧</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一、入门级动画：五角星的长大"><span class="nav-number">3.</span> <span class="nav-text">一、入门级动画：五角星的长大</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-照葫芦画瓢"><span class="nav-number">3.1.</span> <span class="nav-text">1.照葫芦画瓢</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-AnimaView的实现："><span class="nav-number">3.2.</span> <span class="nav-text">2.AnimaView的实现：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-让数据动起来"><span class="nav-number">3.3.</span> <span class="nav-text">3.让数据动起来</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-来理一理思路"><span class="nav-number">3.4.</span> <span class="nav-text">4.来理一理思路</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、入门级动画：五角星的绽放"><span class="nav-number">4.</span> <span class="nav-text">二、入门级动画：五角星的绽放</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-往复运动"><span class="nav-number">4.1.</span> <span class="nav-text">1.往复运动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：运动状态"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.1：运动状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2：状态的监听"><span class="nav-number">4.1.2.</span> <span class="nav-text">1.2：状态的监听</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-变速跑"><span class="nav-number">4.2.</span> <span class="nav-text">2.变速跑</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-自定义变速曲线"><span class="nav-number">4.3.</span> <span class="nav-text">3.自定义变速曲线</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1：追踪一下源码"><span class="nav-number">4.3.1.</span> <span class="nav-text">3.1：追踪一下源码</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-Chrome小工具"><span class="nav-number">4.3.2.</span> <span class="nav-text">3.2:Chrome小工具</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3-使用："><span class="nav-number">4.3.3.</span> <span class="nav-text">3.3:使用：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、初级动画：太阳的诞生"><span class="nav-number">5.</span> <span class="nav-text">三、初级动画：太阳的诞生</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-红太阳：整型int-动画"><span class="nav-number">5.1.</span> <span class="nav-text">1.红太阳：整型int 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：AnimaPage里定义尖角数动画"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.1：AnimaPage里定义尖角数动画</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2：AnimaView增加入参"><span class="nav-number">5.1.2.</span> <span class="nav-text">1.2：AnimaView增加入参</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-星与阳：颜色动画"><span class="nav-number">5.2.</span> <span class="nav-text">2.星与阳：颜色动画</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-其他效果"><span class="nav-number">5.3.</span> <span class="nav-text">3.其他效果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#好了，预热完了，下面进入正题"><span class="nav-number">5.4.</span> <span class="nav-text">好了，预热完了，下面进入正题</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、粒子运动"><span class="nav-number">6.</span> <span class="nav-text">四、粒子运动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-废话不多说，来个运动盒再说"><span class="nav-number">6.1.</span> <span class="nav-text">1.废话不多说，来个运动盒再说</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-1：新建文件：run-ball-view-dart-gt-RunBallView-Ball"><span class="nav-number">6.1.1.</span> <span class="nav-text">1.1：新建文件：run_ball_view.dart-----&gt;RunBallView + Ball</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-2：画板准备好"><span class="nav-number">6.1.2.</span> <span class="nav-text">1.2：画板准备好</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-3：认识一下矩形对象Rect"><span class="nav-number">6.1.3.</span> <span class="nav-text">1.3：认识一下矩形对象Rect</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-4：新建文件：run-ball-pager-dart-gt-RunBallPage"><span class="nav-number">6.1.4.</span> <span class="nav-text">1.4：新建文件：run_ball_pager.dart----&gt;RunBallPage</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-5：更新新小球位置-渲染视图：RunBallPage-updateBall"><span class="nav-number">6.1.5.</span> <span class="nav-text">1.5：更新新小球位置,渲染视图：RunBallPage#updateBall</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#1-6：运动盒的实现"><span class="nav-number">6.1.6.</span> <span class="nav-text">1.6：运动盒的实现</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-粒子的运动"><span class="nav-number">6.2.</span> <span class="nav-text">2.粒子的运动</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#2-1：改动：RunBallPage"><span class="nav-number">6.2.1.</span> <span class="nav-text">2.1：改动：RunBallPage</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-2：绘制小球时-RunBallView："><span class="nav-number">6.2.2.</span> <span class="nav-text">2.2：绘制小球时:RunBallView：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、粒子时钟"><span class="nav-number">7.</span> <span class="nav-text">五、粒子时钟</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-渲染数字"><span class="nav-number">7.1.</span> <span class="nav-text">1.渲染数字</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-画布中绘制1994"><span class="nav-number">7.2.</span> <span class="nav-text">2.画布中绘制1994</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-绘制时间"><span class="nav-number">7.3.</span> <span class="nav-text">3.绘制时间</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#3-1：时间的简单获取"><span class="nav-number">7.3.1.</span> <span class="nav-text">3.1：时间的简单获取</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-2-绘制时间"><span class="nav-number">7.3.2.</span> <span class="nav-text">3.2:绘制时间</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-3：用Animation动起来"><span class="nav-number">7.3.3.</span> <span class="nav-text">3.3：用Animation动起来</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-加小球"><span class="nav-number">7.4.</span> <span class="nav-text">4.加小球</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附录"><span class="nav-number">8.</span> <span class="nav-text">附录</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+    <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <a class="theme-link" target="_blank" href="https://github.com/toly1994328/toly1994328.github.io">@张风捷特烈</a>
+      <span class="post-meta-divider">|</span>
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      访客数:<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <div class="theme-info">
+              <div class="powered-by"></div>
+              <span class="post-count">全站共17.5k字</span>
+            </div>
+</div>
+
+
+<div class='beian'>
+<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">皖ICP备18001618号-2</a>
+    <span class="post-meta-divider">|</span>
+</span> <a class='beian-img' href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=34010202600392" target="_blank" rel="nofollow">
+<img src="/images/beian.png" alt=""> &nbsp; 皖公网安备 34010202600392号</a>
+</div>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

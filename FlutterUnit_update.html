@@ -69,6 +69,10 @@
 
 
 
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="张风捷特烈" type="application/atom+xml" />
 
 
 
@@ -94,7 +98,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -543,14 +547,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/Flutter%E4%B8%83%E6%97%A5/03.html" rel="next" title="Flutter第3天--基础控件(上)">
+                <i class="fa fa-chevron-left"></i> Flutter第3天--基础控件(上)
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/Builder.html" rel="prev" title="Builder构造器">
-                Builder构造器 <i class="fa fa-chevron-right"></i>
+              <a href="/PreferredSize.html" rel="prev" title="PreferredSize优先尺寸">
+                PreferredSize优先尺寸 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -623,7 +631,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -653,6 +661,13 @@
 
           </nav>
 
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
           
 
           
@@ -712,7 +727,7 @@
     <span class="post-meta-divider">|</span>
     <div class="theme-info">
               <div class="powered-by"></div>
-              <span class="post-count">全站共7.9k字</span>
+              <span class="post-count">全站共17.5k字</span>
             </div>
 </div>
 
@@ -744,6 +759,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
