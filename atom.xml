@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://toly1994328.gitee.io/"/>
+  <link href="http://blog.toly1994.com/"/>
   <updated>2020-05-03T14:09:46.000Z</updated>
-  <id>http://toly1994328.gitee.io/</id>
+  <id>http://blog.toly1994.com/</id>
   
   <author>
     <name>张风捷特烈</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Flutter Unit 开源篇</title>
-    <link href="http://toly1994328.gitee.io/unit.html"/>
-    <id>http://toly1994328.gitee.io/unit.html</id>
+    <link href="http://blog.toly1994.com/unit.html"/>
+    <id>http://blog.toly1994.com/unit.html</id>
     <published>2020-05-02T15:46:25.000Z</published>
     <updated>2020-05-03T14:09:46.000Z</updated>
     
@@ -48,15 +48,15 @@
     </summary>
     
     
-      <category term="FlutterUnit周边" scheme="http://toly1994328.gitee.io/categories/FlutterUnit%E5%91%A8%E8%BE%B9/"/>
+      <category term="FlutterUnit周边" scheme="http://blog.toly1994.com/categories/FlutterUnit%E5%91%A8%E8%BE%B9/"/>
     
     
   </entry>
   
   <entry>
     <title>Builder构造器</title>
-    <link href="http://toly1994328.gitee.io/Builder.html"/>
-    <id>http://toly1994328.gitee.io/Builder.html</id>
+    <link href="http://blog.toly1994.com/Builder.html"/>
+    <id>http://blog.toly1994.com/Builder.html</id>
     <published>2020-05-02T13:46:25.000Z</published>
     <updated>2020-05-03T23:28:14.000Z</updated>
     
@@ -72,19 +72,19 @@
     </summary>
     
     
-      <category term="Flutter组件" scheme="http://toly1994328.gitee.io/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
+      <category term="Flutter组件" scheme="http://blog.toly1994.com/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
     
     
-      <category term="widget" scheme="http://toly1994328.gitee.io/tags/widget/"/>
+      <category term="widget" scheme="http://blog.toly1994.com/tags/widget/"/>
     
-      <category term="功能型组件" scheme="http://toly1994328.gitee.io/tags/%E5%8A%9F%E8%83%BD%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
+      <category term="功能型组件" scheme="http://blog.toly1994.com/tags/%E5%8A%9F%E8%83%BD%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>Padding内边距组件</title>
-    <link href="http://toly1994328.gitee.io/Padding.html"/>
-    <id>http://toly1994328.gitee.io/Padding.html</id>
+    <link href="http://blog.toly1994.com/Padding.html"/>
+    <id>http://blog.toly1994.com/Padding.html</id>
     <published>2020-05-02T13:46:25.000Z</published>
     <updated>2020-05-03T05:03:57.000Z</updated>
     
@@ -100,19 +100,19 @@
     </summary>
     
     
-      <category term="Flutter组件" scheme="http://toly1994328.gitee.io/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
+      <category term="Flutter组件" scheme="http://blog.toly1994.com/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
     
     
-      <category term="widget" scheme="http://toly1994328.gitee.io/tags/widget/"/>
+      <category term="widget" scheme="http://blog.toly1994.com/tags/widget/"/>
     
-      <category term="布局型组件" scheme="http://toly1994328.gitee.io/tags/%E5%B8%83%E5%B1%80%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
+      <category term="布局型组件" scheme="http://blog.toly1994.com/tags/%E5%B8%83%E5%B1%80%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>DecoratedBox装饰盒组件</title>
-    <link href="http://toly1994328.gitee.io/DecoratedBox.html"/>
-    <id>http://toly1994328.gitee.io/DecoratedBox.html</id>
+    <link href="http://blog.toly1994.com/DecoratedBox.html"/>
+    <id>http://blog.toly1994.com/DecoratedBox.html</id>
     <published>2020-05-02T12:46:25.000Z</published>
     <updated>2020-05-03T05:03:57.000Z</updated>
     
@@ -128,19 +128,19 @@
     </summary>
     
     
-      <category term="Flutter组件" scheme="http://toly1994328.gitee.io/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
+      <category term="Flutter组件" scheme="http://blog.toly1994.com/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
     
     
-      <category term="widget" scheme="http://toly1994328.gitee.io/tags/widget/"/>
+      <category term="widget" scheme="http://blog.toly1994.com/tags/widget/"/>
     
-      <category term="装饰型组件" scheme="http://toly1994328.gitee.io/tags/%E8%A3%85%E9%A5%B0%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
+      <category term="装饰型组件" scheme="http://blog.toly1994.com/tags/%E8%A3%85%E9%A5%B0%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>PreferredSize优先尺寸</title>
-    <link href="http://toly1994328.gitee.io/PreferredSize.html"/>
-    <id>http://toly1994328.gitee.io/PreferredSize.html</id>
+    <link href="http://blog.toly1994.com/PreferredSize.html"/>
+    <id>http://blog.toly1994.com/PreferredSize.html</id>
     <published>2020-05-02T05:46:25.000Z</published>
     <updated>2020-05-03T23:27:00.000Z</updated>
     
@@ -156,19 +156,19 @@
     </summary>
     
     
-      <category term="Flutter组件" scheme="http://toly1994328.gitee.io/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
+      <category term="Flutter组件" scheme="http://blog.toly1994.com/categories/Flutter%E7%BB%84%E4%BB%B6/"/>
     
     
-      <category term="widget" scheme="http://toly1994328.gitee.io/tags/widget/"/>
+      <category term="widget" scheme="http://blog.toly1994.com/tags/widget/"/>
     
-      <category term="布局型组件" scheme="http://toly1994328.gitee.io/tags/%E5%B8%83%E5%B1%80%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
+      <category term="布局型组件" scheme="http://blog.toly1994.com/tags/%E5%B8%83%E5%B1%80%E5%9E%8B%E7%BB%84%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>Flutter Unit  更新记录</title>
-    <link href="http://toly1994328.gitee.io/FlutterUnit_update.html"/>
-    <id>http://toly1994328.gitee.io/FlutterUnit_update.html</id>
+    <link href="http://blog.toly1994.com/FlutterUnit_update.html"/>
+    <id>http://blog.toly1994.com/FlutterUnit_update.html</id>
     <published>2020-04-16T12:46:25.000Z</published>
     <updated>2020-05-03T08:39:00.000Z</updated>
     
@@ -190,15 +190,15 @@
     </summary>
     
     
-      <category term="FlutterUnit周边" scheme="http://toly1994328.gitee.io/categories/FlutterUnit%E5%91%A8%E8%BE%B9/"/>
+      <category term="FlutterUnit周边" scheme="http://blog.toly1994.com/categories/FlutterUnit%E5%91%A8%E8%BE%B9/"/>
     
     
   </entry>
   
   <entry>
     <title>Flutter七日总结</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/08.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/08.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/08.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/08.html</id>
     <published>2018-12-23T13:46:01.000Z</published>
     <updated>2020-05-04T09:10:22.000Z</updated>
     
@@ -212,17 +212,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第7天--字体图标+综合小案例+Android代码交互</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/07.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/07.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/07.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/07.html</id>
     <published>2018-12-22T13:46:01.000Z</published>
     <updated>2020-05-04T08:19:15.000Z</updated>
     
@@ -249,17 +249,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第6天--异步-IO+网络访问+json</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/06.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/06.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/06.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/06.html</id>
     <published>2018-12-21T13:46:01.000Z</published>
     <updated>2020-05-04T08:05:15.000Z</updated>
     
@@ -281,17 +281,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第5天--布局实例+操作交互</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/05.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/05.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/05.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/05.html</id>
     <published>2018-12-20T13:46:01.000Z</published>
     <updated>2020-05-04T07:38:32.000Z</updated>
     
@@ -307,17 +307,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第4天--基础控件(下)+Flex布局详解</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/04.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/04.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/04.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/04.html</id>
     <published>2018-12-19T13:46:01.000Z</published>
     <updated>2020-05-04T07:01:01.000Z</updated>
     
@@ -333,17 +333,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第3天--基础控件(上)</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/03.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/03.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/03.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/03.html</id>
     <published>2018-12-18T13:46:01.000Z</published>
     <updated>2020-05-04T07:18:14.000Z</updated>
     
@@ -363,17 +363,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第2天--Animation动画+粒子运动</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/02.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/02.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/02.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/02.html</id>
     <published>2018-12-17T13:46:01.000Z</published>
     <updated>2020-05-04T00:28:42.000Z</updated>
     
@@ -389,17 +389,17 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
   <entry>
     <title>Flutter第1天--初始分析+Dart方言+Canvas简绘</title>
-    <link href="http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/01.html"/>
-    <id>http://toly1994328.gitee.io/Flutter%E4%B8%83%E6%97%A5/01.html</id>
+    <link href="http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/01.html"/>
+    <id>http://blog.toly1994.com/Flutter%E4%B8%83%E6%97%A5/01.html</id>
     <published>2018-12-16T13:46:01.000Z</published>
     <updated>2020-05-03T23:58:15.000Z</updated>
     
@@ -415,10 +415,10 @@
     </summary>
     
     
-      <category term="Flutter七日" scheme="http://toly1994328.gitee.io/categories/Flutter%E4%B8%83%E6%97%A5/"/>
+      <category term="Flutter七日" scheme="http://blog.toly1994.com/categories/Flutter%E4%B8%83%E6%97%A5/"/>
     
     
-      <category term="flutter教程" scheme="http://toly1994328.gitee.io/tags/flutter%E6%95%99%E7%A8%8B/"/>
+      <category term="flutter教程" scheme="http://blog.toly1994.com/tags/flutter%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
