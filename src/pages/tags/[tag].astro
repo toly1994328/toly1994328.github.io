@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.flatMap(p => p.data.tags))];
+  return tags.map(tag => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const posts = (await getCollection('blog'))
+  .filter(post => post.data.tags.includes(tag) && !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={`标签：${tag}`}>
+  <section class="tag-page animate-in">
+    <h1 class="page-title">#{tag}</h1>
+    <p class="page-desc">共 {posts.length} 篇文章</p>
+
+    <ul class="post-list">
+      {posts.map(post => (
+        <li class="post-item">
+          <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-top: 3rem;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .post-list {
+    list-style: none;
+  }
+
+  .post-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .post-item:hover {
+    background: var(--bg-card);
+  }
+
+  .post-item time {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    min-width: 90px;
+  }
+
+  .post-item a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .post-item a:hover {
+    color: var(--accent-light);
+  }
+</style>

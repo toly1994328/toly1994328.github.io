@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout>
+  <section class="posts">
+    {posts.map((post, i) => (
+      <article class="post-card animate-in" style={`animation-delay: ${i * 0.1}s`}>
+        <div class="post-card-meta">
+          <span class="post-card-category">{post.data.category}</span>
+          <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
+        </div>
+        <h2 class="post-card-title">
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+        </h2>
+        <p class="post-card-desc">{post.data.description}</p>
+        <div class="post-card-tags">
+          {post.data.tags.map(tag => (
+            <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+          ))}
+        </div>
+      </article>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .posts {
+    display: grid;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+
+  .post-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), var(--glass-shine);
+  }
+
+  .post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid, #a855f7), var(--gradient-end));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .post-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), var(--glass-shine);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .post-card:hover::before {
+    opacity: 1;
+  }
+
+  .post-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .post-card-category {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .post-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-card-title a {
+    color: var(--text);
+    transition: color 0.2s;
+  }
+
+  .post-card-title a:hover {
+    color: var(--accent-light);
+  }
+
+  .post-card-desc {
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .post-card-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--accent-light);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+
+  .tag:hover {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+</style>

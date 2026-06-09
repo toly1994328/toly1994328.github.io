@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于">
+  <section class="about animate-in">
+    <h1 class="page-title">关于</h1>
+
+    <div class="about-content">
+      <div class="about-avatar">
+        <div class="avatar-ring">
+          <div class="avatar-placeholder">T</div>
+        </div>
+      </div>
+
+      <h2>张风捷特烈</h2>
+      <p class="about-bio">学海无涯，苦作舟。热爱技术，热爱分享。</p>
+
+      <div class="about-links">
+        <a href="https://github.com/toly1994328" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="about-section">
+        <h3>关于这个博客</h3>
+        <p>这是一个记录个人学习与成长的技术博客。内容涵盖 Flutter、前端、算法等多个方向。希望通过写作来沉淀知识，也希望能帮助到同样在学习路上的你。</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-content h2 {
+    font-size: 1.75rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-avatar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    padding: 4px;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--accent-light);
+  }
+
+  .about-bio {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .about-links a {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    color: var(--text);
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .about-links a:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+  }
+
+  .about-section {
+    text-align: left;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+
+  .about-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .about-section p {
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+</style>

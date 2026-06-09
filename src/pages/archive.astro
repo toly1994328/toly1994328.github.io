@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group by year
+const grouped = posts.reduce((acc, post) => {
+  const year = post.data.date.getFullYear().toString();
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(post);
+  return acc;
+}, {} as Record<string, typeof posts>);
+---
+
+<BaseLayout title="归档">
+  <section class="archive animate-in">
+    <h1 class="page-title">归档</h1>
+    <p class="page-desc">共 {posts.length} 篇文章</p>
+
+    {Object.entries(grouped).sort(([a], [b]) => Number(b) - Number(a)).map(([year, yearPosts]) => (
+      <div class="archive-year">
+        <h2 class="year-title">{year}</h2>
+        <ul class="archive-list">
+          {yearPosts.map(post => (
+            <li class="archive-item">
+              <time>{post.data.date.toLocaleDateString('zh-CN', { month: '2-digit', day: '2-digit' })}</time>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .archive {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-top: 3rem;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .archive-year {
+    margin-bottom: 3rem;
+  }
+
+  .year-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .archive-list {
+    list-style: none;
+  }
+
+  .archive-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+
+  .archive-item:hover {
+    background: var(--bg-card);
+  }
+
+  .archive-item time {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    min-width: 60px;
+  }
+
+  .archive-item a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .archive-item a:hover {
+    color: var(--accent-light);
+  }
+</style>

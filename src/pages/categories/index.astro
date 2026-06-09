@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).filter(post => !post.data.draft);
+
+const categories = posts.reduce((acc, post) => {
+  const cat = post.data.category;
+  if (!acc[cat]) acc[cat] = 0;
+  acc[cat]++;
+  return acc;
+}, {} as Record<string, number>);
+---
+
+<BaseLayout title="分类">
+  <section class="categories animate-in">
+    <h1 class="page-title">分类</h1>
+    <p class="page-desc">共 {Object.keys(categories).length} 个分类</p>
+
+    <div class="category-grid">
+      {Object.entries(categories).sort(([,a], [,b]) => b - a).map(([name, count]) => (
+        <a href={`/categories/${name}`} class="category-card">
+          <span class="category-name">{name}</span>
+          <span class="category-count">{count} 篇</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .categories {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-top: 3rem;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .category-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 40px -8px rgba(99, 102, 241, 0.15);
+  }
+
+  .category-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .category-count {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+</style>

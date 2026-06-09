@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="post animate-in">
+    <header class="post-header">
+      <div class="post-meta">
+        <a href={`/categories/${post.data.category}`} class="post-category">{post.data.category}</a>
+        <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
+      </div>
+      <h1 class="post-title">{post.data.title}</h1>
+      <p class="post-desc">{post.data.description}</p>
+      <div class="post-tags">
+        {post.data.tags.map(tag => (
+          <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+        ))}
+      </div>
+    </header>
+
+    <div class="post-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .post-header {
+    padding: 4rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .post-category {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  .post-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .post-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    font-size: 0.8rem;
+    color: var(--accent-light);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .post-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .post-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .post-content :global(h3) {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .post-content :global(p) {
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content :global(code) {
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .post-content :global(pre) {
+    background: #1e1e2e !important;
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .post-content :global(pre:has(.mermaid)) {
+    background: transparent !important;
+    padding: 0;
+    border: none;
+  }
+
+  .post-content :global(.mermaid) {
+    background: transparent !important;
+    margin: 1.5rem 0;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .post-content :global(.mermaid-wrapper) {
+    position: relative;
+    margin: 1.5rem 0;
+  }
+
+  .post-content :global(.mermaid-wrapper .mermaid) {
+    margin: 0;
+  }
+
+  .post-content :global(.mermaid-toolbar) {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .post-content :global(.mermaid-wrapper:hover .mermaid-toolbar) {
+    opacity: 1;
+  }
+
+  .post-content :global(.mermaid-btn) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .post-content :global(.mermaid-btn:hover) {
+    color: var(--accent-light);
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px var(--accent-glow);
+  }
+
+  .post-content :global(.mermaid svg) {
+    max-width: 100%;
+    height: auto;
+    background: transparent !important;
+  }
+
+  .post-content :global(.mermaid rect.er),
+  .post-content :global(.mermaid .background),
+  .post-content :global(.mermaid [id*="Background"]) {
+    fill: transparent !important;
+  }
+
+  .post-content :global(div:has(> .mermaid)) {
+    background: transparent !important;
+  }
+
+  .post-content :global(pre code) {
+    background: none;
+    padding: 0;
+  }
+
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background: color-mix(in srgb, var(--accent) 5%, transparent);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .post-content :global(ul), .post-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .post-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-content :global(hr) {
+    border: none;
+    height: 1px;
+    margin: 3rem auto;
+    max-width: 60%;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0.5;
+  }
+
+  .post-content :global(strong) {
+    color: var(--accent-light);
+  }
+</style>

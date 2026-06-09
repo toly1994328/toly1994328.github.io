@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).filter(post => !post.data.draft);
+
+const tags = posts.reduce((acc, post) => {
+  post.data.tags.forEach(tag => {
+    if (!acc[tag]) acc[tag] = 0;
+    acc[tag]++;
+  });
+  return acc;
+}, {} as Record<string, number>);
+---
+
+<BaseLayout title="标签">
+  <section class="tags-page animate-in">
+    <h1 class="page-title">标签</h1>
+    <p class="page-desc">共 {Object.keys(tags).length} 个标签</p>
+
+    <div class="tag-cloud">
+      {Object.entries(tags).sort(([,a], [,b]) => b - a).map(([name, count]) => (
+        <a href={`/tags/${name}`} class="tag-item" data-count={count}>
+          #{name} <span class="tag-count">{count}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tags-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-top: 3rem;
+  }
+
+  .page-desc {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .tag-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    color: var(--text);
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .tag-item:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 24px -4px rgba(99, 102, 241, 0.15);
+    color: var(--accent-light);
+  }
+
+  .tag-count {
+    font-size: 0.75rem;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent-light);
+    padding: 0.1rem 0.5rem;
+    border-radius: 9999px;
+  }
+</style>
