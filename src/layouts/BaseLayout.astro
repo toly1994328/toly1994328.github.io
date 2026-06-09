@@ -387,10 +387,10 @@ const { title = '学海无涯', description = '记录学习与成长的技术博
     position: relative;
     z-index: 1;
     display: flex;
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
     min-height: 100vh;
-    padding: 2rem;
+    padding: 2rem 3rem;
     gap: 2rem;
   }
 
@@ -402,6 +402,25 @@ const { title = '学海无涯', description = '记录学习与成长的技术博
     height: calc(100vh - 4rem);
     flex-shrink: 0;
     z-index: 10;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  }
+
+  .sidebar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+  }
+
+  .sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
   }
 
   .sidebar-inner {
