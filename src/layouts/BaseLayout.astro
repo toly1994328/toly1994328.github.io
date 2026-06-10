@@ -17,7 +17,7 @@ const tagCount = tags.length;
 ---
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -232,9 +232,9 @@ const tagCount = tags.length;
       moonIcon.style.display = isLight ? 'none' : 'block';
     }
 
-    // 默认亮色
-    if (saved !== 'dark') {
-      html.classList.add('light');
+    // 默认亮色，仅当用户之前手动选了暗色才切换
+    if (saved === 'dark') {
+      html.classList.remove('light');
     }
     updateIcons();
 
@@ -418,6 +418,7 @@ const tagCount = tags.length;
     position: relative;
     z-index: 1;
     display: flex;
+    align-items: flex-start;
     max-width: 1400px;
     margin: 0 auto;
     min-height: 100vh;
@@ -769,7 +770,7 @@ const tagCount = tags.length;
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
