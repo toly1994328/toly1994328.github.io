@@ -1,8 +1,8 @@
 ---
-title: "庖丁解牛 - GetX 源码全面评析"
-description: "从源码层面拆解 GetX 4.7.3 的五大核心模块：全局导航、SnackBar、依赖注入、响应式状态、生命周期管理。"
-date: 2024-06-08
-tags: ["Flutter", "GetX", "源码分析", "状态管理"]
+title: "大道至简 - Bloc 源码全面评析"
+description: "从源码层面拆解 Bloc 的事件驱动状态机设计，看 500 行代码如何做到极致简洁。"
+date: 2026-04-16
+tags: ["Flutter", "Bloc", "源码分析", "状态管理"]
 category: "Flutter"
 ---
 
