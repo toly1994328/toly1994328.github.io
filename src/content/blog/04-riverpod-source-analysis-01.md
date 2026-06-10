@@ -1,12 +1,10 @@
 ---
-title: "源远流长 - Riverpod 源码全面评析（上）：核心架构"
+title: "状态管理大乱斗#04 | Riverpod 源码评析 (上) - 核心架构"
 description: "从源码层面拆解 Riverpod 的核心架构设计，理解 ProviderContainer 和依赖图。"
 date: 2026-04-18
 tags: ["Flutter", "Riverpod", "源码分析", "状态管理"]
 category: "Flutter"
 ---
-
-### 源远流长 - Riverpod 源码全面评析（上）：核心架构 | 状态管理源码评析④
 
 ##### 引言：
 
@@ -682,4 +680,4 @@ Provider 定义时不创建任何运行时对象，第一次被读取时才 moun
 
 ---
 
-*我是张风捷特烈，如果你对 Flutter 框架的源码分析感兴趣，欢迎关注。这是「四大状态管理方案源码评析」系列的第四篇（上），下一篇继续拆解 Riverpod 的类型系统、Select 精准重建和 AsyncValue 的设计。*
+*我是张风捷特烈，如果你对 Flutter 框架的源码分析感兴趣，欢迎关注。这是「四状态管理大乱斗」系列的第四篇，下一篇继续拆解 Riverpod 的类型系统、Select 精准重建和 AsyncValue 的设计。*

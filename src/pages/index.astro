@@ -167,12 +167,7 @@ const timeline = recentPosts.reduce((acc, post) => {
     position: relative;
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), var(--glass-shine);
-    opacity: 0;
-    transition: opacity 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-  }
-
-  .post-card.visible {
-    opacity: 1;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
 
   .post-card::before {
@@ -254,20 +249,3 @@ const timeline = recentPosts.reduce((acc, post) => {
     background: color-mix(in srgb, var(--accent) 20%, transparent);
   }
 </style>
-
-<script>
-  // 滚动触发动画：首屏卡片立即显示，后续卡片滚动到视口时淡入
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.post-card').forEach((card, i) => {
-    (card as HTMLElement).style.transitionDelay = `${i * 0.08}s`;
-    observer.observe(card);
-  });
-</script>
