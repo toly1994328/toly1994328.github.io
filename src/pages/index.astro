@@ -5,35 +5,155 @@ import { getCollection } from 'astro:content';
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// Group recent posts by month for timeline
+const recentPosts = posts.slice(0, 20);
+const timeline = recentPosts.reduce((acc, post) => {
+  const key = post.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long' });
+  if (!acc[key]) acc[key] = [];
+  acc[key].push(post);
+  return acc;
+}, {} as Record<string, typeof posts>);
 ---
 
 <BaseLayout>
-  <section class="posts">
-    {posts.map((post, i) => (
-      <article class="post-card animate-in" style={`animation-delay: ${i * 0.1}s`}>
-        <div class="post-card-meta">
-          <span class="post-card-category">{post.data.category}</span>
-          <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
-        </div>
-        <h2 class="post-card-title">
-          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
-        </h2>
-        <p class="post-card-desc">{post.data.description}</p>
-        <div class="post-card-tags">
-          {post.data.tags.map(tag => (
-            <a href={`/tags/${tag}`} class="tag">#{tag}</a>
-          ))}
-        </div>
-      </article>
-    ))}
-  </section>
+  <div class="home-layout">
+    <section class="posts">
+      {posts.map((post, i) => (
+        <article class="post-card animate-in" style={`animation-delay: ${i * 0.1}s`}>
+          <div class="post-card-meta">
+            <span class="post-card-category">{post.data.category}</span>
+            <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
+          </div>
+          <h2 class="post-card-title">
+            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          </h2>
+          <p class="post-card-desc">{post.data.description}</p>
+          <div class="post-card-tags">
+            {post.data.tags.map(tag => (
+              <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <aside class="timeline-sidebar">
+      <h3 class="timeline-title">时间轴</h3>
+      <div class="timeline">
+        {Object.entries(timeline).map(([month, monthPosts]) => (
+          <div class="timeline-group">
+            <div class="timeline-month">{month}</div>
+            {monthPosts.map(post => (
+              <a href={`/blog/${post.slug}`} class="timeline-item">
+                <span class="timeline-dot"></span>
+                <span class="timeline-text">{post.data.title}</span>
+              </a>
+            ))}
+          </div>
+        ))}
+      </div>
+    </aside>
+  </div>
 </BaseLayout>
 
 <style>
+  .home-layout {
+    display: flex;
+    gap: 2rem;
+  }
+
   .posts {
+    flex: 1;
     display: grid;
-    gap: 1.5rem;
-    padding-top: 2rem;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .timeline-sidebar {
+    position: sticky;
+    top: 2rem;
+    width: 200px;
+    height: calc(100vh - 4rem);
+    flex-shrink: 0;
+    overflow-y: auto;
+    display: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  }
+
+  .timeline-sidebar::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .timeline-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 3px;
+  }
+
+  @media (min-width: 1000px) {
+    .timeline-sidebar {
+      display: block;
+    }
+  }
+
+  .timeline-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .timeline-group {
+    margin-bottom: 1.25rem;
+  }
+
+  .timeline-month {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.3;
+    transition: color 0.2s;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    padding-left: 0.75rem;
+    margin-left: 3px;
+  }
+
+  .timeline-item:hover {
+    color: var(--text);
+  }
+
+  .timeline-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+    margin-left: -1rem;
+    opacity: 0.6;
+  }
+
+  .timeline-item:hover .timeline-dot {
+    opacity: 1;
+  }
+
+  .timeline-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .post-card {
@@ -42,7 +162,7 @@ const posts = (await getCollection('blog'))
     -webkit-backdrop-filter: var(--glass-blur);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 2rem;
+    padding: 1.25rem 1.5rem;
     transition: all 0.3s ease;
     opacity: 0;
     position: relative;
@@ -91,7 +211,7 @@ const posts = (await getCollection('blog'))
   }
 
   .post-card-title {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
   }

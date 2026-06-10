@@ -422,7 +422,7 @@ const tagCount = tags.length;
     margin: 0 auto;
     min-height: 100vh;
     padding: 2rem 3rem;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   /* Sidebar */
@@ -739,7 +739,13 @@ const tagCount = tags.length;
   main {
     flex: 1;
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04), var(--glass-shine);
   }
 
   .footer {
