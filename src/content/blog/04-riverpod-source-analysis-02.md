@@ -1,12 +1,11 @@
 ---
-title: "源远流长 - Riverpod 源码全面评析（中）：状态管理机制"
+title: "状态管理大乱斗#05 | Riverpod 源码评析 (中) - 上层建筑"
 description: "从源码层面拆解 Riverpod 的状态创建、监听与自动销毁机制。"
 date: 2026-04-19
 tags: ["Flutter", "Riverpod", "源码分析", "状态管理"]
 category: "Flutter"
 ---
 
-![aeb07d6daf42f480cdfcd33f7b87ab55.png](https://p0-xtjj-private.juejin.cn/tos-cn-i-73owjymdk6/e71c2bddfda4478b9620ec72b3c35a2f~tplv-73owjymdk6-jj-mark-v1:0:0:0:0:5o6Y6YeR5oqA5pyv56S-5Yy6IEAg5byg6aOO5o2354m554OI:q75.awebp?policy=eyJ2bSI6MywidWlkIjoiMTQ5MTg5MjgxMTk0NzY2In0%3D&rk3s=e9ecf3d6&x-orig-authkey=f32326d3454f2ac7e96d3d06cdbb035152127018&x-orig-expires=1777591517&x-orig-sign=uA5QLe9vNdgCBmA3xx1HXn%2FXIu8%3D)
 
 #### 引言：
 
@@ -18,13 +17,13 @@ Riverpod 的 Provider 类型系统就像这个自助餐台。`Provider`、`Notif
 
 这些是你在日常开发中最常接触的部分。看完源码之后，很多"为什么要这样写"的疑惑会自然消解。
 
----
+***
 
 #### 一、Provider 的类型体系：龙生九子，各有不同
 
 Riverpod 有好几种 Provider 类型，但从源码层面看，它们的继承关系很清晰——所有 Provider 分为两大流派：**函数式**和**类式**。
 
----
+***
 
 ##### 1. 两大流派的基类
 
@@ -99,12 +98,11 @@ abstract base class $ClassProvider<NotifierT extends AnyNotifier<StateT, ValueT>
 `tag5` 和 `tag6` 的区别一目了然：函数式接收 `Ref`，返回值就是状态；类式创建一个 `Notifier` 实例，Notifier 内部管理状态。
 
 用做菜来类比：
-- 函数式是"给我原料（Ref），我直接出成品"——纯函数，进去什么出来什么；
-- 类式是"给我一个厨房（Notifier），我在里面做各种操作"——有状态的对象，可以炒、可以炖、可以加调料。
 
+*   函数式是"给我原料（Ref），我直接出成品"——纯函数，进去什么出来什么；
+*   类式是"给我一个厨房（Notifier），我在里面做各种操作"——有状态的对象，可以炒、可以炖、可以加调料。
 
-
----
+***
 
 ##### 2. 函数式 Provider 的源码
 
@@ -138,7 +136,7 @@ typedef Create<CreatedT> = CreatedT Function(Ref ref);
 
 就是一个接收 `Ref`、返回 `CreatedT` 的函数。简单直白。
 
----
+***
 
 ##### 3. 类式 Provider 的源码
 
@@ -178,29 +176,28 @@ abstract class AnyNotifier<StateT, ValueT> {
 
 `tag5` 和 `tag6` 揭示了 Notifier 修改状态的本质：setter 调用 `setValueFromState`，最终会触发 `_notifyListeners`，通知所有监听者。这就是为什么你在 Notifier 里写 `state = newValue` 就能让 UI 更新——不是魔法，是 setter 里藏了通知逻辑。
 
----
+***
 
 ##### 4. 函数式 vs 类式：怎么选
 
-| 维度 | 函数式 (Provider) | 类式 (NotifierProvider) |
-|------|-------------------|------------------------|
-| 定义方式 | 一个函数 | 一个类 + build 方法 |
-| 修改状态 | 只能通过 `ref.invalidateSelf` 重建 | 可以通过方法直接修改 `state` |
-| 适用场景 | 派生状态、计算值、依赖组合 | 有业务逻辑的可变状态 |
-| 测试 | 简单，mock 依赖即可 | 需要实例化 Notifier |
+| 维度   | 函数式 (Provider)               | 类式 (NotifierProvider) |
+| ---- | ---------------------------- | --------------------- |
+| 定义方式 | 一个函数                         | 一个类 + build 方法        |
+| 修改状态 | 只能通过 `ref.invalidateSelf` 重建 | 可以通过方法直接修改 `state`    |
+| 适用场景 | 派生状态、计算值、依赖组合                | 有业务逻辑的可变状态            |
+| 测试   | 简单，mock 依赖即可                 | 需要实例化 Notifier        |
 
 简单理解：如果你的状态是"从其他状态计算出来的"，用函数式；如果你的状态"需要被用户操作修改"，用类式。
 
 如果你现在还不确定该用哪种，不用纠结。先用函数式，等发现需要在多个地方修改状态时，再换成类式。Riverpod 的类型系统设计得足够灵活，切换成本不高。
 
----
-
+***
 
 #### 二、Family：一个模具生产一批零件
 
 `Provider.family` 是 Riverpod 中使用频率很高的功能。它允许你用参数创建同一类型但不同实例的 Provider。比如 `todoFamily(42)` 和 `todoFamily(99)` 是两个完全独立的 Provider，各有各的状态、各有各的生命周期。
 
----
+***
 
 ##### 1. Family 的本质：模具，不是零件
 
@@ -266,7 +263,7 @@ graph LR
 
 每个参数对应一个独立的 Provider 实例，有自己的 Element、自己的状态、自己的生命周期。`todoFamily(1)` 和 `todoFamily(2)` 互不影响，就像同一条生产线上的不同产品——模具一样，但产品各自独立。
 
----
+***
 
 ##### 2. 类式 Family 的区别
 
@@ -296,7 +293,7 @@ base class ClassFamily<NotifierT extends AnyNotifier<StateT, ValueT>,
 
 `tag5` 处的区别：函数式 Family 把参数传给 `(ref, arg) => ...`，类式 Family 把参数传给 `(arg) => Notifier()`。本质一样，都是把参数"烤"进去，只是入口不同。
 
----
+***
 
 ##### 3. 参数的相等性：一个容易踩的坑
 
@@ -330,8 +327,7 @@ base mixin LegacyProviderMixin<StateT> on $ProviderBaseImpl<StateT> {
 
 如果你现在对这个问题还没有直观感受，不用急。先记住一条规则：**family 的参数必须是不可变的值类型**。后面踩坑的时候你会想起来的。
 
----
-
+***
 
 #### 三、Select：看我想看
 
@@ -339,9 +335,9 @@ base mixin LegacyProviderMixin<StateT> on $ProviderBaseImpl<StateT> {
 
 打个比方：你每天看天气预报（原始 Provider），但你只关心温度（selector）。天气预报每小时都在更新——湿度变了、风向变了、紫外线指数变了——但只要温度没变，你就不需要重新决定穿什么衣服。
 
----
+***
 
-##### 1. _ProviderSelector 的实现
+##### 1. \_ProviderSelector 的实现
 
 ```dart
 ---->[core/modifiers/select.dart#_ProviderSelector]----
@@ -400,7 +396,7 @@ void _selectOnChange({
 
 这意味着你的 selector 返回值必须正确实现 `==`。如果返回的是一个每次都新建的对象（比如 `List`），即使内容相同也会被认为"变了"，select 就失去了意义。这也是为什么 Riverpod 官方推荐 selector 返回基本类型（`int`、`String`、`bool`）或者不可变的值对象。
 
----
+***
 
 ##### 2. 订阅的建立过程
 
@@ -461,7 +457,7 @@ sequenceDiagram
     Note over W: 重建 🔄
 ```
 
----
+***
 
 ##### 3. select 的链式调用
 
@@ -477,29 +473,28 @@ ref.watch(
 
 每一层 `select` 都会创建一个新的 `_ProviderSelector`，形成一个链。只有最内层的值变化时才会触发重建。这在处理深层嵌套的状态对象时非常有用。
 
----
+***
 
 ##### 4. 和 InheritedModel 的对比
 
 Flutter 的 `InheritedModel` 也能做切面级精准通知（上一篇 GetX 文章中提到的 `MediaQuery.sizeOf`）。两者的对比：
 
-| 维度 | Riverpod select | InheritedModel aspect |
-|------|----------------|----------------------|
-| 粒度 | 任意函数，可以做计算 | 预定义的枚举切面 |
-| 灵活性 | 极高，selector 可以是任意表达式 | 受限于预定义的 aspect |
-| 性能 | 每次变化都要执行 selector 函数 | 只比较 aspect 枚举 |
-| 使用场景 | 通用 | 框架内部（MediaQuery、Theme） |
+| 维度   | Riverpod select      | InheritedModel aspect  |
+| ---- | -------------------- | ---------------------- |
+| 粒度   | 任意函数，可以做计算           | 预定义的枚举切面               |
+| 灵活性  | 极高，selector 可以是任意表达式 | 受限于预定义的 aspect         |
+| 性能   | 每次变化都要执行 selector 函数 | 只比较 aspect 枚举          |
+| 使用场景 | 通用                   | 框架内部（MediaQuery、Theme） |
 
 Riverpod 的 select 更灵活，但代价是每次 Provider 变化都要执行 selector 函数。如果 selector 函数本身很重（比如遍历一个大列表），反而可能成为性能瓶颈。大多数情况下这不是问题，但值得知道。
 
----
-
+***
 
 #### 四、Override：子目录覆盖父目录
 
 Override 是 Riverpod 最强大的特性之一，也是它和 GetX 的核心差异。它让你可以在不同的 `ProviderScope` 中替换 Provider 的实现——就像文件系统里子目录可以覆盖父目录的同名文件，但父目录本身不受影响。
 
----
+***
 
 ##### 1. Override 的类型体系
 
@@ -526,7 +521,7 @@ class $ProviderOverride implements _ProviderOverride {
 
 注意 `Override` 是 `sealed class`——只有 Riverpod 内部能创建 Override 的子类。你不能自己 `implements Override`，只能通过 `provider.overrideWith(...)` 或 `provider.overrideWithValue(...)` 来创建。这是一种防御性设计，防止用户搞出奇怪的 Override 实现。
 
----
+***
 
 ##### 2. Family 的 Override
 
@@ -569,7 +564,7 @@ base mixin $FunctionalFamilyOverride<CreatedT, ArgT> on Family {
 
 `tag7` 处的逻辑：拿到原始 Provider 的 `argument`（就是 family 的参数），传给新的 `create` 函数，然后用新函数创建 Element。这样无论你调用 `todoFamily(1)` 还是 `todoFamily(999)`，都会走覆盖后的逻辑。
 
----
+***
 
 ##### 3. 覆盖的作用域
 
@@ -616,7 +611,7 @@ graph TD
 
 这就是 Riverpod 的"作用域"能力。不同子树可以有不同的 Provider 实现，互不干扰。GetX 的全局 Map 做不到这一点——所有地方拿到的都是同一个实例。
 
----
+***
 
 ##### 4. 测试中的 Override
 
@@ -641,8 +636,7 @@ testWidgets('显示用户名', (tester) async {
 
 你不需要修改任何业务代码，只需要在测试的 `ProviderScope` 中覆盖依赖。所有依赖链上的 Provider 自动使用覆盖后的实现。这比 GetX 的 `Get.put` 手动替换要优雅得多，也更安全——覆盖的作用域是明确的，不会影响其他测试。
 
----
-
+***
 
 #### 五、AsyncValue：异步状态的三体问题
 
@@ -650,7 +644,7 @@ testWidgets('显示用户名', (tester) async {
 
 Riverpod 的 `AsyncValue` 就是为了解决这个问题。
 
----
+***
 
 ##### 1. 三种基本状态
 
@@ -702,7 +696,7 @@ switch (ref.watch(userProvider)) {
 
 编译器会强制你处理所有三种情况。漏了一种？编译不过。这比手动用 `isLoading` / `hasError` 标志位安全得多。
 
----
+***
 
 ##### 2. 复合状态：加载中但有旧数据
 
@@ -738,7 +732,7 @@ extension AsyncValueExtensions<ValueT> on AsyncValue<ValueT> {
 
 还有个 `tag7` 处的 `progress`——`AsyncLoading` 支持加载进度，你可以在 Notifier 里手动设置进度值，UI 层就能显示进度条。这个功能很多人不知道。
 
----
+***
 
 ##### 3. copyWithPrevious：状态过渡的秘密
 
@@ -788,8 +782,8 @@ AsyncValue<ValueT> copyWithPrevious(
 
 答案在 `tag1` 和 `tag3`：
 
-- `isRefresh: true`（手动刷新）：如果之前是 `AsyncData`，返回的还是 `AsyncData`，但 `_loading` 槽被填上了。运行时类型不变，所以 `this is! AsyncLoading` 为 true，`isRefreshing` 为 true。UI 层用 `when(skipLoadingOnRefresh: true)` 可以跳过 loading 状态，直接显示旧数据。
-- `isRefresh: false`（依赖变化导致的重载）：无论之前是什么状态，都返回 `AsyncLoading`，但 `_value` 槽保留旧值。运行时类型是 `AsyncLoading`，所以 `isReloading` 为 true。
+*   `isRefresh: true`（手动刷新）：如果之前是 `AsyncData`，返回的还是 `AsyncData`，但 `_loading` 槽被填上了。运行时类型不变，所以 `this is! AsyncLoading` 为 true，`isRefreshing` 为 true。UI 层用 `when(skipLoadingOnRefresh: true)` 可以跳过 loading 状态，直接显示旧数据。
+*   `isRefresh: false`（依赖变化导致的重载）：无论之前是什么状态，都返回 `AsyncLoading`，但 `_value` 槽保留旧值。运行时类型是 `AsyncLoading`，所以 `isReloading` 为 true。
 
 这个设计让"下拉刷新"和"切换筛选条件"有不同的 UI 表现，而你不需要写任何额外的状态管理代码。框架帮你把这些细节处理好了。
 
@@ -842,7 +836,7 @@ AsyncData<ValueT> copyWithPrevious(
 
 `tag5` 处：数据已经到了，不需要保留旧状态。干净利落。
 
----
+***
 
 ##### 4. asyncTransition：框架内部的调用入口
 
@@ -867,8 +861,7 @@ void asyncTransition(AsyncValue<ValueT> newState, {required bool seamless}) {
 
 `tag7` 处的 `seamless` 参数就是控制 `isRefresh` 的开关。`seamless: true` 意味着"无缝过渡"——保留旧数据，跳过 loading；`seamless: false` 意味着"有感过渡"——保留旧数据，但优先显示 loading。
 
----
-
+***
 
 ##### 5. 错误重试
 
@@ -935,13 +928,13 @@ bool get retrying => _errorFilled?.retrying ?? false;
 
 这个功能在网络不稳定的场景下非常实用。以前你得自己写重试逻辑，现在框架帮你做了。
 
----
+***
 
 #### 六、autoDispose：用完即走
 
 autoDispose 是 Riverpod 的自动内存管理机制。当一个 Provider 没有任何监听者时，它的状态会被自动销毁。
 
----
+***
 
 ##### 1. 销毁的判断逻辑
 
@@ -990,7 +983,7 @@ flowchart TD
 
 打个比方：图书馆的书，如果没人借也没人浏览，直接下架（`tag4`）；如果没人借但有人在浏览记录里标记了"想看"，就先把书放回仓库（`tag5`），下次有人来找的时候再摆出来。
 
----
+***
 
 ##### 2. 销毁的时序：先刷新，再销毁
 
@@ -1014,56 +1007,55 @@ void _task() {
 
 `tag6` 和 `tag7` 的顺序不能反：先刷新，再销毁。如果先销毁，可能会把正在被依赖的 Provider 销毁掉，导致刷新时找不到依赖。这个顺序保证在上一篇中也提到过，这里再强调一次——因为它真的很重要。
 
----
+***
 
 ##### 3. 和 GetX SmartManagement 的对比
 
-| 维度 | Riverpod autoDispose | GetX SmartManagement |
-|------|---------------------|---------------------|
-| 触发条件 | 没有监听者 | 路由退出 |
-| 粒度 | 每个 Provider 独立 | 按路由批量 |
-| 跨页面共享 | 自然支持（有监听者就不销毁） | 需要 permanent 标记 |
-| 手动控制 | keepAlive link | permanent / tag |
-| 时序问题 | 无（基于监听者计数） | 有（依赖路由生命周期） |
+| 维度    | Riverpod autoDispose | GetX SmartManagement |
+| ----- | -------------------- | -------------------- |
+| 触发条件  | 没有监听者                | 路由退出                 |
+| 粒度    | 每个 Provider 独立       | 按路由批量                |
+| 跨页面共享 | 自然支持（有监听者就不销毁）       | 需要 permanent 标记      |
+| 手动控制  | keepAlive link       | permanent / tag      |
+| 时序问题  | 无（基于监听者计数）           | 有（依赖路由生命周期）          |
 
 Riverpod 的 autoDispose 基于"有没有人在用"，GetX 的 SmartManagement 基于"路由有没有退出"。前者更精确，后者更简单但有边界条件。
 
----
-
+***
 
 #### 七、源码中值得学习的模式
 
----
+***
 
 ##### 1. sealed class 穷举
 
 `AsyncValue` 用 sealed class 强制穷举所有状态，`Override` 也是 sealed class。这是 Dart 3 的杀手级特性，Riverpod 用得很到位。在你自己的项目中，任何"有限状态集合"的场景都可以用这个模式。
 
----
+***
 
 ##### 2. 三槽复合状态
 
 `AsyncValue` 的 `_loading`、`_value`、`_error` 三个独立槽位，允许一个值同时处于多种状态。这比传统的"互斥枚举"灵活得多。如果你的业务中也有"加载中但有缓存数据"这类需求，可以参考这个设计。
 
----
+***
 
 ##### 3. 分层的 Provider 类型
 
 函数式和类式的分离不是为了炫技，而是为了让不同场景有最合适的工具。派生状态用函数式（简洁），可变状态用类式（灵活）。这种"按场景分工"的设计思路值得借鉴。
 
----
+***
 
 ##### 4. Family 的相等性设计
 
 Family 创建的 Provider 通过 `from + argument` 来判等，而不是用 `identical`。这让同一个参数在不同地方调用 `family(42)` 能拿到同一个 Provider 实例。但代价是参数必须正确实现 `==`。这种"用值相等代替引用相等"的设计，在缓存和去重场景中很常见。
 
----
+***
 
 ##### 5. Override 的作用域隔离
 
 Override 只影响当前 ProviderScope 及其子树，不影响父级。这种"向下传播、不向上污染"的设计，和 Flutter 的 InheritedWidget 是同一个思路。在你自己的架构设计中，任何"配置覆盖"的场景都可以参考这个模式。
 
----
+***
 
 #### 碎碎念
 
@@ -1077,6 +1069,6 @@ Override 只影响当前 ProviderScope 及其子树，不影响父级。这种"�
 
 下一篇是最后一篇，我们聊 Riverpod 和 Flutter Widget 树的集成机制——ProviderScope、ConsumerWidget、WidgetRef 的源码实现，以及四大方案的终极对比。
 
----
+***
 
 *我是张风捷特烈，如果你对 Flutter 框架的源码分析感兴趣，欢迎关注。这是「状态管理大乱斗」系列的第5 篇（中），下一篇聊聊 Riverpod 和 Flutter Widget 树的集成机制，以及四大方案的终极对比。*
