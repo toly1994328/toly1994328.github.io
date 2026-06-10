@@ -264,7 +264,7 @@ const { Content, headings } = await post.render();
   .toc-inner { padding: 0.5rem 0; }
 
   .toc-title {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -277,7 +277,7 @@ const { Content, headings } = await post.render();
   .toc-link {
     display: block;
     padding: 0.25rem 0.6rem;
-    font-size: 0.72rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     border-left: 2px solid transparent;
     transition: all 0.2s;
@@ -290,9 +290,9 @@ const { Content, headings } = await post.render();
 
   .toc-link:hover { color: var(--text); border-left-color: rgba(0,0,0,0.1); }
   .toc-link.active { color: var(--accent-light); border-left-color: var(--accent); font-weight: 500; }
-  .toc-level-3 { padding-left: 1.2rem; font-size: 0.68rem; }
-  .toc-level-4 { padding-left: 1.8rem; font-size: 0.66rem; }
-  .toc-level-5 { padding-left: 2.4rem; font-size: 0.64rem; }
+  .toc-level-3 { padding-left: 1.2rem; font-size: 0.78rem; }
+  .toc-level-4 { padding-left: 1.8rem; font-size: 0.75rem; }
+  .toc-level-5 { padding-left: 2.4rem; font-size: 0.72rem; }
 
   /* Article */
   .post-header {
@@ -311,12 +311,12 @@ const { Content, headings } = await post.render();
   }
 
   .post-category {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
+    color: var(--accent-light);
     padding: 0.15rem 0.6rem;
-    border-radius: 9999px;
+    border-radius: 6px;
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 600;
+    border: 1px solid var(--accent-light);
     text-decoration: none;
   }
 

@@ -1,5 +1,5 @@
 ---
-title: "Signals v7 架构升级分析"
+title: "状态管理大乱斗#10 | Signals V7.0 源码评析"
 description: "分析 Signals.dart v7 版本的架构改进与新特性。"
 date: 2026-05-22
 tags: ["Flutter", "Signals", "源码分析", "状态管理"]

@@ -1,5 +1,5 @@
 ---
-title: "Signals.dart v7 迁移差异对比"
+title: "状态管理大乱斗#09 | 新旧 Signals 大比拼 - 7.1 VS 6.3"
 description: "对比 Signals.dart v6 到 v7 的 API 变化和迁移要点。"
 date: 2026-005-23
 tags: ["Flutter", "Signals", "源码分析", "状态管理"]

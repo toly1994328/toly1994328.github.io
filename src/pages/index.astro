@@ -20,21 +20,23 @@ const timeline = recentPosts.reduce((acc, post) => {
   <div class="home-layout">
     <section class="posts">
       {posts.map((post, i) => (
+        <a href={`/blog/${post.slug}`} class="post-card-link">
         <article class="post-card">
           <div class="post-card-meta">
             <span class="post-card-category">{post.data.category}</span>
             <time>{post.data.date.toLocaleDateString('zh-CN')}</time>
           </div>
           <h2 class="post-card-title">
-            <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+            {post.data.title}
           </h2>
           <p class="post-card-desc">{post.data.description}</p>
           <div class="post-card-tags">
             {post.data.tags.map(tag => (
-              <a href={`/tags/${tag}`} class="tag">#{tag}</a>
+              <span class="tag">#{tag}</span>
             ))}
           </div>
         </article>
+        </a>
       ))}
     </section>
 
@@ -99,7 +101,7 @@ const timeline = recentPosts.reduce((acc, post) => {
   }
 
   .timeline-title {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -112,7 +114,7 @@ const timeline = recentPosts.reduce((acc, post) => {
   }
 
   .timeline-month {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--accent-light);
     margin-bottom: 0.4rem;
@@ -124,8 +126,8 @@ const timeline = recentPosts.reduce((acc, post) => {
     gap: 0.5rem;
     padding: 0.25rem 0;
     color: var(--text-muted);
-    font-size: 0.72rem;
-    line-height: 1.3;
+    font-size: 0.82rem;
+    line-height: 1.4;
     transition: color 0.2s;
     border-left: 1px solid rgba(0, 0, 0, 0.08);
     padding-left: 0.75rem;
@@ -157,6 +159,17 @@ const timeline = recentPosts.reduce((acc, post) => {
     white-space: nowrap;
   }
 
+  .post-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 16px;
+  }
+
+  .post-card-link:hover {
+    color: inherit;
+  }
+
   .post-card {
     background: var(--bg-card);
     backdrop-filter: var(--glass-blur);
@@ -168,6 +181,7 @@ const timeline = recentPosts.reduce((acc, post) => {
     overflow: hidden;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), var(--glass-shine);
     transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
   }
 
   .post-card::before {
@@ -175,11 +189,12 @@ const timeline = recentPosts.reduce((acc, post) => {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-mid, #a855f7), var(--gradient-end));
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-mid, #a855f7), var(--gradient-end));
     opacity: 0;
     transition: opacity 0.3s;
+    border-radius: 3px 0 0 3px;
   }
 
   .post-card:hover {
@@ -202,27 +217,19 @@ const timeline = recentPosts.reduce((acc, post) => {
   }
 
   .post-card-category {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: white;
-    padding: 0.2rem 0.75rem;
-    border-radius: 9999px;
+    color: var(--accent-light);
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
+    border: 1px solid var(--accent-light);
   }
 
   .post-card-title {
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-  }
-
-  .post-card-title a {
     color: var(--text);
-    transition: color 0.2s;
-  }
-
-  .post-card-title a:hover {
-    color: var(--accent-light);
   }
 
   .post-card-desc {
