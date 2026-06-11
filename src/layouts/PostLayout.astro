@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Topbar from '../components/Topbar.astro';
 
 interface Props {
   title?: string;
@@ -102,8 +103,19 @@ const tagCount = tags.length;
       });
     }, 1000);
   </script>
+  <script is:inline>
+    (function(){
+      var steps = [14,15,16,17,18];
+      var idx = parseInt(localStorage.getItem('fontIndex') || '2');
+      if (idx >= 0 && idx < steps.length) {
+        document.documentElement.style.fontSize = steps[idx] + 'px';
+      }
+    })();
+  </script>
 </head>
 <body>
+  <Topbar />
+
   <canvas id="particles" class="particles-bg"></canvas>
 
   <div class="layout">
@@ -225,6 +237,57 @@ const tagCount = tags.length;
         btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
         setTimeout(() => { btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'; }, 2000);
       });
+    });
+
+    // Font size control
+    const fontSteps = [14, 15, 16, 17, 18];
+    let fontIndex = parseInt(localStorage.getItem('fontIndex') || '2');
+    const fontBtns = [
+      document.getElementById('font-decrease'),
+      document.getElementById('font-reset'),
+      document.getElementById('font-increase'),
+    ];
+    function applyFontSize() {
+      document.documentElement.style.fontSize = fontSteps[fontIndex] + 'px';
+      localStorage.setItem('fontIndex', String(fontIndex));
+      fontBtns.forEach(b => b?.classList.remove('active'));
+      if (fontIndex < 2) fontBtns[0]?.classList.add('active');
+      else if (fontIndex === 2) fontBtns[1]?.classList.add('active');
+      else fontBtns[2]?.classList.add('active');
+    }
+    applyFontSize();
+    document.getElementById('font-decrease')?.addEventListener('click', () => {
+      fontIndex = Math.max(0, fontIndex - 1); applyFontSize();
+    });
+    document.getElementById('font-increase')?.addEventListener('click', () => {
+      fontIndex = Math.min(fontSteps.length - 1, fontIndex + 1); applyFontSize();
+    });
+    document.getElementById('font-reset')?.addEventListener('click', () => {
+      fontIndex = 2; applyFontSize();
+    });
+
+    // Search
+    const searchInput = document.getElementById('topbar-search-input');
+    const searchResults = document.getElementById('search-results');
+    let posts = [];
+    async function loadPosts() {
+      if (posts.length) return;
+      try { const res = await fetch('/search-index.json'); posts = await res.json(); } catch(e) { posts = []; }
+    }
+    searchInput?.addEventListener('focus', loadPosts);
+    searchInput?.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) { searchResults.classList.remove('active'); return; }
+      const matched = posts.filter(p => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)).slice(0, 8);
+      if (matched.length === 0) {
+        searchResults.innerHTML = '<div class="search-no-result">未找到相关文章</div>';
+      } else {
+        searchResults.innerHTML = matched.map(p => `<a href="/blog/${p.slug}" class="search-result-item"><div class="result-title">${p.title}</div><div class="result-desc">${p.description}</div></a>`).join('');
+      }
+      searchResults.classList.add('active');
+    });
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.topbar')) searchResults.classList.remove('active');
     });
   </script>
 </body>

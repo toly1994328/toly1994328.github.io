@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Topbar from '../components/Topbar.astro';
 
 interface Props {
   title?: string;
@@ -122,8 +123,20 @@ const tagCount = tags.length;
       });
     }, 1000);
   </script>
+  <script is:inline>
+    // 阻塞渲染前设置字号，避免闪烁
+    (function(){
+      var steps = [14,15,16,17,18];
+      var idx = parseInt(localStorage.getItem('fontIndex') || '2');
+      if (idx >= 0 && idx < steps.length) {
+        document.documentElement.style.fontSize = steps[idx] + 'px';
+      }
+    })();
+  </script>
 </head>
 <body>
+  <Topbar />
+
   <!-- 背景粒子效果 -->
   <canvas id="particles" class="particles-bg"></canvas>
 
@@ -333,6 +346,76 @@ const tagCount = tags.length;
         }, 2000);
       });
     });
+
+    // Font size control
+    const fontSteps = [14, 15, 16, 17, 18];
+    let fontIndex = parseInt(localStorage.getItem('fontIndex') || '2');
+    const fontBtns = [
+      document.getElementById('font-decrease'),
+      document.getElementById('font-reset'),
+      document.getElementById('font-increase'),
+    ];
+    function applyFontSize() {
+      document.documentElement.style.fontSize = fontSteps[fontIndex] + 'px';
+      localStorage.setItem('fontIndex', String(fontIndex));
+      // 高亮当前档位: 0=A-, 1/2=A, 3/4=A+
+      fontBtns.forEach(b => b?.classList.remove('active'));
+      if (fontIndex < 2) fontBtns[0]?.classList.add('active');
+      else if (fontIndex === 2) fontBtns[1]?.classList.add('active');
+      else fontBtns[2]?.classList.add('active');
+    }
+    applyFontSize();
+    document.getElementById('font-decrease')?.addEventListener('click', () => {
+      fontIndex = Math.max(0, fontIndex - 1);
+      applyFontSize();
+    });
+    document.getElementById('font-increase')?.addEventListener('click', () => {
+      fontIndex = Math.min(fontSteps.length - 1, fontIndex + 1);
+      applyFontSize();
+    });
+    document.getElementById('font-reset')?.addEventListener('click', () => {
+      fontIndex = 2;
+      applyFontSize();
+    });
+
+    // Search
+    const searchInput = document.getElementById('topbar-search-input') as HTMLInputElement;
+    const searchResults = document.getElementById('search-results')!;
+    let posts: {title: string; description: string; slug: string}[] = [];
+
+    async function loadPosts() {
+      if (posts.length) return;
+      try {
+        const res = await fetch('/search-index.json');
+        posts = await res.json();
+      } catch(e) { posts = []; }
+    }
+
+    searchInput?.addEventListener('focus', loadPosts);
+    searchInput?.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) { searchResults.classList.remove('active'); return; }
+      const matched = posts.filter(p =>
+        p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
+      ).slice(0, 8);
+      if (matched.length === 0) {
+        searchResults.innerHTML = '<div class="search-no-result">未找到相关文章</div>';
+      } else {
+        searchResults.innerHTML = matched.map(p => `
+          <a href="/blog/${p.slug}" class="search-result-item">
+            <div class="result-title">${p.title}</div>
+            <div class="result-desc">${p.description}</div>
+          </a>
+        `).join('');
+      }
+      searchResults.classList.add('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!(e.target as Element).closest('.topbar')) {
+        searchResults.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>
@@ -413,6 +496,178 @@ const tagCount = tags.length;
     pointer-events: none;
   }
 
+  /* Topbar */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-sidebar);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 3rem;
+  }
+
+  .topbar-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .topbar-home {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .topbar-home:hover {
+    color: var(--accent-light);
+  }
+
+  .topbar-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    color: var(--text-muted);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .topbar-search:focus-within {
+    border-color: var(--accent-light);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  .topbar-search input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 0.88rem;
+    width: 240px;
+    font-family: inherit;
+  }
+
+  .topbar-search input::placeholder {
+    color: var(--text-muted);
+  }
+
+  .topbar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-family: inherit;
+    font-weight: 600;
+    padding: 0 0.5rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .topbar-btn:hover {
+    border-color: var(--accent-light);
+    color: var(--accent-light);
+  }
+
+  .topbar-btn.active {
+    border-color: var(--accent-light);
+    color: var(--accent-light);
+    background: rgba(99, 102, 241, 0.1);
+  }
+
+  .topbar-fontsize {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .search-results {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 420px;
+    max-height: 360px;
+    overflow-y: auto;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(40px) saturate(1.5);
+    -webkit-backdrop-filter: blur(40px) saturate(1.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-top: 0.4rem;
+    padding: 0.4rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    scrollbar-width: thin;
+  }
+
+  .search-results.active {
+    display: block;
+  }
+
+  .search-result-item {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+
+  .search-result-item:hover {
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+    color: var(--text);
+  }
+
+  .search-result-item .result-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-result-item .result-desc {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .search-no-result {
+    padding: 0.75rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+
   /* Layout */
   .layout {
     position: relative;
@@ -421,8 +676,8 @@ const tagCount = tags.length;
     align-items: flex-start;
     max-width: 1400px;
     margin: 0 auto;
-    min-height: 100vh;
-    padding: 2rem 3rem;
+    min-height: calc(100vh - 49px);
+    padding: 1.5rem 3rem;
     gap: 1rem;
   }
 
