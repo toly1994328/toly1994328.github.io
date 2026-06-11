@@ -423,4 +423,14 @@ const { Content, headings } = await post.render();
 
   @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .animate-in { animation: fadeInUp 0.5s ease-out forwards; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.8rem; position: relative; }
+  .footer-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+  .footer-beian { margin-top: 0.4rem; font-size: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+  .footer-beian a { color: var(--text-muted); transition: color 0.2s; }
+  .footer-beian a:hover { color: var(--accent-light); }
+  .footer-divider { color: var(--text-muted); opacity: 0.5; }
+  .beian-gongan { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .beian-icon { width: 16px; height: 16px; }
 </style>

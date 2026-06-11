@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -171,6 +172,8 @@ const tagCount = tags.length;
     <!-- 右侧大纲 -->
     <slot name="toc" />
   </div>
+
+  <Footer />
 
   <script>
     // Theme (default light)

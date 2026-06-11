@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Topbar from '../components/Topbar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title?: string;
@@ -224,10 +225,7 @@ const tagCount = tags.length;
         <slot />
       </main>
 
-      <footer class="footer">
-        <div class="footer-glow"></div>
-        <p>© 2024 学海无涯 · Built with Astro</p>
-      </footer>
+      <Footer />
     </div>
   </div>
 
@@ -1020,6 +1018,41 @@ const tagCount = tags.length;
     width: 200px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .footer-beian {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-beian a {
+    color: var(--text-muted);
+    transition: color 0.2s;
+  }
+
+  .footer-beian a:hover {
+    color: var(--accent-light);
+  }
+
+  .footer-divider {
+    color: var(--text-muted);
+    opacity: 0.5;
+  }
+
+  .beian-gongan {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .beian-icon {
+    width: 16px;
+    height: 16px;
   }
 
   @keyframes fadeInUp {
